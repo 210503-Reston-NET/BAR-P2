@@ -14,14 +14,6 @@ variables:
   buildConfigurtion: 'Release'
 
 steps:
-- task: SonarCloudPrepare@1
-  displayName: SonarCloud Prep
-  inputs:
-    SonarCloud: 'SonarCloudMM'
-    organization: '210503-reston-net'
-    scannerMode: 'MSBuild'
-    projectKey: '210503-Reston-NET_BAR-P2'
-    projectName: 'BAR-P2'
 - task: DotNetCoreCLI@2
   displayName: Restore
   inputs:
@@ -33,10 +25,6 @@ steps:
   inputs:
     command: 'build'
     projects: $(solution)
-- task: SonarCloudAnalyze@1
-  displayName: Run Code Analysis
-- task: SonarCloudPublish@1
-  displayName: Publish Code Analysis
 - task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
