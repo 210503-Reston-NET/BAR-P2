@@ -33,7 +33,6 @@ steps:
     zipAfterPublish: true
     projects: '**/BookClub/BCWebUI/*.csproj'
 - task: AzureRmWebAppDeployment@4
-  displayName: Deploy
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(b5a73573-c365-4df4-90d9-79329c2413a9)'
