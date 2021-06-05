@@ -1,0 +1,58 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool: Default
+
+variables:
+  solution: '**/Bookclub/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfigurtion: 'Release'
+
+steps:
+- task: SonarCloudPrepare@1
+  displayName: SonarCloud Prep
+  inputs:
+    SonarCloud: 'SonarCloudMM'
+    organization: '210503-reston-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210503-Reston-NET_BAR-P2'
+    projectName: 'BAR-P2'
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: 'restore'
+    projects: $(solution)
+    feedsToUse: 'select'
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    command: 'build'
+    projects: $(solution)
+- # task: DotNetCoreCLI@2
+  # displayName: Test
+  # inputs:
+    # command: 'test'
+    # projects: '**/BookClub/BCTests/*.csproj'
+- task: SonarCloudAnalyze@1
+  displayName: Run Code Analysis
+- task: SonarCloudPublish@1
+  displayName: Publish Code Analysis
+- task: DotNetCoreCLI@2
+  displayName: Publish
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    zipAfterPublish: true
+    projects: '**/BookClub/BCWebUI/*.csproj'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(b5a73573-c365-4df4-90d9-79329c2413a9)'
+    appType: 'webApp'
+    WebAppName: 'BookClub'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
