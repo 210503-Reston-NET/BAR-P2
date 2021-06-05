@@ -9,7 +9,7 @@ trigger:
 pool: Default
 
 variables:
-  solution: '**/Bookclub/*.sln'
+  solution: '**/BookClub/*.sln'
   buildPlatform: 'Any CPU'
   buildConfigurtion: 'Release'
 
