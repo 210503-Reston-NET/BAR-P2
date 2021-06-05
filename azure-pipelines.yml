@@ -33,11 +33,6 @@ steps:
   inputs:
     command: 'build'
     projects: $(solution)
-- # task: DotNetCoreCLI@2
-  # displayName: Test
-  # inputs:
-    # command: 'test'
-    # projects: '**/BookClub/BCTests/*.csproj'
 - task: SonarCloudAnalyze@1
   displayName: Run Code Analysis
 - task: SonarCloudPublish@1
@@ -50,6 +45,7 @@ steps:
     zipAfterPublish: true
     projects: '**/BookClub/BCWebUI/*.csproj'
 - task: AzureRmWebAppDeployment@4
+  displayName: Deploy
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(b5a73573-c365-4df4-90d9-79329c2413a9)'
