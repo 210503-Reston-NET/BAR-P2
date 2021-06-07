@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCWebUI", "BCWebUI\BCWebUI.csproj", "{8EE233B0-30E3-491A-A0FF-CB34B04B2410}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCWebUI", "BCWebUI\BCWebUI.csproj", "{8EE233B0-30E3-491A-A0FF-CB34B04B2410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCDL", "BCDL\BCDL.csproj", "{6BB09CF6-35E6-44E3-91CD-7EA1D32A0D2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCBL", "BCBL\BCBL.csproj", "{DE5510A0-50BB-4AF0-937A-0BDEAC040753}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{8EE233B0-30E3-491A-A0FF-CB34B04B2410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EE233B0-30E3-491A-A0FF-CB34B04B2410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EE233B0-30E3-491A-A0FF-CB34B04B2410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB09CF6-35E6-44E3-91CD-7EA1D32A0D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB09CF6-35E6-44E3-91CD-7EA1D32A0D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB09CF6-35E6-44E3-91CD-7EA1D32A0D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB09CF6-35E6-44E3-91CD-7EA1D32A0D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE5510A0-50BB-4AF0-937A-0BDEAC040753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5510A0-50BB-4AF0-937A-0BDEAC040753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5510A0-50BB-4AF0-937A-0BDEAC040753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5510A0-50BB-4AF0-937A-0BDEAC040753}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
