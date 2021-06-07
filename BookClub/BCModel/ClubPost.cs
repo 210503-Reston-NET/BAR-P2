@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace BCModel
 {
-    class ClubPost
+    public class ClubPost
     {
         public ClubPost() { }
 
         public ClubPost(int id, User user, string post, BookClub bookClub, int likes, int dislikes)
         {
             Id = id;
-            UserId = user;
+            User = user;
             Post = post;
-            BookClubId = bookClub;
+            BookClub = bookClub;
             TotalLike = likes;
             TotalDislike = dislikes;
         }
 
         public ClubPost( User user, string post, BookClub bookClub, int likes, int dislikes)
         {
-            UserId = user;
+            User = user;
             Post = post;
-            BookClubId = bookClub;
+            BookClub = bookClub;
             TotalLike = likes;
             TotalDislike = dislikes;
         }
 
         public int Id { get; set; }
-        public User UserId { get; set; }
+        public User User { get; set; }
         public string Post { get; set; }
 
-        public BookClub BookClubId { get; set; }
+        public BookClub BookClub { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
 

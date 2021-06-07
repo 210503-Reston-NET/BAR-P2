@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BCModel
 {
-    class UserPost
+    public class UserPost
     {
         public UserPost() { }
 
         public UserPost(User user, string post, int likes, int dislikes)
         {
-            UserId = user;
+            User = user;
             Post = post;
             TotalLike = likes;
             TotalDislike = dislikes;
@@ -21,14 +21,14 @@ namespace BCModel
         public UserPost(int id, User user, string post, int likes, int dislikes)
         {
             Id = id;
-            UserId = user;
+            User = user;
             Post = post;
             TotalLike = likes;
             TotalDislike = dislikes;
         }
 
         public int Id { get; set; }
-        public User UserId { get; set; }
+        public User User { get; set; }
         public string Post { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
