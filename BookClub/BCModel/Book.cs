@@ -10,14 +10,14 @@ namespace BCModel
         public string Author {get;set;}
         public int CategoryId {get;set;}
 
-        public Book(string isbn,strint title,string author,int categoryId){
+        public Book(string isbn, string title,string author,int categoryId){
             this.ISBN=isbn;
             this.Title=title;
             this.Author=author;
             this.CategoryId=categoryId;
         }
 
-         public Book(int id, string isbn,strint title,string author,int categoryId):this(isbn,title, author,categoryId){
+         public Book(int id, string isbn, string title,string author,int categoryId):this(isbn,title, author,categoryId){
             this.ISBN=isbn;
             this.Title=title;
             this.Author=author;
