@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BCModel;
 
-namespace BCDL
+namespace BCBL
 {
-    public interface IBookRepo
+    public interface IBookBL
     {
         Book AddBook(Book book);
 
@@ -22,7 +22,5 @@ namespace BCDL
         Book UpdateBook(Book book);
 
         void DeleteBook(string isbn);
-
-        bool BookExists(string isbn);
     }
 }
