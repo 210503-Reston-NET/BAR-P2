@@ -53,7 +53,6 @@ namespace BCBL
 
             if (exists) return _bookRepo.UpdateBook(book);
             else throw new Exception("Book doesn't exist in DB");
-
         }
     }
 }
