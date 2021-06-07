@@ -62,5 +62,12 @@ namespace BCDL
             }
         }
 
+        public bool BookExists(string isbn)
+        {
+            Book book = _context.Books.FirstOrDefault(book => book.ISBN == isbn);
+
+            if (book == null) return false;
+            else return true;
+        }
     }
 }
