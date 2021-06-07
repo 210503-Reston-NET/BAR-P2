@@ -12,8 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using BCDL;
+using BCBL;
+using Microsoft.OpenApi.Models;
 
-namespace BookClub
+namespace BCWebUI
 {
     public class Startup
     {
@@ -27,8 +29,14 @@ namespace BookClub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookClubDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BookClubDB")));
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BCWebUI", Version = "v1" });
+            });
+            services.AddDbContext<BookClubDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BookClubDB")));
+            services.AddScoped<IBookClubBL, BookClubBL>();
+            services.AddScoped<IBookClubRepo, BookClubRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +45,8 @@ namespace BookClub
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BCWebUI v1"));
             }
 
             app.UseHttpsRedirection();
