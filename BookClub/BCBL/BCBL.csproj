@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BCDL\BCDL.csproj" />
+    <ProjectReference Include="..\BCModel\BCModel.csproj" />
+  </ItemGroup>
+
 </Project>
