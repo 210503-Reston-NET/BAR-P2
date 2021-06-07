@@ -8,14 +8,31 @@ namespace BCModel
 {
     class UserPost
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Post { get; set; }
+        public UserPost() { }
 
-        public int BookClubId { get; set; }
+        public UserPost(User user, string post, int likes, int dislikes)
+        {
+            UserId = user;
+            Post = post;
+            TotalLike = likes;
+            TotalDislike = dislikes;
+        }
+
+        public UserPost(int id, User user, string post, int likes, int dislikes)
+        {
+            Id = id;
+            UserId = user;
+            Post = post;
+            TotalLike = likes;
+            TotalDislike = dislikes;
+        }
+
+        public int Id { get; set; }
+        public User UserId { get; set; }
+        public string Post { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
 
-        public UserPost() { }
+        
     }
 }

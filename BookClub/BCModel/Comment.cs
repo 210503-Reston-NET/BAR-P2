@@ -8,14 +8,33 @@ namespace BCModel
 {
     class Comment
     {
-        public int Id { get; set; }
-        public int UserID { get; set; }
-        public int UserPostId { get; set; }
+        public Comment() { }
 
-        public int ClubPostId { get; set; }
+        public Comment(int id, User user, UserPost userpost, ClubPost clubPost, string message)
+        {
+            Id = id;
+            UserID = user;
+            UserPostId = userpost;
+            ClubPostId = clubPost;
+            Message = message;
+        }
+
+        public Comment( User user, UserPost userpost, ClubPost clubPost, string message)
+        {
+            UserID = user;
+            UserPostId = userpost;
+            ClubPostId = clubPost;
+            Message = message;
+        }
+
+        public int Id { get; set; }
+        public User UserID { get; set; }
+        public UserPost UserPostId { get; set; }
+
+        public ClubPost ClubPostId { get; set; }
         public string Message { get; set; }
 
-        public Comment() { }
+        
 
     }
 }
