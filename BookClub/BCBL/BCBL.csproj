@@ -8,5 +8,4 @@
     <ProjectReference Include="..\BCDL\BCDL.csproj" />
     <ProjectReference Include="..\BCModel\BCModel.csproj" />
   </ItemGroup>
-
 </Project>
