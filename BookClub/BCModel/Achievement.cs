@@ -8,7 +8,7 @@ namespace BCModel
         public string Badge {get;set;} 
 
 
-     public   Achievement(string badge,int using ){
+    public   Achievement(string badge,int userid ){
         this.UserId=userid;
         this.Badge=badge;
         }
