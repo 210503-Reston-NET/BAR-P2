@@ -43,6 +43,8 @@ namespace BCWebUI
             services.AddScoped<IBookClubRepo, BookClubRepo>();
             services.AddScoped<IClubPostBL, ClubPostBL>();
             services.AddScoped<IClubPostRepo, ClubPostRepo>();
+            services.AddScoped<ICommentBL, CommentBL>();
+            services.AddScoped<ICommentRepo, CommentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
