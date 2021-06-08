@@ -9,22 +9,19 @@ namespace BCModel
     public class Category
     {
         public Category() { }
-        public Category(string name, List<Book> books)
+        public Category(string name)
         {
             this.Name = name;
-            this.Books = books;
         }
 
-        public Category(int Id, string name, List<Book> books) : this(name, books)
+        public Category(int Id, string name) : this(name)
         {
             this.Name = name;
-            this.Books = books;
             this.Id = Id;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Book> Books { get; set; }
         
     }
 }
