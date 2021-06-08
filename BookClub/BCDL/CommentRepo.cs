@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -15,7 +16,9 @@ namespace BCDL
 
         public Comment AddComment(Comment comment)
         {
+            _context.ChangeTracker.Clear();
             _context.Comments.Add(comment);
+            _context.Entry(comment.User).State = EntityState.Unchanged;
             _context.SaveChanges();
             return comment;
         }
