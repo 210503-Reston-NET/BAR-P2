@@ -7,22 +7,22 @@ namespace BCModel
         public FavoriteBook()
         {
         }
-        public FavoriteBook(User userid, Book bookId)
+        public FavoriteBook(string userid, string bookId)
         {
-            this.User = userid;
-            this.Book = bookId;
+            this.Email = userid;
+            this.ISBN = bookId;
         }
 
-        public FavoriteBook(int Id, User userid, Book bookId) : this(userid, bookId)
+        public FavoriteBook(int Id, string userid, string bookId) : this(userid, bookId)
         {
-            this.User = userid;
-            this.Book = bookId;
+            this.Email = userid;
+            this.ISBN = bookId;
             this.Id = Id;
         }
 
         public int Id { get; set; }
-        public User User { get; set; }
-        public Book Book { get; set; } 
+        public string Email { get; set; }
+        public string ISBN { get; set; } 
 
     }
 }

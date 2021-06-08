@@ -10,25 +10,25 @@ namespace BCModel
     {
         public UserPost() { }
 
-        public UserPost(User user, string post, int likes, int dislikes)
+        public UserPost(string user, string post, int likes, int dislikes)
         {
-            User = user;
+            Email = user;
             Post = post;
             TotalLike = likes;
             TotalDislike = dislikes;
         }
 
-        public UserPost(int id, User user, string post, int likes, int dislikes)
+        public UserPost(int id, string user, string post, int likes, int dislikes)
         {
             Id = id;
-            User = user;
+            Email = user;
             Post = post;
             TotalLike = likes;
             TotalDislike = dislikes;
         }
 
         public int Id { get; set; }
-        public User User { get; set; }
+        public string Email { get; set; }
         public string Post { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }

@@ -10,28 +10,28 @@ namespace BCModel
     {
         public Comment() { }
 
-        public Comment(int id, User user, UserPost userpost, ClubPost clubPost, string message)
+        public Comment(int id, string user, int userpost, int clubPost, string message)
         {
             Id = id;
-            User = user;
-            UserPost = userpost;
-            ClubPost = clubPost;
+            Email = user;
+            UserPostID = userpost;
+            ClubPostID = clubPost;
             Message = message;
         }
 
-        public Comment( User user, UserPost userpost, ClubPost clubPost, string message)
+        public Comment( string user, int userpost, int clubPost, string message)
         {
-            User = user;
-            UserPost = userpost;
-            ClubPost = clubPost;
+            Email = user;
+            UserPostID = userpost;
+            ClubPostID = clubPost;
             Message = message;
         }
 
         public int Id { get; set; }
-        public User User { get; set; }
-        public UserPost UserPost { get; set; }
+        public string Email { get; set; }
+        public int UserPostID { get; set; }
 
-        public ClubPost ClubPost { get; set; }
+        public int ClubPostID { get; set; }
         public string Message { get; set; }
 
         

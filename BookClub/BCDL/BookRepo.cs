@@ -20,7 +20,7 @@ namespace BCDL
         public Book AddBook(Book book)
         {
             
-            Category cat = _context.Categories.FirstOrDefault(cate => cate.Name.Equals(book.Category.Name));
+            Category cat = _context.Categories.FirstOrDefault(cate => cate.Name.Equals(book.CategoryName));
             if (cat == null)
             {
                 _context.Books.Add(book);
@@ -30,7 +30,6 @@ namespace BCDL
             {
                 _context.ChangeTracker.Clear();
                 _context.Books.Add(book);
-                _context.Entry(book.Category).State = EntityState.Unchanged;
                 _context.SaveChanges();
             }
             
@@ -39,7 +38,7 @@ namespace BCDL
 
        public List<Book> GetAllBooks()
         {
-            List<Book> book = _context.Books.Include(book => book.Category).ToList();
+            List<Book> book = _context.Books.Include(book => book.CategoryName).ToList();
             return book;
         }
 

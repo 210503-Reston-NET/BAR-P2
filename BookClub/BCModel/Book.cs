@@ -8,20 +8,20 @@ namespace BCModel
         {
         }
 
-        public Book(string isbn, string title, string author, Category categoryId)
+        public Book(string isbn, string title, string author, string categoryId)
         {
             this.ISBN = isbn;
             this.Title = title;
             this.Author = author;
-            this.Category = categoryId;
+            this.CategoryName = categoryId;
         }
 
-        public Book(int id, string isbn, string title, string author, Category categoryId) : this(isbn, title, author, categoryId)
+        public Book(int id, string isbn, string title, string author, string categoryId) : this(isbn, title, author, categoryId)
         {
             this.ISBN = isbn;
             this.Title = title;
             this.Author = author;
-            this.Category = categoryId;
+            this.CategoryName = categoryId;
             this.Id = id;
         }
 
@@ -29,6 +29,6 @@ namespace BCModel
         public string ISBN {get;set;}
         public string Title {get;set;}
         public string Author {get;set;}
-        public Category Category {get;set;}
+        public string CategoryName {get;set;}
     }
 }

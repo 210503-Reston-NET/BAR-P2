@@ -6,28 +6,28 @@ namespace BCModel
     {
         public Recommendation() { }
 
-        public Recommendation(User user, Book book, string message, User receversEmail )
+        public Recommendation(string user, string book, string message, string receversEmail )
         {
-            User = user;
-            Book = book;
+            SenderEmail = user;
+            ISBN = book;
             Message = message;
             ReceversEmails = receversEmail;
         }
 
-        public Recommendation(int id, User user, Book book, string message, User receversEmail)
+        public Recommendation(int id, string user, string book, string message, string receversEmail)
         {
             Id = id;
-            User = user;
-            Book = book;
+            SenderEmail = user;
+            ISBN = book;
             Message = message;
             ReceversEmails = receversEmail;
         }
 
         public int Id{get;set;}
-        public User User {get;set;}
-        public Book Book {get;set;}
+        public string SenderEmail {get;set;}
+        public string ISBN {get;set;}
         public string Message {get;set;}
-        public User ReceversEmails {get;set;}
+        public string ReceversEmails {get;set;}
         
     }
 }

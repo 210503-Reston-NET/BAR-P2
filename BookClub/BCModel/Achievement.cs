@@ -6,21 +6,21 @@ namespace BCModel
         public Achievement()
         {
         }
-        public Achievement(string badge, User userid)
+        public Achievement(string badge, string userid)
         {
-            this.User = userid;
+            this.Email = userid;
             this.Badge = badge;
         }
 
-        public Achievement(int id, string badge, User userid)
+        public Achievement(int id, string badge, string userid)
         {
             Id = id;
-            this.User = userid;
+            this.Email = userid;
             this.Badge = badge;
         }
 
         public int Id{get;set;}
-        public User User {get;set;} 
+        public string Email {get;set;} 
         public string Badge {get;set;} 
     }
 }

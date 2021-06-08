@@ -36,12 +36,12 @@ namespace BCDL
 
         public BookClub GetBookClub(BookClub bookClub)
         {
-            BookClub found = _context.BookClubs.FirstOrDefault(bc => bc.Name == bookClub.Name && bc.Description == bookClub.Description && bc.Book.Id == bookClub.Book.Id);
+            BookClub found = _context.BookClubs.FirstOrDefault(bc => bc.Name == bookClub.Name && bc.Description == bookClub.Description && bc.ISBN == bookClub.ISBN);
             if (found == null)
             {
                 return null;
             }
-            return new BookClub(found.Name, found.Description, found.Book, found.User);
+            return new BookClub(found.Name, found.Description, found.ISBN, found.Email);
         }
 
         public BookClub GetBookClubById(int bookClubId)

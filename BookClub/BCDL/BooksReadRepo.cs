@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -18,6 +19,7 @@ namespace BCDL
 
         public BooksRead AddBooksRead(BooksRead book)
         {
+
             _context.BooksRead.Add(book);
             _context.SaveChanges();
             return book;
@@ -42,7 +44,7 @@ namespace BCDL
 
         public List<BooksRead> GetBooksReadByUser(string email)
         {
-            return _context.BooksRead.Where(book => book.User.Email.Equals(email)).Select(book => book).ToList();
+            return _context.BooksRead.Where(book => book.User.Equals(email)).Select(book => book).ToList();
         }
 
         public BooksRead UpdateBooksRead(BooksRead book)

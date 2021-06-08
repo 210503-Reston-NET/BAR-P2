@@ -8,28 +8,28 @@ namespace BCModel
         {
         }
 
-        public BookClub(string name, string description, Book bookId, User user)
+        public BookClub(string name, string description, string bookId, string user)
         {
             this.Name = name;
             this.Description = description;
-            this.Book = bookId;
-            this.User = user;
+            this.ISBN = bookId;
+            this.Email = user;
         }
 
-        public BookClub(int Id, string name, string description, Book bookId, User user) : this(name, description, bookId, user)
+        public BookClub(int Id, string name, string description, string bookId, string user) : this(name, description, bookId, user)
         {
             this.Name = name;
             this.Description = description;
-            this.Book = bookId;
+            this.ISBN = bookId;
             this.Id = Id;
-            this.User = user;
+            this.Email = user;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public User User { get; set; }
+        public string Email { get; set; }
         public string Description { get; set; }
         
-        public Book Book { get; set; }
+        public string ISBN { get; set; }
     }
 }
