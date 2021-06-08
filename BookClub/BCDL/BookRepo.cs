@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -18,14 +19,28 @@ namespace BCDL
 
         public Book AddBook(Book book)
         {
-            _context.Books.Add(book);
-            _context.SaveChanges();
+            
+            Category cat = _context.Categories.FirstOrDefault(cate => cate.Name.Equals(book.Category.Name));
+            if (cat == null)
+            {
+                _context.Books.Add(book);
+                _context.SaveChanges();
+            }
+            else
+            {
+                _context.ChangeTracker.Clear();
+                _context.Books.Add(book);
+                _context.Entry(book.Category).State = EntityState.Unchanged;
+                _context.SaveChanges();
+            }
+            
             return book;
         }
 
        public List<Book> GetAllBooks()
         {
-            return _context.Books.Select(book => book).ToList();
+            List<Book> book = _context.Books.Include(book => book.Category).ToList();
+            return book;
         }
 
         public List<Book> GetBookByAuthor(string author)

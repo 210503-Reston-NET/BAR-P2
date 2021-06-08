@@ -14,13 +14,6 @@ namespace BCModel
             this.Name = name;
         }
 
-        public Category(int Id, string name) : this(name)
-        {
-            this.Name = name;
-            this.Id = Id;
-        }
-
-        public int Id { get; set; }
         public string Name { get; set; }
         
     }
