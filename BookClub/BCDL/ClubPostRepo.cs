@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -16,7 +17,9 @@ namespace BCDL
 
         public ClubPost AddClubPost(ClubPost clubPost)
         {
+            _context.ChangeTracker.Clear();
             _context.ClubPosts.Add(clubPost);
+            _context.Entry(clubPost.User).State = EntityState.Unchanged;
             _context.SaveChanges();
             return clubPost;
         }
