@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BCDL.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class initial7 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,13 +11,11 @@ namespace BCDL.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true)
+                    Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -41,16 +39,16 @@ namespace BCDL.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Author = table.Column<string>(type: "text", nullable: true),
-                    CategoryId = table.Column<int>(type: "integer", nullable: true)
+                    CategoryName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Books", x => x.ISBN);
                     table.ForeignKey(
-                        name: "FK_Books_Categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_Books_Categories_CategoryName",
+                        column: x => x.CategoryName,
                         principalTable: "Categories",
-                        principalColumn: "Id",
+                        principalColumn: "Name",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -103,6 +101,7 @@ namespace BCDL.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     BookISBN = table.Column<string>(type: "text", nullable: true)
                 },
@@ -114,6 +113,12 @@ namespace BCDL.Migrations
                         column: x => x.BookISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BookClubs_Users_UserEmail",
+                        column: x => x.UserEmail,
+                        principalTable: "Users",
+                        principalColumn: "Email",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -303,9 +308,14 @@ namespace BCDL.Migrations
                 column: "BookISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Books_CategoryId",
+                name: "IX_BookClubs_UserEmail",
+                table: "BookClubs",
+                column: "UserEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Books_CategoryName",
                 table: "Books",
-                column: "CategoryId");
+                column: "CategoryName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BooksRead_BookISBN",
@@ -413,10 +423,10 @@ namespace BCDL.Migrations
                 name: "BookClubs");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Categories");

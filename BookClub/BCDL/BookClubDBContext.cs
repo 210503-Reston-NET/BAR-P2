@@ -29,8 +29,7 @@ namespace BCDL
             modelBuilder.Entity<User>()
                 .HasKey(user => user.Email);
             modelBuilder.Entity<Category>()
-                .Property(category => category.Id)
-                .ValueGeneratedOnAdd();
+                .HasKey(cat => cat.Name);
             modelBuilder.Entity<Book>()
                 .HasKey(book => book.ISBN);
             modelBuilder.Entity<BookClub>()
