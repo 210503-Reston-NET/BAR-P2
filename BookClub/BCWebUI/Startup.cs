@@ -37,10 +37,12 @@ namespace BCWebUI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BCWebUI", Version = "v1" });
             });
             services.AddDbContext<BookClubDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BookClubDB")));
-            services.AddScoped<IBookClubBL, BookClubBL>();
-            services.AddScoped<IBookClubRepo, BookClubRepo>();
             services.AddScoped<IBookBL, BookBL>();
             services.AddScoped<IBookRepo, BookRepo>();
+            services.AddScoped<IBookClubBL, BookClubBL>();
+            services.AddScoped<IBookClubRepo, BookClubRepo>();
+            services.AddScoped<IClubPostBL, ClubPostBL>();
+            services.AddScoped<IClubPostRepo, ClubPostRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
