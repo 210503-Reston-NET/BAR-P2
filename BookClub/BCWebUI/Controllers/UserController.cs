@@ -15,7 +15,6 @@ namespace BCWebUI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserBL _userBL;
-        // GET: api/<CustomerController>
         public UserController(IUserBL e) { this._userBL = e; }
         // GET: api/<UserController>
         [HttpGet]
