@@ -18,7 +18,7 @@ namespace BCDL
         {
             _context.ChangeTracker.Clear();
             _context.Comments.Add(comment);
-            _context.Entry(comment.User).State = EntityState.Unchanged;
+            _context.Entry(comment.Email).State = EntityState.Unchanged;
             _context.SaveChanges();
             return comment;
         }
@@ -38,12 +38,12 @@ namespace BCDL
 
         public Comment GetComment(Comment comment)
         {
-            Comment found = _context.Comments.FirstOrDefault(com => com.User.Email == comment.User.Email && com.UserPost.Id == comment.UserPost.Id && com.ClubPost.Id == comment.ClubPost.Id && com.Message == comment.Message);
+            Comment found = _context.Comments.FirstOrDefault(com => com.Email == comment.Email && com.UserPostID == comment.UserPostID && com.ClubPostID == comment.ClubPostID && com.Message == comment.Message);
             if (found == null)
             {
                 return null;
             }
-            return new Comment(found.User, found.UserPost, found.ClubPost, found.Message);
+            return new Comment(found.Email, found.UserPostID, found.ClubPostID, found.Message);
         }
 
         public Comment GetCommentById(int commentID)
