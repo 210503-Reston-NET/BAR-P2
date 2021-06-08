@@ -47,8 +47,8 @@ namespace BCDL.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("text");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("integer");
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("text");
 
                     b.Property<int>("Id")
                         .HasColumnType("integer");
@@ -58,7 +58,7 @@ namespace BCDL.Migrations
 
                     b.HasKey("ISBN");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryName");
 
                     b.ToTable("Books");
                 });
@@ -137,15 +137,10 @@ namespace BCDL.Migrations
 
             modelBuilder.Entity("BCModel.Category", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.ToTable("Categories");
                 });
@@ -317,8 +312,8 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.Book", b =>
                 {
                     b.HasOne("BCModel.Category", "Category")
-                        .WithMany("Books")
-                        .HasForeignKey("CategoryId");
+                        .WithMany()
+                        .HasForeignKey("CategoryName");
 
                     b.Navigation("Category");
                 });
@@ -447,11 +442,6 @@ namespace BCDL.Migrations
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BCModel.Category", b =>
-                {
-                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }
