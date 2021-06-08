@@ -36,7 +36,6 @@ namespace BCDL
 
         public BookClub GetBookClub(BookClub bookClub)
         {
-
             BookClub found = _context.BookClubs.FirstOrDefault(bc => bc.Name == bookClub.Name && bc.Description == bookClub.Description && bc.Book.Id == bookClub.Book.Id);
             if (found == null)
             {

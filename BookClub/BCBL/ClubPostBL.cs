@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using BCDL;
 using BCModel;
 
 namespace BCBL
 {
     public class ClubPostBL : IClubPostBL
     {
-        private IClubPostBL _repo;
-        public ClubPostBL(IClubPostBL repo)
+        private IClubPostRepo _repo;
+        public ClubPostBL(IClubPostRepo repo)
         {
             _repo = repo;
         }
