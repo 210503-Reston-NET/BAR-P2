@@ -39,6 +39,8 @@ namespace BCWebUI
             services.AddDbContext<BookClubDBContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BookClubDB")));
             services.AddScoped<IBookClubBL, BookClubBL>();
             services.AddScoped<IBookClubRepo, BookClubRepo>();
+            services.AddScoped<IBookBL, BookBL>();
+            services.AddScoped<IBookRepo, BookRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
