@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BCDL
 {
-    class RecommendationRepo : IRecommendationRepo
+    public class RecommendationRepo : IRecommendationRepo
     {
         private readonly BookClubDBContext _context;
         public RecommendationRepo(BookClubDBContext context)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BCDL
 {
-    class AchievementRepo : IAchievementRepo
+   public  class AchievementRepo : IAchievementRepo
     {
         private readonly BookClubDBContext _context;
         public AchievementRepo(BookClubDBContext context)
