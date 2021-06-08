@@ -12,7 +12,10 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+
       "launchUrl": "Swagger",
+
+
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +23,11 @@
     "BookClub": {
       "commandName": "Project",
       "launchBrowser": true,
+
+
       "launchUrl": "Swagger",
+
+
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -30,7 +37,11 @@
     "WSL 2": {
       "commandName": "WSL2",
       "launchBrowser": true,
+
+
       "launchUrl": "https://localhost:5001/swagger",
+
+
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://localhost:5001;http://localhost:5000",
         "ASPNETCORE_ENVIRONMENT": "Development"
