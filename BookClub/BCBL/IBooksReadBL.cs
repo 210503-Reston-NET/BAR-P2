@@ -7,12 +7,12 @@ using BCModel;
 
 namespace BCBL
 {
-    interface IBooksReadBL
+    public interface IBooksReadBL
     {
         BooksRead AddBooksRead(BooksRead book);
         List<BooksRead> GetAllBooksRead();
-        List<BooksRead> GetBooksReadByUser(string email);
+        List<Book> GetBooksReadByUser(string email);
         BooksRead UpdateBooksRead(BooksRead book);
-        BooksRead DeleteBooksRead(BooksRead book);
+        BooksRead DeleteBooksRead(int id);
     }
 }

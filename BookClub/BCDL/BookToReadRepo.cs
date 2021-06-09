@@ -1,53 +1,52 @@
-﻿using System;
+﻿using BCModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BCModel;
-using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
-    public class BooksReadRepo : IBooksReadRepo
+    public class BookToReadRepo : IBooksToReadRepo
     {
         private BookClubDBContext _context;
 
-        public BooksReadRepo(BookClubDBContext context)
+        public BookToReadRepo(BookClubDBContext context)
         {
             _context = context;
         }
 
-        public BooksRead AddBooksRead(BooksRead book)
+        public BooksToRead AddBooksRead(BooksToRead book)
         {
 
-            _context.BooksRead.Add(book);
+            _context.BooksToRead.Add(book);
             _context.SaveChanges();
             return book;
         }
 
-        public BooksRead DeleteBooksRead(int id)
+        public BooksToRead DeleteBooksRead(int id)
         {
-            BooksRead toBeDeleted = _context.BooksRead.FirstOrDefault(bookR => bookR.Id == id);
+            BooksToRead toBeDeleted = _context.BooksToRead.FirstOrDefault(bookR => bookR.Id == id);
             if (toBeDeleted != null)
             {
-                _context.BooksRead.Remove(toBeDeleted);
+                _context.BooksToRead.Remove(toBeDeleted);
                 _context.SaveChanges();
             }
 
             return toBeDeleted;
         }
 
-        public List<BooksRead> GetAllBooksRead()
+        public List<BooksToRead> GetAllBooksRead()
         {
-            return _context.BooksRead.Select(book => book).ToList();
+            return _context.BooksToRead.Select(book => book).ToList();
         }
 
         public List<Book> GetBooksReadByUser(string email)
         {
-            List<BooksRead> booksRead = _context.BooksRead.Where(book => book.User.Equals(email)).Select(book => book).ToList();
+            List<BooksToRead> booksRead = _context.BooksToRead.Where(book => book.Email.Equals(email)).Select(book => book).ToList();
             List<Book> books = new List<Book>();
             Book book;
-            foreach(BooksRead bookread in booksRead)
+            foreach (BooksToRead bookread in booksRead)
             {
                 book = _context.Books.FirstOrDefault(bk => bk.ISBN.Equals(bookread.ISBN));
                 books.Add(book);
@@ -56,9 +55,9 @@ namespace BCDL
             return books;
         }
 
-        public BooksRead UpdateBooksRead(BooksRead book)
+        public BooksToRead UpdateBooksRead(BooksToRead book)
         {
-            _context.BooksRead.Update(book);
+            _context.BooksToRead.Update(book);
             _context.SaveChanges();
             return book;
         }

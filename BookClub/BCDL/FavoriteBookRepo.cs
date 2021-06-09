@@ -4,50 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
-using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
-    public class BooksReadRepo : IBooksReadRepo
+    public class FavoriteBookRepo : IFavoriteBookRepo
     {
         private BookClubDBContext _context;
 
-        public BooksReadRepo(BookClubDBContext context)
+        public FavoriteBookRepo(BookClubDBContext context)
         {
             _context = context;
         }
 
-        public BooksRead AddBooksRead(BooksRead book)
+        public FavoriteBook AddBooksRead(FavoriteBook book)
         {
 
-            _context.BooksRead.Add(book);
+            _context.FavoriteBooks.Add(book);
             _context.SaveChanges();
             return book;
         }
 
-        public BooksRead DeleteBooksRead(int id)
+        public FavoriteBook DeleteBooksRead(int id)
         {
-            BooksRead toBeDeleted = _context.BooksRead.FirstOrDefault(bookR => bookR.Id == id);
+            FavoriteBook toBeDeleted = _context.FavoriteBooks.FirstOrDefault(bookR => bookR.Id == id);
             if (toBeDeleted != null)
             {
-                _context.BooksRead.Remove(toBeDeleted);
+                _context.FavoriteBooks.Remove(toBeDeleted);
                 _context.SaveChanges();
             }
 
             return toBeDeleted;
         }
 
-        public List<BooksRead> GetAllBooksRead()
+        public List<FavoriteBook> GetAllBooksRead()
         {
-            return _context.BooksRead.Select(book => book).ToList();
+            return _context.FavoriteBooks.Select(book => book).ToList();
         }
 
         public List<Book> GetBooksReadByUser(string email)
         {
-            List<BooksRead> booksRead = _context.BooksRead.Where(book => book.User.Equals(email)).Select(book => book).ToList();
+            List<FavoriteBook> booksRead = _context.FavoriteBooks.Where(book => book.Email.Equals(email)).Select(book => book).ToList();
             List<Book> books = new List<Book>();
             Book book;
-            foreach(BooksRead bookread in booksRead)
+            foreach (FavoriteBook bookread in booksRead)
             {
                 book = _context.Books.FirstOrDefault(bk => bk.ISBN.Equals(bookread.ISBN));
                 books.Add(book);
@@ -56,9 +55,9 @@ namespace BCDL
             return books;
         }
 
-        public BooksRead UpdateBooksRead(BooksRead book)
+        public FavoriteBook UpdateBooksRead(FavoriteBook book)
         {
-            _context.BooksRead.Update(book);
+            _context.FavoriteBooks.Update(book);
             _context.SaveChanges();
             return book;
         }

@@ -17,6 +17,7 @@ namespace BCDL
         public DbSet<Book> Books { get; set; }
         public DbSet<BookClub> BookClubs { get; set; }
         public DbSet<BooksRead> BooksRead { get; set; }
+        public DbSet<BooksToRead> BooksToRead { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ClubPost> ClubPosts { get; set; }
         public DbSet<Comment> Comments { get; set; }
