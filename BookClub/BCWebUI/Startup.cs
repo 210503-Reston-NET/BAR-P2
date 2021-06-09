@@ -53,6 +53,9 @@ namespace BCWebUI
             services.AddScoped<IBooksToReadRepo, BookToReadRepo>();
             services.AddScoped<IFavoriteBookBL, FavoriteBookBL>();
             services.AddScoped<IFavoriteBookRepo, FavoriteBookRepo>();
+
+            services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<ICategoryBL, CategoryBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
