@@ -23,22 +23,20 @@ namespace BCDL
             Category cat = _context.Categories.FirstOrDefault(cate => cate.Name.Equals(book.CategoryName));
             if (cat == null)
             {
-                _context.Books.Add(book);
-                _context.SaveChanges();
+                _context.Categories.Add(new Category(book.CategoryName));
             }
-            else
-            {
-                _context.ChangeTracker.Clear();
-                _context.Books.Add(book);
-                _context.SaveChanges();
-            }
+            
+            _context.ChangeTracker.Clear();
+            _context.Books.Add(book);
+            _context.SaveChanges();
+            
             
             return book;
         }
 
-       public List<Book> GetAllBooks()
+        public List<Book> GetAllBooks()
         {
-            List<Book> book = _context.Books.Include(book => book.CategoryName).ToList();
+            List<Book> book = _context.Books.Select(book => book).ToList();
             return book;
         }
 
