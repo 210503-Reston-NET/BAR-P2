@@ -37,5 +37,5 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(b5a73573-c365-4df4-90d9-79329c2413a9)'
     appType: 'webApp'
-    WebAppName: 'BookClub'
+    WebAppName: 'BookClubAPI'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
