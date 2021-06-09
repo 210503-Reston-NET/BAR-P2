@@ -1,32 +1,32 @@
-﻿using BCModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BCModel;
 using BCDL;
 
 namespace BCBL
 {
-    public class BooksReadBL : IBooksReadBL
+    public class FavoriteBookBL : IFavoriteBookBL
     {
-        private IBooksReadRepo _repo;
-        public BooksReadBL(IBooksReadRepo repo)
+        private IFavoriteBookRepo _repo;
+        public FavoriteBookBL(IFavoriteBookRepo repo)
         {
             _repo = repo;
         }
 
-        public BooksRead AddBooksRead(BooksRead book)
+        public FavoriteBook AddBooksRead(FavoriteBook book)
         {
             return _repo.AddBooksRead(book);
         }
 
-        public BooksRead DeleteBooksRead(int id)
+        public FavoriteBook DeleteBooksRead(int id)
         {
             return _repo.DeleteBooksRead(id);
         }
 
-        public List<BooksRead> GetAllBooksRead()
+        public List<FavoriteBook> GetAllBooksRead()
         {
             return _repo.GetAllBooksRead();
         }
@@ -36,10 +36,9 @@ namespace BCBL
             return _repo.GetBooksReadByUser(email);
         }
 
-        public BooksRead UpdateBooksRead(BooksRead book)
+        public FavoriteBook UpdateBooksRead(FavoriteBook book)
         {
             return _repo.UpdateBooksRead(book);
         }
-
     }
 }
