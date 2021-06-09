@@ -19,7 +19,6 @@ namespace BCDL
         {
             _context.ChangeTracker.Clear();
             _context.ClubPosts.Add(clubPost);
-            _context.Entry(clubPost.User).State = EntityState.Unchanged;
             _context.SaveChanges();
             return clubPost;
         }

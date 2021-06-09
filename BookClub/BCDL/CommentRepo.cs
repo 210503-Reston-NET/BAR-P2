@@ -18,7 +18,6 @@ namespace BCDL
         {
             _context.ChangeTracker.Clear();
             _context.Comments.Add(comment);
-            _context.Entry(comment.Email).State = EntityState.Unchanged;
             _context.SaveChanges();
             return comment;
         }
