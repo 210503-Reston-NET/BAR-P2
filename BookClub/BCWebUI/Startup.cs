@@ -56,6 +56,11 @@ namespace BCWebUI
 
             services.AddScoped<ICategoryRepo, CategoryRepo>();
             services.AddScoped<ICategoryBL, CategoryBL>();
+
+            services.AddScoped<IFollowClubRepo, FollowClubRepo>();
+            services.AddScoped<IFollowClubBL, FollowClubBL>();
+            services.AddScoped<IFollowUserRepo, FollowUserRepo>();
+            services.AddScoped<IFollowUserBL, FollowUserBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
