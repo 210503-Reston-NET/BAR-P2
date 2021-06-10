@@ -61,6 +61,12 @@ namespace BCWebUI
             services.AddScoped<IFollowClubBL, FollowClubBL>();
             services.AddScoped<IFollowUserRepo, FollowUserRepo>();
             services.AddScoped<IFollowUserBL, FollowUserBL>();
+            services.AddCors(options => {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http:127.0.0.1:4200").AllowAnyMethod().AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
