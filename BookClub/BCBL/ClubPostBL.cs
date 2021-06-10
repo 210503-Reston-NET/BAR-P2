@@ -44,16 +44,7 @@ namespace BCBL
 
         public List<ClubPost> GetClubPostByBookClub(int bookClubId)
         {
-            List<ClubPost> clubPosts = GetAllClubPosts();
-            List<ClubPost> matchedPosts = new List<ClubPost>();
-            foreach (ClubPost post in clubPosts)
-            {
-                if (post.BookClubID == bookClubId)
-                {
-                    matchedPosts.Add(post);
-                }
-            }
-            return matchedPosts;
+            return _repo.GetClubPostByBookClub(bookClubId);
         }
 
         public ClubPost GetClubPostById(int clubPostId)

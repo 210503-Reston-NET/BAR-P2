@@ -57,5 +57,10 @@ namespace BCDL
             _context.SaveChanges();
             return clubPost;
         }
+
+        public List<ClubPost> GetClubPostByBookClub(int bookClubId)
+        {
+            return _context.ClubPosts.Where(cp => cp.BookClubID == bookClubId).Select(cp => cp).ToList();
+        }
     }
 }
