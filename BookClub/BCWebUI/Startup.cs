@@ -64,7 +64,7 @@ namespace BCWebUI
             services.AddCors(options => {
                 options.AddDefaultPolicy(builder =>
                 {
-                   builder.WithOrigins("http://127.0.0.1:4200", "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+                   builder.WithOrigins("http://127.0.0.1:4200", "http://localhost:4200", "https://bookclub.azurewebsites.net").AllowAnyMethod().AllowAnyHeader();
 
                    // builder.WithOrigins("http:127.0.0.1:4200", "http:localhost:4200").DisallowCredentials();
                 });
