@@ -8,7 +8,8 @@ namespace BCBL
     {
         ClubPost AddClubPost(ClubPost clubPost);
         ClubPost GetClubPost(ClubPost clubPost);
-        List<ClubPost> GetClubPostById(int clubPostId);
+        List<ClubPost> GetClubPostByBookClub(int bookClubId);
+        ClubPost GetClubPostById(int clubPostId);
         List<ClubPost> GetAllClubPosts();
         ClubPost DeleteClubPost(ClubPost clubPost);
         ClubPost UpdateClubPost(ClubPost clubPost);

@@ -42,7 +42,7 @@ namespace BCBL
             return _repo.GetClubPost(clubPost);
         }
 
-        public List<ClubPost> GetClubPostById(int bookClubId)
+        public List<ClubPost> GetClubPostByBookClub(int bookClubId)
         {
             List<ClubPost> clubPosts = GetAllClubPosts();
             List<ClubPost> matchedPosts = new List<ClubPost>();
@@ -54,6 +54,11 @@ namespace BCBL
                 }
             }
             return matchedPosts;
+        }
+
+        public ClubPost GetClubPostById(int clubPostId)
+        {
+            return _repo.GetClubPostById(clubPostId);
         }
 
         public ClubPost UpdateClubPost(ClubPost clubPost)

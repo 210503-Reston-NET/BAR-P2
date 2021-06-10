@@ -32,7 +32,7 @@ namespace BCWebUI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetClubPostById(int id)
         {
-            return Ok(_clubPostBL.GetClubPostById(id));
+            return Ok(_clubPostBL.GetClubPostByBookClub(id));
         }
 
         // POST: api/ClubPost

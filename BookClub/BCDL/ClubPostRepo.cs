@@ -36,6 +36,11 @@ namespace BCDL
             return _context.ClubPosts.Select(clubPost => clubPost).ToList();
         }
 
+        public ClubPost GetClubPostById(int clubPostId)
+        {
+            return _context.ClubPosts.Find(clubPostId);
+        }
+
         public ClubPost GetClubPost(ClubPost clubPost)
         {
             ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.User == clubPost.User && cp.Post == clubPost.Post && cp.BookClubID == clubPost.BookClubID && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike);

@@ -47,6 +47,20 @@ namespace BCBL
             return _repo.GetCommentById(commentID);
         }
 
+        public List<Comment> GetPostComments(int postId)
+        {
+            List<Comment> comments = GetAllComments();
+            List<Comment> postcomments = new List<Comment>();
+            foreach (Comment comment in comments)
+            {
+                if (comment.UserPostID == postId)
+                {
+                    postcomments.Add(comment);
+                }
+            }
+            return postcomments;
+        }
+
         public Comment UpdateComment(Comment comment)
         {
             return _repo.UpdateComment(comment);

@@ -9,6 +9,7 @@ namespace BCBL
         Comment AddComment(Comment comment);
         Comment GetComment(Comment comment);
         Comment GetCommentById(int commentID);
+        List<Comment> GetPostComments(int PostId);
         List<Comment> GetAllComments();
         Comment DeleteComment(Comment comment);
         Comment UpdateComment(Comment comment);
