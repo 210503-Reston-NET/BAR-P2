@@ -33,6 +33,13 @@ namespace BCWebUI.Controllers
             return Ok(_commentBL.GetCommentById(id));
         }
 
+        //Get
+        [HttpGet("{id}")]
+        public IActionResult GetPostComments(int postId)
+        {
+            return Ok(_commentBL.GetPostComments(postId));
+        }
+
         // POST: api/Comment
         [HttpPost]
         public IActionResult AddNewComment([FromBody] Comment newcomment)
