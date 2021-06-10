@@ -24,6 +24,7 @@ namespace BCDL
         public DbSet<FavoriteBook> FavoriteBooks { get; set; }
         public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<FollowUser> FollowUsers { get; set; }
         public DbSet<FollowClub> FollowClubs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
