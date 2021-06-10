@@ -44,6 +44,11 @@ namespace BCDL
             return new BookClub(found.Name, found.Description, found.ISBN, found.Email);
         }
 
+        public List<BookClub> GetBookClubByBook(string bookId)
+        {
+            return _context.BookClubs.Where(bc => bc.ISBN == bookId).Select(bc => bc).ToList();
+        }
+
         public BookClub GetBookClubById(int bookClubId)
         {
             return _context.BookClubs.Find(bookClubId);

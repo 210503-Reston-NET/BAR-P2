@@ -43,6 +43,11 @@ namespace BCBL
             return _repo.GetBookClub(bookClub);
         }
 
+        public List<BookClub> GetBookClubByBook(string bookId)
+        {
+            return _repo.GetBookClubByBook(bookId);
+        }
+
         public BookClub GetBookClubById(int bookClubId)
         {
             return _repo.GetBookClubById(bookClubId);

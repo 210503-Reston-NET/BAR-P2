@@ -35,6 +35,13 @@ namespace BCWebUI.Controllers
             return Ok(_bookClubBL.GetBookClubById(id));
         }
 
+        //Get
+        [HttpGet("{bookId}")]
+        public IActionResult GetBookClubByBook(string bookId)
+        {
+            return Ok(_bookClubBL.GetBookClubByBook(bookId));
+        }
+
         // POST: api/BookClub
         [HttpPost]
         public IActionResult AddNewBookClub([FromBody] Model.BookClub newBookClub)

@@ -10,6 +10,7 @@ namespace BCDL
         BookClub GetBookClub(BookClub bookClub);
         BookClub GetBookClubById(int bookClubId);
         List<BookClub> GetAllBookClubs();
+        List<BookClub> GetBookClubByBook(string bookId);
         BookClub DeleteBookClub(BookClub bookClub);
         BookClub UpdateBookClub(BookClub bookClub);
     }
