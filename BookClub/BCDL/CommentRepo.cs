@@ -45,9 +45,19 @@ namespace BCDL
             return new Comment(found.Email, found.UserPostID, found.ClubPostID, found.Message);
         }
 
+        public List<Comment> GetCommentByClubPost(int clubPostId)
+        {
+           return _context.Comments.Where(com => com.ClubPostID == clubPostId).Select(com => com).ToList();
+        }
+
         public Comment GetCommentById(int commentID)
         {
             return _context.Comments.Find(commentID);
+        }
+
+        public List<Comment> GetCommentByUserPost(int userPostId)
+        {
+            return _context.Comments.Where(com => com.UserPostID == userPostId).Select(com => com).ToList();
         }
 
         public Comment UpdateComment(Comment comment)

@@ -39,16 +39,7 @@ namespace BCBL
 
         public List<Comment> GetClubPostComments(int clubPostId)
         {
-            List<Comment> comments = GetAllComments();
-            List<Comment> postcomments = new List<Comment>();
-            foreach (Comment comment in comments)
-            {
-                if (comment.ClubPostID == clubPostId)
-                {
-                    postcomments.Add(comment);
-                }
-            }
-            return postcomments;
+            return _repo.GetCommentByClubPost(clubPostId);
         }
 
         public Comment GetComment(Comment comment)
@@ -63,16 +54,7 @@ namespace BCBL
 
         public List<Comment> GetUserPostComments(int userPostId)
         {
-            List<Comment> comments = GetAllComments();
-            List<Comment> postcomments = new List<Comment>();
-            foreach (Comment comment in comments)
-            {
-                if (comment.UserPostID == userPostId)
-                {
-                    postcomments.Add(comment);
-                }
-            }
-            return postcomments;
+            return _repo.GetCommentByUserPost(userPostId);
         }
 
         public Comment UpdateComment(Comment comment)

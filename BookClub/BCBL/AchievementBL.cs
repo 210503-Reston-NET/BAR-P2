@@ -16,8 +16,6 @@ namespace BCBL
         public Achievement AddAchievement(Achievement r)
         {
             return _achievementRepo.AddAchievement(r);
-
-
         }
 
         public Achievement GetAchievementByEmail(string email)
