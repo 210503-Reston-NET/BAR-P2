@@ -34,10 +34,17 @@ namespace BCWebUI.Controllers
         }
 
         //Get
-        [HttpGet("{id}")]
-        public IActionResult GetPostComments(int postId)
+        [HttpGet("{postId}")]
+        public IActionResult GetUserPostComments(int postId)
         {
-            return Ok(_commentBL.GetPostComments(postId));
+            return Ok(_commentBL.GetUserPostComments(postId));
+        }
+
+        //Get
+        [HttpGet("{postId}")]
+        public IActionResult GetClubPostComments(int postId)
+        {
+            return Ok(_commentBL.GetClubPostComments(postId));
         }
 
         // POST: api/Comment
