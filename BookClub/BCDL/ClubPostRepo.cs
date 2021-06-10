@@ -46,11 +46,6 @@ namespace BCDL
             return new ClubPost(found.User, found.Post, found.BookClubID, found.TotalLike, found.TotalDislike);
         }
 
-        public ClubPost GetClubPostById(int clubPostId)
-        {
-            return _context.ClubPosts.Find(clubPostId);
-        }
-
         public ClubPost UpdateClubPost(ClubPost clubPost)
         {
             _context.ClubPosts.Update(clubPost);

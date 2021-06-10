@@ -42,9 +42,18 @@ namespace BCBL
             return _repo.GetClubPost(clubPost);
         }
 
-        public ClubPost GetClubPostById(int clubPostId)
+        public List<ClubPost> GetClubPostById(int bookClubId)
         {
-            return _repo.GetClubPostById(clubPostId);
+            List<ClubPost> clubPosts = GetAllClubPosts();
+            List<ClubPost> matchedPosts = new List<ClubPost>();
+            foreach (ClubPost post in clubPosts)
+            {
+                if (post.BookClubID == bookClubId)
+                {
+                    matchedPosts.Add(post);
+                }
+            }
+            return matchedPosts;
         }
 
         public ClubPost UpdateClubPost(ClubPost clubPost)
