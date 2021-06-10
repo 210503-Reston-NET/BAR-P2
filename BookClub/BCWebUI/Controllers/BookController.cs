@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BCBL;
 using BCModel;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,6 +13,7 @@ namespace BCWebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[EnableCors(origins: "http://127.0.0.1:4200", headers: "*", methods: "*")]
     public class BookController : ControllerBase
     {
         private IBookBL _IbookBL;
