@@ -19,6 +19,10 @@ namespace BCBL
 
         public Book AddBook(Book book)
         {
+            if (_bookRepo.BookExists(book.ISBN))
+            {
+                return _bookRepo.GetBookByISBN(book.ISBN);
+            }
             return _bookRepo.AddBook(book);
         }
 
