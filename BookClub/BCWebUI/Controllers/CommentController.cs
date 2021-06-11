@@ -34,7 +34,7 @@ namespace BCWebUI.Controllers
         }
 
         //Get
-        [HttpGet("{postId}")]
+        [HttpGet("GetUserPost/{postId}")]
         public IActionResult GetUserPostComments(int postId)
         {
             return Ok(_commentBL.GetUserPostComments(postId));
