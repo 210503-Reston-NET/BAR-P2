@@ -10,14 +10,14 @@ namespace BCBL
 {
     public class BLFacade : IBLFacade
     {
-        private readonly IUserDL _userDL;
-        public BLFacade(IUserDL userDL)
+        private readonly IUserRepo _userRepo;
+        public BLFacade(IUserRepo userRepo)
         {
-            this._userDL = userDL;
+            this._userRepo = userRepo;
         }
         public User AddAccount(User user)
         {
-            return _userDL.AddUser(user);
+            return _userRepo.AddUser(user);
         }
     }
 }
