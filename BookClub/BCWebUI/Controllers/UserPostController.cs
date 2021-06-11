@@ -14,6 +14,7 @@ namespace BCWebUI.Controllers
     public class UserPostController : ControllerBase
     {
         private readonly IUserPostBL _userPostBL;
+
         public UserPostController(IUserPostBL userPostBL)
         {
             _userPostBL = userPostBL;
