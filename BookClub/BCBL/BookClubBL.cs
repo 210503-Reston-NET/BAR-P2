@@ -8,7 +8,7 @@ namespace BCBL
     public class BookClubBL : IBookClubBL
     {
 
-        private IBookClubRepo _repo;
+        private readonly IBookClubRepo _repo;
         public BookClubBL(IBookClubRepo repo)
         {
             _repo = repo;

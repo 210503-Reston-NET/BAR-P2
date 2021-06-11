@@ -8,7 +8,7 @@ namespace BCDL
 {
     public class CommentRepo : ICommentRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
         public CommentRepo(BookClubDBContext context)
         {
             _context = context;

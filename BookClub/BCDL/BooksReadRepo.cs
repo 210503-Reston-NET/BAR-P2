@@ -10,7 +10,7 @@ namespace BCDL
 {
     public class BooksReadRepo : IBooksReadRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public BooksReadRepo(BookClubDBContext context)
         {

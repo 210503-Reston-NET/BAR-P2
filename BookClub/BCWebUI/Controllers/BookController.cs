@@ -16,7 +16,7 @@ namespace BCWebUI.Controllers
     //[EnableCors(origins: "http://127.0.0.1:4200", headers: "*", methods: "*")]
     public class BookController : ControllerBase
     {
-        private IBookBL _IbookBL;
+        private readonly IBookBL _IbookBL;
 
         public BookController(IBookBL IbookBL)
         {

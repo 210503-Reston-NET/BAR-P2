@@ -8,7 +8,7 @@ namespace BCBL
     public class UserPostBL : IUserPostBL
     {
 
-        private IUserPostRepo _repo;
+        private readonly IUserPostRepo _repo;
         public UserPostBL(IUserPostRepo repo)
         {
             _repo = repo;

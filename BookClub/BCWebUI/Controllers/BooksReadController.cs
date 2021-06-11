@@ -13,7 +13,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class BooksReadController : ControllerBase
     {
-        private IBooksReadBL _IbookBL;
+        private readonly IBooksReadBL _IbookBL;
 
         public BooksReadController(IBooksReadBL IbookBL)
         {

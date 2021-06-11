@@ -7,7 +7,7 @@ namespace BCBL
 {
     public class ClubPostBL : IClubPostBL
     {
-        private IClubPostRepo _repo;
+        private readonly IClubPostRepo _repo;
         public ClubPostBL(IClubPostRepo repo)
         {
             _repo = repo;

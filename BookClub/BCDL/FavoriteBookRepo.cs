@@ -9,7 +9,7 @@ namespace BCDL
 {
     public class FavoriteBookRepo : IFavoriteBookRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public FavoriteBookRepo(BookClubDBContext context)
         {

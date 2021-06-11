@@ -8,7 +8,7 @@ namespace BCDL
     public class UserPostRepo : IUserPostRepo
     {
 
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
         public UserPostRepo(BookClubDBContext context)
         {
             _context = context;

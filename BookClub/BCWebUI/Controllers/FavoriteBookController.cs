@@ -13,7 +13,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class FavoriteBookController : ControllerBase
     {
-        private IFavoriteBookBL _IbookBL;
+        private readonly IFavoriteBookBL _IbookBL;
 
         public FavoriteBookController(IFavoriteBookBL IbookBL)
         {

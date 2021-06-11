@@ -14,7 +14,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class FollowClubController : ControllerBase
     {
-        private IFollowClubBL _IFollowClubBL;
+        private readonly IFollowClubBL _IFollowClubBL;
 
         public FollowClubController(IFollowClubBL IFollowClubBL)
         {

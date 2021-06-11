@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class FollowClubBL : IFollowClubBL
     {
-        private IFollowClubRepo _repo;
+        private readonly IFollowClubRepo _repo;
 
         public FollowClubBL(IFollowClubRepo repo)
         {

@@ -13,7 +13,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private ICommentBL _commentBL;
+        private readonly ICommentBL _commentBL;
         public CommentController(ICommentBL commentBL)
         {
             _commentBL = commentBL;
