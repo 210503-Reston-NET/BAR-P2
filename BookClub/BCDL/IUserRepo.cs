@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BCDL
 {
-   public interface IUserDL
+   public interface IUserRepo
     {
         public User AddUser(User u);
         public User UpdateUser(User u);

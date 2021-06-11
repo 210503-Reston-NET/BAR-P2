@@ -14,7 +14,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class FollowUserController : ControllerBase
     {
-        private IFollowUserBL _FollowUserBL;
+        private readonly IFollowUserBL _FollowUserBL;
 
         public FollowUserController(IFollowUserBL FollowUserBL)
         {
@@ -30,14 +30,14 @@ namespace BCWebUI.Controllers
 
         // GET api/<FollowUserController>/5
         [HttpGet]
-        [Route("api/[controller]/GetFollowingByUser/{email}")]
+        [Route("GetFollowingByUser/{email}")]
         public IActionResult GetFollowingByUser(string email)
         {
             return Ok(_FollowUserBL.GetFollowingByUser(email));
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetFollowersByUser/{email}")]
+        [Route("GetFollowersByUser/{email}")]
         public IActionResult GetFollowersByUser(string email)
         {
             return Ok(_FollowUserBL.GetFollowersByUser(email));

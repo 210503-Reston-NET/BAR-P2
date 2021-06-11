@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace BCDL
 {
-    public class UserDL : IUserDL
+    public class UserRepo : IUserRepo
     {
         private readonly BookClubDBContext _context;
 
-        public UserDL(BookClubDBContext context)
+        public UserRepo(BookClubDBContext context)
         {
             this._context = context;
         }

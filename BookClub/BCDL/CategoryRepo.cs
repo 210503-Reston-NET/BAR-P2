@@ -9,7 +9,7 @@ namespace BCDL
 {
     public class CategoryRepo : ICategoryRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public CategoryRepo(BookClubDBContext context)
         {

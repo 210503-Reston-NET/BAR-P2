@@ -9,7 +9,7 @@ namespace BCDL
 {
     public class FollowClubRepo : IFollowClubRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public FollowClubRepo(BookClubDBContext context)
         {

@@ -14,7 +14,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private ICategoryBL _IcategoryBL;
+        private readonly ICategoryBL _IcategoryBL;
 
         public CategoryController(ICategoryBL IcategoryBL)
         {

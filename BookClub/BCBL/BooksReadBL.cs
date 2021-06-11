@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class BooksReadBL : IBooksReadBL
     {
-        private IBooksReadRepo _repo;
+        private readonly IBooksReadRepo _repo;
         public BooksReadBL(IBooksReadRepo repo)
         {
             _repo = repo;

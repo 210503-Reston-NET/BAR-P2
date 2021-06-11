@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BCWebUI.Controllers
 {
-    [Route("api/ClubPost")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ClubPostController : ControllerBase
     {
@@ -29,10 +29,17 @@ namespace BCWebUI.Controllers
         }
 
         // GET: api/ClubPost/5
+        [HttpGet("GetClubPostByBookClub/{bookClubId}")]
+        public IActionResult GetClubPostByBookClub(int bookClubId)
+        {
+            return Ok(_clubPostBL.GetClubPostByBookClub(bookClubId));
+        }
+
+        //Get
         [HttpGet("{id}")]
         public IActionResult GetClubPostById(int id)
         {
-            return Ok(_clubPostBL.GetClubPostByBookClub(id));
+            return Ok(_clubPostBL.GetClubPostById(id));
         }
 
         // POST: api/ClubPost

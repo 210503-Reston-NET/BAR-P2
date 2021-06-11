@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class FavoriteBookBL : IFavoriteBookBL
     {
-        private IFavoriteBookRepo _repo;
+        private readonly IFavoriteBookRepo _repo;
         public FavoriteBookBL(IFavoriteBookRepo repo)
         {
             _repo = repo;

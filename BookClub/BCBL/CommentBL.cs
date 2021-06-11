@@ -7,7 +7,7 @@ namespace BCBL
 {
     public class CommentBL : ICommentBL
     {
-        private ICommentRepo _repo;
+        private readonly ICommentRepo _repo;
         public CommentBL(ICommentRepo repo)
         {
             _repo = repo;

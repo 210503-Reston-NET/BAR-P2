@@ -31,7 +31,7 @@ namespace BCWebUI
         {
             services.AddControllers();
             services.AddScoped<IUserBL, UserBL>();
-            services.AddScoped<IUserDL, UserDL>();
+            services.AddScoped<IUserRepo, UserRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BCWebUI", Version = "v1" });

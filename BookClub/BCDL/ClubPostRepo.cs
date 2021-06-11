@@ -8,7 +8,7 @@ namespace BCDL
 {
     public class ClubPostRepo : IClubPostRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public ClubPostRepo(BookClubDBContext context)
         {

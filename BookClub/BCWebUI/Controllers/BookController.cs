@@ -16,7 +16,7 @@ namespace BCWebUI.Controllers
     //[EnableCors(origins: "http://127.0.0.1:4200", headers: "*", methods: "*")]
     public class BookController : ControllerBase
     {
-        private IBookBL _IbookBL;
+        private readonly IBookBL _IbookBL;
 
         public BookController(IBookBL IbookBL)
         {
@@ -38,14 +38,14 @@ namespace BCWebUI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/bookByAuthor/{author}")]
+        [Route("bookByAuthor/{author}")]
         public IActionResult GetBookByAuthor(string author)
         {
             return Ok(_IbookBL.GetBookByAuthor(author));
         }
 
         [HttpGet]
-        [Route("api/[controller]/bookByTitle/{title}")]
+        [Route("bookByTitle/{title}")]
         public IActionResult GetBookByTitle(string title)
         {
             return Ok(_IbookBL.GetBookByTitle(title));

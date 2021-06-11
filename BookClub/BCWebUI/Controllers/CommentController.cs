@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BCWebUI.Controllers
 {
-    [Route("api/Comment")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CommentController : ControllerBase
     {
-        private ICommentBL _commentBL;
+        private readonly ICommentBL _commentBL;
         public CommentController(ICommentBL commentBL)
         {
             _commentBL = commentBL;
@@ -34,7 +34,7 @@ namespace BCWebUI.Controllers
         }
 
         //Get
-        [HttpGet("{postId}")]
+        [HttpGet("GetUserPostComments/{postId}")]
         public IActionResult GetUserPostComments(int postId)
         {
             return Ok(_commentBL.GetUserPostComments(postId));

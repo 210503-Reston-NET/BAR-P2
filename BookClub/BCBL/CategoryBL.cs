@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class CategoryBL : ICategoryBL
     {
-        private ICategoryRepo _repo;
+        private readonly ICategoryRepo _repo;
 
         public CategoryBL(ICategoryRepo repo)
         {

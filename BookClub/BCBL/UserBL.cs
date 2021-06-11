@@ -10,32 +10,32 @@ namespace BCBL
 {
     public class UserBL : IUserBL
     {
-        private readonly IUserDL _userDL;
-        public UserBL(IUserDL userDL) { this._userDL = userDL; }
+        private readonly IUserRepo _userRepo;
+        public UserBL(IUserRepo userRepo) { this._userRepo = userRepo; }
 
         public User AddUser(User u)
         {
-            return _userDL.AddUser(u);
+            return _userRepo.AddUser(u);
         }
 
         public List<User> GetAllUsers()
         {
-            return _userDL.GetAllUsers();
+            return _userRepo.GetAllUsers();
         }
 
         public User GetUserByEmail(string email)
         {
-            return _userDL.GetUserByEmail(email);
+            return _userRepo.GetUserByEmail(email);
         }
 
         public List<User> GetUsers()
         {
-            return _userDL.GetAllUsers();
+            return _userRepo.GetAllUsers();
         }
 
         public User UpdateUser(User u)
         {
-            return _userDL.UpdateUser(u);
+            return _userRepo.UpdateUser(u);
         }
     }
 }
