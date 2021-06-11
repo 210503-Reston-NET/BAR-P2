@@ -7,11 +7,12 @@ namespace BCModel
         {
         }
 
-        public User(string email, string password, string address)
+        public User(string email, string password, string address, int pagesRead)
         {
             this.Email = email;
             this.Password = password;
             this.Address = address;
+            this.PagesRead = pagesRead;
         }
 
         public string Email {get;set;}

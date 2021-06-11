@@ -32,22 +32,17 @@ namespace BCWebUI.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public void AddUser([FromBody] User user)
+        public IActionResult AddUser([FromBody] User newUser)
         {
-            _userBL.AddUser(user);
+            return Created("api/User", _userBL.AddUser(newUser));
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{email}")]
-        public void UpdateUser(string email, [FromBody] User user)
+        public IActionResult UpdateUser(string email, [FromBody] User newUser)
         {
-            _userBL.UpdateUser(user);
-        }
-
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            _userBL.UpdateUser(newUser);
+            return NoContent();
         }
     }
 }

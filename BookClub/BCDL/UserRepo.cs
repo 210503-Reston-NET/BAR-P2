@@ -13,21 +13,12 @@ namespace BCDL
         {
             this._context = context;
         }
-        public User AddUser(User u)
+        public User AddUser(User user)
         {
-            _context.Users.Add(
-                    new User
-                    {
-                       
-                        Email = u.Email,
-                        Password = u.Password,
-                        Address = u.Address,
-                        
-                    }
-                );
-
+            _context.ChangeTracker.Clear();
+            _context.Users.Add(user);
             _context.SaveChanges();
-            return u;
+            return user;
         }
 
         public User GetUserByEmail(string email)
