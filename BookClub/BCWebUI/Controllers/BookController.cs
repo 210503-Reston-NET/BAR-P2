@@ -38,14 +38,14 @@ namespace BCWebUI.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/bookByAuthor/{author}")]
+        [Route("bookByAuthor/{author}")]
         public IActionResult GetBookByAuthor(string author)
         {
             return Ok(_IbookBL.GetBookByAuthor(author));
         }
 
         [HttpGet]
-        [Route("api/[controller]/bookByTitle/{title}")]
+        [Route("bookByTitle/{title}")]
         public IActionResult GetBookByTitle(string title)
         {
             return Ok(_IbookBL.GetBookByTitle(title));

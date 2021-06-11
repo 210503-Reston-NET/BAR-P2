@@ -30,14 +30,14 @@ namespace BCWebUI.Controllers
 
         // GET api/<FollowClubController>/5
         [HttpGet]
-        [Route("api/[controller]/GetFollowingByUser/{email}")]
+        [Route("GetFollowingByUser/{email}")]
         public IActionResult GetFollowingByUser(string email)
         {
             return Ok(_IFollowClubBL.GetFollowingByUser(email));
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetFollowersByClub/{id}")]
+        [Route("GetFollowersByClub/{id}")]
         public IActionResult GetFollowersByClub(int id)
         {
             return Ok(_IFollowClubBL.GetFollowersByClub(id));

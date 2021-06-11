@@ -36,7 +36,7 @@ namespace BCWebUI.Controllers
         }
 
         //Get
-        [HttpGet("{bookId}")]
+        [HttpGet("GetBookClubByBook/{bookId}")]
         public IActionResult GetBookClubByBook(string bookId)
         {
             return Ok(_bookClubBL.GetBookClubByBook(bookId));

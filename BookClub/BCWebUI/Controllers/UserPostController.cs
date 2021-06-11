@@ -33,7 +33,7 @@ namespace BCWebUI.Controllers
             return Ok(_userPostBL.GetUserPostById(id));
         }
 
-        [HttpGet("{userEmail}")]
+        [HttpGet("GetUserPostByUser/{userEmail}")]
         public IActionResult GetUserPostByUser(string userEmail)
         {
             return Ok(_userPostBL.GetUserPostByUser(userEmail));

@@ -29,7 +29,7 @@ namespace BCWebUI.Controllers
         }
 
         // GET: api/ClubPost/5
-        [HttpGet("GetClubPostById/{bookClubId}")]
+        [HttpGet("GetClubPostByBookClub/{bookClubId}")]
         public IActionResult GetClubPostByBookClub(int bookClubId)
         {
             return Ok(_clubPostBL.GetClubPostByBookClub(bookClubId));
