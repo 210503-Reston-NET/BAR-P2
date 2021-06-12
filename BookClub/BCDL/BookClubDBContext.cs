@@ -5,7 +5,7 @@ namespace BCDL
 {
     public class BookClubDBContext : DbContext
     {
-        public BookClubDBContext() : base()
+        protected BookClubDBContext()
         {
         }
 
