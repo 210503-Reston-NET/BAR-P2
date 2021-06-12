@@ -19,6 +19,15 @@ namespace BCDL
 
         public BooksRead AddBooksRead(BooksRead book)
         {
+            User user = _context.Users.FirstOrDefault(usr => usr.Email.Equals(book.User));
+
+            if (user != null)
+            {
+                int pagesRead = user.PagesRead + book.Pages;
+                user.PagesRead = pagesRead;
+                _context.Users.Update(user);
+                _context.SaveChanges();
+            }
 
             _context.BooksRead.Add(book);
             _context.SaveChanges();
