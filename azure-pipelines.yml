@@ -26,6 +26,11 @@ steps:
     command: 'build'
     projects: $(solution)
 - task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: 'test'
+    projects: '**/BookClub/BCTest/*.csproj'
+- task: DotNetCoreCLI@2
   displayName: Publish
   inputs:
     command: 'publish'
