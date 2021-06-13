@@ -360,6 +360,241 @@ namespace BCTest
         }
 
         [Fact]
+        public void GetBookShouldReturnBook()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBookRepo _repo = new BookRepo(context);
+                var book = _repo.GetBookByISBN("123456789");
+                Assert.Equal("Unit Testing", book.Title);
+            }
+        }
+
+        [Fact]
+        public void GetBookByAuthorShouldReturnBook()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBookRepo _repo = new BookRepo(context);
+                var books = _repo.GetBookByAuthor("Bryce");
+                foreach (Model.Book book in books)
+                {
+                    Assert.Equal("Unit Testing", book.Title);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetBookClubShouldReturnBookClub()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBookClubRepo _repo = new BookClubRepo(context);
+                var bookClub = _repo.GetBookClubById(1);
+                Assert.Equal("Harry Potter", bookClub.Name);
+            }
+        }
+
+        [Fact]
+        public void GetBookClubByBookShouldReturnBookClubs()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBookClubRepo _repo = new BookClubRepo(context);
+                var bookClubs = _repo.GetBookClubByBook("14598678");
+                foreach (Model.BookClub bookClub in bookClubs)
+                {
+                    Assert.Equal("Harry Potter", bookClub.Name);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetBooksReadByUserShouldReturnBooks()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBooksReadRepo _repo = new BooksReadRepo(context);
+                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                foreach (Model.Book book in books)
+                {
+                    Assert.Equal("Test", book.CategoryName);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetBooksToReadByUserShouldReturnBooks()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IBooksToReadRepo _repo = new BookToReadRepo(context);
+                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                foreach (Model.Book book in books)
+                {
+                    Assert.Equal("Test", book.CategoryName);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetCategoryShouldReturnCategory()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICategoryRepo _repo = new CategoryRepo(context);
+                var category = _repo.GetCategory("Horror");
+                Assert.Equal("Horror", category.Name);
+            }
+        }
+
+        [Fact]
+        public void GetClubPostShouldReturnClubPost()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostRepo _repo = new ClubPostRepo(context);
+                var clubPost = _repo.GetClubPostById(1);
+                Assert.Equal("Fun Book", clubPost.Post);
+            }
+        }
+
+        [Fact]
+        public void GetClubPostByBookClubShouldReturnClubPosts()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostRepo _repo = new ClubPostRepo(context);
+                var clubPosts = _repo.GetClubPostByBookClub(1);
+                foreach (Model.ClubPost clubPost in clubPosts)
+                {
+                    Assert.Equal(1, clubPost.BookClubID);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetCommentShouldReturnComment()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentRepo _repo = new CommentRepo(context);
+                var comment = _repo.GetCommentById(1);
+                Assert.Equal("Wrong", comment.Message);
+            }
+        }
+
+        [Fact]
+        public void GetCommentByClubPostShouldReturnComments()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentRepo _repo = new CommentRepo(context);
+                var comments = _repo.GetCommentByClubPost(1);
+                foreach (Model.Comment comment in comments)
+                {
+                    Assert.Equal(1, comment.ClubPostID);
+                }
+                
+            }
+        }
+
+        [Fact]
+        public void GetCommentByUserPostShouldReturnComments()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentRepo _repo = new CommentRepo(context);
+                var comments = _repo.GetCommentByUserPost(1);
+                foreach (Model.Comment comment in comments)
+                {
+                    Assert.Equal(1, comment.UserPostID);
+                }
+
+            }
+        }
+
+        [Fact]
+        public void GetFollowersByClubShouldReturnUsers()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowClubRepo _repo = new FollowClubRepo(context);
+                var followers = _repo.GetFollowersByClub(1);
+                foreach (Model.User user in followers)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetFollowByUserShouldReturnBookClubs()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowClubRepo _repo = new FollowClubRepo(context);
+                var bookClubs = _repo.GetFollowingByUser("bryce.zimbelman@revature.net");
+                foreach (Model.BookClub bookClub in bookClubs)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", bookClub.Email);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetFollowersByUserShouldReturnUsers()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                var followers = _repo.GetFollowersByUser("bryce.zimbelman@icloud.com");
+                foreach (Model.User user in followers)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetUserShouldReturnUser()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserRepo _repo = new UserRepo(context);
+                var user = _repo.GetUserByEmail("bryce.zimbelman@revature.net");
+                Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+
+            }
+        }
+
+        [Fact]
+        public void GetUserPostShouldReturnUserPost()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostRepo _repo = new UserPostRepo(context);
+                var userPost = _repo.GetUserPostById(1);
+                Assert.Equal("You all should join my BookClub", userPost.Post);
+
+            }
+        }
+
+        [Fact]
+        public void GetUserPostByUserShouldReturnUserPosts()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostRepo _repo = new UserPostRepo(context);
+                var userPosts = _repo.GetUserPostByUser("bryce.zimbelman@revature.net");
+                foreach (Model.UserPost userPost in userPosts)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", userPost.Email);
+                }
+            }
+        }
+
+        [Fact]
         public void AddBookShouldAddBook()
         {
             using (var context = new BookClubDBContext(options))
@@ -548,7 +783,7 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddUserPostShouldReturnUserPost()
+        public void AddUserPostShouldAddUserPost()
         {
             using (var context = new BookClubDBContext(options))
             {
