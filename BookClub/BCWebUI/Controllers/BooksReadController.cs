@@ -23,7 +23,7 @@ namespace BCWebUI.Controllers
 
         // GET: api/<BooksReadController>
         [HttpGet]
-        public IActionResult GetGetAllBooksRead()
+        public IActionResult GetAllBooksRead()
         {
             return Ok(_IbookBL.GetAllBooksRead());
         }

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCDL", "BCDL\BCDL.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCModel", "BCModel\BCModel.csproj", "{C36768BE-1629-49BB-AD00-811328CE3989}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCTest", "BCTest\BCTest.csproj", "{92805E85-1B38-43D0-AC42-0921B2988F1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C36768BE-1629-49BB-AD00-811328CE3989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C36768BE-1629-49BB-AD00-811328CE3989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C36768BE-1629-49BB-AD00-811328CE3989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92805E85-1B38-43D0-AC42-0921B2988F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92805E85-1B38-43D0-AC42-0921B2988F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92805E85-1B38-43D0-AC42-0921B2988F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92805E85-1B38-43D0-AC42-0921B2988F1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
