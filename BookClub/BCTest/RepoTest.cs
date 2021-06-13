@@ -65,12 +65,14 @@ namespace BCTest
                     new Model.BooksRead
                     {
                         User = "bryce.zimbelman@revature.net",
-                        ISBN = "123456789"
+                        ISBN = "123456789",
+                        Pages = 50
                     },
                     new Model.BooksRead
                     {
                         User = "bryce.zimbelman@revature.net",
-                        ISBN = "987654321"
+                        ISBN = "987654321",
+                        Pages = 50
                     }
                     );
 
@@ -634,7 +636,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                _repo.AddBooksRead(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642"));
+                _repo.AddBooksRead(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642", 50));
             }
 
             using (var assertContext = new BookClubDBContext(options))

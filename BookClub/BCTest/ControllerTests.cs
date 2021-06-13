@@ -147,8 +147,8 @@ namespace BCTest
             mockBL.Setup(x => x.GetAllBooksRead()).Returns(
                 new List<BooksRead>
                 {
-                    new BooksRead("bryce.zimbelman@revature.net", "123456789"),
-                    new BooksRead("bryce.zimbelman@revature.net", "987654321")
+                    new BooksRead("bryce.zimbelman@revature.net", "123456789", 50),
+                    new BooksRead("bryce.zimbelman@revature.net", "987654321", 50)
                 }
                 );
 

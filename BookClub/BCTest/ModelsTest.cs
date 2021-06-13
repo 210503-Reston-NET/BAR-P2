@@ -27,7 +27,7 @@ namespace BCTest
         [Fact]
         public void BookReadShouldSetValidData()
         {
-            BooksRead test = new BooksRead("userid", "bookId");
+            BooksRead test = new BooksRead("userid", "bookId", 0);
             string user = "bryce.zimbelman@revature.net";
             test.User = user;
             Assert.Equal(user, test.User);
