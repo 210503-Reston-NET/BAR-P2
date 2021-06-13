@@ -37,6 +37,7 @@ namespace BCWebUI.Controllers
             return Ok(_IbookBL.GetBookByISBN(isbn));
         }
 
+        // Get
         [HttpGet]
         [Route("bookByAuthor/{author}")]
         public IActionResult GetBookByAuthor(string author)
@@ -44,6 +45,7 @@ namespace BCWebUI.Controllers
             return Ok(_IbookBL.GetBookByAuthor(author));
         }
 
+        // Get
         [HttpGet]
         [Route("bookByTitle/{title}")]
         public IActionResult GetBookByTitle(string title)

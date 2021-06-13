@@ -25,9 +25,9 @@ namespace BCWebUI.Controllers
 
         // GET api/<UserController>/5
         [HttpGet("{email}")]
-        public User GetUserByEmail(string email)
+        public IActionResult GetUserByEmail(string email)
         {
-            return _userBL.GetUserByEmail(email);
+            return Ok(_userBL.GetUserByEmail(email));
         }
 
         // POST api/<UserController>
