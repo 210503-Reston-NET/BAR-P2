@@ -37,6 +37,8 @@ steps:
   displayName: Test
   inputs:
     command: 'test'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true "/p:CoverletOutputFormat=\"opencover,Cobertura\"" /p:Exclude=\"[Data.Migrations.*]*\"'
+    publishTestResults: true
     projects: '**/BookClub/BCTest/*.csproj'
 - task: PublishCodeCoverageResults@1
   inputs:
