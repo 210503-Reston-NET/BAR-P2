@@ -66,11 +66,11 @@ namespace BCDL
         public ClubPost LikeClubPost(ClubPost clubPost)
         {
             ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
-            clubPost.TotalLike = old.TotalDislike + 1;
-            _context.ClubPosts.Update(clubPost);
+            old.TotalLike = old.TotalDislike + 1;
+            _context.ClubPosts.Update(old);
             //_context.Entry(clubPost).CurrentValues;
             _context.SaveChanges();
-            return clubPost;
+            return old;
         }
 
         public ClubPost DislikeClubPost(ClubPost clubPost)
@@ -78,10 +78,10 @@ namespace BCDL
             ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
             int x = old.TotalDislike - 1;
             if (x < 0) { x = 0; }
-            clubPost.TotalLike =x;
-            _context.ClubPosts.Update(clubPost);
+            old.TotalLike =x;
+            _context.ClubPosts.Update(old);
             _context.SaveChanges();
-            return clubPost;
+            return old;
         }
     }
 }
