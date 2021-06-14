@@ -63,6 +63,14 @@ namespace BCWebUI
             services.AddScoped<IFollowClubBL, FollowClubBL>();
             services.AddScoped<IFollowUserRepo, FollowUserRepo>();
             services.AddScoped<IFollowUserBL, FollowUserBL>();
+
+            services.AddScoped<IClubPostLikesRepo, ClubPostLikesRepo>();
+            services.AddScoped<IClubPostLikesBL, ClubPostLikesBL>();
+            services.AddScoped<IUserPostLikesRepo, UserPostLikesRepo>();
+            services.AddScoped<IUserPostLikesBL, UserPostLikesBL>();
+            services.AddScoped<ICommentLikesRepo, CommentLikesRepo>();
+            services.AddScoped<ICommentLikeBL, CommentLikesBL>();
+
             services.AddCors(options => {
                 options.AddDefaultPolicy(builder =>
                 {

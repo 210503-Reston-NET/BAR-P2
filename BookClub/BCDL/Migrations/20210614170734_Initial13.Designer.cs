@@ -9,15 +9,15 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BCDL.Migrations
 {
     [DbContext(typeof(BookClubDBContext))]
-    [Migration("20210609205019_initial8")]
-    partial class initial8
+    [Migration("20210614170734_Initial13")]
+    partial class Initial13
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("BCModel.Achievement", b =>
@@ -94,6 +94,9 @@ namespace BCDL.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
+                    b.Property<int>("Pages")
+                        .HasColumnType("integer");
+
                     b.Property<string>("User")
                         .HasColumnType("text");
 
@@ -157,6 +160,30 @@ namespace BCDL.Migrations
                     b.ToTable("ClubPosts");
                 });
 
+            modelBuilder.Entity("BCModel.ClubPostLikes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClubPostId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClubPostLikes");
+                });
+
             modelBuilder.Entity("BCModel.Comment", b =>
                 {
                     b.Property<int>("Id")
@@ -179,6 +206,30 @@ namespace BCDL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("BCModel.CommentLikes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("BCModel.FavoriteBook", b =>
@@ -267,6 +318,9 @@ namespace BCDL.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
+                    b.Property<int>("PagesRead")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
@@ -296,7 +350,31 @@ namespace BCDL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserPost");
+                    b.ToTable("UserPosts");
+                });
+
+            modelBuilder.Entity("BCModel.UserPostLikes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserPostId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserPostLikes");
                 });
 #pragma warning restore 612, 618
         }
