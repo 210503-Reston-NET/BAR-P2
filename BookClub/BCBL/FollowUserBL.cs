@@ -40,5 +40,10 @@ namespace BCBL
         {
             return _repo.GetFollowingByUser(email);
         }
+
+        public bool IsFollowing(string followerEmail, string followedEmail)
+        {
+            return _repo.IsFollowing(followerEmail, followedEmail);
+        }
     }
 }
