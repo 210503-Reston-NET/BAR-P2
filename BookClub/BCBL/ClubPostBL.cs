@@ -56,5 +56,9 @@ namespace BCBL
         {
             return _repo.UpdateClubPost(clubPost);
         }
+       public ClubPost LikeClubPost(ClubPost clubPost) { return _repo.LikeClubPost(clubPost); }
+       public ClubPost DislikeClubPost(ClubPost clubPost) { return _repo.DislikeClubPost(clubPost); }
+
+       
     }
 }

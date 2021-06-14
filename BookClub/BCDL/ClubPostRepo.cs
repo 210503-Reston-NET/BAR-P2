@@ -62,5 +62,26 @@ namespace BCDL
         {
             return _context.ClubPosts.Where(cp => cp.BookClubID == bookClubId).Select(cp => cp).ToList();
         }
+
+        public ClubPost LikeClubPost(ClubPost clubPost)
+        {
+            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
+            clubPost.TotalLike = old.TotalDislike + 1;
+            _context.ClubPosts.Update(clubPost);
+            //_context.Entry(clubPost).CurrentValues;
+            _context.SaveChanges();
+            return clubPost;
+        }
+
+        public ClubPost DislikeClubPost(ClubPost clubPost)
+        {
+            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
+            int x = old.TotalDislike - 1;
+            if (x < 0) { x = 0; }
+            clubPost.TotalLike =x;
+            _context.ClubPosts.Update(clubPost);
+            _context.SaveChanges();
+            return clubPost;
+        }
     }
 }

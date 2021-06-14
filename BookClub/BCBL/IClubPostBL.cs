@@ -13,5 +13,7 @@ namespace BCBL
         List<ClubPost> GetAllClubPosts();
         ClubPost DeleteClubPost(ClubPost clubPost);
         ClubPost UpdateClubPost(ClubPost clubPost);
+        ClubPost LikeClubPost(ClubPost clubPost);
+        ClubPost DislikeClubPost(ClubPost clubPost);
     }
 }

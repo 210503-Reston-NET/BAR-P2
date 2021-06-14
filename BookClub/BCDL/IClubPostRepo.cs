@@ -13,5 +13,8 @@ namespace BCDL
         ClubPost GetClubPostById(int clubPostId);
         ClubPost DeleteClubPost(ClubPost clubPost);
         ClubPost UpdateClubPost(ClubPost clubPost);
+
+        ClubPost LikeClubPost(ClubPost clubPost);
+        ClubPost DislikeClubPost(ClubPost clubPost);
     }
 }

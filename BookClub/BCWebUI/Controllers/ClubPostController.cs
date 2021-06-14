@@ -48,12 +48,30 @@ namespace BCWebUI.Controllers
         {
             return Created("api/ClubPost", _clubPostBL.AddClubPost(newClubPost));
         }
+    
+   
 
         // PUT: api/ClubPost/5
         [HttpPut("{id}")]
         public IActionResult UpdateClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
             _clubPostBL.UpdateClubPost(updatedClubPost);
+            return NoContent();
+        }
+
+        // PUT: api/ClubPost/5
+        [HttpPut("DislikeClubPost/{id}")]
+        public IActionResult DislikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
+        {
+            _clubPostBL.DislikeClubPost(updatedClubPost);
+            return NoContent();
+        }
+
+        // PUT: api/ClubPost/5
+        [HttpPut("LikeClubPost/{id}")]
+        public IActionResult LikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
+        {
+            _clubPostBL.LikeClubPost(updatedClubPost);
             return NoContent();
         }
 
