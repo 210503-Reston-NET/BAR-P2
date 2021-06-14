@@ -15,7 +15,6 @@ variables:
 
 steps:
 - task: SonarCloudPrepare@1
-  displayName: SonarCloud Prep
   inputs:
     SonarCloud: 'SonarCloudBC'
     organization: '210503-reston-net'
