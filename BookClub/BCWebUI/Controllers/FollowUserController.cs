@@ -43,6 +43,13 @@ namespace BCWebUI.Controllers
             return Ok(_FollowUserBL.GetFollowersByUser(email));
         }
 
+        [HttpGet]
+        [Route("GetFollowersByUser/{followerEmail}/{followedEmail}")]
+        public IActionResult IsFollowed(string followerEmail, string followedEmail)
+        {
+            return Ok(_FollowUserBL.IsFollowing(followerEmail, followedEmail));
+        }
+
         // POST api/<FollowUserController>
         [HttpPost]
         public IActionResult AddFollowUser([FromBody] FollowUser value)

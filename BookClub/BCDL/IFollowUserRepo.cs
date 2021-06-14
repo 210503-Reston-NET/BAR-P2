@@ -14,5 +14,6 @@ namespace BCDL
         List<User> GetFollowingByUser(string email);
         List<User> GetFollowersByUser(string email);
         FollowUser DeleteFollowUser(int id);
+        bool IsFollowing(string followerEmail, string followedEmail);
     }
 }
