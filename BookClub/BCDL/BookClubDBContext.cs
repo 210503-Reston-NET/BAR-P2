@@ -27,6 +27,9 @@ namespace BCDL
         public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<FollowUser> FollowUsers { get; set; }
         public DbSet<FollowClub> FollowClubs { get; set; }
+        public DbSet<ClubPostLikes> ClubPostLikes { get; set; }
+        public DbSet<UserPostLikes> UserPostLikes { get; set; }
+        public DbSet<CommentLikes> CommentLikes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
@@ -67,6 +70,15 @@ namespace BCDL
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<FollowUser>()
                 .Property(FUser => FUser.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<ClubPostLikes>()
+                .Property(ClubPostLikes => ClubPostLikes.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<UserPostLikes>()
+                .Property(UserPostLikes => UserPostLikes.Id)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<CommentLikes>()
+                .Property(CommentLikes => CommentLikes.Id)
                 .ValueGeneratedOnAdd();
         }
     }
