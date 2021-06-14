@@ -53,6 +53,15 @@ namespace BCDL
             return users;
         }
 
+        public bool IsFollowing(string followerEmail, string followedEmail)
+        {
+            bool following = false;
+            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.FollowedEmail == followedEmail);
+            if (followUser != null) following = true;
+
+            return following;
+        }
+
         public List<User> GetFollowersByUser(string email)
         {
             List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.FollowedEmail.Equals(email)).ToList();
