@@ -226,6 +226,67 @@ namespace BCTest
                         TotalDislike = 8
                     }
                     );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                context.ClubPostLikes.AddRange(
+                    new Model.ClubPostLikes
+                    {
+                        Like = false,
+                        Dislike = true,
+                        ClubPostId = 1,
+                        UserEmail = "bryce.zimbelman@revature.net"
+                    },
+                    new Model.ClubPostLikes
+                    {
+                        Like = true,
+                        Dislike = false,
+                        ClubPostId = 1,
+                        UserEmail = "bryce.zimbelman@icloud.com"
+                    }
+                    );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                context.UserPostLikes.AddRange(
+                    new Model.UserPostLikes
+                    {
+                        Like = false,
+                        Dislike = true,
+                        UserPostId = 1,
+                        UserEmail = "bryce.zimbelman@revature.net"
+                    },
+                    new Model.UserPostLikes
+                    {
+                        Like = true,
+                        Dislike = false,
+                        UserPostId = 1,
+                        UserEmail = "bryce.zimbelman@icloud.com"
+                    }
+                    );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                context.CommentLikes.AddRange(
+                    new Model.CommentLikes
+                    {
+                        Like = false,
+                        Dislike = true,
+                        CommentId = 1,
+                        UserEmail = "bryce.zimbelman@revature.net",
+                        ClubPostId = 0,
+                        UserPostId = 1
+                    },
+                    new Model.CommentLikes
+                    {
+                        Like = true,
+                        Dislike = false,
+                        CommentId = 1,
+                        UserEmail = "bryce.zimbelman@icloud.com",
+                        ClubPostId = 0,
+                        UserPostId = 1
+                    }
+                    ); ;
                 context.SaveChanges();
             }
         }
@@ -362,6 +423,39 @@ namespace BCTest
         }
 
         [Fact]
+        public void GetAllClubPostLikesShouldReturnAllClubPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                var clubPostLikes = _repo.GetAllClubPostLikes();
+                Assert.Equal(2, clubPostLikes.Count);
+            }
+        }
+
+        [Fact]
+        public void GetAllUserPostLikesShouldReturnAllUserPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
+                var userPostLikes = _repo.GetAllUserPostLikes();
+                Assert.Equal(2, userPostLikes.Count);
+            }
+        }
+
+        [Fact]
+        public void GetAllCommentLikesShouldReturnAllCommentLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                var commentLikes = _repo.GetAllCommentLikes();
+                Assert.Equal(2, commentLikes.Count);
+            }
+        }
+
+        [Fact]
         public void GetBookShouldReturnBook()
         {
             using (var context = new BookClubDBContext(options))
@@ -457,7 +551,7 @@ namespace BCTest
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
                 var clubPost = _repo.GetClubPostById(1);
-                Assert.Equal("Fun Book", clubPost.Post);
+                Assert.Equal("Good Book", clubPost.Post);
             }
         }
 
@@ -482,7 +576,7 @@ namespace BCTest
             {
                 ICommentRepo _repo = new CommentRepo(context);
                 var comment = _repo.GetCommentById(1);
-                Assert.Equal("Wrong", comment.Message);
+                Assert.Equal("Right", comment.Message);
             }
         }
 
@@ -593,6 +687,95 @@ namespace BCTest
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", userPost.Email);
                 }
+            }
+        }
+
+        [Fact]
+        public void GetClubPostLikeByClubPostShouldReturnClubPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                var clubPostLikes = _repo.GetClubPostLikesByClubPost(1);
+                foreach (Model.ClubPostLikes likes in clubPostLikes)
+                {
+                    Assert.Equal(1, likes.ClubPostId);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetClubPostLikesByIdShouldReturnClubPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                var clubPostLike = _repo.GetClubPostLikesById(1);
+                Assert.Equal(1, clubPostLike.Id);
+            }
+        }
+
+        [Fact]
+        public void GetUserPostLikeByClubPostShouldReturnUserPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
+                var userPostLikes = _repo.GetUserPostLikesByUserPost(1);
+                foreach (Model.UserPostLikes likes in userPostLikes)
+                {
+                    Assert.Equal(1, likes.UserPostId);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetUserPostLikesByIdShouldReturnUserPostLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
+                var userPostLike = _repo.GetUserPostLikesById(1);
+                Assert.Equal(1, userPostLike.Id);
+            }
+        }
+
+        [Fact]
+        public void GetCommentLikeByClubPostShouldReturnClubPostCommentLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                var commentLikes = _repo.GetCommentLikesByClubPost(1);
+                foreach (Model.CommentLikes likes in commentLikes)
+                {
+                    Assert.Equal(1, likes.ClubPostId);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                var commentLikes = _repo.GetCommentLikesByUserPost(1);
+                foreach (Model.CommentLikes likes in commentLikes)
+                {
+                    Assert.Equal(1, likes.UserPostId);
+                }
+            }
+        }
+
+        [Fact]
+        public void GetCommentLikesByIdShouldReturnCommentLikes()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                var commentLike = _repo.GetCommentLikesById(1);
+                Assert.Equal(1, commentLike.Id);
             }
         }
 

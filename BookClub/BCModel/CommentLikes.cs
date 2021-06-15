@@ -23,6 +23,16 @@ namespace BCModel
             UserPostId = userPostId;
         }
 
+        public CommentLikes(bool like, bool dislike, int commentId, string userEmail, int clubPostId, int userPostId)
+        {
+            Like = like;
+            Dislike = dislike;
+            CommentId = commentId;
+            UserEmail = userEmail;
+            ClubPostId = clubPostId;
+            UserPostId = userPostId;
+        }
+
         public int Id { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }

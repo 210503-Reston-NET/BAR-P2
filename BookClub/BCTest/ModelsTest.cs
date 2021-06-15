@@ -113,5 +113,32 @@ namespace BCTest
             test.TotalDislike = dislikes;
             Assert.Equal(dislikes, test.TotalDislike);
         }
+
+        [Fact]
+        public void ClubPostLikesShouldSetValidData()
+        {
+            ClubPostLikes test = new ClubPostLikes(true, false, 1, "bryce.zimbelman@revature.net");
+            bool like = true;
+            test.Like = like;
+            Assert.Equal(like, test.Like);
+        }
+
+        [Fact]
+        public void UserPostLikesShouldSetValidData()
+        {
+            ClubPostLikes test = new ClubPostLikes(false, true, 1, "bryce.zimbelman@revature.net");
+            bool dislike = true;
+            test.Dislike = dislike;
+            Assert.Equal(dislike, test.Dislike);
+        }
+
+        [Fact]
+        public void CommentLikesShouldSetValidData()
+        {
+            CommentLikes test = new CommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1, 0);
+            bool dislike = false;
+            test.Dislike = dislike;
+            Assert.Equal(dislike, test.Dislike);
+        }
     }
 }
