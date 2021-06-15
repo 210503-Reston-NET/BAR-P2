@@ -983,5 +983,21 @@ namespace BCTest
                 Assert.Equal(24, result.TotalLike);
             }
         }
+        [Fact]
+        public void AddClubPostLikShouldAddClubPostLike()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                _repo.AddClubPostLike(new Model.ClubPostLikes(true, false, 1, "bryce.zimbelman@gmail.com"));
+            }
+
+            using (var assertContext = new BookClubDBContext(options))
+            {
+                var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.Id == 3);
+                Assert.NotNull(result);
+                Assert.Equal("bryce.zimbelman@gmail.com", result.UserEmail);
+            }
+        }
     }
 }
