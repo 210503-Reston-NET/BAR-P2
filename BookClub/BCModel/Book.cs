@@ -34,10 +34,5 @@ namespace BCModel
         public string CategoryId {get;set;}
         public Category Category { get; set; }
         public string ImageUrl { get; set; }
-        public List<BookClub> BookClubs { get; set; }
-        public List<BooksRead> BooksReads { get; set; }
-        public List<BooksToRead> BooksToReads { get; set; }
-        public List<FavoriteBook> FavoriteBooks { get; set; }
-        public List<Recommendation> Recommendations { get; set; }
     }
 }

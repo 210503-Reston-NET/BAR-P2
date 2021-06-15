@@ -36,7 +36,5 @@ namespace BCModel
         [ForeignKey("Book")]
         public string ISBN { get; set; }
         public Book Book { get; set; }
-        public List<FollowClub> FollowClubs { get; set; }
-        public List<ClubPost> ClubPosts { get; set; }
     }
 }

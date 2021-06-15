@@ -24,6 +24,38 @@ namespace BCTest
             {
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+                context.Users.AddRange(
+                    new Model.User
+                    {
+                        UserEmail = "bryce.zimbelman@revature.net",
+                        Password = "1Password!",
+                        Address = "1514 Canyon Dr",
+                        PagesRead = 1000
+                    },
+                    new Model.User
+                    {
+                        UserEmail = "bryce.zimbelman@icloud.com",
+                        Password = "!Password1",
+                        Address = "309 E Memorial Dr",
+                        PagesRead = 5000
+                    }
+                    );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                context.Categories.AddRange(
+                    new Model.Category
+                    {
+                        CategoryId = "Horror"
+                    },
+                    new Model.Category
+                    {
+                        CategoryId = "Action"
+                    }
+                    );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
                 context.Books.AddRange(
                     new Model.Book
                     {
@@ -94,19 +126,6 @@ namespace BCTest
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-                context.Categories.AddRange(
-                    new Model.Category
-                    {
-                        CategoryId = "Horror"
-                    },
-                    new Model.Category
-                    {
-                        CategoryId = "Action"
-                    }
-                    );
-
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
                 context.ClubPosts.AddRange(
                     new Model.ClubPost
                     {
@@ -124,6 +143,27 @@ namespace BCTest
                         BookClubId = 2,
                         TotalLike = 9,
                         TotalDislike = 4,
+                        Date = new DateTime()
+                    }
+                    );
+
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+                context.UserPosts.AddRange(
+                    new Model.UserPost
+                    {
+                        UserEmail = "bryce.zimbelman@revature.net",
+                        Post = "You all should join my BookClub",
+                        TotalLike = 8,
+                        TotalDislike = 0,
+                        Date = new DateTime()
+                    },
+                    new Model.UserPost
+                    {
+                        UserEmail = "bryce.zimbelman@revature.net",
+                        Post = "You all should join that other BookClub",
+                        TotalLike = 0,
+                        TotalDislike = 8,
                         Date = new DateTime()
                     }
                     );
@@ -187,50 +227,11 @@ namespace BCTest
                     },
                     new Model.FollowUser
                     {
-                        FollowerEmail = "bryce.zimbelman@revature.net",
-                        UserEmail = "bryce.zimbelman@gmail.com"
+                        FollowerEmail = "bryce.zimbelman@icloud.com",
+                        UserEmail = "bryce.zimbelman@revature.net"
                     }
                     );
 
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-                context.Users.AddRange(
-                    new Model.User
-                    {
-                        UserEmail = "bryce.zimbelman@revature.net",
-                        Password = "1Password!",
-                        Address = "1514 Canyon Dr",
-                        PagesRead = 1000
-                    },
-                    new Model.User
-                    {
-                        UserEmail = "bryce.zimbelman@icloud.com",
-                        Password = "!Password1",
-                        Address = "309 E Memorial Dr",
-                        PagesRead = 5000
-                    }
-                    );
-
-                context.Database.EnsureDeleted();
-                context.Database.EnsureCreated();
-                context.UserPosts.AddRange(
-                    new Model.UserPost
-                    {
-                        UserEmail = "bryce.zimbelman@revature.net",
-                        Post = "You all should join my BookClub",
-                        TotalLike = 8,
-                        TotalDislike = 0,
-                        Date = new DateTime()
-                    },
-                    new Model.UserPost
-                    {
-                        UserEmail = "bryce.zimbelman@revature.net",
-                        Post = "You all should join that other BookClub",
-                        TotalLike = 0,
-                        TotalDislike = 8,
-                        Date = new DateTime()
-                    }
-                    );
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();

@@ -39,7 +39,7 @@ namespace BCModel
         public int ClubPostID { get; set; }
         public ClubPost ClubPost { get; set; }
         public string Message { get; set; }
-        public List<CommentLikes> CommentLikes { get; set; }
+
 
 
     }

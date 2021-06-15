@@ -44,9 +44,6 @@ namespace BCModel
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
         public DateTime Date { get; set; }
-        public List<ClubPostLikes> ClubPostLikes { get; set; }
-        public List<Comment> Comments { get; set; }
-        public List<CommentLikes> CommentLikes { get; set; }
 
 
 
