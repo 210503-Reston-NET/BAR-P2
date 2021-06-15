@@ -57,6 +57,7 @@ namespace BCDL
 
         public Book UpdateBook(Book book)
         {
+            _context.ChangeTracker.Clear();
             _context.Books.Update(book);
             _context.SaveChanges();
 
