@@ -31,10 +31,8 @@ namespace BCModel
         public string Name { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-        public User User { get; set; }
         public string Description { get; set; }
         [ForeignKey("Book")]
         public string ISBN { get; set; }
-        public Book Book { get; set; }
     }
 }

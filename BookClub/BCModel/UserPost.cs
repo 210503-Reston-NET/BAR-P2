@@ -32,7 +32,6 @@ namespace BCModel
         public int UserPostId { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-        public User User { get; set; }
         public string Post { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }

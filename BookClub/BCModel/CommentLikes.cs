@@ -39,15 +39,11 @@ namespace BCModel
         public bool Dislike { get; set; }
         [ForeignKey("Comment")]
         public int CommentId { get; set; }
-        public Comment Comment { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-        public User User { get; set; }
         [ForeignKey("ClubPost")]
         public int ClubPostId { get; set; }
-        public ClubPost ClubPost { get; set; }
         [ForeignKey("UserPost")]
         public int UserPostId { get; set; }
-        public UserPost UserPost { get; set; }
     }
 }

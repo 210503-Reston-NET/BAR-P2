@@ -30,6 +30,5 @@ namespace BCModel
         public string FollowerEmail { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
-        public User User { get; set; }
     }
 }
