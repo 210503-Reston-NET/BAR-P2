@@ -12,7 +12,7 @@ namespace BCTest
         private readonly DbContextOptions<BookClubDBContext> options;
         public RepoTest()
         {
-            options = new DbContextOptionsBuilder<BookClubDBContext>().UseSqlite("Filename=Test.db").Options;
+            options = new DbContextOptionsBuilder<BookClubDBContext>().UseSqlite("Filename=Test.db;foreign keys=false").Options;
             Seed();
         }
 
@@ -582,7 +582,7 @@ namespace BCTest
             {
                 ICommentRepo _repo = new CommentRepo(context);
                 var comment = _repo.GetCommentById(1);
-                Assert.Equal("Right", comment.Message);
+                Assert.Equal("Wrong", comment.Message);
             }
         }
 
@@ -677,7 +677,7 @@ namespace BCTest
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
                 var userPost = _repo.GetUserPostById(1);
-                Assert.Equal("You all should join my BookClub", userPost.Post);
+                Assert.Equal("You all should join that other BookClub", userPost.Post);
 
             }
         }
