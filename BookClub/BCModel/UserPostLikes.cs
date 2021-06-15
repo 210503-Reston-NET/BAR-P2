@@ -35,7 +35,9 @@ namespace BCModel
         public bool Dislike { get; set; }
         [ForeignKey("UserPost")]
         public int UserPostId { get; set; }
+        public UserPost UserPost { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
     }
 }

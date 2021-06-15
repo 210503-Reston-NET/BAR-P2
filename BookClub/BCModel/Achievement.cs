@@ -24,6 +24,7 @@ namespace BCModel
         public int AchievementId{get;set;}
         [ForeignKey("User")]
         public string UserEmail {get;set;}
+        public User User { get; set; }
         public string Badge {get;set;} 
     }
 }

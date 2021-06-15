@@ -31,10 +31,13 @@ namespace BCModel
         public int CommentId { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
         [ForeignKey("UserPost")]
         public int UserPostID { get; set; }
+        public UserPost UserPost { get; set; }
         [ForeignKey("ClubPost")]
         public int ClubPostID { get; set; }
+        public ClubPost ClubPost { get; set; }
         public string Message { get; set; }
 
 

@@ -32,6 +32,7 @@ namespace BCModel
         public string Author {get;set;}
         [ForeignKey("Category")]
         public string CategoryId {get;set;}
+        public Category Category { get; set; }
         public string ImageUrl { get; set; }
     }
 }

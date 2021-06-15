@@ -24,8 +24,10 @@ namespace BCModel
         public int BooksReadId { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
         [ForeignKey("Book")]
         public string ISBN { get; set; }
+        public Book Book { get; set; }
         public int BookPages { get; set; }
 
     }

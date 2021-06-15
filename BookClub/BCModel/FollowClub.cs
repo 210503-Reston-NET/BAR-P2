@@ -29,5 +29,6 @@ namespace BCModel
         public string FollowerEmail { get; set; }
         [ForeignKey("BookClub")]
         public int BookClubId { get; set; }
+        public BookClub BookClub { get; set; }
     }
 }
