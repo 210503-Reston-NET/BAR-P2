@@ -30,12 +30,12 @@ namespace BCDL
 
         public Category GetCategory(string name)
         {
-            return _context.Categories.FirstOrDefault(cat => cat.Name.Equals(name));
+            return _context.Categories.FirstOrDefault(cat => cat.CategoryId.Equals(name));
         }
 
         public Category DeleteCategory(string name)
         {
-            Category toBeDeleted = _context.Categories.FirstOrDefault(cat => cat.Name.Equals(name));
+            Category toBeDeleted = _context.Categories.FirstOrDefault(cat => cat.CategoryId.Equals(name));
 
             if (toBeDeleted != null)
             {

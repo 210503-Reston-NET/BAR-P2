@@ -24,7 +24,7 @@ namespace BCDL
 
         public UserPost DeleteUserPost(UserPost userPost)
         {
-            UserPost toBeDeleted = _context.UserPosts.First(up => up.Id == userPost.Id);
+            UserPost toBeDeleted = _context.UserPosts.First(up => up.UserPostId == userPost.UserPostId);
             _context.UserPosts.Remove(toBeDeleted);
             _context.SaveChanges();
             return userPost;
@@ -37,12 +37,12 @@ namespace BCDL
 
         public UserPost GetUserPost(UserPost userPost)
         {
-            UserPost found = _context.UserPosts.FirstOrDefault(up => up.Email == userPost.Email && up.Post == userPost.Post && up.TotalLike == userPost.TotalLike && up.TotalDislike == userPost.TotalDislike);
+            UserPost found = _context.UserPosts.FirstOrDefault(up => up.UserEmail == userPost.UserEmail && up.Post == userPost.Post && up.TotalLike == userPost.TotalLike && up.TotalDislike == userPost.TotalDislike && up.Date == userPost.Date);
             if (found == null)
             {
                 return null;
             }
-            return new UserPost(found.Email, found.Post, found.TotalLike, found.TotalDislike);
+            return new UserPost(found.UserEmail, found.Post, found.TotalLike, found.TotalDislike, found.Date);
         }
 
         public UserPost GetUserPostById(int userPostId)
@@ -52,7 +52,7 @@ namespace BCDL
 
         public List<UserPost> GetUserPostByUser(string userEmail)
         {
-            return _context.UserPosts.Where(up => up.Email == userEmail).Select(up => up).ToList();
+            return _context.UserPosts.Where(up => up.UserEmail == userEmail).Select(up => up).ToList();
         }
 
         public UserPost UpdateUserPost(UserPost userPost)

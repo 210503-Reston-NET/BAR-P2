@@ -24,7 +24,7 @@ namespace BCDL
 
         public FollowClub DeleteFollowClub(int id)
         {
-            FollowClub toBeDeleted = _context.FollowClubs.FirstOrDefault(fc => fc.Id == id);
+            FollowClub toBeDeleted = _context.FollowClubs.FirstOrDefault(fc => fc.FollowClubId == id);
             if (toBeDeleted != null)
             {
                 _context.FollowClubs.Remove(toBeDeleted);
@@ -46,7 +46,7 @@ namespace BCDL
 
             foreach(FollowClub follow in followClubs)
             {
-                bookClub = _context.BookClubs.FirstOrDefault(bc => bc.Id == follow.ClubID);
+                bookClub = _context.BookClubs.FirstOrDefault(bc => bc.BookClubId == follow.BookClubId);
                 bookClubs.Add(bookClub);
             }
 
@@ -55,13 +55,13 @@ namespace BCDL
 
         public List<User> GetFollowersByClub(int id)
         {
-            List<FollowClub> followClubs = _context.FollowClubs.Where(fc => fc.ClubID == id).Select(bc => bc).ToList();
+            List<FollowClub> followClubs = _context.FollowClubs.Where(fc => fc.BookClubId == id).Select(bc => bc).ToList();
             List<User> users = new List<User>();
             User user;
 
             foreach (FollowClub follow in followClubs)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.Email.Equals(follow.FollowerEmail));
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(follow.FollowerEmail));
                 users.Add(user);
             }
 

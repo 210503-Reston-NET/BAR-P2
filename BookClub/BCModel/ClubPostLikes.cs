@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,31 @@ namespace BCModel
         {
         }
 
-        public ClubPostLikes(int id, bool like, bool dislike, int clubPostId, string userEmail)
+        public ClubPostLikes(int clubPostLikesId, bool like, bool dislike, int clubPostId, string userEmail)
         {
-            Id = id;
+            ClubPostLikesId = clubPostLikesId;
             Like = like;
             Dislike = dislike;
             ClubPostId = clubPostId;
             UserEmail = userEmail;
         }
 
-        public int Id { get; set; }
+        public ClubPostLikes(bool like, bool dislike, int clubPostId, string userEmail)
+        {
+            Like = like;
+            Dislike = dislike;
+            ClubPostId = clubPostId;
+            UserEmail = userEmail;
+        }
+
+        public int ClubPostLikesId { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }
+        [ForeignKey("ClubPost")]
         public int ClubPostId { get; set; }
+        public ClubPost ClubPost { get; set; }
+        [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
     }
 }

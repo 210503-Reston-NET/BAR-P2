@@ -23,7 +23,7 @@ namespace BCDL
 
         public BookClub DeleteBookClub(BookClub bookClub)
         {
-            BookClub toBeDeleted = _context.BookClubs.First(bc => bc.Id == bookClub.Id);
+            BookClub toBeDeleted = _context.BookClubs.First(bc => bc.BookClubId == bookClub.BookClubId);
             _context.BookClubs.Remove(toBeDeleted);
             _context.SaveChanges();
             return bookClub;
@@ -41,7 +41,7 @@ namespace BCDL
             {
                 return null;
             }
-            return new BookClub(found.Name, found.Description, found.ISBN, found.Email);
+            return new BookClub(found.Name, found.Description, found.ISBN, found.UserEmail);
         }
 
         public List<BookClub> GetBookClubByBook(string bookId)

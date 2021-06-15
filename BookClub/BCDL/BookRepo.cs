@@ -20,10 +20,10 @@ namespace BCDL
         public Book AddBook(Book book)
         {
             
-            Category cat = _context.Categories.FirstOrDefault(cate => cate.Name.Equals(book.CategoryName));
+            Category cat = _context.Categories.FirstOrDefault(cate => cate.CategoryId.Equals(book.CategoryId));
             if (cat == null)
             {
-                _context.Categories.Add(new Category(book.CategoryName));
+                _context.Categories.Add(new Category(book.CategoryId));
             }
             
             _context.ChangeTracker.Clear();

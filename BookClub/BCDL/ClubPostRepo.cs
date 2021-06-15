@@ -25,7 +25,7 @@ namespace BCDL
 
         public ClubPost DeleteClubPost(ClubPost clubPost)
         {
-            ClubPost toBeDeleted = _context.ClubPosts.First(cp => cp.Id == clubPost.Id);
+            ClubPost toBeDeleted = _context.ClubPosts.First(cp => cp.ClubPostId == clubPost.ClubPostId);
             _context.ClubPosts.Remove(toBeDeleted);
             _context.SaveChanges();
             return clubPost;
@@ -43,12 +43,12 @@ namespace BCDL
 
         public ClubPost GetClubPost(ClubPost clubPost)
         {
-            ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.User == clubPost.User && cp.Post == clubPost.Post && cp.BookClubID == clubPost.BookClubID && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike);
+            ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike && cp.Date == clubPost.Date);
             if (found == null)
             {
                 return null;
             }
-            return new ClubPost(found.User, found.Post, found.BookClubID, found.TotalLike, found.TotalDislike);
+            return new ClubPost(found.UserEmail, found.Post, found.BookClubId, found.TotalLike, found.TotalDislike, found.Date);
         }
 
         public ClubPost UpdateClubPost(ClubPost clubPost)
@@ -60,12 +60,12 @@ namespace BCDL
 
         public List<ClubPost> GetClubPostByBookClub(int bookClubId)
         {
-            return _context.ClubPosts.Where(cp => cp.BookClubID == bookClubId).Select(cp => cp).ToList();
+            return _context.ClubPosts.Where(cp => cp.BookClubId == bookClubId).Select(cp => cp).ToList();
         }
 
         public ClubPost LikeClubPost(ClubPost clubPost)
         {
-            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
+            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.ClubPostId == clubPost.ClubPostId);
             old.TotalLike = old.TotalDislike + 1;
             _context.ClubPosts.Update(old);
             //_context.Entry(clubPost).CurrentValues;
@@ -75,7 +75,7 @@ namespace BCDL
 
         public ClubPost DislikeClubPost(ClubPost clubPost)
         {
-            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.Id == clubPost.Id);
+            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.ClubPostId == clubPost.ClubPostId);
             int x = old.TotalDislike - 1;
             if (x < 0) { x = 0; }
             old.TotalLike =x;

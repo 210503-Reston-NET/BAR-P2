@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BCModel
 {
@@ -7,22 +8,26 @@ namespace BCModel
         public FavoriteBook()
         {
         }
-        public FavoriteBook(string userid, string bookId)
+        public FavoriteBook(string userEmail, string isbn)
         {
-            this.Email = userid;
-            this.ISBN = bookId;
+            this.UserEmail = userEmail;
+            this.ISBN = isbn;
         }
 
-        public FavoriteBook(int Id, string userid, string bookId) : this(userid, bookId)
+        public FavoriteBook(int favoriteBookId, string userEmail, string isbn) : this(userEmail, isbn)
         {
-            this.Email = userid;
-            this.ISBN = bookId;
-            this.Id = Id;
+            this.UserEmail = userEmail;
+            this.ISBN = isbn;
+            this.FavoriteBookId = favoriteBookId;
         }
 
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string ISBN { get; set; } 
+        public int FavoriteBookId { get; set; }
+        [ForeignKey("User")]
+        public string UserEmail { get; set; }
+        public User User { get; set; }
+        [ForeignKey("Book")]
+        public string ISBN { get; set; }
+        public Book Book { get; set; }
 
     }
 }

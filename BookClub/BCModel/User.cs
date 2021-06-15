@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace BCModel
 {
     public class User
@@ -7,15 +9,15 @@ namespace BCModel
         {
         }
 
-        public User(string email, string password, string address, int pagesRead)
+        public User(string userEmail, string password, string address, int pagesRead)
         {
-            this.Email = email;
+            this.UserEmail = userEmail;
             this.Password = password;
             this.Address = address;
             this.PagesRead = pagesRead;
         }
 
-        public string Email {get;set;}
+        public string UserEmail {get;set;}
         public string Password {get;set;}
         public string Address {get;set;}
         public int PagesRead { get; set; }

@@ -20,8 +20,8 @@ namespace BCTest
         {
             BookClub test = new BookClub("name", "description", "bookId", "user");
             string user = "bryce.zimbelman@revature.net";
-            test.Email = user;
-            Assert.Equal(user, test.Email);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]
@@ -29,8 +29,8 @@ namespace BCTest
         {
             BooksRead test = new BooksRead("userid", "bookId", 0);
             string user = "bryce.zimbelman@revature.net";
-            test.User = user;
-            Assert.Equal(user, test.User);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]
@@ -47,14 +47,14 @@ namespace BCTest
         {
             Category test = new Category("name");
             string name = "horror";
-            test.Name = name;
-            Assert.Equal(name, test.Name);
+            test.CategoryId = name;
+            Assert.Equal(name, test.CategoryId);
         }
 
         [Fact]
         public void ClubPostShouldSetValidData()
         {
-            ClubPost test = new ClubPost("user", "post", 1, 1, 1);
+            ClubPost test = new ClubPost("user", "post", 1, 1, 1, new DateTime());
             int likes = 50;
             test.TotalLike = likes;
             Assert.Equal(likes, test.TotalLike);
@@ -65,8 +65,8 @@ namespace BCTest
         {
             Comment test = new Comment("user", 1, 1, "message");
             string user = "bryce.zimbelman@revature.net";
-            test.Email = user;
-            Assert.Equal(user, test.Email);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]
@@ -108,10 +108,37 @@ namespace BCTest
         [Fact]
         public void UserPostShouldSetValidData()
         {
-            UserPost test = new UserPost("user", "post", 1, 1);
+            UserPost test = new UserPost("user", "post", 1, 1, new DateTime());
             int dislikes = 13;
             test.TotalDislike = dislikes;
             Assert.Equal(dislikes, test.TotalDislike);
+        }
+
+        [Fact]
+        public void ClubPostLikesShouldSetValidData()
+        {
+            ClubPostLikes test = new ClubPostLikes(true, false, 1, "bryce.zimbelman@revature.net");
+            bool like = true;
+            test.Like = like;
+            Assert.Equal(like, test.Like);
+        }
+
+        [Fact]
+        public void UserPostLikesShouldSetValidData()
+        {
+            ClubPostLikes test = new ClubPostLikes(false, true, 1, "bryce.zimbelman@revature.net");
+            bool dislike = true;
+            test.Dislike = dislike;
+            Assert.Equal(dislike, test.Dislike);
+        }
+
+        [Fact]
+        public void CommentLikesShouldSetValidData()
+        {
+            CommentLikes test = new CommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1, 0);
+            bool dislike = false;
+            test.Dislike = dislike;
+            Assert.Equal(dislike, test.Dislike);
         }
     }
 }

@@ -1,31 +1,37 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BCModel
 {
     public class Recommendation
     {
         public Recommendation() { }
 
-        public Recommendation(string user, string book, string message, string receversEmail )
+        public Recommendation(string userEmail, string isbn, string message, string receversEmail )
         {
-            SenderEmail = user;
-            ISBN = book;
+            UserEmail = userEmail;
+            ISBN = isbn;
             Message = message;
             ReceversEmails = receversEmail;
         }
 
-        public Recommendation(int id, string user, string book, string message, string receversEmail)
+        public Recommendation(int recommendationId, string userEmail, string isbn, string message, string receversEmail)
         {
-            Id = id;
-            SenderEmail = user;
-            ISBN = book;
+            RecommendationId = recommendationId;
+            UserEmail = userEmail;
+            ISBN = isbn;
             Message = message;
             ReceversEmails = receversEmail;
         }
 
-        public int Id{get;set;}
-        public string SenderEmail {get;set;}
+        public int RecommendationId{get;set;}
+        [ForeignKey("User")]
+        public string UserEmail {get;set;}
+        public User User { get; set; }
+        [ForeignKey("Book")]
         public string ISBN {get;set;}
+        public Book Book { get; set; }
         public string Message {get;set;}
         public string ReceversEmails {get;set;}
         

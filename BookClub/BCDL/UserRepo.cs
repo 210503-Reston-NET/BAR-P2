@@ -23,7 +23,7 @@ namespace BCDL
 
         public User GetUserByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(user => user.Email == email);
+            return _context.Users.FirstOrDefault(user => user.UserEmail == email);
         }
 
         public List<User> GetAllUsers()

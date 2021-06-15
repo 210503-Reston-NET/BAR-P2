@@ -24,7 +24,7 @@ namespace BCDL
 
         public FollowUser DeleteFollowUser(int id)
         {
-            FollowUser toBeDeleted = _context.FollowUsers.FirstOrDefault(fc => fc.Id == id);
+            FollowUser toBeDeleted = _context.FollowUsers.FirstOrDefault(fc => fc.FollowUserId == id);
             if (toBeDeleted != null)
             {
                 _context.FollowUsers.Remove(toBeDeleted);
@@ -46,7 +46,7 @@ namespace BCDL
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.Email == follow.FollowedEmail);
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail == follow.UserEmail);
                 users.Add(user);
             }
 
@@ -56,7 +56,7 @@ namespace BCDL
         public bool IsFollowing(string followerEmail, string followedEmail)
         {
             bool following = false;
-            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.FollowedEmail == followedEmail);
+            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.UserEmail == followedEmail);
             if (followUser != null) following = true;
 
             return following;
@@ -64,13 +64,13 @@ namespace BCDL
 
         public List<User> GetFollowersByUser(string email)
         {
-            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.FollowedEmail.Equals(email)).ToList();
+            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.UserEmail.Equals(email)).ToList();
             List<User> users = new List<User>();
             User user;
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.Email.Equals(follow.FollowerEmail));
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(follow.FollowerEmail));
                 users.Add(user);
             }
 

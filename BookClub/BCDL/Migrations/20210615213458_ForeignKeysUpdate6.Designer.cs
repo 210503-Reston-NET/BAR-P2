@@ -3,15 +3,17 @@ using System;
 using BCDL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BCDL.Migrations
 {
     [DbContext(typeof(BookClubDBContext))]
-    partial class BookClubDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210615213458_ForeignKeysUpdate6")]
+    partial class ForeignKeysUpdate6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -447,7 +449,7 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.Achievement", b =>
                 {
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("Achievements")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("User");
@@ -456,7 +458,7 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.Book", b =>
                 {
                     b.HasOne("BCModel.Category", "Category")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
@@ -465,11 +467,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.BookClub", b =>
                 {
                     b.HasOne("BCModel.Book", "Book")
-                        .WithMany()
+                        .WithMany("BookClubs")
                         .HasForeignKey("ISBN");
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("BookClub")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Book");
@@ -480,11 +482,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.BooksRead", b =>
                 {
                     b.HasOne("BCModel.Book", "Book")
-                        .WithMany()
+                        .WithMany("BooksReads")
                         .HasForeignKey("ISBN");
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("BooksReads")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Book");
@@ -495,11 +497,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.BooksToRead", b =>
                 {
                     b.HasOne("BCModel.Book", "Book")
-                        .WithMany()
+                        .WithMany("BooksToReads")
                         .HasForeignKey("ISBN");
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("BooksToReads")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Book");
@@ -510,13 +512,13 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.ClubPost", b =>
                 {
                     b.HasOne("BCModel.BookClub", "BookClub")
-                        .WithMany()
+                        .WithMany("ClubPosts")
                         .HasForeignKey("BookClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("ClubPosts")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("BookClub");
@@ -527,13 +529,13 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.ClubPostLikes", b =>
                 {
                     b.HasOne("BCModel.ClubPost", "ClubPost")
-                        .WithMany()
+                        .WithMany("ClubPostLikes")
                         .HasForeignKey("ClubPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("ClubPostLikes")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("ClubPost");
@@ -544,17 +546,17 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.Comment", b =>
                 {
                     b.HasOne("BCModel.ClubPost", "ClubPost")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("ClubPostID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserEmail");
 
                     b.HasOne("BCModel.UserPost", "UserPost")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserPostID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -569,23 +571,23 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.CommentLikes", b =>
                 {
                     b.HasOne("BCModel.ClubPost", "ClubPost")
-                        .WithMany()
+                        .WithMany("CommentLikes")
                         .HasForeignKey("ClubPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BCModel.Comment", "Comment")
-                        .WithMany()
+                        .WithMany("CommentLikes")
                         .HasForeignKey("CommentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("CommentLikes")
                         .HasForeignKey("UserEmail");
 
                     b.HasOne("BCModel.UserPost", "UserPost")
-                        .WithMany()
+                        .WithMany("CommentLikes")
                         .HasForeignKey("UserPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -602,11 +604,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.FavoriteBook", b =>
                 {
                     b.HasOne("BCModel.Book", "Book")
-                        .WithMany()
+                        .WithMany("FavoriteBooks")
                         .HasForeignKey("ISBN");
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("FavoriteBooks")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Book");
@@ -617,7 +619,7 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.FollowClub", b =>
                 {
                     b.HasOne("BCModel.BookClub", "BookClub")
-                        .WithMany()
+                        .WithMany("FollowClubs")
                         .HasForeignKey("BookClubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -628,7 +630,7 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.FollowUser", b =>
                 {
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("FollowUsers")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("User");
@@ -637,11 +639,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.Recommendation", b =>
                 {
                     b.HasOne("BCModel.Book", "Book")
-                        .WithMany()
+                        .WithMany("Recommendations")
                         .HasForeignKey("ISBN");
 
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("Recommendations")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("Book");
@@ -652,7 +654,7 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.UserPost", b =>
                 {
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("UserPosts")
                         .HasForeignKey("UserEmail");
 
                     b.Navigation("User");
@@ -661,11 +663,11 @@ namespace BCDL.Migrations
             modelBuilder.Entity("BCModel.UserPostLikes", b =>
                 {
                     b.HasOne("BCModel.User", "User")
-                        .WithMany()
+                        .WithMany("UserPostLikes")
                         .HasForeignKey("UserEmail");
 
                     b.HasOne("BCModel.UserPost", "UserPost")
-                        .WithMany()
+                        .WithMany("UserPostLikes")
                         .HasForeignKey("UserPostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -673,6 +675,83 @@ namespace BCDL.Migrations
                     b.Navigation("User");
 
                     b.Navigation("UserPost");
+                });
+
+            modelBuilder.Entity("BCModel.Book", b =>
+                {
+                    b.Navigation("BookClubs");
+
+                    b.Navigation("BooksReads");
+
+                    b.Navigation("BooksToReads");
+
+                    b.Navigation("FavoriteBooks");
+
+                    b.Navigation("Recommendations");
+                });
+
+            modelBuilder.Entity("BCModel.BookClub", b =>
+                {
+                    b.Navigation("ClubPosts");
+
+                    b.Navigation("FollowClubs");
+                });
+
+            modelBuilder.Entity("BCModel.Category", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BCModel.ClubPost", b =>
+                {
+                    b.Navigation("ClubPostLikes");
+
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("BCModel.Comment", b =>
+                {
+                    b.Navigation("CommentLikes");
+                });
+
+            modelBuilder.Entity("BCModel.User", b =>
+                {
+                    b.Navigation("Achievements");
+
+                    b.Navigation("BookClub");
+
+                    b.Navigation("BooksReads");
+
+                    b.Navigation("BooksToReads");
+
+                    b.Navigation("ClubPostLikes");
+
+                    b.Navigation("ClubPosts");
+
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("FavoriteBooks");
+
+                    b.Navigation("FollowUsers");
+
+                    b.Navigation("Recommendations");
+
+                    b.Navigation("UserPostLikes");
+
+                    b.Navigation("UserPosts");
+                });
+
+            modelBuilder.Entity("BCModel.UserPost", b =>
+                {
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("UserPostLikes");
                 });
 #pragma warning restore 612, 618
         }

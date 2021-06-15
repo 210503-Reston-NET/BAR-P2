@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +13,23 @@ namespace BCModel
         {
         }
 
-        public FollowUser(string follower, string followed)
+        public FollowUser(string followerEmail, string userEmail)
         {
-            FollowerEmail = follower;
-            FollowedEmail = followed;
+            FollowerEmail = followerEmail;
+            UserEmail = userEmail;
         }
 
-        public FollowUser(int id, string follower, string followed)
+        public FollowUser(int followUserId, string followerEmail, string userEmail)
         {
-            Id = id;
-            FollowerEmail = follower;
-            FollowedEmail = followed;
+            FollowUserId = followUserId;
+            FollowerEmail = followerEmail;
+            UserEmail = userEmail;
         }
 
-        public int Id { get; set; }
+        public int FollowUserId { get; set; }
         public string FollowerEmail { get; set; }
-        public string FollowedEmail { get; set; }
+        [ForeignKey("User")]
+        public string UserEmail { get; set; }
+        public User User { get; set; }
     }
 }
