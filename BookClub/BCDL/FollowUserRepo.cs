@@ -46,7 +46,7 @@ namespace BCDL
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.UserEmail == follow.FollowedEmail);
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail == follow.UserEmail);
                 users.Add(user);
             }
 
@@ -56,7 +56,7 @@ namespace BCDL
         public bool IsFollowing(string followerEmail, string followedEmail)
         {
             bool following = false;
-            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.FollowedEmail == followedEmail);
+            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.UserEmail == followedEmail);
             if (followUser != null) following = true;
 
             return following;
@@ -64,7 +64,7 @@ namespace BCDL
 
         public List<User> GetFollowersByUser(string email)
         {
-            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.FollowedEmail.Equals(email)).ToList();
+            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.UserEmail.Equals(email)).ToList();
             List<User> users = new List<User>();
             User user;
 

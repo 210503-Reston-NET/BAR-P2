@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BCModel
 {
@@ -21,8 +22,12 @@ namespace BCModel
         }
 
         public int FavoriteBookId { get; set; }
+        [ForeignKey("User")]
         public string UserEmail { get; set; }
-        public string ISBN { get; set; } 
+        public User User { get; set; }
+        [ForeignKey("Book")]
+        public string ISBN { get; set; }
+        public Book Book { get; set; }
 
     }
 }

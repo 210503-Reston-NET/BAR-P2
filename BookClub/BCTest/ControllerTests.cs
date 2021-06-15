@@ -269,8 +269,8 @@ namespace BCTest
             mockBL.Setup(x => x.GetAllClubPosts()).Returns(
                 new List<ClubPost>
                 {
-                    new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0),
-                    new ClubPost("bryce.zimbelman@revature.com", "Poor Read", 2, 0, 5)
+                    new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime()),
+                    new ClubPost("bryce.zimbelman@revature.com", "Poor Read", 2, 0, 5, new DateTime())
                 }
                 );
 
@@ -288,7 +288,7 @@ namespace BCTest
         {
             var mockBL = new Mock<IClubPostBL>();
             mockBL.Setup(x => x.GetClubPostById(1)).Returns(
-                new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0)
+                new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime())
                 );
 
             var controller = new ClubPostController(mockBL.Object);
@@ -307,8 +307,8 @@ namespace BCTest
             mockBL.Setup(x => x.GetClubPostByBookClub(1)).Returns(
                 new List<ClubPost>
                 {
-                new ClubPost("bryce.zimbelman@icloud.com", "Gets Better", 1, 10, 2),
-                new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0)
+                new ClubPost("bryce.zimbelman@icloud.com", "Gets Better", 1, 10, 2, new DateTime()),
+                new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime())
                 });
 
             var controller = new ClubPostController(mockBL.Object);
@@ -572,8 +572,8 @@ namespace BCTest
                 new List<UserPost>
                 {
 
-                new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5),
-                new UserPost("bryce.zimbelman@gmail.com", "Bad Reads", 10, 1)
+                new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5, new DateTime()),
+                new UserPost("bryce.zimbelman@gmail.com", "Bad Reads", 10, 1, new DateTime())
 
                 });
 
@@ -590,7 +590,7 @@ namespace BCTest
         public void UserPostControllerShouldReturnUserPost()
         {
             var mockBL = new Mock<IUserPostBL>();
-            mockBL.Setup(x => x.GetUserPostById(1)).Returns(new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5));
+            mockBL.Setup(x => x.GetUserPostById(1)).Returns(new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5, new DateTime()));
 
             var controller = new UserPostController(mockBL.Object);
             var result = controller.GetUserPostById(1);
@@ -608,8 +608,8 @@ namespace BCTest
             mockBL.Setup(x => x.GetUserPostByUser("bryce.zimbelman@revature.net")).Returns(
                 new List<UserPost>
                 {
-                new UserPost("bryce.zimbelman@revature.net", "Poor Reads", 0, 10),
-                new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5)
+                new UserPost("bryce.zimbelman@revature.net", "Poor Reads", 0, 10, new DateTime()),
+                new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5, new DateTime())
                 });
 
             var controller = new UserPostController(mockBL.Object);

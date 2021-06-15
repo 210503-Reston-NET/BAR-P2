@@ -54,7 +54,7 @@ namespace BCTest
         [Fact]
         public void ClubPostShouldSetValidData()
         {
-            ClubPost test = new ClubPost("user", "post", 1, 1, 1);
+            ClubPost test = new ClubPost("user", "post", 1, 1, 1, new DateTime());
             int likes = 50;
             test.TotalLike = likes;
             Assert.Equal(likes, test.TotalLike);
@@ -108,7 +108,7 @@ namespace BCTest
         [Fact]
         public void UserPostShouldSetValidData()
         {
-            UserPost test = new UserPost("user", "post", 1, 1);
+            UserPost test = new UserPost("user", "post", 1, 1, new DateTime());
             int dislikes = 13;
             test.TotalDislike = dislikes;
             Assert.Equal(dislikes, test.TotalDislike);

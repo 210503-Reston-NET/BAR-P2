@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace BCModel
 {
     public class Achievement
@@ -20,7 +22,9 @@ namespace BCModel
         }
 
         public int AchievementId{get;set;}
-        public string UserEmail {get;set;} 
+        [ForeignKey("User")]
+        public string UserEmail {get;set;}
+        public User User { get; set; }
         public string Badge {get;set;} 
     }
 }

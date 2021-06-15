@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +11,16 @@ namespace BCModel
     {
         public UserPost() { }
 
-        public UserPost(string userEmail, string post, int Totallike, int Totaldislike)
+        public UserPost(string userEmail, string post, int Totallike, int Totaldislike, DateTime date)
         {
             UserEmail = userEmail;
             Post = post;
             TotalLike = Totallike;
             TotalDislike = Totaldislike;
+            Date = date;
         }
 
-        public UserPost(int userPostId, string userEmail, string post, int totalLike, int totalDislike)
+        public UserPost(int userPostId, string userEmail, string post, int totalLike, int totalDislike, DateTime date)
         {
             UserPostId = userPostId;
             UserEmail = userEmail;
@@ -28,11 +30,16 @@ namespace BCModel
         }
 
         public int UserPostId { get; set; }
+        [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
         public string Post { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
+        public DateTime Date { get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<CommentLikes> CommentLikes { get; set; }
+        public List<UserPostLikes> UserPostLikes { get; set; }
 
-        
     }
 }

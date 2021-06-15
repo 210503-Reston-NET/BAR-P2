@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BCDL;
 using System.Linq;
 using Xunit;
+using System;
 
 namespace BCTest
 {
@@ -113,7 +114,8 @@ namespace BCTest
                         Post = "Good Book",
                         BookClubId = 1,
                         TotalLike = 3,
-                        TotalDislike = 1
+                        TotalDislike = 1,
+                        Date = new DateTime()
                     },
                     new Model.ClubPost
                     {
@@ -121,7 +123,8 @@ namespace BCTest
                         Post = "Fun Book",
                         BookClubId = 2,
                         TotalLike = 9,
-                        TotalDislike = 4
+                        TotalDislike = 4,
+                        Date = new DateTime()
                     }
                     );
 
@@ -180,12 +183,12 @@ namespace BCTest
                     new Model.FollowUser
                     {
                         FollowerEmail = "bryce.zimbelman@revature.net",
-                        FollowedEmail = "bryce.zimbelman@icloud.com"
+                        UserEmail = "bryce.zimbelman@icloud.com"
                     },
                     new Model.FollowUser
                     {
                         FollowerEmail = "bryce.zimbelman@revature.net",
-                        FollowedEmail = "bryce.zimbelman@gmail.com"
+                        UserEmail = "bryce.zimbelman@gmail.com"
                     }
                     );
 
@@ -216,14 +219,16 @@ namespace BCTest
                         UserEmail = "bryce.zimbelman@revature.net",
                         Post = "You all should join my BookClub",
                         TotalLike = 8,
-                        TotalDislike = 0
+                        TotalDislike = 0,
+                        Date = new DateTime()
                     },
                     new Model.UserPost
                     {
                         UserEmail = "bryce.zimbelman@revature.net",
                         Post = "You all should join that other BookClub",
                         TotalLike = 0,
-                        TotalDislike = 8
+                        TotalDislike = 8,
+                        Date = new DateTime()
                     }
                     );
 
@@ -870,7 +875,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                _repo.AddClubPost(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10));
+                _repo.AddClubPost(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -946,7 +951,7 @@ namespace BCTest
                 var result = assertContext.FollowUsers.FirstOrDefault(userFollower => userFollower.FollowUserId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("bryce.zimbelman@gmail.com", result.FollowerEmail);
-                Assert.Equal("bryce.zimbelman@revature.net", result.FollowedEmail);
+                Assert.Equal("bryce.zimbelman@revature.net", result.UserEmail);
             }
         }
 
@@ -973,7 +978,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                _repo.AddUserPost(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3));
+                _repo.AddUserPost(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))

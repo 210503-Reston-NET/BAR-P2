@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BCDL.Migrations
 {
     [DbContext(typeof(BookClubDBContext))]
-    [Migration("20210615181333_ForeignKeysUpdate")]
+    [Migration("20210615201526_ForeignKeysUpdate")]
     partial class ForeignKeysUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,12 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("AchievementId");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("Achievements");
                 });
@@ -57,6 +62,8 @@ namespace BCDL.Migrations
 
                     b.HasKey("ISBN");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Books");
                 });
 
@@ -66,6 +73,9 @@ namespace BCDL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("BookISBN")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -79,7 +89,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("BookClubId");
+
+                    b.HasIndex("BookISBN");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("BookClubs");
                 });
@@ -91,6 +108,9 @@ namespace BCDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("BookISBN")
+                        .HasColumnType("text");
+
                     b.Property<int>("BookPages")
                         .HasColumnType("integer");
 
@@ -100,7 +120,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("BooksReadId");
+
+                    b.HasIndex("BookISBN");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("BooksRead");
                 });
@@ -112,13 +139,23 @@ namespace BCDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("BookISBN")
+                        .HasColumnType("text");
+
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("BooksToReadId");
+
+                    b.HasIndex("BookISBN");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("BooksToRead");
                 });
@@ -155,7 +192,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("ClubPostId");
+
+                    b.HasIndex("BookClubId");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("ClubPosts");
                 });
@@ -179,7 +223,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("ClubPostLikesId");
+
+                    b.HasIndex("ClubPostId");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("ClubPostLikes");
                 });
@@ -200,10 +251,19 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.Property<int>("UserPostID")
                         .HasColumnType("integer");
 
                     b.HasKey("CommentId");
+
+                    b.HasIndex("ClubPostID");
+
+                    b.HasIndex("UserEmail1");
+
+                    b.HasIndex("UserPostID");
 
                     b.ToTable("Comments");
                 });
@@ -230,10 +290,21 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.Property<int>("UserPostId")
                         .HasColumnType("integer");
 
                     b.HasKey("CommentLikesId");
+
+                    b.HasIndex("ClubPostId");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserEmail1");
+
+                    b.HasIndex("UserPostId");
 
                     b.ToTable("CommentLikes");
                 });
@@ -245,13 +316,23 @@ namespace BCDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("BookISBN")
+                        .HasColumnType("text");
+
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("FavoriteBookId");
+
+                    b.HasIndex("BookISBN");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("FavoriteBooks");
                 });
@@ -271,6 +352,8 @@ namespace BCDL.Migrations
 
                     b.HasKey("FollowClubId");
 
+                    b.HasIndex("BookClubId");
+
                     b.ToTable("FollowClubs");
                 });
 
@@ -281,13 +364,18 @@ namespace BCDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("FollowedEmail")
-                        .HasColumnType("text");
-
                     b.Property<string>("FollowerEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("FollowUserId");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("FollowUsers");
                 });
@@ -298,6 +386,9 @@ namespace BCDL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("BookISBN")
+                        .HasColumnType("text");
 
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
@@ -311,7 +402,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("RecommendationId");
+
+                    b.HasIndex("BookISBN");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("Recommendations");
                 });
@@ -354,7 +452,12 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.HasKey("UserPostId");
+
+                    b.HasIndex("UserEmail1");
 
                     b.ToTable("UserPosts");
                 });
@@ -375,12 +478,271 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserEmail1")
+                        .HasColumnType("text");
+
                     b.Property<int>("UserPostId")
                         .HasColumnType("integer");
 
                     b.HasKey("UserPostLikesId");
 
+                    b.HasIndex("UserEmail1");
+
+                    b.HasIndex("UserPostId");
+
                     b.ToTable("UserPostLikes");
+                });
+
+            modelBuilder.Entity("BCModel.Achievement", b =>
+                {
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("Achievements")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.Book", b =>
+                {
+                    b.HasOne("BCModel.Category", null)
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("BCModel.BookClub", b =>
+                {
+                    b.HasOne("BCModel.Book", null)
+                        .WithMany("BookClubs")
+                        .HasForeignKey("BookISBN");
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("BookClub")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.BooksRead", b =>
+                {
+                    b.HasOne("BCModel.Book", null)
+                        .WithMany("BooksReads")
+                        .HasForeignKey("BookISBN");
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("BooksReads")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.BooksToRead", b =>
+                {
+                    b.HasOne("BCModel.Book", null)
+                        .WithMany("BooksToReads")
+                        .HasForeignKey("BookISBN");
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("BooksToReads")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.ClubPost", b =>
+                {
+                    b.HasOne("BCModel.BookClub", null)
+                        .WithMany("ClubPosts")
+                        .HasForeignKey("BookClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("ClubPosts")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.ClubPostLikes", b =>
+                {
+                    b.HasOne("BCModel.ClubPost", null)
+                        .WithMany("ClubPostLikes")
+                        .HasForeignKey("ClubPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("ClubPostLikes")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.Comment", b =>
+                {
+                    b.HasOne("BCModel.ClubPost", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("ClubPostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserEmail1");
+
+                    b.HasOne("BCModel.UserPost", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("UserPostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BCModel.CommentLikes", b =>
+                {
+                    b.HasOne("BCModel.ClubPost", null)
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("ClubPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.Comment", null)
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("UserEmail1");
+
+                    b.HasOne("BCModel.UserPost", null)
+                        .WithMany("CommentLikes")
+                        .HasForeignKey("UserPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BCModel.FavoriteBook", b =>
+                {
+                    b.HasOne("BCModel.Book", null)
+                        .WithMany("FavoriteBooks")
+                        .HasForeignKey("BookISBN");
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("FavoriteBooks")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.FollowClub", b =>
+                {
+                    b.HasOne("BCModel.BookClub", null)
+                        .WithMany("FollowClubs")
+                        .HasForeignKey("BookClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BCModel.FollowUser", b =>
+                {
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("FollowUsers")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.Recommendation", b =>
+                {
+                    b.HasOne("BCModel.Book", null)
+                        .WithMany("Recommendations")
+                        .HasForeignKey("BookISBN");
+
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("Recommendations")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.UserPost", b =>
+                {
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("UserPosts")
+                        .HasForeignKey("UserEmail1");
+                });
+
+            modelBuilder.Entity("BCModel.UserPostLikes", b =>
+                {
+                    b.HasOne("BCModel.User", null)
+                        .WithMany("UserPostLikes")
+                        .HasForeignKey("UserEmail1");
+
+                    b.HasOne("BCModel.UserPost", null)
+                        .WithMany("UserPostLikes")
+                        .HasForeignKey("UserPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BCModel.Book", b =>
+                {
+                    b.Navigation("BookClubs");
+
+                    b.Navigation("BooksReads");
+
+                    b.Navigation("BooksToReads");
+
+                    b.Navigation("FavoriteBooks");
+
+                    b.Navigation("Recommendations");
+                });
+
+            modelBuilder.Entity("BCModel.BookClub", b =>
+                {
+                    b.Navigation("ClubPosts");
+
+                    b.Navigation("FollowClubs");
+                });
+
+            modelBuilder.Entity("BCModel.Category", b =>
+                {
+                    b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("BCModel.ClubPost", b =>
+                {
+                    b.Navigation("ClubPostLikes");
+
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("BCModel.Comment", b =>
+                {
+                    b.Navigation("CommentLikes");
+                });
+
+            modelBuilder.Entity("BCModel.User", b =>
+                {
+                    b.Navigation("Achievements");
+
+                    b.Navigation("BookClub");
+
+                    b.Navigation("BooksReads");
+
+                    b.Navigation("BooksToReads");
+
+                    b.Navigation("ClubPostLikes");
+
+                    b.Navigation("ClubPosts");
+
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("FavoriteBooks");
+
+                    b.Navigation("FollowUsers");
+
+                    b.Navigation("Recommendations");
+
+                    b.Navigation("UserPostLikes");
+
+                    b.Navigation("UserPosts");
+                });
+
+            modelBuilder.Entity("BCModel.UserPost", b =>
+                {
+                    b.Navigation("CommentLikes");
+
+                    b.Navigation("Comments");
+
+                    b.Navigation("UserPostLikes");
                 });
 #pragma warning restore 612, 618
         }

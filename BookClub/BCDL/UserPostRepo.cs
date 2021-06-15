@@ -37,12 +37,12 @@ namespace BCDL
 
         public UserPost GetUserPost(UserPost userPost)
         {
-            UserPost found = _context.UserPosts.FirstOrDefault(up => up.UserEmail == userPost.UserEmail && up.Post == userPost.Post && up.TotalLike == userPost.TotalLike && up.TotalDislike == userPost.TotalDislike);
+            UserPost found = _context.UserPosts.FirstOrDefault(up => up.UserEmail == userPost.UserEmail && up.Post == userPost.Post && up.TotalLike == userPost.TotalLike && up.TotalDislike == userPost.TotalDislike && up.Date == userPost.Date);
             if (found == null)
             {
                 return null;
             }
-            return new UserPost(found.UserEmail, found.Post, found.TotalLike, found.TotalDislike);
+            return new UserPost(found.UserEmail, found.Post, found.TotalLike, found.TotalDislike, found.Date);
         }
 
         public UserPost GetUserPostById(int userPostId)

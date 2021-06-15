@@ -15,6 +15,7 @@ namespace BCModel
         }
 
         public string CategoryId { get; set; }
-        
+        public List<Book> Books { get; set; }
+
     }
 }

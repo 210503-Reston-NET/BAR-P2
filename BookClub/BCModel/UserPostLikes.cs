@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,11 @@ namespace BCModel
         public int UserPostLikesId { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }
+        [ForeignKey("UserPost")]
         public int UserPostId { get; set; }
+        public UserPost UserPost { get; set; }
+        [ForeignKey("User")]
         public string UserEmail { get; set; }
+        public User User { get; set; }
     }
 }

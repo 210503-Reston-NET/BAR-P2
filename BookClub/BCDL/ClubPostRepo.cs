@@ -43,12 +43,12 @@ namespace BCDL
 
         public ClubPost GetClubPost(ClubPost clubPost)
         {
-            ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike);
+            ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike && cp.Date == clubPost.Date);
             if (found == null)
             {
                 return null;
             }
-            return new ClubPost(found.UserEmail, found.Post, found.BookClubId, found.TotalLike, found.TotalDislike);
+            return new ClubPost(found.UserEmail, found.Post, found.BookClubId, found.TotalLike, found.TotalDislike, found.Date);
         }
 
         public ClubPost UpdateClubPost(ClubPost clubPost)
