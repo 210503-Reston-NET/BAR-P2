@@ -29,14 +29,14 @@ namespace BCTest
                         ISBN = "123456789",
                         Title = "Unit Testing",
                         Author = "Bryce",
-                        CategoryName = "Test"
+                        CategoryId = "Test"
                     },
                     new Model.Book
                     {
                         ISBN = "987654321",
                         Title = "More Testing",
                         Author = "Zimbelman",
-                        CategoryName = "Test"
+                        CategoryId = "Test"
                     }
                     );
 
@@ -48,14 +48,14 @@ namespace BCTest
                         Name = "Harry Potter",
                         Description = "Magical Reads",
                         ISBN = "14598678",
-                        Email = "bryce.zimbelman@revature.net"
+                        UserEmail = "bryce.zimbelman@revature.net"
                     },
                     new Model.BookClub
                     {
                         Name = "Hunger Games",
                         Description = "Very Hungry Readers",
                         ISBN = "19872345",
-                        Email = "bryce.zimbelman@revature.net"
+                        UserEmail = "bryce.zimbelman@revature.net"
                     }
                     );
 
@@ -64,15 +64,15 @@ namespace BCTest
                 context.BooksRead.AddRange(
                     new Model.BooksRead
                     {
-                        User = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "123456789",
-                        Pages = 50
+                        BookPages = 50
                     },
                     new Model.BooksRead
                     {
-                        User = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "987654321",
-                        Pages = 50
+                        BookPages = 50
                     }
                     );
 
@@ -81,12 +81,12 @@ namespace BCTest
                 context.BooksToRead.AddRange(
                     new Model.BooksToRead
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "123456789"
                     },
                     new Model.BooksToRead
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "987654321"
                     }
                     );
@@ -96,11 +96,11 @@ namespace BCTest
                 context.Categories.AddRange(
                     new Model.Category
                     {
-                        Name = "Horror"
+                        CategoryId = "Horror"
                     },
                     new Model.Category
                     {
-                        Name = "Action"
+                        CategoryId = "Action"
                     }
                     );
 
@@ -109,17 +109,17 @@ namespace BCTest
                 context.ClubPosts.AddRange(
                     new Model.ClubPost
                     {
-                        User = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         Post = "Good Book",
-                        BookClubID = 1,
+                        BookClubId = 1,
                         TotalLike = 3,
                         TotalDislike = 1
                     },
                     new Model.ClubPost
                     {
-                        User = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         Post = "Fun Book",
-                        BookClubID = 2,
+                        BookClubId = 2,
                         TotalLike = 9,
                         TotalDislike = 4
                     }
@@ -130,14 +130,14 @@ namespace BCTest
                 context.Comments.AddRange(
                     new Model.Comment
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         UserPostID = 1,
                         ClubPostID = 0,
                         Message = "Wrong"
                     },
                     new Model.Comment
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         UserPostID = 0,
                         ClubPostID = 1,
                         Message = "Right"
@@ -149,12 +149,12 @@ namespace BCTest
                 context.FavoriteBooks.AddRange(
                     new Model.FavoriteBook
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "123456789"
                     },
                     new Model.FavoriteBook
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         ISBN = "987654321"
                     }
                     );
@@ -165,12 +165,12 @@ namespace BCTest
                     new Model.FollowClub
                     {
                         FollowerEmail = "bryce.zimbelman@revature.net",
-                        ClubID = 1
+                        BookClubId = 1
                     },
                     new Model.FollowClub
                     {
                         FollowerEmail = "bryce.zimbelman@revature.net",
-                        ClubID = 2
+                        BookClubId = 2
                     }
                     );
 
@@ -194,14 +194,14 @@ namespace BCTest
                 context.Users.AddRange(
                     new Model.User
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         Password = "1Password!",
                         Address = "1514 Canyon Dr",
                         PagesRead = 1000
                     },
                     new Model.User
                     {
-                        Email = "bryce.zimbelman@icloud.com",
+                        UserEmail = "bryce.zimbelman@icloud.com",
                         Password = "!Password1",
                         Address = "309 E Memorial Dr",
                         PagesRead = 5000
@@ -213,14 +213,14 @@ namespace BCTest
                 context.UserPosts.AddRange(
                     new Model.UserPost
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         Post = "You all should join my BookClub",
                         TotalLike = 8,
                         TotalDislike = 0
                     },
                     new Model.UserPost
                     {
-                        Email = "bryce.zimbelman@revature.net",
+                        UserEmail = "bryce.zimbelman@revature.net",
                         Post = "You all should join that other BookClub",
                         TotalLike = 0,
                         TotalDislike = 8
@@ -514,7 +514,7 @@ namespace BCTest
                 var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
-                    Assert.Equal("Test", book.CategoryName);
+                    Assert.Equal("Test", book.CategoryId);
                 }
             }
         }
@@ -528,7 +528,7 @@ namespace BCTest
                 var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
-                    Assert.Equal("Test", book.CategoryName);
+                    Assert.Equal("Test", book.CategoryId);
                 }
             }
         }
@@ -540,7 +540,7 @@ namespace BCTest
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
                 var category = _repo.GetCategory("Horror");
-                Assert.Equal("Horror", category.Name);
+                Assert.Equal("Horror", category.CategoryId);
             }
         }
 
@@ -564,7 +564,7 @@ namespace BCTest
                 var clubPosts = _repo.GetClubPostByBookClub(1);
                 foreach (Model.ClubPost clubPost in clubPosts)
                 {
-                    Assert.Equal(1, clubPost.BookClubID);
+                    Assert.Equal(1, clubPost.BookClubId);
                 }
             }
         }
@@ -619,7 +619,7 @@ namespace BCTest
                 var followers = _repo.GetFollowersByClub(1);
                 foreach (Model.User user in followers)
                 {
-                    Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+                    Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
                 }
             }
         }
@@ -633,7 +633,7 @@ namespace BCTest
                 var bookClubs = _repo.GetFollowingByUser("bryce.zimbelman@revature.net");
                 foreach (Model.BookClub bookClub in bookClubs)
                 {
-                    Assert.Equal("bryce.zimbelman@revature.net", bookClub.Email);
+                    Assert.Equal("bryce.zimbelman@revature.net", bookClub.UserEmail);
                 }
             }
         }
@@ -647,7 +647,7 @@ namespace BCTest
                 var followers = _repo.GetFollowersByUser("bryce.zimbelman@icloud.com");
                 foreach (Model.User user in followers)
                 {
-                    Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+                    Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
                 }
             }
         }
@@ -659,7 +659,7 @@ namespace BCTest
             {
                 IUserRepo _repo = new UserRepo(context);
                 var user = _repo.GetUserByEmail("bryce.zimbelman@revature.net");
-                Assert.Equal("bryce.zimbelman@revature.net", user.Email);
+                Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
 
             }
         }
@@ -685,7 +685,7 @@ namespace BCTest
                 var userPosts = _repo.GetUserPostByUser("bryce.zimbelman@revature.net");
                 foreach (Model.UserPost userPost in userPosts)
                 {
-                    Assert.Equal("bryce.zimbelman@revature.net", userPost.Email);
+                    Assert.Equal("bryce.zimbelman@revature.net", userPost.UserEmail);
                 }
             }
         }
@@ -711,7 +711,7 @@ namespace BCTest
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
                 var clubPostLike = _repo.GetClubPostLikesById(1);
-                Assert.Equal(1, clubPostLike.Id);
+                Assert.Equal(1, clubPostLike.ClubPostLikesId);
             }
         }
 
@@ -736,7 +736,7 @@ namespace BCTest
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
                 var userPostLike = _repo.GetUserPostLikesById(1);
-                Assert.Equal(1, userPostLike.Id);
+                Assert.Equal(1, userPostLike.UserPostLikesId);
             }
         }
 
@@ -775,7 +775,7 @@ namespace BCTest
             {
                 ICommentLikesRepo _repo = new CommentLikesRepo(context);
                 var commentLike = _repo.GetCommentLikesById(1);
-                Assert.Equal(1, commentLike.Id);
+                Assert.Equal(1, commentLike.CommentLikesId);
             }
         }
 
@@ -807,7 +807,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.BookClubs.FirstOrDefault(bookClub => bookClub.Id == 3);
+                var result = assertContext.BookClubs.FirstOrDefault(bookClub => bookClub.BookClubId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("Good Reads", result.Name);
             }
@@ -824,7 +824,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.BooksRead.FirstOrDefault(booksRead => booksRead.Id == 3);
+                var result = assertContext.BooksRead.FirstOrDefault(booksRead => booksRead.BooksReadId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("135798642", result.ISBN);
             }
@@ -841,7 +841,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.BooksToRead.FirstOrDefault(booksToRead => booksToRead.Id == 3);
+                var result = assertContext.BooksToRead.FirstOrDefault(booksToRead => booksToRead.BooksToReadId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("135798642", result.ISBN);
             }
@@ -858,9 +858,9 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.Categories.FirstOrDefault(category => category.Name == "Adventure");
+                var result = assertContext.Categories.FirstOrDefault(category => category.CategoryId == "Adventure");
                 Assert.NotNull(result);
-                Assert.Equal("Adventure", result.Name);
+                Assert.Equal("Adventure", result.CategoryId);
             }
         }
 
@@ -875,7 +875,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.ClubPosts.FirstOrDefault(clubPost => clubPost.Id == 3);
+                var result = assertContext.ClubPosts.FirstOrDefault(clubPost => clubPost.ClubPostId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("Boring Book!", result.Post);
             }
@@ -892,7 +892,7 @@ namespace BCTest
 
             using (var assertcontext = new BookClubDBContext(options))
             {
-                var result = assertcontext.Comments.FirstOrDefault(comment => comment.Id == 3);
+                var result = assertcontext.Comments.FirstOrDefault(comment => comment.CommentId == 3);
                 Assert.NotNull(result);
                 Assert.Equal(2, result.UserPostID);
             }
@@ -909,7 +909,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.FavoriteBooks.FirstOrDefault(favoriteBook => favoriteBook.Id == 3);
+                var result = assertContext.FavoriteBooks.FirstOrDefault(favoriteBook => favoriteBook.FavoriteBookId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("135798642", result.ISBN);
             }
@@ -926,9 +926,9 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.FollowClubs.FirstOrDefault(clubFollower => clubFollower.Id == 3);
+                var result = assertContext.FollowClubs.FirstOrDefault(clubFollower => clubFollower.FollowClubId == 3);
                 Assert.NotNull(result);
-                Assert.Equal(3, result.ClubID);
+                Assert.Equal(3, result.BookClubId);
             }
         }
 
@@ -943,7 +943,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.FollowUsers.FirstOrDefault(userFollower => userFollower.Id == 3);
+                var result = assertContext.FollowUsers.FirstOrDefault(userFollower => userFollower.FollowUserId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("bryce.zimbelman@gmail.com", result.FollowerEmail);
                 Assert.Equal("bryce.zimbelman@revature.net", result.FollowedEmail);
@@ -961,7 +961,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.Users.FirstOrDefault(user => user.Email == "bryce.zimbelman@gmail.com");
+                var result = assertContext.Users.FirstOrDefault(user => user.UserEmail == "bryce.zimbelman@gmail.com");
                 Assert.NotNull(result);
                 Assert.Equal(10, result.PagesRead);
             }
@@ -978,7 +978,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.UserPosts.FirstOrDefault(userPost => userPost.Id == 3);
+                var result = assertContext.UserPosts.FirstOrDefault(userPost => userPost.UserPostId == 3);
                 Assert.NotNull(result);
                 Assert.Equal(24, result.TotalLike);
             }
@@ -994,7 +994,7 @@ namespace BCTest
 
             using (var assertContext = new BookClubDBContext(options))
             {
-                var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.Id == 3);
+                var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.ClubPostLikesId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("bryce.zimbelman@gmail.com", result.UserEmail);
             }

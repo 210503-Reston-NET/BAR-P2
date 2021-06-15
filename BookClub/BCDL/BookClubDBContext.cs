@@ -33,52 +33,52 @@ namespace BCDL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .HasKey(user => user.Email);
+                .HasKey(user => user.UserEmail);
             modelBuilder.Entity<Category>()
-                .HasKey(cat => cat.Name);
+                .HasKey(cat => cat.CategoryId);
             modelBuilder.Entity<Book>()
                 .HasKey(book => book.ISBN);
             modelBuilder.Entity<BookClub>()
-                .Property(bookClub => bookClub.Id)
+                .Property(bookClub => bookClub.BookClubId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Achievement>()
-                .Property(achievement => achievement.Id)
+                .Property(achievement => achievement.AchievementId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<UserPost>()
-                .Property(userPostt => userPostt.Id)
+                .Property(userPostt => userPostt.UserPostId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<ClubPost>()
-                .Property(clubPostt => clubPostt.Id)
+                .Property(clubPostt => clubPostt.ClubPostId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Comment>()
-                .Property(comment => comment.Id)
+                .Property(comment => comment.CommentId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Recommendation>()
-                .Property(rec => rec.Id)
+                .Property(rec => rec.RecommendationId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<FavoriteBook>()
-                .Property(fav => fav.Id)
+                .Property(fav => fav.FavoriteBookId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<BooksToRead>()
-                .Property(read => read.Id)
+                .Property(read => read.BooksToReadId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<BooksRead>()
-                .Property(read => read.Id)
+                .Property(read => read.BooksReadId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<FollowClub>()
-                .Property(FClub => FClub.Id)
+                .Property(FClub => FClub.FollowClubId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<FollowUser>()
-                .Property(FUser => FUser.Id)
+                .Property(FUser => FUser.FollowUserId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<ClubPostLikes>()
-                .Property(ClubPostLikes => ClubPostLikes.Id)
+                .Property(ClubPostLikes => ClubPostLikes.ClubPostLikesId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<UserPostLikes>()
-                .Property(UserPostLikes => UserPostLikes.Id)
+                .Property(UserPostLikes => UserPostLikes.UserPostLikesId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<CommentLikes>()
-                .Property(CommentLikes => CommentLikes.Id)
+                .Property(CommentLikes => CommentLikes.CommentLikesId)
                 .ValueGeneratedOnAdd();
         }
     }

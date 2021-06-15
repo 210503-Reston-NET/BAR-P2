@@ -20,8 +20,8 @@ namespace BCTest
         {
             BookClub test = new BookClub("name", "description", "bookId", "user");
             string user = "bryce.zimbelman@revature.net";
-            test.Email = user;
-            Assert.Equal(user, test.Email);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]
@@ -29,8 +29,8 @@ namespace BCTest
         {
             BooksRead test = new BooksRead("userid", "bookId", 0);
             string user = "bryce.zimbelman@revature.net";
-            test.User = user;
-            Assert.Equal(user, test.User);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]
@@ -47,8 +47,8 @@ namespace BCTest
         {
             Category test = new Category("name");
             string name = "horror";
-            test.Name = name;
-            Assert.Equal(name, test.Name);
+            test.CategoryId = name;
+            Assert.Equal(name, test.CategoryId);
         }
 
         [Fact]
@@ -65,8 +65,8 @@ namespace BCTest
         {
             Comment test = new Comment("user", 1, 1, "message");
             string user = "bryce.zimbelman@revature.net";
-            test.Email = user;
-            Assert.Equal(user, test.Email);
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
         }
 
         [Fact]

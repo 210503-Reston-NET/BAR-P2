@@ -23,7 +23,7 @@ namespace BCDL
 
         public Achievement GetAchievementByEmail(string email)
         {
-            return _context.Achievements.FirstOrDefault(r => r.Email == email);
+            return _context.Achievements.FirstOrDefault(r => r.UserEmail == email);
         }
 
         public List<Achievement> GetAchievements()

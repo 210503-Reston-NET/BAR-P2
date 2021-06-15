@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BCDL.Migrations
 {
-    public partial class Initial13 : Migration
+    public partial class ForeignKeysUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,30 +11,30 @@ namespace BCDL.Migrations
                 name: "Achievements",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    AchievementId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     Badge = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Achievements", x => x.Id);
+                    table.PrimaryKey("PK_Achievements", x => x.AchievementId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BookClubs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    BookClubId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookClubs", x => x.Id);
+                    table.PrimaryKey("PK_BookClubs", x => x.BookClubId);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,10 +42,10 @@ namespace BCDL.Migrations
                 columns: table => new
                 {
                     ISBN = table.Column<string>(type: "text", nullable: false),
-                    Id = table.Column<int>(type: "integer", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Author = table.Column<string>(type: "text", nullable: true),
-                    CategoryName = table.Column<string>(type: "text", nullable: true)
+                    CategoryId = table.Column<string>(type: "text", nullable: true),
+                    ImageUrl = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -56,47 +56,47 @@ namespace BCDL.Migrations
                 name: "BooksRead",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    BooksReadId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    User = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true),
-                    Pages = table.Column<int>(type: "integer", nullable: false)
+                    BookPages = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BooksRead", x => x.Id);
+                    table.PrimaryKey("PK_BooksRead", x => x.BooksReadId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BooksToRead",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    BooksToReadId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BooksToRead", x => x.Id);
+                    table.PrimaryKey("PK_BooksToRead", x => x.BooksToReadId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    CategoryId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.Name);
+                    table.PrimaryKey("PK_Categories", x => x.CategoryId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ClubPostLikes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    ClubPostLikesId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Like = table.Column<bool>(type: "boolean", nullable: false),
                     Dislike = table.Column<bool>(type: "boolean", nullable: false),
@@ -105,121 +105,123 @@ namespace BCDL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClubPostLikes", x => x.Id);
+                    table.PrimaryKey("PK_ClubPostLikes", x => x.ClubPostLikesId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "ClubPosts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    ClubPostId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    User = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     Post = table.Column<string>(type: "text", nullable: true),
-                    BookClubID = table.Column<int>(type: "integer", nullable: false),
+                    BookClubId = table.Column<int>(type: "integer", nullable: false),
                     TotalLike = table.Column<int>(type: "integer", nullable: false),
                     TotalDislike = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClubPosts", x => x.Id);
+                    table.PrimaryKey("PK_ClubPosts", x => x.ClubPostId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CommentLikes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    CommentLikesId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Like = table.Column<bool>(type: "boolean", nullable: false),
                     Dislike = table.Column<bool>(type: "boolean", nullable: false),
                     CommentId = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail = table.Column<string>(type: "text", nullable: true)
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
+                    ClubPostId = table.Column<int>(type: "integer", nullable: false),
+                    UserPostId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CommentLikes", x => x.Id);
+                    table.PrimaryKey("PK_CommentLikes", x => x.CommentLikesId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    CommentId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     UserPostID = table.Column<int>(type: "integer", nullable: false),
                     ClubPostID = table.Column<int>(type: "integer", nullable: false),
                     Message = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FavoriteBooks",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    FavoriteBookId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FavoriteBooks", x => x.Id);
+                    table.PrimaryKey("PK_FavoriteBooks", x => x.FavoriteBookId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FollowClubs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    FollowClubId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FollowerEmail = table.Column<string>(type: "text", nullable: true),
-                    ClubID = table.Column<int>(type: "integer", nullable: false)
+                    BookClubId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FollowClubs", x => x.Id);
+                    table.PrimaryKey("PK_FollowClubs", x => x.FollowClubId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FollowUsers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    FollowUserId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FollowerEmail = table.Column<string>(type: "text", nullable: true),
                     FollowedEmail = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FollowUsers", x => x.Id);
+                    table.PrimaryKey("PK_FollowUsers", x => x.FollowUserId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Recommendations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    RecommendationId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SenderEmail = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true),
                     Message = table.Column<string>(type: "text", nullable: true),
                     ReceversEmails = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Recommendations", x => x.Id);
+                    table.PrimaryKey("PK_Recommendations", x => x.RecommendationId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserPostLikes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    UserPostLikesId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Like = table.Column<bool>(type: "boolean", nullable: false),
                     Dislike = table.Column<bool>(type: "boolean", nullable: false),
@@ -228,37 +230,37 @@ namespace BCDL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserPostLikes", x => x.Id);
+                    table.PrimaryKey("PK_UserPostLikes", x => x.UserPostLikesId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "UserPosts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
+                    UserPostId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
                     Post = table.Column<string>(type: "text", nullable: true),
                     TotalLike = table.Column<int>(type: "integer", nullable: false),
                     TotalDislike = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserPosts", x => x.Id);
+                    table.PrimaryKey("PK_UserPosts", x => x.UserPostId);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
-                    Email = table.Column<string>(type: "text", nullable: false),
+                    UserEmail = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: true),
                     Address = table.Column<string>(type: "text", nullable: true),
                     PagesRead = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Email);
+                    table.PrimaryKey("PK_Users", x => x.UserEmail);
                 });
         }
 

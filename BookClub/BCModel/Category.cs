@@ -9,12 +9,12 @@ namespace BCModel
     public class Category
     {
         public Category() { }
-        public Category(string name)
+        public Category(string categoryId)
         {
-            this.Name = name;
+            this.CategoryId = categoryId;
         }
 
-        public string Name { get; set; }
+        public string CategoryId { get; set; }
         
     }
 }

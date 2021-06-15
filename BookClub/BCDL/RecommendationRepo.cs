@@ -23,7 +23,7 @@ namespace BCDL
 
         public Recommendation GetRecommendationByEmail(string email)
         {
-            return _context.Recommendations.FirstOrDefault(r => r.SenderEmail == email);
+            return _context.Recommendations.FirstOrDefault(r => r.UserEmail == email);
         }
 
         public List<Recommendation> GetRecommendations()

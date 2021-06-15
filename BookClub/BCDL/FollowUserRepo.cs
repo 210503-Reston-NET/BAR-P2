@@ -24,7 +24,7 @@ namespace BCDL
 
         public FollowUser DeleteFollowUser(int id)
         {
-            FollowUser toBeDeleted = _context.FollowUsers.FirstOrDefault(fc => fc.Id == id);
+            FollowUser toBeDeleted = _context.FollowUsers.FirstOrDefault(fc => fc.FollowUserId == id);
             if (toBeDeleted != null)
             {
                 _context.FollowUsers.Remove(toBeDeleted);
@@ -46,7 +46,7 @@ namespace BCDL
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.Email == follow.FollowedEmail);
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail == follow.FollowedEmail);
                 users.Add(user);
             }
 
@@ -70,7 +70,7 @@ namespace BCDL
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.Email.Equals(follow.FollowerEmail));
+                user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(follow.FollowerEmail));
                 users.Add(user);
             }
 

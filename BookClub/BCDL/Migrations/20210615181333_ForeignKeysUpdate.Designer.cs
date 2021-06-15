@@ -9,8 +9,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BCDL.Migrations
 {
     [DbContext(typeof(BookClubDBContext))]
-    [Migration("20210614205829_CommentLikeFix")]
-    partial class CommentLikeFix
+    [Migration("20210615181333_ForeignKeysUpdate")]
+    partial class ForeignKeysUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace BCDL.Migrations
 
             modelBuilder.Entity("BCModel.Achievement", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AchievementId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -30,10 +30,10 @@ namespace BCDL.Migrations
                     b.Property<string>("Badge")
                         .HasColumnType("text");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("AchievementId");
 
                     b.ToTable("Achievements");
                 });
@@ -46,11 +46,11 @@ namespace BCDL.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("text");
 
-                    b.Property<string>("CategoryName")
+                    b.Property<string>("CategoryId")
                         .HasColumnType("text");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("integer");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -62,7 +62,7 @@ namespace BCDL.Migrations
 
             modelBuilder.Entity("BCModel.BookClub", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BookClubId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -70,77 +70,77 @@ namespace BCDL.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("BookClubId");
 
                     b.ToTable("BookClubs");
                 });
 
             modelBuilder.Entity("BCModel.BooksRead", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BooksReadId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("BookPages")
+                        .HasColumnType("integer");
+
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
-                    b.Property<int>("Pages")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("User")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("BooksReadId");
 
                     b.ToTable("BooksRead");
                 });
 
             modelBuilder.Entity("BCModel.BooksToRead", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("BooksToReadId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("BooksToReadId");
 
                     b.ToTable("BooksToRead");
                 });
 
             modelBuilder.Entity("BCModel.Category", b =>
                 {
-                    b.Property<string>("Name")
+                    b.Property<string>("CategoryId")
                         .HasColumnType("text");
 
-                    b.HasKey("Name");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("BCModel.ClubPost", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ClubPostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("BookClubID")
+                    b.Property<int>("BookClubId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Post")
@@ -152,17 +152,17 @@ namespace BCDL.Migrations
                     b.Property<int>("TotalLike")
                         .HasColumnType("integer");
 
-                    b.Property<string>("User")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ClubPostId");
 
                     b.ToTable("ClubPosts");
                 });
 
             modelBuilder.Entity("BCModel.ClubPostLikes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ClubPostLikesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -179,14 +179,14 @@ namespace BCDL.Migrations
                     b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("ClubPostLikesId");
 
                     b.ToTable("ClubPostLikes");
                 });
 
             modelBuilder.Entity("BCModel.Comment", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -194,23 +194,23 @@ namespace BCDL.Migrations
                     b.Property<int>("ClubPostID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Message")
                         .HasColumnType("text");
 
-                    b.Property<string>("Message")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
                     b.Property<int>("UserPostID")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentId");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("BCModel.CommentLikes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CommentLikesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -233,50 +233,50 @@ namespace BCDL.Migrations
                     b.Property<int>("UserPostId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("CommentLikesId");
 
                     b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("BCModel.FavoriteBook", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FavoriteBookId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
                     b.Property<string>("ISBN")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("FavoriteBookId");
 
                     b.ToTable("FavoriteBooks");
                 });
 
             modelBuilder.Entity("BCModel.FollowClub", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FollowClubId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("ClubID")
+                    b.Property<int>("BookClubId")
                         .HasColumnType("integer");
 
                     b.Property<string>("FollowerEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("FollowClubId");
 
                     b.ToTable("FollowClubs");
                 });
 
             modelBuilder.Entity("BCModel.FollowUser", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("FollowUserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -287,14 +287,14 @@ namespace BCDL.Migrations
                     b.Property<string>("FollowerEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("FollowUserId");
 
                     b.ToTable("FollowUsers");
                 });
 
             modelBuilder.Entity("BCModel.Recommendation", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("RecommendationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -308,17 +308,17 @@ namespace BCDL.Migrations
                     b.Property<string>("ReceversEmails")
                         .HasColumnType("text");
 
-                    b.Property<string>("SenderEmail")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
-                    b.HasKey("Id");
+                    b.HasKey("RecommendationId");
 
                     b.ToTable("Recommendations");
                 });
 
             modelBuilder.Entity("BCModel.User", b =>
                 {
-                    b.Property<string>("Email")
+                    b.Property<string>("UserEmail")
                         .HasColumnType("text");
 
                     b.Property<string>("Address")
@@ -330,20 +330,17 @@ namespace BCDL.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("text");
 
-                    b.HasKey("Email");
+                    b.HasKey("UserEmail");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BCModel.UserPost", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserPostId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
 
                     b.Property<string>("Post")
                         .HasColumnType("text");
@@ -354,14 +351,17 @@ namespace BCDL.Migrations
                     b.Property<int>("TotalLike")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserPostId");
 
                     b.ToTable("UserPosts");
                 });
 
             modelBuilder.Entity("BCModel.UserPostLikes", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserPostLikesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -378,7 +378,7 @@ namespace BCDL.Migrations
                     b.Property<int>("UserPostId")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserPostLikesId");
 
                     b.ToTable("UserPostLikes");
                 });

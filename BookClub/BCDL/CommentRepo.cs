@@ -24,7 +24,7 @@ namespace BCDL
 
         public Comment DeleteComment(Comment comment)
         {
-            Comment toBeDeleted = _context.Comments.First(com => com.Id == comment.Id);
+            Comment toBeDeleted = _context.Comments.First(com => com.CommentId == comment.CommentId);
             _context.Comments.Remove(toBeDeleted);
             _context.SaveChanges();
             return comment;
@@ -37,12 +37,12 @@ namespace BCDL
 
         public Comment GetComment(Comment comment)
         {
-            Comment found = _context.Comments.FirstOrDefault(com => com.Email == comment.Email && com.UserPostID == comment.UserPostID && com.ClubPostID == comment.ClubPostID && com.Message == comment.Message);
+            Comment found = _context.Comments.FirstOrDefault(com => com.UserEmail == comment.UserEmail && com.UserPostID == comment.UserPostID && com.ClubPostID == comment.ClubPostID && com.Message == comment.Message);
             if (found == null)
             {
                 return null;
             }
-            return new Comment(found.Email, found.UserPostID, found.ClubPostID, found.Message);
+            return new Comment(found.UserEmail, found.UserPostID, found.ClubPostID, found.Message);
         }
 
         public List<Comment> GetCommentByClubPost(int clubPostId)

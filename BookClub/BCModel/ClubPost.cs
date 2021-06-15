@@ -10,30 +10,30 @@ namespace BCModel
     {
         public ClubPost() { }
 
-        public ClubPost(int id, string user, string post, int bookClub, int likes, int dislikes)
+        public ClubPost(int clubPostId, string userEmail, string post, int bookClubId, int totalLike, int totalDislikes)
         {
-            Id = id;
-            User = user;
+            ClubPostId = clubPostId;
+            UserEmail = userEmail;
             Post = post;
-            BookClubID = bookClub;
-            TotalLike = likes;
-            TotalDislike = dislikes;
+            BookClubId = bookClubId;
+            TotalLike = totalLike;
+            TotalDislike = totalDislikes;
         }
 
-        public ClubPost( string user, string post, int bookClub, int likes, int dislikes)
+        public ClubPost( string userEmail, string post, int bookClubId, int totalLike, int totalDislike)
         {
-            User = user;
+            UserEmail = userEmail;
             Post = post;
-            BookClubID = bookClub;
-            TotalLike = likes;
-            TotalDislike = dislikes;
+            BookClubId = bookClubId;
+            TotalLike = totalLike;
+            TotalDislike = totalDislike;
         }
 
-        public int Id { get; set; }
-        public string User { get; set; }
+        public int ClubPostId { get; set; }
+        public string UserEmail { get; set; }
         public string Post { get; set; }
 
-        public int BookClubID { get; set; }
+        public int BookClubId { get; set; }
         public int TotalLike { get; set; }
         public int TotalDislike { get; set; }
 

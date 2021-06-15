@@ -19,11 +19,11 @@ namespace BCDL
 
         public BooksRead AddBooksRead(BooksRead book)
         {
-            User user = _context.Users.FirstOrDefault(usr => usr.Email.Equals(book.User));
+            User user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(book.UserEmail));
 
             if (user != null)
             {
-                int pagesRead = user.PagesRead + book.Pages;
+                int pagesRead = user.PagesRead + book.BookPages;
                 user.PagesRead = pagesRead;
                 _context.Users.Update(user);
                 _context.SaveChanges();
@@ -36,7 +36,7 @@ namespace BCDL
 
         public BooksRead DeleteBooksRead(int id)
         {
-            BooksRead toBeDeleted = _context.BooksRead.FirstOrDefault(bookR => bookR.Id == id);
+            BooksRead toBeDeleted = _context.BooksRead.FirstOrDefault(bookR => bookR.BooksReadId == id);
             if (toBeDeleted != null)
             {
                 _context.BooksRead.Remove(toBeDeleted);
@@ -53,7 +53,7 @@ namespace BCDL
 
         public List<Book> GetBooksReadByUser(string email)
         {
-            List<BooksRead> booksRead = _context.BooksRead.Where(book => book.User.Equals(email)).Select(book => book).ToList();
+            List<BooksRead> booksRead = _context.BooksRead.Where(book => book.UserEmail.Equals(email)).Select(book => book).ToList();
             List<Book> books = new List<Book>();
             Book book;
             foreach(BooksRead bookread in booksRead)

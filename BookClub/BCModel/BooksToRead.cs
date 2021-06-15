@@ -5,22 +5,22 @@ namespace BCModel
     public class BooksToRead
     {
         public BooksToRead() { }
-        public BooksToRead(string userid, string bookId)
+        public BooksToRead(string userEmail, string isbn)
         {
-            this.Email = userid;
-            this.ISBN = bookId;
+            this.UserEmail = userEmail;
+            this.ISBN = isbn;
         }
 
-        public BooksToRead(int Id, string userid, string bookId) : this(userid, bookId)
+        public BooksToRead(int booksToReadId, string userEmail, string isbn) : this(userEmail, isbn)
         {
-            this.Email = userid;
-            this.ISBN = bookId;
-            this.Id = Id;
+            this.UserEmail = userEmail;
+            this.ISBN = isbn;
+            this.BooksToReadId = booksToReadId;
         }
 
 
-        public int Id { get; set; }
-        public string Email { get; set; }
+        public int BooksToReadId { get; set; }
+        public string UserEmail { get; set; }
         public string ISBN { get; set; }
     }
 }

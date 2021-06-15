@@ -12,9 +12,9 @@ namespace BCModel
         {
         }
 
-        public UserPostLikes(int id, bool like, bool dislike, int userPostId, string userEmail)
+        public UserPostLikes(int userPostLikesId, bool like, bool dislike, int userPostId, string userEmail)
         {
-            Id = id;
+            UserPostLikesId = userPostLikesId;
             Like = like;
             Dislike = dislike;
             UserPostId = userPostId;
@@ -29,7 +29,7 @@ namespace BCModel
             UserEmail = userEmail;
         }
 
-        public int Id { get; set; }
+        public int UserPostLikesId { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }
         public int UserPostId { get; set; }

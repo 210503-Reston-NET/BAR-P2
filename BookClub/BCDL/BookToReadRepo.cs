@@ -26,7 +26,7 @@ namespace BCDL
 
         public BooksToRead DeleteBooksRead(int id)
         {
-            BooksToRead toBeDeleted = _context.BooksToRead.FirstOrDefault(bookR => bookR.Id == id);
+            BooksToRead toBeDeleted = _context.BooksToRead.FirstOrDefault(bookR => bookR.BooksToReadId == id);
             if (toBeDeleted != null)
             {
                 _context.BooksToRead.Remove(toBeDeleted);
@@ -43,7 +43,7 @@ namespace BCDL
 
         public List<Book> GetBooksReadByUser(string email)
         {
-            List<BooksToRead> booksRead = _context.BooksToRead.Where(book => book.Email.Equals(email)).Select(book => book).ToList();
+            List<BooksToRead> booksRead = _context.BooksToRead.Where(book => book.UserEmail.Equals(email)).Select(book => book).ToList();
             List<Book> books = new List<Book>();
             Book book;
             foreach (BooksToRead bookread in booksRead)

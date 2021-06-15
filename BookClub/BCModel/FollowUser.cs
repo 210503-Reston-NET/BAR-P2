@@ -12,20 +12,20 @@ namespace BCModel
         {
         }
 
-        public FollowUser(string follower, string followed)
+        public FollowUser(string followerEmail, string followedEmail)
         {
-            FollowerEmail = follower;
-            FollowedEmail = followed;
+            FollowerEmail = followerEmail;
+            FollowedEmail = followedEmail;
         }
 
-        public FollowUser(int id, string follower, string followed)
+        public FollowUser(int followUserId, string followerEmail, string followedEmail)
         {
-            Id = id;
-            FollowerEmail = follower;
-            FollowedEmail = followed;
+            FollowUserId = followUserId;
+            FollowerEmail = followerEmail;
+            FollowedEmail = followedEmail;
         }
 
-        public int Id { get; set; }
+        public int FollowUserId { get; set; }
         public string FollowerEmail { get; set; }
         public string FollowedEmail { get; set; }
     }
