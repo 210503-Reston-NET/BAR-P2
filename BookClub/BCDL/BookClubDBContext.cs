@@ -20,7 +20,8 @@ namespace BCDL
         public DbSet<BooksToRead> BooksToRead { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ClubPost> ClubPosts { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<UserComment> UserComments { get; set; }
+        public DbSet<ClubComment> ClubComments { get; set; }
         public DbSet<FavoriteBook> FavoriteBooks { get; set; }
         public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<User> Users { get; set; }
@@ -29,7 +30,8 @@ namespace BCDL
         public DbSet<FollowClub> FollowClubs { get; set; }
         public DbSet<ClubPostLikes> ClubPostLikes { get; set; }
         public DbSet<UserPostLikes> UserPostLikes { get; set; }
-        public DbSet<CommentLikes> CommentLikes { get; set; }
+        public DbSet<UserCommentLikes> UserCommentLikes { get; set; }
+        public DbSet<ClubCommentLikes> ClubCommentLikes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
@@ -50,8 +52,11 @@ namespace BCDL
             modelBuilder.Entity<ClubPost>()
                 .Property(clubPostt => clubPostt.ClubPostId)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<Comment>()
-                .Property(comment => comment.CommentId)
+            modelBuilder.Entity<UserComment>()
+                .Property(userComment => userComment.UserCommentId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<ClubComment>()
+                .Property(clubComment => clubComment.ClubCommentId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<Recommendation>()
                 .Property(rec => rec.RecommendationId)
@@ -77,8 +82,11 @@ namespace BCDL
             modelBuilder.Entity<UserPostLikes>()
                 .Property(UserPostLikes => UserPostLikes.UserPostLikesId)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<CommentLikes>()
-                .Property(CommentLikes => CommentLikes.CommentLikesId)
+            modelBuilder.Entity<UserCommentLikes>()
+                .Property(UserCommentLikes => UserCommentLikes.UserCommentLikesId)
+                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<ClubCommentLikes>()
+                .Property(ClubCommentLikes => ClubCommentLikes.ClubCommentLikesId)
                 .ValueGeneratedOnAdd();
         }
     }

@@ -46,8 +46,8 @@ namespace BCWebUI
             services.AddScoped<IUserPostRepo, UserPostRepo>();
             services.AddScoped<IClubPostBL, ClubPostBL>();
             services.AddScoped<IClubPostRepo, ClubPostRepo>();
-            services.AddScoped<ICommentBL, CommentBL>();
-            services.AddScoped<ICommentRepo, CommentRepo>();
+            services.AddScoped<IUserCommentBL, CommentBL>();
+            services.AddScoped<IUserCommentRepo, UserCommentRepo>();
 
             services.AddScoped<IBooksReadBL, BooksReadBL>();
             services.AddScoped<IBooksReadRepo, BooksReadRepo>();
@@ -68,8 +68,8 @@ namespace BCWebUI
             services.AddScoped<IClubPostLikesBL, ClubPostLikesBL>();
             services.AddScoped<IUserPostLikesRepo, UserPostLikesRepo>();
             services.AddScoped<IUserPostLikesBL, UserPostLikesBL>();
-            services.AddScoped<ICommentLikesRepo, CommentLikesRepo>();
-            services.AddScoped<ICommentLikeBL, CommentLikesBL>();
+            services.AddScoped<IUserCommentLikesRepo, UserCommentLikesRepo>();
+            services.AddScoped<IUserCommentLikeBL, UserCommentLikesBL>();
 
             services.AddCors(options => {
                 options.AddDefaultPolicy(builder =>

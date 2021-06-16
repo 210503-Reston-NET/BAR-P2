@@ -11,10 +11,10 @@ namespace BCWebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentLikesController : ControllerBase
+    public class UserCommentLikesController : ControllerBase
     {
-        private readonly ICommentLikeBL _commentLikeBL;
-        public CommentLikesController(ICommentLikeBL commentLikeBL)
+        private readonly IUserCommentLikeBL _commentLikeBL;
+        public UserCommentLikesController(IUserCommentLikeBL commentLikeBL)
         {
             _commentLikeBL = commentLikeBL;
         }
@@ -40,16 +40,9 @@ namespace BCWebUI.Controllers
             return Ok(_commentLikeBL.GetCommentLikesByUserPost(userPostId));
         }
 
-        //Get
-        [HttpGet("GetCommentLikesByClubPost/{clubPostId}")]
-        public IActionResult GetCommentLikesByClubPost(int clubPostId)
-        {
-            return Ok(_commentLikeBL.GetCommentLikesByClubPost(clubPostId));
-        }
-
         // POST: api/CommentLikes
         [HttpPost]
-        public IActionResult AddNewCommentLike([FromBody] CommentLikes like)
+        public IActionResult AddNewCommentLike([FromBody] UserCommentLikes like)
         {
             return Created("api/CommentLikes", _commentLikeBL.AddCommentLikes(like));
         }

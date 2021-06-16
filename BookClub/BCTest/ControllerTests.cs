@@ -323,78 +323,58 @@ namespace BCTest
         [Fact]
         public void CommentControllerShouldReturnList()
         {
-            var mockBL = new Mock<ICommentBL>();
+            var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetAllComments()).Returns(
-                new List<Comment>
+                new List<UserComment>
                 {
-                    new Comment("bryce.zimbelman@icloud.com", 1, 0, "Good Read"),
-                    new Comment("bryce.zimbelman@revature.com", 0, 1, "Poor Read")
+                    new UserComment("bryce.zimbelman@icloud.com", 1, "Good Read"),
+                    new UserComment("bryce.zimbelman@revature.com", 2, "Poor Read")
                 }
                 );
 
-            var controller = new CommentController(mockBL.Object);
+            var controller = new UserCommentController(mockBL.Object);
             var result = controller.GetAllComments();
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
-            Assert.IsType<List<Comment>>(okResult.Value);
+            Assert.IsType<List<UserComment>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 
         [Fact]
         public void CommentControllerShouldReturnComment()
         {
-            var mockBL = new Mock<ICommentBL>();
+            var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetCommentById(1)).Returns(
-                new Comment("bryce.zimbelman@icloud.com", 1, 0, "Good Read")
+                new UserComment("bryce.zimbelman@icloud.com", 1, "Good Read")
                 );
 
-            var controller = new CommentController(mockBL.Object);
+            var controller = new UserCommentController(mockBL.Object);
             var result = controller.GetCommentById(1);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
-            Assert.IsType<Comment>(okResult.Value);
+            Assert.IsType<UserComment>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 
         [Fact]
         public void CommentControllerShouldReturnUserPostComments()
         {
-            var mockBL = new Mock<ICommentBL>();
+            var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetUserPostComments(1)).Returns(
-                new List<Comment>
+                new List<UserComment>
                 {
-                new Comment("bryce.zimbelman@revature.net", 1, 0, "Poor Read"),
-                new Comment("bryce.zimbelman@icloud.com", 1, 0, "Good Read")
+                new UserComment("bryce.zimbelman@revature.net", 1, "Poor Read"),
+                new UserComment("bryce.zimbelman@icloud.com", 2, "Good Read")
                 });
 
-            var controller = new CommentController(mockBL.Object);
+            var controller = new UserCommentController(mockBL.Object);
             var result = controller.GetUserPostComments(1);
             var okResult = result as OkObjectResult;
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
-            Assert.IsType<List<Comment>>(okResult.Value);
-            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
-        }
-
-        [Fact]
-        public void CommentControllerShouldReturnClubPostComments()
-        {
-            var mockBL = new Mock<ICommentBL>();
-            mockBL.Setup(x => x.GetClubPostComments(1)).Returns(
-                new List<Comment>
-                {
-                new Comment("bryce.zimbelman@revature.net", 0, 1, "Poor Read"),
-                new Comment("bryce.zimbelman@icloud.com", 0, 1, "Good Read")
-                });
-
-            var controller = new CommentController(mockBL.Object);
-            var result = controller.GetClubPostComments(1);
-            var okResult = result as OkObjectResult;
-            Assert.NotNull(okResult);
-            Assert.True(okResult is OkObjectResult);
-            Assert.IsType<List<Comment>>(okResult.Value);
+            Assert.IsType<List<UserComment>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 

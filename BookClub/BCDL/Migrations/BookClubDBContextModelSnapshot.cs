@@ -148,6 +148,64 @@ namespace BCDL.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("BCModel.ClubComment", b =>
+                {
+                    b.Property<int>("ClubCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClubPostID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("ClubCommentId");
+
+                    b.HasIndex("ClubPostID");
+
+                    b.HasIndex("UserEmail");
+
+                    b.ToTable("ClubComments");
+                });
+
+            modelBuilder.Entity("BCModel.ClubCommentLikes", b =>
+                {
+                    b.Property<int>("ClubCommentLikesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("ClubCommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ClubPostId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.HasKey("ClubCommentLikesId");
+
+                    b.HasIndex("ClubCommentId");
+
+                    b.HasIndex("ClubPostId");
+
+                    b.HasIndex("UserEmail");
+
+                    b.ToTable("ClubCommentLikes");
+                });
+
             modelBuilder.Entity("BCModel.ClubPost", b =>
                 {
                     b.Property<int>("ClubPostId")
@@ -208,74 +266,6 @@ namespace BCDL.Migrations
                     b.HasIndex("UserEmail");
 
                     b.ToTable("ClubPostLikes");
-                });
-
-            modelBuilder.Entity("BCModel.Comment", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("ClubPostID")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserPostID")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CommentId");
-
-                    b.HasIndex("ClubPostID");
-
-                    b.HasIndex("UserEmail");
-
-                    b.HasIndex("UserPostID");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("BCModel.CommentLikes", b =>
-                {
-                    b.Property<int>("CommentLikesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("ClubPostId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("Dislike")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("Like")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("UserEmail")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserPostId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CommentLikesId");
-
-                    b.HasIndex("ClubPostId");
-
-                    b.HasIndex("CommentId");
-
-                    b.HasIndex("UserEmail");
-
-                    b.HasIndex("UserPostId");
-
-                    b.ToTable("CommentLikes");
                 });
 
             modelBuilder.Entity("BCModel.FavoriteBook", b =>
@@ -385,6 +375,64 @@ namespace BCDL.Migrations
                     b.HasKey("UserEmail");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BCModel.UserComment", b =>
+                {
+                    b.Property<int>("UserCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserPostID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserCommentId");
+
+                    b.HasIndex("UserEmail");
+
+                    b.HasIndex("UserPostID");
+
+                    b.ToTable("UserComments");
+                });
+
+            modelBuilder.Entity("BCModel.UserCommentLikes", b =>
+                {
+                    b.Property<int>("UserCommentLikesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("UserCommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserEmail")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserPostId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserCommentLikesId");
+
+                    b.HasIndex("UserCommentId");
+
+                    b.HasIndex("UserEmail");
+
+                    b.HasIndex("UserPostId");
+
+                    b.ToTable("UserCommentLikes");
                 });
 
             modelBuilder.Entity("BCModel.UserPost", b =>
@@ -507,6 +555,48 @@ namespace BCDL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("BCModel.ClubComment", b =>
+                {
+                    b.HasOne("BCModel.ClubPost", "ClubPost")
+                        .WithMany()
+                        .HasForeignKey("ClubPostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserEmail");
+
+                    b.Navigation("ClubPost");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BCModel.ClubCommentLikes", b =>
+                {
+                    b.HasOne("BCModel.ClubComment", "ClubComment")
+                        .WithMany()
+                        .HasForeignKey("ClubCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.ClubPost", "ClubPost")
+                        .WithMany()
+                        .HasForeignKey("ClubPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserEmail");
+
+                    b.Navigation("ClubComment");
+
+                    b.Navigation("ClubPost");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("BCModel.ClubPost", b =>
                 {
                     b.HasOne("BCModel.BookClub", "BookClub")
@@ -539,64 +629,6 @@ namespace BCDL.Migrations
                     b.Navigation("ClubPost");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BCModel.Comment", b =>
-                {
-                    b.HasOne("BCModel.ClubPost", "ClubPost")
-                        .WithMany()
-                        .HasForeignKey("ClubPostID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BCModel.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserEmail");
-
-                    b.HasOne("BCModel.UserPost", "UserPost")
-                        .WithMany()
-                        .HasForeignKey("UserPostID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClubPost");
-
-                    b.Navigation("User");
-
-                    b.Navigation("UserPost");
-                });
-
-            modelBuilder.Entity("BCModel.CommentLikes", b =>
-                {
-                    b.HasOne("BCModel.ClubPost", "ClubPost")
-                        .WithMany()
-                        .HasForeignKey("ClubPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BCModel.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BCModel.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserEmail");
-
-                    b.HasOne("BCModel.UserPost", "UserPost")
-                        .WithMany()
-                        .HasForeignKey("UserPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClubPost");
-
-                    b.Navigation("Comment");
-
-                    b.Navigation("User");
-
-                    b.Navigation("UserPost");
                 });
 
             modelBuilder.Entity("BCModel.FavoriteBook", b =>
@@ -647,6 +679,48 @@ namespace BCDL.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BCModel.UserComment", b =>
+                {
+                    b.HasOne("BCModel.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserEmail");
+
+                    b.HasOne("BCModel.UserPost", "UserPost")
+                        .WithMany()
+                        .HasForeignKey("UserPostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("UserPost");
+                });
+
+            modelBuilder.Entity("BCModel.UserCommentLikes", b =>
+                {
+                    b.HasOne("BCModel.UserComment", "UserComment")
+                        .WithMany()
+                        .HasForeignKey("UserCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BCModel.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserEmail");
+
+                    b.HasOne("BCModel.UserPost", "UserPost")
+                        .WithMany()
+                        .HasForeignKey("UserPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("UserComment");
+
+                    b.Navigation("UserPost");
                 });
 
             modelBuilder.Entity("BCModel.UserPost", b =>
