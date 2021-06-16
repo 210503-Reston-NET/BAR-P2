@@ -23,45 +23,45 @@ namespace BCWebUI.Controllers
 
         // GET: api/BookClub
         [HttpGet]
-        public IActionResult GetAllBookClubs()
+        public async Task<IActionResult> GetAllBookClubs()
         {
-            return Ok(_bookClubBL.GetAllBookClubs());
+            return Ok(await _bookClubBL.GetAllBookClubsAsync());
         }
 
         // GET: api/BookClub/5
         [HttpGet("{id}")]
-        public IActionResult GetBookClubById(int id)
+        public async Task<IActionResult> GetBookClubById(int id)
         {
-            return Ok(_bookClubBL.GetBookClubById(id));
+            return Ok(await _bookClubBL.GetBookClubByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetBookClubByBook/{bookId}")]
-        public IActionResult GetBookClubByBook(string bookId)
+        public async Task<IActionResult> GetBookClubByBook(string bookId)
         {
-            return Ok(_bookClubBL.GetBookClubByBook(bookId));
+            return Ok(await _bookClubBL.GetBookClubByBookAsync(bookId));
         }
 
         // POST: api/BookClub
         [HttpPost]
-        public IActionResult AddNewBookClub([FromBody] Model.BookClub newBookClub)
+        public async Task<IActionResult> AddNewBookClub([FromBody] Model.BookClub newBookClub)
         {
-            return Created("api/BookClub", _bookClubBL.AddBookClub(newBookClub));
+            return Created("api/BookClub", await _bookClubBL.AddBookClubAsync(newBookClub));
         }
 
         // PUT: api/BookClub/5
         [HttpPut("{id}")]
-        public IActionResult UpdateBookClub(int id, [FromBody] Model.BookClub updatedBookClub)
+        public async Task<IActionResult> UpdateBookClub(int id, [FromBody] Model.BookClub updatedBookClub)
         {
-            _bookClubBL.UpdateBookClub(updatedBookClub);
+            await _bookClubBL.UpdateBookClubAsync(updatedBookClub);
             return NoContent();
         }
 
         // DELETE: api/BookClub/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteBookClub(int id)
+        public async Task<IActionResult> DeleteBookClub(int id)
         {
-            _bookClubBL.DeleteBookClub(_bookClubBL.GetBookClubById(id));
+            await _bookClubBL.DeleteBookClubAsync(await _bookClubBL.GetBookClubByIdAsync(id));
             return NoContent();
         }
     }

@@ -293,188 +293,188 @@ namespace BCTest
             }
         }
         [Fact]
-        public void GetAllBooksShouldReturnAllBooks()
+        public async void GetAllBooksShouldReturnAllBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var books = _repo.GetAllBooks();
+                var books = await _repo.GetAllBooksAsync();
                 Assert.Equal(2, books.Count);
             }
         }
 
         [Fact]
-        public void GetAllBookClubsShouldReturnAllBookClubs()
+        public async void GetAllBookClubsShouldReturnAllBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClubs = _repo.GetAllBookClubs();
+                var bookClubs = await _repo.GetAllBookClubsAsync();
                 Assert.Equal(2, bookClubs.Count);
             }
         }
 
         [Fact]
-        public void GetAllBooksReadShouldReturnAllBooksRead()
+        public async void GetAllBooksReadShouldReturnAllBooksRead()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                var booksRead = _repo.GetAllBooksRead();
+                var booksRead = await _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, booksRead.Count);
             }
         }
 
         [Fact]
-        public void GetAllBooksToReadShouldReturnAllBooksToRead()
+        public async void GetAllBooksToReadShouldReturnAllBooksToRead()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                var booksToRead = _repo.GetAllBooksRead();
+                var booksToRead = await _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, booksToRead.Count);
             }
         }
 
         [Fact]
-        public void GetAllCategoriesShouldReturnAllCategories()
+        public async void GetAllCategoriesShouldReturnAllCategories()
         {
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                var categories = _repo.GetAllCategories();
+                var categories = await _repo.GetAllCategoriesAsync();
                 Assert.Equal(2, categories.Count);
             }
         }
 
         [Fact]
-        public void GetAllClubPostsShouldReturnAllClubPosts()
+        public async void GetAllClubPostsShouldReturnAllClubPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPosts = _repo.GetAllClubPosts();
+                var clubPosts = await _repo.GetAllClubPostsAsync();
                 Assert.Equal(2, clubPosts.Count);
             }
         }
 
         [Fact]
-        public void GetAllCommentsShouldReturnAllComments()
+        public async void GetAllCommentsShouldReturnAllComments()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentRepo _repo = new UserCommentRepo(context);
-                var comments = _repo.GetAllComments();
+                var comments = await _repo.GetAllCommentsAsync();
                 Assert.Equal(2, comments.Count);
             }
         }
 
         [Fact]
-        public void GetAllFavoriteBooksShouldReturnAllFavoriteBooks()
+        public async void GetAllFavoriteBooksShouldReturnAllFavoriteBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFavoriteBookRepo _repo = new FavoriteBookRepo(context);
-                var favoriteBooks = _repo.GetAllBooksRead();
+                var favoriteBooks = await _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, favoriteBooks.Count);
             }
         }
 
         [Fact]
-        public void GetAllClubFollowersShouldReturnAllClubFollowers()
+        public async void GetAllClubFollowersShouldReturnAllClubFollowers()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var clubFollowers = _repo.GetAllFollowClub();
+                var clubFollowers = await _repo.GetAllFollowClubAsync();
                 Assert.Equal(2, clubFollowers.Count);
             }
         }
 
         [Fact]
-        public void GetAllUserFollowersShouldReturnAllUserFollowers()
+        public async void GetAllUserFollowersShouldReturnAllUserFollowers()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                var userFollowers = _repo.GetAllFollowUser();
+                var userFollowers = await _repo.GetAllFollowUserAsync();
                 Assert.Equal(2, userFollowers.Count);
             }
         }
 
         [Fact]
-        public void GetAllUsersShouldReturnAllUsers()
+        public async void GetAllUsersShouldReturnAllUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                var users = _repo.GetAllUsers();
+                var users = await _repo.GetAllUsersAsync();
                 Assert.Equal(2, users.Count);
             }
         }
 
         [Fact]
-        public void GetAllUserPostsShouldReturnAllUserPosts()
+        public async void GetAllUserPostsShouldReturnAllUserPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPosts = _repo.GetAllUserPosts();
+                var userPosts = await _repo.GetAllUserPostsAsync();
                 Assert.Equal(2, userPosts.Count);
             }
         }
 
         [Fact]
-        public void GetAllClubPostLikesShouldReturnAllClubPostLikes()
+        public async void GetAllClubPostLikesShouldReturnAllClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLikes = _repo.GetAllClubPostLikes();
+                var clubPostLikes = await _repo.GetAllClubPostLikesAsync();
                 Assert.Equal(2, clubPostLikes.Count);
             }
         }
 
         [Fact]
-        public void GetAllUserPostLikesShouldReturnAllUserPostLikes()
+        public async void GetAllUserPostLikesShouldReturnAllUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLikes = _repo.GetAllUserPostLikes();
+                var userPostLikes = await _repo.GetAllUserPostLikesAsync();
                 Assert.Equal(2, userPostLikes.Count);
             }
         }
 
         [Fact]
-        public void GetAllCommentLikesShouldReturnAllCommentLikes()
+        public async void GetAllCommentLikesShouldReturnAllCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
-                var commentLikes = _repo.GetAllCommentLikes();
+                var commentLikes = await _repo.GetAllCommentLikesAsync();
                 Assert.Equal(2, commentLikes.Count);
             }
         }
 
         [Fact]
-        public void GetBookShouldReturnBook()
+        public async void GetBookShouldReturnBook()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var book = _repo.GetBookByISBN("123456789");
+                var book = await _repo.GetBookByISBNAsync("123456789");
                 Assert.Equal("Unit Testing", book.Title);
             }
         }
 
         [Fact]
-        public void GetBookByAuthorShouldReturnBook()
+        public async void GetBookByAuthorShouldReturnBook()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var books = _repo.GetBookByAuthor("Bryce");
+                var books = await _repo.GetBookByAuthorAsync("Bryce");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Unit Testing", book.Title);
@@ -483,23 +483,23 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetBookClubShouldReturnBookClub()
+        public async void GetBookClubShouldReturnBookClub()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClub = _repo.GetBookClubById(1);
+                var bookClub = await _repo.GetBookClubByIdAsync(1);
                 Assert.Equal("Harry Potter", bookClub.Name);
             }
         }
 
         [Fact]
-        public void GetBookClubByBookShouldReturnBookClubs()
+        public async void GetBookClubByBookShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClubs = _repo.GetBookClubByBook("14598678");
+                var bookClubs = await _repo.GetBookClubByBookAsync("14598678");
                 foreach (Model.BookClub bookClub in bookClubs)
                 {
                     Assert.Equal("Harry Potter", bookClub.Name);
@@ -508,12 +508,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetBooksReadByUserShouldReturnBooks()
+        public async void GetBooksReadByUserShouldReturnBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                var books = await _repo.GetBooksReadByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Test", book.CategoryId);
@@ -522,12 +522,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetBooksToReadByUserShouldReturnBooks()
+        public async void GetBooksToReadByUserShouldReturnBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                var books = await _repo.GetBooksReadByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Test", book.CategoryId);
@@ -536,34 +536,34 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetCategoryShouldReturnCategory()
+        public async void GetCategoryShouldReturnCategory()
         {
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                var category = _repo.GetCategory("Horror");
+                var category = await _repo.GetCategoryAsync("Horror");
                 Assert.Equal("Horror", category.CategoryId);
             }
         }
 
         [Fact]
-        public void GetClubPostShouldReturnClubPost()
+        public async void GetClubPostShouldReturnClubPost()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPost = _repo.GetClubPostById(1);
+                var clubPost = await _repo.GetClubPostByIdAsync(1);
                 Assert.Equal("Good Book", clubPost.Post);
             }
         }
 
         [Fact]
-        public void GetClubPostByBookClubShouldReturnClubPosts()
+        public async void GetClubPostByBookClubShouldReturnClubPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPosts = _repo.GetClubPostByBookClub(1);
+                var clubPosts = await _repo.GetClubPostByBookClubAsync(1);
                 foreach (Model.ClubPost clubPost in clubPosts)
                 {
                     Assert.Equal(1, clubPost.BookClubId);
@@ -572,23 +572,23 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetCommentShouldReturnComment()
+        public async void GetCommentShouldReturnComment()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentRepo _repo = new UserCommentRepo(context);
-                var comment = _repo.GetCommentById(1);
+                var comment = await _repo.GetCommentByIdAsync(1);
                 Assert.Equal("Right", comment.Message);
             }
         }
 
         [Fact]
-        public void GetCommentByUserPostShouldReturnComments()
+        public async void GetCommentByUserPostShouldReturnComments()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentRepo _repo = new UserCommentRepo(context);
-                var comments = _repo.GetCommentByUserPost(1);
+                var comments = await _repo.GetCommentByUserPostAsync(1);
                 foreach (Model.UserComment comment in comments)
                 {
                     Assert.Equal(1, comment.UserPostID);
@@ -598,12 +598,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetFollowersByClubShouldReturnUsers()
+        public async void GetFollowersByClubShouldReturnUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var followers = _repo.GetFollowersByClub(1);
+                var followers = await _repo.GetFollowersByClubAsync(1);
                 foreach (Model.User user in followers)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
@@ -612,12 +612,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetFollowByUserShouldReturnBookClubs()
+        public async void GetFollowByUserShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var bookClubs = _repo.GetFollowingByUser("bryce.zimbelman@revature.net");
+                var bookClubs = await _repo.GetFollowingByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.BookClub bookClub in bookClubs)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", bookClub.UserEmail);
@@ -626,12 +626,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetFollowersByUserShouldReturnUsers()
+        public async void GetFollowersByUserShouldReturnUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                var followers = _repo.GetFollowersByUser("bryce.zimbelman@icloud.com");
+                var followers = await _repo.GetFollowersByUserAsync("bryce.zimbelman@icloud.com");
                 foreach (Model.User user in followers)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
@@ -640,36 +640,36 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetUserShouldReturnUser()
+        public async void GetUserShouldReturnUser()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                var user = _repo.GetUserByEmail("bryce.zimbelman@revature.net");
+                var user = await _repo.GetUserByEmailAsync("bryce.zimbelman@revature.net");
                 Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
 
             }
         }
 
         [Fact]
-        public void GetUserPostShouldReturnUserPost()
+        public async void GetUserPostShouldReturnUserPost()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPost = _repo.GetUserPostById(1);
+                var userPost = await _repo.GetUserPostByIdAsync(1);
                 Assert.Equal("You all should join that other BookClub", userPost.Post);
 
             }
         }
 
         [Fact]
-        public void GetUserPostByUserShouldReturnUserPosts()
+        public async void GetUserPostByUserShouldReturnUserPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPosts = _repo.GetUserPostByUser("bryce.zimbelman@revature.net");
+                var userPosts = await _repo.GetUserPostByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.UserPost userPost in userPosts)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", userPost.UserEmail);
@@ -678,12 +678,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetClubPostLikeByClubPostShouldReturnClubPostLikes()
+        public async void GetClubPostLikeByClubPostShouldReturnClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLikes = _repo.GetClubPostLikesByClubPost(1);
+                var clubPostLikes = await _repo.GetClubPostLikesByClubPostAsync(1);
                 foreach (Model.ClubPostLikes likes in clubPostLikes)
                 {
                     Assert.Equal(1, likes.ClubPostId);
@@ -692,23 +692,23 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetClubPostLikesByIdShouldReturnClubPostLikes()
+        public async void GetClubPostLikesByIdShouldReturnClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLike = _repo.GetClubPostLikesById(1);
+                var clubPostLike = await _repo.GetClubPostLikesByIdAsync(1);
                 Assert.Equal(1, clubPostLike.ClubPostLikesId);
             }
         }
 
         [Fact]
-        public void GetUserPostLikeByClubPostShouldReturnUserPostLikes()
+        public async void GetUserPostLikeByClubPostShouldReturnUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLikes = _repo.GetUserPostLikesByUserPost(1);
+                var userPostLikes = await _repo.GetUserPostLikesByUserPostAsync(1);
                 foreach (Model.UserPostLikes likes in userPostLikes)
                 {
                     Assert.Equal(1, likes.UserPostId);
@@ -717,23 +717,23 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetUserPostLikesByIdShouldReturnUserPostLikes()
+        public async void GetUserPostLikesByIdShouldReturnUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLike = _repo.GetUserPostLikesById(1);
+                var userPostLike = await _repo.GetUserPostLikesByIdAsync(1);
                 Assert.Equal(1, userPostLike.UserPostLikesId);
             }
         }
 
         [Fact]
-        public void GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
+        public async void GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
-                var commentLikes = _repo.GetCommentLikesByUserPost(1);
+                var commentLikes = await _repo.GetCommentLikesByUserPostAsync(1);
                 foreach (Model.UserCommentLikes likes in commentLikes)
                 {
                     Assert.Equal(1, likes.UserPostId);
@@ -742,23 +742,23 @@ namespace BCTest
         }
 
         [Fact]
-        public void GetCommentLikesByIdShouldReturnCommentLikes()
+        public async void GetCommentLikesByIdShouldReturnCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
-                var commentLike = _repo.GetCommentLikesById(1);
+                var commentLike = await _repo.GetCommentLikesByIdAsync(1);
                 Assert.Equal(1, commentLike.UserCommentLikesId);
             }
         }
 
         [Fact]
-        public void AddBookShouldAddBook()
+        public async void AddBookShouldAddBook()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                _repo.AddBook(new Model.Book("135798642", "Interesting Book", "Me", "Boring"));
+                await _repo.AddBookAsync(new Model.Book("135798642", "Interesting Book", "Me", "Boring"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -770,12 +770,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddBookClubShouldAddBookClub()
+        public async void AddBookClubShouldAddBookClub()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                _repo.AddBookClub(new Model.BookClub("Good Reads", "Interestings Reads", "987123456", "bryce.zimbelman@revature.net"));
+                await _repo.AddBookClubAsync(new Model.BookClub("Good Reads", "Interestings Reads", "987123456", "bryce.zimbelman@revature.net"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -787,12 +787,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddBooksReadShouldAddBooksRead()
+        public async void AddBooksReadShouldAddBooksRead()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                _repo.AddBooksRead(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642", 50));
+                await _repo.AddBooksReadAsync(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642", 50));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -804,12 +804,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddBooksToReadShouldAddBooksToRead()
+        public async void AddBooksToReadShouldAddBooksToRead()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                _repo.AddBooksRead(new Model.BooksToRead("bryce.zimbelman@revature.net", "135798642"));
+                await _repo.AddBooksReadAsync(new Model.BooksToRead("bryce.zimbelman@revature.net", "135798642"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -821,12 +821,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddCategoryShouldAddCategory()
+        public async void AddCategoryShouldAddCategory()
         {
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                _repo.AddCategory(new Model.Category("Adventure"));
+                await _repo.AddCategoryAsync(new Model.Category("Adventure"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -838,12 +838,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddClubPostShouldAddClubPost()
+        public async void AddClubPostShouldAddClubPost()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                _repo.AddClubPost(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10, new DateTime()));
+                await _repo.AddClubPostAsync(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -855,12 +855,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddCommentShoulAddComment()
+        public async void AddCommentShoulAddComment()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserCommentRepo _repo = new UserCommentRepo(context);
-                _repo.AddComment(new Model.UserComment("bryce.zimbelman@revature.net", 2, "maybe"));
+                await _repo.AddCommentAsync(new Model.UserComment("bryce.zimbelman@revature.net", 2, "maybe"));
             }
 
             using (var assertcontext = new BookClubDBContext(options))
@@ -872,12 +872,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddFavoriteBookShouldAddFavoriteBook()
+        public async void AddFavoriteBookShouldAddFavoriteBook()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFavoriteBookRepo _repo = new FavoriteBookRepo(context);
-                _repo.AddBooksRead(new Model.FavoriteBook("bryce.zimbelman@revature.net", "135798642"));
+                await _repo.AddBooksReadAsync(new Model.FavoriteBook("bryce.zimbelman@revature.net", "135798642"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -889,12 +889,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddFollowClubShouldAddFollowClub()
+        public async void AddFollowClubShouldAddFollowClub()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                _repo.AddFollowClub(new Model.FollowClub("bryce.zimbelman@revature.net", 3));
+                await _repo.AddFollowClubAsync(new Model.FollowClub("bryce.zimbelman@revature.net", 3));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -906,12 +906,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddFollowUserShouldAddFollowUser()
+        public async void AddFollowUserShouldAddFollowUser()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                _repo.AddFollowUser(new Model.FollowUser("bryce.zimbelman@gmail.com", "bryce.zimbelman@revature.net"));
+                await _repo.AddFollowUserAsync(new Model.FollowUser("bryce.zimbelman@gmail.com", "bryce.zimbelman@revature.net"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -924,12 +924,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddUserShouldAddUser()
+        public async void AddUserShouldAddUser()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                _repo.AddUser(new Model.User("bryce.zimbelman@gmail.com", "Password!", "13590 SW Electric St", 10));
+                await _repo.AddUserAsync(new Model.User("bryce.zimbelman@gmail.com", "Password!", "13590 SW Electric St", 10));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -941,12 +941,12 @@ namespace BCTest
         }
 
         [Fact]
-        public void AddUserPostShouldAddUserPost()
+        public async void AddUserPostShouldAddUserPost()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                _repo.AddUserPost(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3, new DateTime()));
+                await _repo.AddUserPostAsync(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -957,12 +957,12 @@ namespace BCTest
             }
         }
         [Fact]
-        public void AddClubPostLikShouldAddClubPostLike()
+        public async void AddClubPostLikShouldAddClubPostLike()
         {
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                _repo.AddClubPostLike(new Model.ClubPostLikes(true, false, 1, "bryce.zimbelman@gmail.com"));
+                await _repo.AddClubPostLikeAsync(new Model.ClubPostLikes(true, false, 1, "bryce.zimbelman@gmail.com"));
             }
 
             using (var assertContext = new BookClubDBContext(options))

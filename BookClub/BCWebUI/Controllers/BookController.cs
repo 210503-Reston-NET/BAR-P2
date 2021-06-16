@@ -25,55 +25,55 @@ namespace BCWebUI.Controllers
 
         // GET: api/<BookController>
         [HttpGet]
-        public IActionResult GetAllBooks()
+        public async Task<IActionResult> GetAllBooks()
         {
-            return Ok(_IbookBL.GetAllBooks());
+            return Ok(await _IbookBL.GetAllBooksAsync());
         }
 
         // GET api/<BookController>/5
         [HttpGet("{isbn}")]
-        public IActionResult GetBookByISBN(string isbn)
+        public async Task<IActionResult> GetBookByISBN(string isbn)
         {
-            return Ok(_IbookBL.GetBookByISBN(isbn));
+            return Ok(await _IbookBL.GetBookByISBNAsync(isbn));
         }
 
         // Get
         [HttpGet]
         [Route("bookByAuthor/{author}")]
-        public IActionResult GetBookByAuthor(string author)
+        public async Task<IActionResult> GetBookByAuthor(string author)
         {
-            return Ok(_IbookBL.GetBookByAuthor(author));
+            return Ok(await _IbookBL.GetBookByAuthorAsync(author));
         }
 
         // Get
         [HttpGet]
         [Route("bookByTitle/{title}")]
-        public IActionResult GetBookByTitle(string title)
+        public async Task<IActionResult> GetBookByTitle(string title)
         {
-            return Ok(_IbookBL.GetBookByTitle(title));
+            return Ok(await _IbookBL.GetBookByTitleAsync(title));
         }
 
         // POST api/<BookController>
         [HttpPost]
-        public IActionResult AddBook([FromBody]Book book)
+        public async Task<IActionResult> AddBook([FromBody]Book book)
         {
-            return Created("api/Book", _IbookBL.AddBook(book));
+            return Created("api/Book", await _IbookBL.AddBookAsync(book));
         }
 
         // PUT api/<BookController>/5
         [HttpPut("{isbn}")]
-        public IActionResult UpdateBook(string isbn, [FromBody]Book book)
+        public async Task<IActionResult> UpdateBook(string isbn, [FromBody]Book book)
         {
-            _IbookBL.UpdateBook(book);
+            await _IbookBL.UpdateBookAsync(book);
             return NoContent();
         }
 
 
         // DELETE api/<BookController>/5
         [HttpDelete("{isbn}")]
-        public IActionResult Delete(string isbn)
+        public async Task<IActionResult> Delete(string isbn)
         {
-            _IbookBL.DeleteBook(isbn);
+            await _IbookBL.DeleteBookAsync(isbn);
             return NoContent();
         }
     }

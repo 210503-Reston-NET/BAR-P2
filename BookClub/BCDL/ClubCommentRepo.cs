@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -15,54 +16,54 @@ namespace BCDL
             _context = context;
         }
 
-        public ClubComment AddComment(ClubComment comment)
+        public async Task<ClubComment> AddCommentAsync(ClubComment comment)
         {
             _context.ChangeTracker.Clear();
-            _context.ClubComments.Add(comment);
-            _context.SaveChanges();
+            await _context.ClubComments.AddAsync(comment);
+            await _context.SaveChangesAsync();
 
             return comment;
         }
 
-        public ClubComment DeleteComment(int id)
+        public async Task<ClubComment> DeleteCommentAsync(int id)
         {
             _context.ChangeTracker.Clear();
-            ClubComment toBeDeleted = _context.ClubComments.FirstOrDefault(cm => cm.ClubPostID == id);
+            ClubComment toBeDeleted = await _context.ClubComments.FirstOrDefaultAsync(cm => cm.ClubPostID == id);
             _context.ClubComments.Remove(toBeDeleted);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return toBeDeleted;
         }
 
-        public List<ClubComment> GetAllComments()
+        public async Task<List<ClubComment>> GetAllCommentsAsync()
         {
             _context.ChangeTracker.Clear();
-            return _context.ClubComments.Select(cm => cm).ToList();
+            return await _context.ClubComments.AsNoTracking().Select(cm => cm).ToListAsync();
         }
 
-        public ClubComment GetComment(ClubComment comment)
+        public async Task<ClubComment> GetCommentAsync(ClubComment comment)
         {
             _context.ChangeTracker.Clear();
-            return _context.ClubComments.FirstOrDefault(cm=> cm.UserEmail.Equals(comment.UserEmail) && cm.ClubPostID == comment.ClubPostID && cm.Message.Equals(comment.Message));
+            return await _context.ClubComments.AsNoTracking().FirstOrDefaultAsync(cm=> cm.UserEmail.Equals(comment.UserEmail) && cm.ClubPostID == comment.ClubPostID && cm.Message.Equals(comment.Message));
         }
 
-        public ClubComment GetCommentById(int commentID)
+        public async Task<ClubComment> GetCommentByIdAsync(int commentID)
         {
             _context.ChangeTracker.Clear();
-            return _context.ClubComments.FirstOrDefault(cm => cm.ClubCommentId == commentID);
+            return await _context.ClubComments.AsNoTracking().FirstOrDefaultAsync(cm => cm.ClubCommentId == commentID);
         }
 
-        public List<ClubComment> GetCommentByClubId(int clubID)
+        public async Task<List<ClubComment>> GetCommentByClubIdAsync(int clubID)
         {
             _context.ChangeTracker.Clear();
-            return _context.ClubComments.Where(cm => cm.ClubPostID == clubID).Select(cm => cm).ToList();
+            return await _context.ClubComments.AsNoTracking().Where(cm => cm.ClubPostID == clubID).Select(cm => cm).ToListAsync();
         }
 
-        public ClubComment UpdateComment(ClubComment comment)
+        public async Task<ClubComment> UpdateCommentAsync(ClubComment comment)
         {
             _context.ChangeTracker.Clear();
             _context.ClubComments.Update(comment);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return comment;
         }
     }

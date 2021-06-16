@@ -9,11 +9,11 @@ namespace BCDL
 {
     public interface IBooksReadRepo
     {
-        BooksRead AddBooksRead(BooksRead book);
-        List<BooksRead> GetAllBooksRead();
-        List<Book> GetBooksReadByUser(string email);
-        BooksRead UpdateBooksRead(BooksRead book);
-        BooksRead DeleteBooksRead(int id);
+        Task<BooksRead> AddBooksReadAsync(BooksRead book);
+        Task<List<BooksRead>> GetAllBooksReadAsync();
+        Task<List<Book>> GetBooksReadByUserAsync(string email);
+        Task<BooksRead> UpdateBooksReadAsync(BooksRead book);
+        Task<BooksRead> DeleteBooksReadAsync(int id);
 
     }
 }

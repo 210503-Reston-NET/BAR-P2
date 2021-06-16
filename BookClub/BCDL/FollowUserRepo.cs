@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -15,62 +16,62 @@ namespace BCDL
         {
             _context = context;
         }
-        public FollowUser AddFollowUser(FollowUser followClub)
+        public async Task<FollowUser> AddFollowUserAsync(FollowUser followClub)
         {
-            _context.FollowUsers.Add(followClub);
-            _context.SaveChanges();
+            await _context.FollowUsers.AddAsync(followClub);
+            await _context.SaveChangesAsync();
             return followClub;
         }
 
-        public FollowUser DeleteFollowUser(int id)
+        public async Task<FollowUser> DeleteFollowUserAsync(int id)
         {
-            FollowUser toBeDeleted = _context.FollowUsers.FirstOrDefault(fc => fc.FollowUserId == id);
+            FollowUser toBeDeleted = await _context.FollowUsers.AsNoTracking().FirstOrDefaultAsync(fc => fc.FollowUserId == id);
             if (toBeDeleted != null)
             {
                 _context.FollowUsers.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return toBeDeleted;
         }
 
-        public List<FollowUser> GetAllFollowUser()
+        public async Task<List<FollowUser>> GetAllFollowUserAsync()
         {
-            return _context.FollowUsers.Select(fc => fc).ToList();
+            return await _context.FollowUsers.AsNoTracking().Select(fc => fc).ToListAsync();
         }
 
-        public List<User> GetFollowingByUser(string email)
+        public async Task<List<User>> GetFollowingByUserAsync(string email)
         {
-            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.FollowerEmail.Equals(email)).ToList();
+            List<FollowUser> followUsers = await _context.FollowUsers.AsNoTracking().Where(fc => fc.FollowerEmail.Equals(email)).ToListAsync();
             List<User> users = new List<User>();
             User user;
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.UserEmail == follow.UserEmail);
+                user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(usr => usr.UserEmail == follow.UserEmail);
                 users.Add(user);
             }
 
             return users;
         }
 
-        public bool IsFollowing(string followerEmail, string followedEmail)
+        public async Task<bool> IsFollowingAsync(string followerEmail, string followedEmail)
         {
             bool following = false;
-            FollowUser followUser = _context.FollowUsers.FirstOrDefault(fl => fl.FollowerEmail == followerEmail && fl.UserEmail == followedEmail);
+            FollowUser followUser = await _context.FollowUsers.AsNoTracking().FirstOrDefaultAsync(fl => fl.FollowerEmail == followerEmail && fl.UserEmail == followedEmail);
             if (followUser != null) following = true;
 
             return following;
         }
 
-        public List<User> GetFollowersByUser(string email)
+        public async Task<List<User>> GetFollowersByUserAsync(string email)
         {
-            List<FollowUser> followUsers = _context.FollowUsers.Where(fc => fc.UserEmail.Equals(email)).ToList();
+            List<FollowUser> followUsers = await _context.FollowUsers.AsNoTracking().Where(fc => fc.UserEmail.Equals(email)).ToListAsync();
             List<User> users = new List<User>();
             User user;
 
             foreach (FollowUser follow in followUsers)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(follow.FollowerEmail));
+                user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(usr => usr.UserEmail.Equals(follow.FollowerEmail));
                 users.Add(user);
             }
 

@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCBL
 {
     public interface IUserPostBL
     {
-        UserPost AddUserPost(UserPost userPost);
-        UserPost GetUserPost(UserPost userPost);
-        List<UserPost> GetAllUserPosts();
-        List<UserPost> GetUserPostByUser(string userEmail);
-        UserPost GetUserPostById(int userPostId);
-        UserPost DeleteUserPost(UserPost userPost);
-        UserPost UpdateUserPost(UserPost userPost);
+        Task<UserPost> AddUserPostAsync(UserPost userPost);
+        Task<UserPost> GetUserPostAsync(UserPost userPost);
+        Task<List<UserPost>> GetAllUserPostsAsync();
+        Task<List<UserPost>> GetUserPostByUserAsync(string userEmail);
+        Task<UserPost> GetUserPostByIdAsync(int userPostId);
+        Task<UserPost> DeleteUserPostAsync(UserPost userPost);
+        Task<UserPost> UpdateUserPostAsync(UserPost userPost);
     }
 }

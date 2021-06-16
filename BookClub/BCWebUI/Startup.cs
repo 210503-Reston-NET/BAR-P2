@@ -46,7 +46,6 @@ namespace BCWebUI
             services.AddScoped<IUserPostRepo, UserPostRepo>();
             services.AddScoped<IClubPostBL, ClubPostBL>();
             services.AddScoped<IClubPostRepo, ClubPostRepo>();
-            services.AddScoped<IUserCommentBL, CommentBL>();
             services.AddScoped<IUserCommentRepo, UserCommentRepo>();
 
             services.AddScoped<IBooksReadBL, BooksReadBL>();

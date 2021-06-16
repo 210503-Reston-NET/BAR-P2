@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BCModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,36 +16,36 @@ namespace BCDL
             _context = context;
         }
 
-        public ClubPost AddClubPost(ClubPost clubPost)
+        public async Task<ClubPost> AddClubPostAsync(ClubPost clubPost)
         {
             _context.ChangeTracker.Clear();
             clubPost.Date = DateTime.Now;
-            _context.ClubPosts.Add(clubPost);
-            _context.SaveChanges();
+            await _context.ClubPosts.AddAsync(clubPost);
+            await _context.SaveChangesAsync();
             return clubPost;
         }
 
-        public ClubPost DeleteClubPost(ClubPost clubPost)
+        public async Task<ClubPost> DeleteClubPostAsync(ClubPost clubPost)
         {
-            ClubPost toBeDeleted = _context.ClubPosts.First(cp => cp.ClubPostId == clubPost.ClubPostId);
+            ClubPost toBeDeleted = await _context.ClubPosts.AsNoTracking().FirstAsync(cp => cp.ClubPostId == clubPost.ClubPostId);
             _context.ClubPosts.Remove(toBeDeleted);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return clubPost;
         }
 
-        public List<ClubPost> GetAllClubPosts()
+        public async Task<List<ClubPost>> GetAllClubPostsAsync()
         {
-            return _context.ClubPosts.Select(clubPost => clubPost).ToList();
+            return await _context.ClubPosts.AsNoTracking().Select(clubPost => clubPost).ToListAsync();
         }
 
-        public ClubPost GetClubPostById(int clubPostId)
+        public async Task<ClubPost> GetClubPostByIdAsync(int clubPostId)
         {
-            return _context.ClubPosts.Find(clubPostId);
+            return await _context.ClubPosts.FindAsync(clubPostId);
         }
 
-        public ClubPost GetClubPost(ClubPost clubPost)
+        public async Task<ClubPost> GetClubPostAsync(ClubPost clubPost)
         {
-            ClubPost found = _context.ClubPosts.FirstOrDefault(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike && cp.Date == clubPost.Date);
+            ClubPost found = await _context.ClubPosts.AsNoTracking().FirstOrDefaultAsync(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike && cp.Date == clubPost.Date);
             if (found == null)
             {
                 return null;
@@ -52,36 +53,36 @@ namespace BCDL
             return new ClubPost(found.UserEmail, found.Post, found.BookClubId, found.TotalLike, found.TotalDislike, found.Date);
         }
 
-        public ClubPost UpdateClubPost(ClubPost clubPost)
+        public async Task<ClubPost> UpdateClubPostAsync(ClubPost clubPost)
         {
             _context.ClubPosts.Update(clubPost);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return clubPost;
         }
 
-        public List<ClubPost> GetClubPostByBookClub(int bookClubId)
+        public async Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId)
         {
-            return _context.ClubPosts.Where(cp => cp.BookClubId == bookClubId).Select(cp => cp).ToList();
+            return await _context.ClubPosts.AsNoTracking().Where(cp => cp.BookClubId == bookClubId).Select(cp => cp).ToListAsync();
         }
 
-        public ClubPost LikeClubPost(ClubPost clubPost)
+        public async Task<ClubPost> LikeClubPostAsync(ClubPost clubPost)
         {
-            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.ClubPostId == clubPost.ClubPostId);
+            ClubPost old = await _context.ClubPosts.AsNoTracking().FirstOrDefaultAsync(cp => cp.ClubPostId == clubPost.ClubPostId);
             old.TotalLike = old.TotalDislike + 1;
             _context.ClubPosts.Update(old);
             //_context.Entry(clubPost).CurrentValues;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return old;
         }
 
-        public ClubPost DislikeClubPost(ClubPost clubPost)
+        public async Task<ClubPost> DislikeClubPostAsync(ClubPost clubPost)
         {
-            ClubPost old = _context.ClubPosts.FirstOrDefault(cp => cp.ClubPostId == clubPost.ClubPostId);
+            ClubPost old = await _context.ClubPosts.AsNoTracking().FirstOrDefaultAsync(cp => cp.ClubPostId == clubPost.ClubPostId);
             int x = old.TotalDislike - 1;
             if (x < 0) { x = 0; }
-            old.TotalLike =x;
+            old.TotalLike = x;
             _context.ClubPosts.Update(old);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return old;
         }
     }

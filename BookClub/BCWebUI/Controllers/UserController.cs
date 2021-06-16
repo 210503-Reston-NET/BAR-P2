@@ -18,30 +18,30 @@ namespace BCWebUI.Controllers
         public UserController(IUserBL e) { this._userBL = e; }
         // GET: api/<UserController>
         [HttpGet]
-        public IActionResult GetAllUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
-            return Ok(_userBL.GetAllUsers().ToList());
+            return Ok(await _userBL.GetAllUsersAsync());
         }
 
         // GET api/<UserController>/5
         [HttpGet("{email}")]
-        public IActionResult GetUserByEmail(string email)
+        public async Task<IActionResult> GetUserByEmail(string email)
         {
-            return Ok(_userBL.GetUserByEmail(email));
+            return Ok(await _userBL.GetUserByEmailAsync(email));
         }
 
         // POST api/<UserController>
         [HttpPost]
-        public IActionResult AddUser([FromBody] User newUser)
+        public async Task<IActionResult> AddUser([FromBody] User newUser)
         {
-            return Created("api/User", _userBL.AddUser(newUser));
+            return Created("api/User", await _userBL.AddUserAsync(newUser));
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{email}")]
-        public IActionResult UpdateUser(string email, [FromBody] User newUser)
+        public async Task<IActionResult> UpdateUser(string email, [FromBody] User newUser)
         {
-            _userBL.UpdateUser(newUser);
+            await _userBL.UpdateUserAsync(newUser);
             return NoContent();
         }
     }

@@ -23,38 +23,38 @@ namespace BCWebUI.Controllers
 
         // GET: api/<BooksReadController>
         [HttpGet]
-        public IActionResult GetAllBooksRead()
+        public async Task<IActionResult> GetAllBooksRead()
         {
-            return Ok(_IbookBL.GetAllBooksRead());
+            return Ok(await _IbookBL.GetAllBooksReadAsync());
         }
 
         // GET api/<BooksReadController>/5
         [HttpGet("{email}")]
-        public IActionResult GetBooksReadByUser(string email)
+        public async Task<IActionResult> GetBooksReadByUser(string email)
         {
-            return Ok(_IbookBL.GetBooksReadByUser(email));
+            return Ok(await _IbookBL.GetBooksReadByUserAsync(email));
         }
 
         // POST api/<BooksReadController>
         [HttpPost]
-        public IActionResult AddBooksRead([FromBody] BooksRead value)
+        public async Task<IActionResult> AddBooksRead([FromBody] BooksRead value)
         {
-            return Created("api/BooksRead", _IbookBL.AddBooksRead(value));
+            return Created("api/BooksRead", await _IbookBL.AddBooksReadAsync(value));
         }
 
         // PUT api/<BooksReadController>/5
         [HttpPut("{id}")]
-        public IActionResult UpdateBooksRead(int id, [FromBody] BooksRead value)
+        public async Task<IActionResult> UpdateBooksRead(int id, [FromBody] BooksRead value)
         {
-            _IbookBL.UpdateBooksRead(value);
+            await _IbookBL.UpdateBooksReadAsync(value);
             return NoContent();
         }
 
         // DELETE api/<BooksReadController>/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteBooksRead(int id)
+        public async Task<IActionResult> DeleteBooksRead(int id)
         {
-            _IbookBL.DeleteBooksRead(id);
+            await _IbookBL.DeleteBooksReadAsync(id);
             return NoContent();
         }
     }

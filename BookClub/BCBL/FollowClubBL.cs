@@ -16,29 +16,29 @@ namespace BCBL
         {
             _repo = repo;
         }
-        public FollowClub AddFollowClub(FollowClub followClub)
+        public async Task<FollowClub> AddFollowClubAsync(FollowClub followClub)
         {
-            return _repo.AddFollowClub(followClub);
+            return await _repo.AddFollowClubAsync(followClub);
         }
 
-        public FollowClub DeleteFollowClub(int id)
+        public async Task<FollowClub> DeleteFollowClubAsync(int id)
         {
-            return _repo.DeleteFollowClub(id);
+            return await _repo.DeleteFollowClubAsync(id);
         }
 
-        public List<FollowClub> GetAllFollowClub()
+        public async Task<List<FollowClub>> GetAllFollowClubAsync()
         {
-            return _repo.GetAllFollowClub();
+            return await _repo.GetAllFollowClubAsync();
         }
 
-        public List<User> GetFollowersByClub(int id)
+        public async Task<List<User>> GetFollowersByClubAsync(int id)
         {
-            return _repo.GetFollowersByClub(id);
+            return await _repo.GetFollowersByClubAsync(id);
         }
 
-        public List<BookClub> GetFollowingByUser(string email)
+        public async Task<List<BookClub>> GetFollowingByUserAsync(string email)
         {
-            return _repo.GetFollowingByUser(email);
+            return await _repo.GetFollowingByUserAsync(email);
         }
     }
 }

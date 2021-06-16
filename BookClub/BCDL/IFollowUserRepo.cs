@@ -9,11 +9,11 @@ namespace BCDL
 {
     public interface IFollowUserRepo
     {
-        FollowUser AddFollowUser(FollowUser followClub);
-        List<FollowUser> GetAllFollowUser();
-        List<User> GetFollowingByUser(string email);
-        List<User> GetFollowersByUser(string email);
-        FollowUser DeleteFollowUser(int id);
-        bool IsFollowing(string followerEmail, string followedEmail);
+        Task<FollowUser> AddFollowUserAsync(FollowUser followClub);
+        Task<List<FollowUser>> GetAllFollowUserAsync();
+        Task<List<User>> GetFollowingByUserAsync(string email);
+        Task<List<User>> GetFollowersByUserAsync(string email);
+        Task<FollowUser> DeleteFollowUserAsync(int id);
+        Task<bool> IsFollowingAsync(string followerEmail, string followedEmail);
     }
 }

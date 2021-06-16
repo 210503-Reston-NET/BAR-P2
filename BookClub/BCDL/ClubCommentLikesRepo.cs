@@ -9,27 +9,27 @@ namespace BCDL
 {
     class ClubCommentLikesRepo : IClubCommentLikesRepo
     {
-        public ClubCommentLikes AddCommentLikes(ClubCommentLikes commentLike)
+        public ClubCommentLikes AddCommentLikesAsync(ClubCommentLikes commentLike)
         {
             throw new NotImplementedException();
         }
 
-        public List<ClubCommentLikes> GetAllCommentLikes()
+        public List<ClubCommentLikes> GetAllCommentLikesAsync()
         {
             throw new NotImplementedException();
         }
 
-        public ClubCommentLikes GetCommentLike(ClubCommentLikes commentLike)
+        public ClubCommentLikes GetCommentLikeAsync(ClubCommentLikes commentLike)
         {
             throw new NotImplementedException();
         }
 
-        public ClubCommentLikes GetCommentLikesById(int Id)
+        public ClubCommentLikes GetCommentLikesByIdAsync(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public List<ClubCommentLikes> GetCommentLikesByUserPost(int userPostId)
+        public List<ClubCommentLikes> GetCommentLikesByUserPostAsync(int userPostId)
         {
             throw new NotImplementedException();
         }

@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCDL
 {
     public interface IUserCommentLikesRepo
     {
-        UserCommentLikes AddCommentLikes(UserCommentLikes commentLike);
-        UserCommentLikes GetCommentLike(UserCommentLikes commentLike);
-        List<UserCommentLikes> GetAllCommentLikes();
-        List<UserCommentLikes> GetCommentLikesByUserPost(int userPostId);
-        UserCommentLikes GetCommentLikesById(int Id);
+        Task<UserCommentLikes> AddCommentLikesAsync(UserCommentLikes commentLike);
+        Task<UserCommentLikes> GetCommentLikeAsync(UserCommentLikes commentLike);
+        Task<List<UserCommentLikes>> GetAllCommentLikesAsync();
+        Task<List<UserCommentLikes>> GetCommentLikesByUserPostAsync(int userPostId);
+        Task<UserCommentLikes> GetCommentLikesByIdAsync(int Id);
     }
 }

@@ -17,45 +17,45 @@ namespace BCBL
             _bookRepo = bookrepo;
         }
 
-        public Book AddBook(Book book)
+        public async Task<Book> AddBookAsync(Book book)
         {
-            if (_bookRepo.BookExists(book.ISBN))
+            if (await _bookRepo.BookExistsAsync(book.ISBN))
             {
-                return _bookRepo.UpdateBook(book);
+                return await _bookRepo.UpdateBookAsync(book);
             }
-            return _bookRepo.AddBook(book);
+            return await _bookRepo.AddBookAsync(book);
         }
 
-        public void DeleteBook(string isbn)
+        public async Task<Book> DeleteBookAsync(string isbn)
         {
-            _bookRepo.DeleteBook(isbn);
+           return await _bookRepo.DeleteBookAsync(isbn);
         }
 
-        public List<Book> GetAllBooks()
+        public async Task<List<Book>> GetAllBooksAsync()
         {
-            return _bookRepo.GetAllBooks();
+            return await _bookRepo.GetAllBooksAsync();
         }
 
-        public List<Book> GetBookByAuthor(string author)
+        public async Task<List<Book>> GetBookByAuthorAsync(string author)
         {
-            return _bookRepo.GetBookByAuthor(author);
+            return await _bookRepo.GetBookByAuthorAsync(author);
         }
 
-        public Book GetBookByISBN(string isbn)
+        public async Task<Book> GetBookByISBNAsync(string isbn)
         {
-            return _bookRepo.GetBookByISBN(isbn);
+            return await _bookRepo.GetBookByISBNAsync(isbn);
         }
 
-        public Book GetBookByTitle(string title)
+        public async Task<Book> GetBookByTitleAsync(string title)
         {
-            return _bookRepo.GetBookByTitle(title);
+            return await _bookRepo.GetBookByTitleAsync(title);
         }
 
-        public Book UpdateBook(Book book)
+        public async Task<Book> UpdateBookAsync(Book book)
         {
-            bool exists = _bookRepo.BookExists(book.ISBN);
+            bool exists = await _bookRepo.BookExistsAsync(book.ISBN);
 
-            if (exists) return _bookRepo.UpdateBook(book);
+            if (exists) return await _bookRepo.UpdateBookAsync(book);
             else throw new Exception("Book doesn't exist in DB");
         }
     }

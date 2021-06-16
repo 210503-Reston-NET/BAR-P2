@@ -16,29 +16,29 @@ namespace BCBL
             _repo = repo;
         }
 
-        public BooksRead AddBooksRead(BooksRead book)
+        public async Task<BooksRead> AddBooksReadAsync(BooksRead book)
         {
-            return _repo.AddBooksRead(book);
+            return await _repo.AddBooksReadAsync(book);
         }
 
-        public BooksRead DeleteBooksRead(int id)
+        public async Task<BooksRead> DeleteBooksReadAsync(int id)
         {
-            return _repo.DeleteBooksRead(id);
+            return await _repo.DeleteBooksReadAsync(id);
         }
 
-        public List<BooksRead> GetAllBooksRead()
+        public async Task<List<BooksRead>> GetAllBooksReadAsync()
         {
-            return _repo.GetAllBooksRead();
+            return await _repo.GetAllBooksReadAsync();
         }
 
-        public List<Book> GetBooksReadByUser(string email)
+        public async Task<List<Book>> GetBooksReadByUserAsync(string email)
         {
-            return _repo.GetBooksReadByUser(email);
+            return await _repo.GetBooksReadByUserAsync(email);
         }
 
-        public BooksRead UpdateBooksRead(BooksRead book)
+        public async Task<BooksRead> UpdateBooksReadAsync(BooksRead book)
         {
-            return _repo.UpdateBooksRead(book);
+            return await _repo.UpdateBooksReadAsync(book);
         }
 
     }

@@ -9,12 +9,12 @@ namespace BCBL
 {
     public interface IClubCommentBL
     {
-        ClubComment AddComment(ClubComment comment);
-        ClubComment GetComment(ClubComment comment);
-        ClubComment GetCommentById(int commentID);
-        List<ClubComment> GetCommentByClubId(int ClubId);
-        List<ClubComment> GetAllComments();
-        ClubComment DeleteComment(int id);
-        ClubComment UpdateComment(ClubComment comment);
+        Task<ClubComment> AddCommentAsync(ClubComment comment);
+        Task<ClubComment> GetCommentAsync(ClubComment comment);
+        Task<ClubComment> GetCommentByIdAsync(int commentID);
+        Task<List<ClubComment>> GetCommentByClubIdAsync(int ClubId);
+        Task<List<ClubComment>> GetAllCommentsAsync();
+        Task<ClubComment> DeleteCommentAsync(int id);
+        Task<ClubComment> UpdateCommentAsync(ClubComment comment);
     }
 }

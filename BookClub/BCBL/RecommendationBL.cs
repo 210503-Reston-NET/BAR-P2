@@ -13,26 +13,27 @@ namespace BCBL
 
         private readonly IRecommendationRepo _repo;
         public RecommendationBL(IRecommendationRepo repo) { this._repo = repo; }
-        public Recommendation AddRecommendation(Recommendation r)
+
+        public async Task<Recommendation> AddRecommendationAsync(Recommendation recommendation)
         {
-            return _repo.AddRecommendation(r);
+            return await _repo.AddRecommendationAsync(recommendation);
         }
 
-        public Recommendation GetRecommendationByEmail(string email)
+        public async Task<Recommendation> GetRecommendationByEmailAsync(string email)
         {
-            return _repo.GetRecommendationByEmail(email);
+            return await _repo.GetRecommendationByEmailAsync(email);
         }
 
-        public List<Recommendation> GetRecommendations()
+        public async Task<List<Recommendation>> GetRecommendationsAsync()
         {
-            return _repo.GetRecommendations();
+            return await _repo.GetRecommendationsAsync();
                 
         }
 
-        public Recommendation UpdateRecommendation(Recommendation r)
+        public async Task<Recommendation> UpdateRecommendationAsync(Recommendation r)
         {
 
-            return _repo.UpdateRecommendation(r);
+            return await _repo.UpdateRecommendationAsync(r);
         }
     }
 }

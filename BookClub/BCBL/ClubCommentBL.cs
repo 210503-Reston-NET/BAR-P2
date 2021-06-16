@@ -16,39 +16,39 @@ namespace BCBL
             _repo = repo;
         }
 
-        public ClubComment AddComment(ClubComment comment)
+        public async Task<ClubComment> AddCommentAsync(ClubComment comment)
         {
-            return _repo.AddComment(comment);
+            return await _repo.AddCommentAsync(comment);
         }
 
-        public ClubComment DeleteComment(int id)
+        public async Task<ClubComment> DeleteCommentAsync(int id)
         {
-            return _repo.DeleteComment(id);
+            return await _repo.DeleteCommentAsync(id);
         }
 
-        public List<ClubComment> GetAllComments()
+        public async Task<List<ClubComment>> GetAllCommentsAsync()
         {
-            return _repo.GetAllComments();
+            return await _repo.GetAllCommentsAsync();
         }
 
-        public ClubComment GetComment(ClubComment comment)
+        public async Task<ClubComment> GetCommentAsync(ClubComment comment)
         {
-            return _repo.GetComment(comment);
+            return await _repo.GetCommentAsync(comment);
         }
 
-        public List<ClubComment> GetCommentByClubId(int ClubId)
+        public async Task<List<ClubComment>> GetCommentByClubIdAsync(int ClubId)
         {
-            return _repo.GetCommentByClubId(ClubId);
+            return await _repo.GetCommentByClubIdAsync(ClubId);
         }
 
-        public ClubComment GetCommentById(int commentID)
+        public async Task<ClubComment> GetCommentByIdAsync(int commentID)
         {
-            return _repo.GetCommentById(commentID);
+            return await _repo.GetCommentByIdAsync(commentID);
         }
 
-        public ClubComment UpdateComment(ClubComment comment)
+        public async Task<ClubComment> UpdateCommentAsync(ClubComment comment)
         {
-            return _repo.UpdateComment(comment);
+            return await _repo.UpdateCommentAsync(comment);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BCModel;
 using BCDL;
+using System.Threading.Tasks;
 
 namespace BCBL
 {
@@ -13,29 +14,29 @@ namespace BCBL
             _repo = repo;
         }
 
-        public UserCommentLikes AddCommentLikes(UserCommentLikes commentLike)
+        public async Task<UserCommentLikes> AddCommentLikesAsync(UserCommentLikes commentLike)
         {
-            return _repo.AddCommentLikes(commentLike);
+            return await _repo.AddCommentLikesAsync(commentLike);
         }
 
-        public List<UserCommentLikes> GetAllCommentLikes()
+        public async Task<List<UserCommentLikes>> GetAllCommentLikesAsync()
         {
-            return _repo.GetAllCommentLikes();
+            return await _repo.GetAllCommentLikesAsync();
         }
 
-        public UserCommentLikes GetCommentLike(UserCommentLikes commentLike)
+        public async Task<UserCommentLikes> GetCommentLikeAsync(UserCommentLikes commentLike)
         {
-            return _repo.GetCommentLike(commentLike);
+            return await _repo.GetCommentLikeAsync(commentLike);
         }
 
-        public UserCommentLikes GetCommentLikesById(int id)
+        public async Task<UserCommentLikes> GetCommentLikesByIdAsync(int id)
         {
-            return _repo.GetCommentLikesById(id);
+            return await _repo.GetCommentLikesByIdAsync(id);
         }
 
-        public List<UserCommentLikes> GetCommentLikesByUserPost(int userPostId)
+        public async Task<List<UserCommentLikes>> GetCommentLikesByUserPostAsync(int userPostId)
         {
-            return _repo.GetCommentLikesByUserPost(userPostId);
+            return await _repo.GetCommentLikesByUserPostAsync(userPostId);
         }
     }
 }

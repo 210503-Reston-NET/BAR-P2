@@ -22,30 +22,30 @@ namespace BCWebUI.Controllers
 
         // GET: api/UserPostLikes
         [HttpGet]
-        public IActionResult GetAllUserPostLikes()
+        public async Task<IActionResult> GetAllUserPostLikes()
         {
-            return Ok(_userPostLikesBL.GetAllUserPostLikes());
+            return Ok(await _userPostLikesBL.GetAllUserPostLikesAsync());
         }
 
         // GET: api/UserPostLikes/5
         [HttpGet("{id}")]
-        public IActionResult GetUserPostLikesById(int id)
+        public async Task<IActionResult> GetUserPostLikesById(int id)
         {
-            return Ok(_userPostLikesBL.GetUserPostLikesById(id));
+            return Ok(await _userPostLikesBL.GetUserPostLikesByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetUserPostLikesByUserPost/{userPostId}")]
-        public IActionResult GetUserPostLikesByUserPost(int userPostId)
+        public async Task<IActionResult> GetUserPostLikesByUserPost(int userPostId)
         {
-            return Ok(_userPostLikesBL.GetUserPostLikesByUserPost(userPostId));
+            return Ok(await _userPostLikesBL.GetUserPostLikesByUserPostAsync(userPostId));
         }
 
         // POST: api/UserPostLikes
         [HttpPost]
-        public IActionResult AddNewUserPostLike([FromBody] UserPostLikes like)
+        public async Task<IActionResult> AddNewUserPostLike([FromBody] UserPostLikes like)
         {
-            return Created("api/UserPostLikes", _userPostLikesBL.AddUserPostLike(like));
+            return Created("api/UserPostLikes", await _userPostLikesBL.AddUserPostLikeAsync(like));
         }
     }
 }

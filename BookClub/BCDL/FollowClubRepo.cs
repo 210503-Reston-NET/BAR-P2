@@ -1,4 +1,5 @@
 ﻿using BCModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,53 +16,53 @@ namespace BCDL
         {
             _context = context;
         }
-        public FollowClub AddFollowClub(FollowClub followClub)
+        public async Task<FollowClub> AddFollowClubAsync(FollowClub followClub)
         {
-            _context.FollowClubs.Add(followClub);
-            _context.SaveChanges();
+            await _context.FollowClubs.AddAsync(followClub);
+            await _context.SaveChangesAsync();
             return followClub;
         }
 
-        public FollowClub DeleteFollowClub(int id)
+        public async Task<FollowClub> DeleteFollowClubAsync(int id)
         {
-            FollowClub toBeDeleted = _context.FollowClubs.FirstOrDefault(fc => fc.FollowClubId == id);
+            FollowClub toBeDeleted = await _context.FollowClubs.AsNoTracking().FirstOrDefaultAsync(fc => fc.FollowClubId == id);
             if (toBeDeleted != null)
             {
                 _context.FollowClubs.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return toBeDeleted;
         }
 
-        public List<FollowClub> GetAllFollowClub()
+        public async Task<List<FollowClub>> GetAllFollowClubAsync()
         {
-            return _context.FollowClubs.Select(fc => fc).ToList();
+            return await _context.FollowClubs.AsNoTracking().Select(fc => fc).ToListAsync();
         }
 
-        public List<BookClub> GetFollowingByUser(string email)
+        public async Task<List<BookClub>> GetFollowingByUserAsync(string email)
         {
-            List<FollowClub> followClubs = _context.FollowClubs.Where(fc => fc.FollowerEmail.Equals(email)).ToList();
+            List<FollowClub> followClubs = await _context.FollowClubs.AsNoTracking().Where(fc => fc.FollowerEmail.Equals(email)).ToListAsync();
             List<BookClub> bookClubs = new List<BookClub>();
             BookClub bookClub;
 
             foreach(FollowClub follow in followClubs)
             {
-                bookClub = _context.BookClubs.FirstOrDefault(bc => bc.BookClubId == follow.BookClubId);
+                bookClub = await _context.BookClubs.AsNoTracking().FirstOrDefaultAsync(bc => bc.BookClubId == follow.BookClubId);
                 bookClubs.Add(bookClub);
             }
 
             return bookClubs;
         }
 
-        public List<User> GetFollowersByClub(int id)
+        public async Task<List<User>> GetFollowersByClubAsync(int id)
         {
-            List<FollowClub> followClubs = _context.FollowClubs.Where(fc => fc.BookClubId == id).Select(bc => bc).ToList();
+            List<FollowClub> followClubs = await _context.FollowClubs.AsNoTracking().Where(fc => fc.BookClubId == id).Select(bc => bc).ToListAsync();
             List<User> users = new List<User>();
             User user;
 
             foreach (FollowClub follow in followClubs)
             {
-                user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(follow.FollowerEmail));
+                user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(usr => usr.UserEmail.Equals(follow.FollowerEmail));
                 users.Add(user);
             }
 

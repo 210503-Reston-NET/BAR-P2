@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCDL;
 using BCModel;
 
@@ -13,51 +14,52 @@ namespace BCBL
             _repo = repo;
         }
 
-        public ClubPost AddClubPost(ClubPost clubPost)
+        public async Task<ClubPost> AddClubPostAsync(ClubPost clubPost)
         {
-            if (_repo.GetClubPost(clubPost) != null)
+            if (await _repo.GetClubPostAsync(clubPost) != null)
             {
                 throw new Exception("Club Post already exists");
             }
-            return _repo.AddClubPost(clubPost);
+            return await _repo.AddClubPostAsync(clubPost);
         }
 
-        public ClubPost DeleteClubPost(ClubPost clubPost)
+        public async Task<ClubPost> DeleteClubPostAsync(ClubPost clubPost)
         {
-            ClubPost toBeDeleted = _repo.GetClubPost(clubPost);
+            ClubPost toBeDeleted = await _repo.GetClubPostAsync(clubPost);
             if (toBeDeleted != null)
             {
-                return _repo.DeleteClubPost(clubPost);
+                return await _repo.DeleteClubPostAsync(clubPost);
             }
             throw new Exception("Club Post does not exist");
         }
 
-        public List<ClubPost> GetAllClubPosts()
+        public async Task<List<ClubPost>> GetAllClubPostsAsync()
         {
-            return _repo.GetAllClubPosts();
+            return await _repo.GetAllClubPostsAsync();
         }
 
-        public ClubPost GetClubPost(ClubPost clubPost)
+        public async Task<ClubPost> GetClubPostAsync(ClubPost clubPost)
         {
-            return _repo.GetClubPost(clubPost);
+            return await _repo.GetClubPostAsync(clubPost);
         }
 
-        public List<ClubPost> GetClubPostByBookClub(int bookClubId)
+        public async Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId)
         {
-            return _repo.GetClubPostByBookClub(bookClubId);
+            return await _repo.GetClubPostByBookClubAsync(bookClubId);
         }
 
-        public ClubPost GetClubPostById(int clubPostId)
+        public async Task<ClubPost> GetClubPostByIdAsync(int clubPostId)
         {
-            return _repo.GetClubPostById(clubPostId);
+            return await _repo.GetClubPostByIdAsync(clubPostId);
         }
 
-        public ClubPost UpdateClubPost(ClubPost clubPost)
+        public async Task<ClubPost> UpdateClubPostAsync(ClubPost clubPost)
         {
-            return _repo.UpdateClubPost(clubPost);
+            return await _repo.UpdateClubPostAsync(clubPost);
         }
-       public ClubPost LikeClubPost(ClubPost clubPost) { return _repo.LikeClubPost(clubPost); }
-       public ClubPost DislikeClubPost(ClubPost clubPost) { return _repo.DislikeClubPost(clubPost); }
+       public async Task<ClubPost> LikeClubPostAsync(ClubPost clubPost) { return await _repo.LikeClubPostAsync(clubPost); }
+
+       public async Task<ClubPost> DislikeClubPostAsync(ClubPost clubPost) { return await _repo.DislikeClubPostAsync(clubPost); }
 
        
     }

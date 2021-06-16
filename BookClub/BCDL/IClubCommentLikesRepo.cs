@@ -9,10 +9,10 @@ namespace BCDL
 {
     public interface IClubCommentLikesRepo
     {
-        ClubCommentLikes AddCommentLikes(ClubCommentLikes commentLike);
-        ClubCommentLikes GetCommentLike(ClubCommentLikes commentLike);
-        List<ClubCommentLikes> GetAllCommentLikes();
-        List<ClubCommentLikes> GetCommentLikesByUserPost(int userPostId);
-        ClubCommentLikes GetCommentLikesById(int Id);
+        ClubCommentLikes AddCommentLikesAsync(ClubCommentLikes commentLike);
+        ClubCommentLikes GetCommentLikeAsync(ClubCommentLikes commentLike);
+        List<ClubCommentLikes> GetAllCommentLikesAsync();
+        List<ClubCommentLikes> GetCommentLikesByUserPostAsync(int userPostId);
+        ClubCommentLikes GetCommentLikesByIdAsync(int Id);
     }
 }

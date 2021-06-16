@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BCModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,32 +15,32 @@ namespace BCDL
             _context = context;
         }
 
-        public ClubPostLikes AddClubPostLike(ClubPostLikes clubPostLike)
+        public async Task<ClubPostLikes> AddClubPostLikeAsync(ClubPostLikes clubPostLike)
         {
             _context.ChangeTracker.Clear();
-            _context.ClubPostLikes.Add(clubPostLike);
-            _context.SaveChanges();
+            await _context.ClubPostLikes.AddAsync(clubPostLike);
+            await _context.SaveChangesAsync();
             return clubPostLike;
         }
 
-        public List<ClubPostLikes> GetAllClubPostLikes()
+        public async Task<List<ClubPostLikes>> GetAllClubPostLikesAsync()
         {
-            return _context.ClubPostLikes.Select(likes => likes).ToList();
+            return await _context.ClubPostLikes.AsNoTracking().Select(likes => likes).ToListAsync();
         }
 
-        public ClubPostLikes GetClubPostLike(ClubPostLikes clubPostLike)
+        public async Task<ClubPostLikes> GetClubPostLikeAsync(ClubPostLikes clubPostLike)
         {
-            return _context.ClubPostLikes.Find(clubPostLike);
+            return await _context.ClubPostLikes.FindAsync(clubPostLike);
         }
 
-        public List<ClubPostLikes> GetClubPostLikesByClubPost(int clubPostId)
+        public async Task<List<ClubPostLikes>> GetClubPostLikesByClubPostAsync(int clubPostId)
         {
-            return _context.ClubPostLikes.Where(like => like.ClubPostId == clubPostId).Select(like => like).ToList();
+            return await _context.ClubPostLikes.AsNoTracking().Where(like => like.ClubPostId == clubPostId).Select(like => like).ToListAsync();
         }
 
-        public ClubPostLikes GetClubPostLikesById(int id)
+        public async Task<ClubPostLikes> GetClubPostLikesByIdAsync(int id)
         {
-            return _context.ClubPostLikes.Find(id);
+            return await _context.ClubPostLikes.FindAsync(id);
         }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using BCModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -14,29 +16,29 @@ namespace BCDL
             _context = context;
         }
 
-        public BookClub AddBookClub(BookClub bookClub)
+        public async Task<BookClub> AddBookClubAsync(BookClub bookClub)
         {
-            _context.BookClubs.Add(bookClub);
-            _context.SaveChanges();
+            await _context.BookClubs.AddAsync(bookClub);
+            await _context.SaveChangesAsync();
             return bookClub;
         }
 
-        public BookClub DeleteBookClub(BookClub bookClub)
+        public async Task<BookClub> DeleteBookClubAsync(BookClub bookClub)
         {
-            BookClub toBeDeleted = _context.BookClubs.First(bc => bc.BookClubId == bookClub.BookClubId);
+            BookClub toBeDeleted = await _context.BookClubs.AsNoTracking().FirstAsync(bc => bc.BookClubId == bookClub.BookClubId);
             _context.BookClubs.Remove(toBeDeleted);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return bookClub;
         }
 
-        public List<BookClub> GetAllBookClubs()
+        public async Task<List<BookClub>> GetAllBookClubsAsync()
         {
-            return _context.BookClubs.Select(bookClub => bookClub).ToList();
+            return await _context.BookClubs.AsNoTracking().Select(bookClub => bookClub).ToListAsync();
         }
 
-        public BookClub GetBookClub(BookClub bookClub)
+        public async Task<BookClub> GetBookClubAsync(BookClub bookClub)
         {
-            BookClub found = _context.BookClubs.FirstOrDefault(bc => bc.Name == bookClub.Name && bc.Description == bookClub.Description && bc.ISBN == bookClub.ISBN);
+            BookClub found = await _context.BookClubs.AsNoTracking().FirstOrDefaultAsync(bc => bc.Name == bookClub.Name && bc.Description == bookClub.Description && bc.ISBN == bookClub.ISBN);
             if (found == null)
             {
                 return null;
@@ -44,20 +46,20 @@ namespace BCDL
             return new BookClub(found.Name, found.Description, found.ISBN, found.UserEmail);
         }
 
-        public List<BookClub> GetBookClubByBook(string bookId)
+        public async Task<List<BookClub>> GetBookClubByBookAsync(string bookId)
         {
-            return _context.BookClubs.Where(bc => bc.ISBN == bookId).Select(bc => bc).ToList();
+            return await _context.BookClubs.AsNoTracking().Where(bc => bc.ISBN == bookId).Select(bc => bc).ToListAsync();
         }
 
-        public BookClub GetBookClubById(int bookClubId)
+        public async Task<BookClub> GetBookClubByIdAsync(int bookClubId)
         {
-            return _context.BookClubs.Find(bookClubId);
+            return await _context.BookClubs.FindAsync(bookClubId);
         }
 
-        public BookClub UpdateBookClub(BookClub bookClub)
+        public async Task<BookClub> UpdateBookClubAsync(BookClub bookClub)
         {
             _context.BookClubs.Update(bookClub);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return bookClub;
         }
     }

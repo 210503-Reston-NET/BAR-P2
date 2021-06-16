@@ -22,36 +22,30 @@ namespace BCWebUI.Controllers
         }
         // GET: api/<CategoryController>
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public async Task<IActionResult> GetAllCategories()
         {
-            return Ok(_IcategoryBL.GetAllCategories());
+            return Ok(await _IcategoryBL.GetAllCategoriesAsync());
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{name}")]
-        public IActionResult GetCategory(string name)
+        public async Task<IActionResult> GetCategory(string name)
         {
-            return Ok(_IcategoryBL.GetCategory(name));
+            return Ok(await _IcategoryBL.GetCategoryAsync(name));
         }
 
         // POST api/<CategoryController>
         [HttpPost]
-        public IActionResult AddCategory([FromBody] Category value)
+        public async Task<IActionResult> AddCategory([FromBody] Category value)
         {
-            return Created("api/Category", _IcategoryBL.AddCategory(value));
-        }
-
-        // PUT api/<CategoryController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            return Created("api/Category", await _IcategoryBL.AddCategoryAsync(value));
         }
 
         // DELETE api/<CategoryController>/5
         [HttpDelete("{name}")]
-        public IActionResult DeleteCategory(string name)
+        public async Task<IActionResult> DeleteCategory(string name)
         {
-            _IcategoryBL.DeleteCategory(name);
+            await _IcategoryBL.DeleteCategoryAsync(name);
             return NoContent();
         }
     }

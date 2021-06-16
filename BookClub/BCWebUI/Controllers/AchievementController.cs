@@ -18,37 +18,31 @@ namespace BCWebUI.Controllers
         public AchievementController(IAchievementBL e) { this._bl = e; }
         // GET: api/<AchievementController>
         [HttpGet]
-        public IActionResult GetAchievements()
+        public async Task<IActionResult> GetAchievements()
         {
-            return Ok(_bl.GetAchievements().ToList());
+            return Ok(await _bl.GetAchievementsAsync());
         }
 
         // GET api/<AchievementController>/email
         [HttpGet("{id}")]
-        public Achievement GetAchievementByEmail(string email)
+        public async Task<IActionResult> GetAchievementByEmail(string email)
         {
-            return _bl.GetAchievementByEmail(email);
+            return Ok(await _bl.GetAchievementByEmailAsync(email));
         }
 
         // POST api/<AchievementController>
         [HttpPost]
-        public void Post([FromBody] Achievement achievement)
+        public async Task<IActionResult> Post([FromBody] Achievement achievement)
         {
-            _bl.AddAchievement(achievement);
+            return Ok(await _bl.AddAchievementAsync(achievement));
         }
 
         // PUT api/<AchievementController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Achievement achievement)
+        public async Task<IActionResult> Put(int id, [FromBody] Achievement achievement)
             
         {
-            _bl.UpdateAchievement(achievement);
-        }
-
-        // DELETE api/<AchievementController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+           return  Ok(await _bl.UpdateAchievementAsync(achievement));
         }
     }
 }

@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCDL
 {
     public interface IClubPostRepo
     {
-        ClubPost AddClubPost(ClubPost clubPost);
-        ClubPost GetClubPost(ClubPost clubPost);
-        List<ClubPost> GetAllClubPosts();
-        List<ClubPost> GetClubPostByBookClub(int bookClubId);
-        ClubPost GetClubPostById(int clubPostId);
-        ClubPost DeleteClubPost(ClubPost clubPost);
-        ClubPost UpdateClubPost(ClubPost clubPost);
-
-        ClubPost LikeClubPost(ClubPost clubPost);
-        ClubPost DislikeClubPost(ClubPost clubPost);
+        Task<ClubPost> AddClubPostAsync(ClubPost clubPost);
+        Task<ClubPost> GetClubPostAsync(ClubPost clubPost);
+        Task<List<ClubPost>> GetAllClubPostsAsync();
+        Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId);
+        Task<ClubPost> GetClubPostByIdAsync(int clubPostId);
+        Task<ClubPost> DeleteClubPostAsync(ClubPost clubPost);
+        Task<ClubPost> UpdateClubPostAsync(ClubPost clubPost);
+        Task<ClubPost> LikeClubPostAsync(ClubPost clubPost);
+        Task<ClubPost> DislikeClubPostAsync(ClubPost clubPost);
     }
 }

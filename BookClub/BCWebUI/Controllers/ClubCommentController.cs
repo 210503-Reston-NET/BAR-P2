@@ -22,44 +22,44 @@ namespace BCWebUI.Controllers
 
         // GET: api/<ClubCommentController>
         [HttpGet]
-        public IActionResult GetAllComments()
+        public async Task<IActionResult> GetAllComments()
         {
-            return Ok(_clubCommentBL.GetAllComments());
+            return Ok(await _clubCommentBL.GetAllCommentsAsync());
         }
 
         // GET api/<ClubCommentController>/5
         [HttpGet("{id}")]
-        public IActionResult GetCommentById(int id)
+        public async Task<IActionResult> GetCommentById(int id)
         {
-            return Ok(_clubCommentBL.GetCommentById(id));
+            return Ok(await _clubCommentBL.GetCommentByIdAsync(id));
         }
 
         [HttpGet("GetUserPostComments/{postId}")]
-        public IActionResult GetUserPostComments(int postId)
+        public async Task<IActionResult> GetUserPostComments(int postId)
         {
-            return Ok(_clubCommentBL.GetCommentByClubId(postId));
+            return Ok(await _clubCommentBL.GetCommentByClubIdAsync(postId));
         }
 
         // POST api/<ClubCommentController>
         [HttpPost]
-        public IActionResult AddNewComment([FromBody] ClubComment newcomment)
+        public async Task<IActionResult> AddNewComment([FromBody] ClubComment newcomment)
         {
-            return Created("api/Comment", _clubCommentBL.AddComment(newcomment));
+            return Created("api/Comment", await _clubCommentBL.AddCommentAsync(newcomment));
         }
 
         // PUT api/<ClubCommentController>/5
         [HttpPut("{id}")]
-        public IActionResult UpdateComment(int id, [FromBody] ClubComment updatedComment)
+        public async Task<IActionResult> UpdateComment(int id, [FromBody] ClubComment updatedComment)
         {
-            _clubCommentBL.UpdateComment(updatedComment);
+            await _clubCommentBL.UpdateCommentAsync(updatedComment);
             return NoContent();
         }
 
         // DELETE api/<ClubCommentController>/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteComment(int id)
+        public async Task<IActionResult> DeleteComment(int id)
         {
-            _clubCommentBL.DeleteComment(id);
+            await _clubCommentBL.DeleteCommentAsync(id);
             return NoContent();
         }
     }

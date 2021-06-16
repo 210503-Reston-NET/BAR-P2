@@ -9,10 +9,9 @@ namespace BCBL
 {
     public interface IRecommendationBL
     {
-        public Recommendation AddRecommendation(Recommendation r);
-        public Recommendation UpdateRecommendation(Recommendation r);
-        public Recommendation GetRecommendationByEmail(string email);
-
-        public List<Recommendation> GetRecommendations();
+        public Task<Recommendation> AddRecommendationAsync(Recommendation r);
+        public Task<Recommendation> UpdateRecommendationAsync(Recommendation r);
+        public Task<Recommendation> GetRecommendationByEmailAsync(string email);
+        public Task<List<Recommendation>> GetRecommendationsAsync();
     }
 }

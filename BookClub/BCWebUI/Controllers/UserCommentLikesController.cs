@@ -21,30 +21,30 @@ namespace BCWebUI.Controllers
 
         // GET: api/CommentLikes
         [HttpGet]
-        public IActionResult GetAllCommentLikes()
+        public async Task<IActionResult> GetAllCommentLikes()
         {
-            return Ok(_commentLikeBL.GetAllCommentLikes());
+            return Ok(await _commentLikeBL.GetAllCommentLikesAsync());
         }
 
         // GET: api/CommentLikes/5
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult GetCommentLikesById(int id)
+        public async Task<IActionResult> GetCommentLikesById(int id)
         {
-            return Ok(_commentLikeBL.GetCommentLikesById(id));
+            return Ok(await _commentLikeBL.GetCommentLikesByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetCommentLikesByUserPost/{userPostId}")]
-        public IActionResult GetCommentLikesByUserPost(int userPostId)
+        public async Task<IActionResult> GetCommentLikesByUserPost(int userPostId)
         {
-            return Ok(_commentLikeBL.GetCommentLikesByUserPost(userPostId));
+            return Ok(await _commentLikeBL.GetCommentLikesByUserPostAsync(userPostId));
         }
 
         // POST: api/CommentLikes
         [HttpPost]
-        public IActionResult AddNewCommentLike([FromBody] UserCommentLikes like)
+        public async Task<IActionResult> AddNewCommentLike([FromBody] UserCommentLikes like)
         {
-            return Created("api/CommentLikes", _commentLikeBL.AddCommentLikes(like));
+            return Created("api/CommentLikes", await _commentLikeBL.AddCommentLikesAsync(like));
         }
     }
 }

@@ -21,30 +21,30 @@ namespace BCWebUI.Controllers
 
         // GET: api/ClubPostLikes
         [HttpGet]
-        public IActionResult GetAllClubPostLikes()
+        public async Task<IActionResult> GetAllClubPostLikes()
         {
-            return Ok(_clubPostLikesBL.GetAllClubPostLikes());
+            return Ok(await _clubPostLikesBL.GetAllClubPostLikesAsync());
         }
 
         // GET: api/ClubPostLikes/5
         [HttpGet("{id}")]
-        public IActionResult GetClubPostLikesById(int id)
+        public async Task<IActionResult> GetClubPostLikesById(int id)
         {
-            return Ok(_clubPostLikesBL.GetClubPostLikesById(id));
+            return Ok(await _clubPostLikesBL.GetClubPostLikesByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetClubPostLikesByClubPost/{clubPostId}")]
-        public IActionResult GetClubPostLikesByClubPost(int clubPostId)
+        public async Task<IActionResult> GetClubPostLikesByClubPost(int clubPostId)
         {
-            return Ok(_clubPostLikesBL.GetClubPostLikesByClubPost(clubPostId));
+            return Ok(await _clubPostLikesBL.GetClubPostLikesByClubPostAsync(clubPostId));
         }
 
         // POST: api/ClubPostLikes
         [HttpPost]
-        public IActionResult AddNewClubPostLike([FromBody] ClubPostLikes like)
+        public async Task<IActionResult> AddNewClubPostLike([FromBody] ClubPostLikes like)
         {
-            return Created("api/ClubPostLikes", _clubPostLikesBL.AddClubPostLike(like));
+            return Created("api/ClubPostLikes", await _clubPostLikesBL.AddClubPostLikeAsync(like));
         }
     }
 }
