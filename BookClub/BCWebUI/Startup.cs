@@ -71,6 +71,9 @@ namespace BCWebUI
             services.AddScoped<IUserCommentLikesRepo, UserCommentLikesRepo>();
             services.AddScoped<IUserCommentLikeBL, UserCommentLikesBL>();
 
+            services.AddScoped<IClubCommentRepo, ClubCommentRepo>();
+            services.AddScoped<IClubCommentBL, ClubCommentBL>();
+
             services.AddCors(options => {
                 options.AddDefaultPolicy(builder =>
                 {
