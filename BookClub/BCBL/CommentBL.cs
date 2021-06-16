@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCDL;
 using BCModel;
 
@@ -13,53 +14,53 @@ namespace BCBL
             _repo = repo;
         }
 
-        public Comment AddComment(Comment comment)
+        public async Task<Comment> AddCommentAsync(Comment comment)
         {
-            if (_repo.GetCommentAsync(comment) != null)
+            if (await _repo.GetCommentAsync(comment) != null)
             {
                 throw new Exception("Comment already exists");
             }
-            return _repo.AddCommentAsync(comment);
+            return await _repo.AddCommentAsync(comment);
         }
 
-        public Comment DeleteComment(Comment comment)
+        public async Task<Comment> DeleteCommentAsync(Comment comment)
         {
-            Comment toBeDeleted = _repo.GetCommentAsync(comment);
+            Comment toBeDeleted = await _repo.GetCommentAsync(comment);
             if (toBeDeleted != null)
             {
-                return _repo.DeleteCommentAsync(comment);
+                return await _repo.DeleteCommentAsync(comment);
             }
             throw new Exception("Comment does not exist");
         }
 
-        public List<Comment> GetAllComments()
+        public async Task<List<Comment>> GetAllCommentsAsync()
         {
-            return _repo.GetAllCommentsAsync();
+            return await _repo.GetAllCommentsAsync();
         }
 
-        public List<Comment> GetClubPostComments(int clubPostId)
+        public async Task<List<Comment>> GetClubPostCommentsAsync(int clubPostId)
         {
-            return _repo.GetCommentByClubPostAsync(clubPostId);
+            return await _repo.GetCommentByClubPostAsync(clubPostId);
         }
 
-        public Comment GetComment(Comment comment)
+        public async Task<Comment> GetCommentAsync(Comment comment)
         {
-            return _repo.GetCommentAsync(comment);
+            return await _repo.GetCommentAsync(comment);
         }
 
-        public Comment GetCommentById(int commentID)
+        public async Task<Comment> GetCommentByIdAsync(int commentID)
         {
-            return _repo.GetCommentByIdAsync(commentID);
+            return await _repo.GetCommentByIdAsync(commentID);
         }
 
-        public List<Comment> GetUserPostComments(int userPostId)
+        public async Task<List<Comment>> GetUserPostCommentsAsync(int userPostId)
         {
-            return _repo.GetCommentByUserPostAsync(userPostId);
+            return await _repo.GetCommentByUserPostAsync(userPostId);
         }
 
-        public Comment UpdateComment(Comment comment)
+        public async Task<Comment> UpdateCommentAsync(Comment comment)
         {
-            return _repo.UpdateCommentAsync(comment);
+            return await _repo.UpdateCommentAsync(comment);
         }
     }
 }

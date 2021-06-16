@@ -25,7 +25,7 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllFollowUser()
         {
-            return Ok(_FollowUserBL.GetAllFollowUser());
+            return Ok(_FollowUserBL.GetAllFollowUserAsync());
         }
 
         // GET api/<FollowUserController>/5
@@ -33,28 +33,28 @@ namespace BCWebUI.Controllers
         [Route("GetFollowingByUser/{email}")]
         public IActionResult GetFollowingByUser(string email)
         {
-            return Ok(_FollowUserBL.GetFollowingByUser(email));
+            return Ok(_FollowUserBL.GetFollowingByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByUser/{email}")]
         public IActionResult GetFollowersByUser(string email)
         {
-            return Ok(_FollowUserBL.GetFollowersByUser(email));
+            return Ok(_FollowUserBL.GetFollowersByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByUser/{followerEmail}/{followedEmail}")]
         public IActionResult IsFollowed(string followerEmail, string followedEmail)
         {
-            return Ok(_FollowUserBL.IsFollowing(followerEmail, followedEmail));
+            return Ok(_FollowUserBL.Async(followerEmail, followedEmail));
         }
 
         // POST api/<FollowUserController>
         [HttpPost]
         public IActionResult AddFollowUser([FromBody] FollowUser value)
         {
-            return Created("api/FollowUser", _FollowUserBL.AddFollowUser(value));
+            return Created("api/FollowUser", _FollowUserBL.AddFollowUserAsync(value));
         }
 
         // PUT api/<FollowUserController>/5
@@ -68,7 +68,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _FollowUserBL.DeleteFollowUser(id);
+            _FollowUserBL.DeleteFollowUserAsync(id);
             return NoContent();
         }
     }

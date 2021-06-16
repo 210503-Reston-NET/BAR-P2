@@ -25,7 +25,7 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllFollowClub()
         {
-            return Ok(_IFollowClubBL.GetAllFollowClub());
+            return Ok(_IFollowClubBL.GetAllFollowClubAsync());
         }
 
         // GET api/<FollowClubController>/5
@@ -33,21 +33,21 @@ namespace BCWebUI.Controllers
         [Route("GetFollowingByUser/{email}")]
         public IActionResult GetFollowingByUser(string email)
         {
-            return Ok(_IFollowClubBL.GetFollowingByUser(email));
+            return Ok(_IFollowClubBL.GetFollowingByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByClub/{id}")]
         public IActionResult GetFollowersByClub(int id)
         {
-            return Ok(_IFollowClubBL.GetFollowersByClub(id));
+            return Ok(_IFollowClubBL.GetFollowersByClubAsync(id));
         }
 
         // POST api/<FollowClubController>
         [HttpPost]
         public IActionResult AddFollowClub([FromBody] FollowClub value)
         {
-            return Created("api/FollowClub",_IFollowClubBL.AddFollowClub(value));
+            return Created("api/FollowClub",_IFollowClubBL.AddFollowClubAsync(value));
         }
 
         // PUT api/<FollowClubController>/5
@@ -61,7 +61,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _IFollowClubBL.DeleteFollowClub(id);
+            _IFollowClubBL.DeleteFollowClubAsync(id);
             return NoContent();
         }
     }

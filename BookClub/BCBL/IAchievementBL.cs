@@ -9,10 +9,9 @@ namespace BCBL
 {
    public interface IAchievementBL
     {
-        public Achievement AddAchievement(Achievement r);
-        public Achievement UpdateAchievement(Achievement r);
-        public Achievement GetAchievementByEmail(string email);
-
-        public List<Achievement> GetAchievements();
+        public Task<Achievement> AddAchievementAsync(Achievement r);
+        public Task<Achievement> UpdateAchievementAsync(Achievement r);
+        public Task<Achievement> GetAchievementByEmailAsync(string email);
+        public Task<List<Achievement>> GetAchievementsAsync();
     }
 }

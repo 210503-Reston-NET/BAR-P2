@@ -20,21 +20,21 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAchievements()
         {
-            return Ok(_bl.GetAchievements().ToList());
+            return Ok(_bl.GetAchievementsAsync().ToList());
         }
 
         // GET api/<AchievementController>/email
         [HttpGet("{id}")]
         public Achievement GetAchievementByEmail(string email)
         {
-            return _bl.GetAchievementByEmail(email);
+            return _bl.GetAchievementByEmailAsync(email);
         }
 
         // POST api/<AchievementController>
         [HttpPost]
         public void Post([FromBody] Achievement achievement)
         {
-            _bl.AddAchievement(achievement);
+            _bl.AddAchievementAsync(achievement);
         }
 
         // PUT api/<AchievementController>/5
@@ -42,7 +42,7 @@ namespace BCWebUI.Controllers
         public void Put(int id, [FromBody] Achievement achievement)
             
         {
-            _bl.UpdateAchievement(achievement);
+            _bl.UpdateAchievementAsync(achievement);
         }
 
         // DELETE api/<AchievementController>/5

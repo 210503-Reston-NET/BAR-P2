@@ -2,6 +2,7 @@
 using BCModel;
 using BCDL;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BCBL
 {
@@ -14,48 +15,48 @@ namespace BCBL
             _repo = repo;
         }
 
-        public BookClub AddBookClub(BookClub bookClub)
+        public async Task<BookClub> AddBookClubAsync(BookClub bookClub)
         {
-            if (_repo.GetBookClubAsync(bookClub) != null)
+            if (await _repo.GetBookClubAsync(bookClub) != null)
             {
                 throw new Exception("Book Club already exists");
             }
-            return _repo.AddBookClubAsync(bookClub);
+            return await _repo.AddBookClubAsync(bookClub);
         }
 
-        public BookClub DeleteBookClub(BookClub bookClub)
+        public async Task<BookClub> DeleteBookClubAsync(BookClub bookClub)
         {
-            BookClub toBeDeleted = _repo.GetBookClubAsync(bookClub);
+            BookClub toBeDeleted = await _repo.GetBookClubAsync(bookClub);
             if (toBeDeleted != null)
             {
-                return _repo.DeleteBookClubAsync(bookClub);
+                return await _repo.DeleteBookClubAsync(bookClub);
             }
             throw new Exception("Book Club does not exist");
         }
 
-        public List<BookClub> GetAllBookClubs()
+        public async Task<List<BookClub>> GetAllBookClubsAsync()
         {
-            return _repo.GetAllBookClubsAsync();
+            return await _repo.GetAllBookClubsAsync();
         }
 
-        public BookClub GetBookClub(BookClub bookClub)
+        public async Task<BookClub> GetBookClubAsync(BookClub bookClub)
         {
-            return _repo.GetBookClubAsync(bookClub);
+            return await _repo.GetBookClubAsync(bookClub);
         }
 
-        public List<BookClub> GetBookClubByBook(string bookId)
+        public async Task<List<BookClub>> GetBookClubByBookAsync(string bookId)
         {
-            return _repo.GetBookClubByBookAsync(bookId);
+            return await _repo.GetBookClubByBookAsync(bookId);
         }
 
-        public BookClub GetBookClubById(int bookClubId)
+        public async Task<BookClub> GetBookClubByIdAsync(int bookClubId)
         {
-            return _repo.GetBookClubByIdAsync(bookClubId);
+            return await _repo.GetBookClubByIdAsync(bookClubId);
         }
 
-        public BookClub UpdateBookClub(BookClub bookClub)
+        public async Task<BookClub> UpdateBookClubAsync(BookClub bookClub)
         {
-            return _repo.UpdateBookClubAsync(bookClub);
+            return await _repo.UpdateBookClubAsync(bookClub);
         }
     }
 }

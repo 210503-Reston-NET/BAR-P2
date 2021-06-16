@@ -9,10 +9,10 @@ namespace BCBL
 {
     public interface IFavoriteBookBL
     {
-        FavoriteBook AddBooksRead(FavoriteBook book);
-        List<FavoriteBook> GetAllBooksRead();
-        List<Book> GetBooksReadByUser(string email);
-        FavoriteBook UpdateBooksRead(FavoriteBook book);
-        FavoriteBook DeleteBooksRead(int id);
+        Task<FavoriteBook> AddBooksReadAsync(FavoriteBook book);
+        Task<List<FavoriteBook>> GetAllBooksReadAsync();
+        Task<List<Book>> GetBooksReadByUserAsync(string email);
+        Task<FavoriteBook> UpdateBooksReadAsync(FavoriteBook book);
+        Task<FavoriteBook> DeleteBooksReadAsync(int id);
     }
 }

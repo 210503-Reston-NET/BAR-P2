@@ -16,34 +16,34 @@ namespace BCBL
             _repo = repo;
         }
 
-        public FollowUser AddFollowUser(FollowUser followUser)
+        public async Task<FollowUser> AddFollowUserAsync(FollowUser followUser)
         {
-            return _repo.AddFollowUserAsync(followUser);
+            return await _repo.AddFollowUserAsync(followUser);
         }
 
-        public FollowUser DeleteFollowUser(int id)
+        public async Task<FollowUser> DeleteFollowUserAsync(int id)
         {
-            return _repo.DeleteFollowUserAsync(id);
+            return await _repo.DeleteFollowUserAsync(id);
         }
 
-        public List<FollowUser> GetAllFollowUser()
+        public async Task<List<FollowUser>> GetAllFollowUserAsync()
         {
-            return _repo.GetAllFollowUserAsync();
+            return await _repo.GetAllFollowUserAsync();
         }
 
-        public List<User> GetFollowersByUser(string email)
+        public async Task<List<User>> GetFollowersByUserAsync(string email)
         {
-            return _repo.GetFollowersByUserAsync(email);
+            return await _repo.GetFollowersByUserAsync(email);
         }
 
-        public List<User> GetFollowingByUser(string email)
+        public async Task<List<User>> GetFollowingByUserAsync(string email)
         {
-            return _repo.GetFollowingByUserAsync(email);
+            return await _repo.GetFollowingByUserAsync(email);
         }
 
-        public bool IsFollowing(string followerEmail, string followedEmail)
+        public async Task<bool> IsFollowingAsync(string followerEmail, string followedEmail)
         {
-            return _repo.IsFollowingAsync(followerEmail, followedEmail);
+            return await _repo.IsFollowingAsync(followerEmail, followedEmail);
         }
     }
 }

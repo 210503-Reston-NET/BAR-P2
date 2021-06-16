@@ -1,10 +1,7 @@
-﻿using BCModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BCDL;
+using BCModel;
 
 namespace BCBL
 {
@@ -17,24 +14,24 @@ namespace BCBL
             _repo = repo;
         }
 
-        public Category AddCategory(Category category)
+        public async Task<Category> AddCategoryAsync(Category category)
         {
-            return _repo.AddCategoryAsync(category);
+            return await _repo.AddCategoryAsync(category);
         }
 
-        public Category DeleteCategory(string name)
+        public async Task<Category> DeleteCategoryAsync(string name)
         {
-            return _repo.DeleteCategoryAsync(name);
+            return await _repo.DeleteCategoryAsync(name);
         }
 
-        public List<Category> GetAllCategories()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return _repo.GetAllCategoriesAsync();
+            return await _repo.GetAllCategoriesAsync();
         }
 
-        public Category GetCategory(string name)
+        public async Task<Category> GetCategoryAsync(string name)
         {
-            return _repo.GetCategoryAsync(name);
+            return await _repo.GetCategoryAsync(name);
         }
     }
 }

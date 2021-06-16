@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCBL
 {
     public interface IBookClubBL
     {
-        BookClub AddBookClub(BookClub bookClub);
-        BookClub GetBookClub(BookClub bookClub);
-        BookClub GetBookClubById(int bookClubId);
-        List<BookClub> GetBookClubByBook(string bookId);
-        List<BookClub> GetAllBookClubs();
-        BookClub DeleteBookClub(BookClub bookClub);
-        BookClub UpdateBookClub(BookClub bookClub);
+        Task<BookClub> AddBookClubAsync(BookClub bookClub);
+        Task<BookClub> GetBookClubAsync(BookClub bookClub);
+        Task<BookClub> GetBookClubByIdAsync(int bookClubId);
+        Task<List<BookClub>> GetBookClubByBookAsync(string bookId);
+        Task<List<BookClub>> GetAllBookClubsAsync();
+        Task<BookClub> DeleteBookClubAsync(BookClub bookClub);
+        Task<BookClub> UpdateBookClubAsync(BookClub bookClub);
     }
 }

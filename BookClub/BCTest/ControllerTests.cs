@@ -17,7 +17,7 @@ namespace BCTest
         public void BookControllerShouldReturnList()
         {
             var mockBL = new Mock<IBookBL>();
-            mockBL.Setup(x => x.GetAllBooks()).Returns(
+            mockBL.Setup(x => x.GetAllBooksAsync()).Returns(
                 new List<Book>
                 {
                     new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"),
@@ -38,7 +38,7 @@ namespace BCTest
         public void BookControllerShouldReturnBook()
         {
             var mockBL = new Mock<IBookBL>();
-            mockBL.Setup(x => x.GetBookByISBN("123456789")).Returns(new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"));
+            mockBL.Setup(x => x.GetBookByISBNAsync("123456789")).Returns(new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"));
 
             var controller = new BookController(mockBL.Object);
             var result = controller.GetBookByISBN("123456789");
@@ -53,7 +53,7 @@ namespace BCTest
         public void BookControllerShouldReturnBookByTitle()
         {
             var mockBL = new Mock<IBookBL>();
-            mockBL.Setup(x => x.GetBookByTitle("Harry Potter")).Returns(new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"));
+            mockBL.Setup(x => x.GetBookByTitleAsync("Harry Potter")).Returns(new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"));
 
             var controller = new BookController(mockBL.Object);
             var result = controller.GetBookByTitle("Harry Potter");
@@ -68,7 +68,7 @@ namespace BCTest
         public void BookControllerShouldReturnBookByAuthor()
         {
             var mockBL = new Mock<IBookBL>();
-            mockBL.Setup(x => x.GetBookByAuthor("JK Rowling")).Returns(
+            mockBL.Setup(x => x.GetBookByAuthorAsync("JK Rowling")).Returns(
                 new List<Book>
                 {
                 new Book("135798642", "Harry Potter 2", "JK Rowling", "Fantasy"),
@@ -88,7 +88,7 @@ namespace BCTest
         public void BookClubControllerShouldReturnList()
         {
             var mockBL = new Mock<IBookClubBL>();
-            mockBL.Setup(x => x.GetAllBookClubs()).Returns(
+            mockBL.Setup(x => x.GetAllBookClubsAsync()).Returns(
                 new List<BookClub>
                 {
                     new BookClub("Harry Potter", "Good Reads", "123456789", "bryce.zimbelman@revature.net"),
@@ -109,7 +109,7 @@ namespace BCTest
         public void BookClubControllerShouldReturnBookClub()
         {
             var mockBL = new Mock<IBookClubBL>();
-            mockBL.Setup(x => x.GetBookClubById(1)).Returns(new BookClub("Harry Potter", "Good Reads", "123456789", "bryce.zimbelman@revature.net"));
+            mockBL.Setup(x => x.GetBookClubByIdAsync(1)).Returns(new BookClub("Harry Potter", "Good Reads", "123456789", "bryce.zimbelman@revature.net"));
 
             var controller = new BookClubController(mockBL.Object);
             var result = controller.GetBookClubById(1);
@@ -124,7 +124,7 @@ namespace BCTest
         public void BookClubControllerShouldReturnBookClubByBook()
         {
             var mockBL = new Mock<IBookClubBL>();
-            mockBL.Setup(x => x.GetBookClubByBook("123456789")).Returns(
+            mockBL.Setup(x => x.GetBookClubByBookAsync("123456789")).Returns(
                 new List<BookClub>
                 {
                 new BookClub("Harry Potter 2", "Ok Reads", "123456789", "bryce.zimbelman@icloud.com"),
@@ -144,7 +144,7 @@ namespace BCTest
         public void BooksReadControllerShouldReturnList()
         {
             var mockBL = new Mock<IBooksReadBL>();
-            mockBL.Setup(x => x.GetAllBooksRead()).Returns(
+            mockBL.Setup(x => x.GetAllBooksReadAsync()).Returns(
                 new List<BooksRead>
                 {
                     new BooksRead("bryce.zimbelman@revature.net", "123456789", 50),
@@ -165,7 +165,7 @@ namespace BCTest
         public void BooksReadControllerShouldReturnBooks()
         {
             var mockBL = new Mock<IBooksReadBL>();
-            mockBL.Setup(x => x.GetBooksReadByUser("bryce.zimbelman@revature.net")).Returns(
+            mockBL.Setup(x => x.GetBooksReadByUserAsync("bryce.zimbelman@revature.net")).Returns(
                 new List<Book>
                 {
                     new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"),
@@ -186,7 +186,7 @@ namespace BCTest
         public void BooksToReadControllerShouldReturnList()
         {
             var mockBL = new Mock<IBooksToReadBL>();
-            mockBL.Setup(x => x.GetAllBooksRead()).Returns(
+            mockBL.Setup(x => x.GetAllBooksReadAsync()).Returns(
                 new List<BooksToRead>
                 {
                     new BooksToRead("bryce.zimbelman@revature.net", "123456789"),
@@ -207,7 +207,7 @@ namespace BCTest
         public void BooksToReadControllerShouldReturnBooks()
         {
             var mockBL = new Mock<IBooksToReadBL>();
-            mockBL.Setup(x => x.GetBooksReadByUser("bryce.zimbelman@revature.net")).Returns(
+            mockBL.Setup(x => x.GetBooksReadByUserAsync("bryce.zimbelman@revature.net")).Returns(
                 new List<Book>
                 {
                     new Book("123456789", "Harry Potter", "JK Rowling", "Fantasy"),
@@ -228,7 +228,7 @@ namespace BCTest
         public void CategoryControllerShouldReturnList()
         {
             var mockBL = new Mock<ICategoryBL>();
-            mockBL.Setup(x => x.GetAllCategories()).Returns(
+            mockBL.Setup(x => x.GetAllCategoriesAsync()).Returns(
                 new List<Category>
                 {
                     new Category("Horor"),
@@ -249,7 +249,7 @@ namespace BCTest
         public void CategoryControllerShouldReturnCategory()
         {
             var mockBL = new Mock<ICategoryBL>();
-            mockBL.Setup(x => x.GetCategory("horror")).Returns(
+            mockBL.Setup(x => x.GetCategoryAsync("horror")).Returns(
                 new Category("horror")
                 );
 
@@ -266,7 +266,7 @@ namespace BCTest
         public void ClubPostControllerShouldReturnList()
         {
             var mockBL = new Mock<IClubPostBL>();
-            mockBL.Setup(x => x.GetAllClubPosts()).Returns(
+            mockBL.Setup(x => x.GetAllClubPostsAsync()).Returns(
                 new List<ClubPost>
                 {
                     new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime()),
@@ -287,7 +287,7 @@ namespace BCTest
         public void ClubPostControllerShouldReturnClubPost()
         {
             var mockBL = new Mock<IClubPostBL>();
-            mockBL.Setup(x => x.GetClubPostById(1)).Returns(
+            mockBL.Setup(x => x.GetClubPostByIdAsync(1)).Returns(
                 new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime())
                 );
 
@@ -304,7 +304,7 @@ namespace BCTest
         public void ClubPostControllerShouldReturnClubPostByBookClub()
         {
             var mockBL = new Mock<IClubPostBL>();
-            mockBL.Setup(x => x.GetClubPostByBookClub(1)).Returns(
+            mockBL.Setup(x => x.GetClubPostByBookClubAsync(1)).Returns(
                 new List<ClubPost>
                 {
                 new ClubPost("bryce.zimbelman@icloud.com", "Gets Better", 1, 10, 2, new DateTime()),
@@ -324,7 +324,7 @@ namespace BCTest
         public void CommentControllerShouldReturnList()
         {
             var mockBL = new Mock<ICommentBL>();
-            mockBL.Setup(x => x.GetAllComments()).Returns(
+            mockBL.Setup(x => x.GetAllCommentsAsync()).Returns(
                 new List<Comment>
                 {
                     new Comment("bryce.zimbelman@icloud.com", 1, 0, "Good Read"),
@@ -345,7 +345,7 @@ namespace BCTest
         public void CommentControllerShouldReturnComment()
         {
             var mockBL = new Mock<ICommentBL>();
-            mockBL.Setup(x => x.GetCommentById(1)).Returns(
+            mockBL.Setup(x => x.GetCommentByIdAsync(1)).Returns(
                 new Comment("bryce.zimbelman@icloud.com", 1, 0, "Good Read")
                 );
 
@@ -362,7 +362,7 @@ namespace BCTest
         public void CommentControllerShouldReturnUserPostComments()
         {
             var mockBL = new Mock<ICommentBL>();
-            mockBL.Setup(x => x.GetUserPostComments(1)).Returns(
+            mockBL.Setup(x => x.GetUserPostCommentsAsync(1)).Returns(
                 new List<Comment>
                 {
                 new Comment("bryce.zimbelman@revature.net", 1, 0, "Poor Read"),
@@ -382,7 +382,7 @@ namespace BCTest
         public void CommentControllerShouldReturnClubPostComments()
         {
             var mockBL = new Mock<ICommentBL>();
-            mockBL.Setup(x => x.GetClubPostComments(1)).Returns(
+            mockBL.Setup(x => x.GetClubPostCommentsAsync(1)).Returns(
                 new List<Comment>
                 {
                 new Comment("bryce.zimbelman@revature.net", 0, 1, "Poor Read"),
@@ -402,7 +402,7 @@ namespace BCTest
         public void FavoriteBookControllerShouldReturnList()
         {
             var mockBL = new Mock<IFavoriteBookBL>();
-            mockBL.Setup(x => x.GetAllBooksRead()).Returns(
+            mockBL.Setup(x => x.GetAllBooksReadAsync()).Returns(
                 new List<FavoriteBook>
                 {
                     new FavoriteBook("bryce.zimbelman@icloud.com", "12356789"),
@@ -423,7 +423,7 @@ namespace BCTest
         public void FavoriteBookControllerShouldReturnFavoriteBook()
         {
             var mockBL = new Mock<IFavoriteBookBL>();
-            mockBL.Setup(x => x.GetBooksReadByUser("bryce.zimbelman@icloud.com")).Returns(
+            mockBL.Setup(x => x.GetBooksReadByUserAsync("bryce.zimbelman@icloud.com")).Returns(
                 new List<Book>
                 {
 
@@ -445,7 +445,7 @@ namespace BCTest
         public void FollowClubControllerShouldReturnList()
         {
             var mockBL = new Mock<IFollowClubBL>();
-            mockBL.Setup(x => x.GetAllFollowClub()).Returns(
+            mockBL.Setup(x => x.GetAllFollowClubAsync()).Returns(
                 new List<FollowClub>
                 {
                     new FollowClub("bryce.zimbelman@icloud.com", 1),
@@ -466,7 +466,7 @@ namespace BCTest
         public void FollowClubControllerShouldReturnClubsFollowed()
         {
             var mockBL = new Mock<IFollowClubBL>();
-            mockBL.Setup(x => x.GetFollowingByUser("bryce.zimbelman@icloud.com")).Returns(
+            mockBL.Setup(x => x.GetFollowingByUserAsync("bryce.zimbelman@icloud.com")).Returns(
                 new List<BookClub>
                 {
 
@@ -488,7 +488,7 @@ namespace BCTest
         public void FollowUserControllerShouldReturnList()
         {
             var mockBL = new Mock<IFollowUserBL>();
-            mockBL.Setup(x => x.GetAllFollowUser()).Returns(
+            mockBL.Setup(x => x.GetAllFollowUserAsync()).Returns(
                 new List<FollowUser>
                 {
                     new FollowUser("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net"),
@@ -509,7 +509,7 @@ namespace BCTest
         public void FollowUserControllerShouldReturnUsersFollowed()
         {
             var mockBL = new Mock<IFollowUserBL>();
-            mockBL.Setup(x => x.GetFollowersByUser("bryce.zimbelman@icloud.com")).Returns(
+            mockBL.Setup(x => x.GetFollowersByUserAsync("bryce.zimbelman@icloud.com")).Returns(
                 new List<User>
                 {
 
@@ -531,7 +531,7 @@ namespace BCTest
         public void UserControllerShouldReturnList()
         {
             var mockBL = new Mock<IUserBL>();
-            mockBL.Setup(x => x.GetAllUsers()).Returns(
+            mockBL.Setup(x => x.GetAllUsersAsync()).Returns(
                 new List<User>
                 {
 
@@ -553,7 +553,7 @@ namespace BCTest
         public void UserControllerShouldReturnUser()
         {
             var mockBL = new Mock<IUserBL>();
-            mockBL.Setup(x => x.GetUserByEmail("bryce.zimbelman@icloud.com")).Returns(new User("bryce.zimbelman@icloud.com", "Password", "13590 SW Electric St", 5));
+            mockBL.Setup(x => x.GetUserByEmailAsync("bryce.zimbelman@icloud.com")).Returns(new User("bryce.zimbelman@icloud.com", "Password", "13590 SW Electric St", 5));
 
             var controller = new UserController(mockBL.Object);
             var result = controller.GetUserByEmail("bryce.zimbelman@icloud.com");
@@ -568,7 +568,7 @@ namespace BCTest
         public void UserPostControllerShouldReturnList()
         {
             var mockBL = new Mock<IUserPostBL>();
-            mockBL.Setup(x => x.GetAllUserPosts()).Returns(
+            mockBL.Setup(x => x.GetAllUserPostsAsync()).Returns(
                 new List<UserPost>
                 {
 
@@ -590,7 +590,7 @@ namespace BCTest
         public void UserPostControllerShouldReturnUserPost()
         {
             var mockBL = new Mock<IUserPostBL>();
-            mockBL.Setup(x => x.GetUserPostById(1)).Returns(new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5, new DateTime()));
+            mockBL.Setup(x => x.GetUserPostByIdAsync(1)).Returns(new UserPost("bryce.zimbelman@revature.net", "Good Reads", 1, 5, new DateTime()));
 
             var controller = new UserPostController(mockBL.Object);
             var result = controller.GetUserPostById(1);
@@ -605,7 +605,7 @@ namespace BCTest
         public void UserPostControllerShouldReturnUserPostByUser()
         {
             var mockBL = new Mock<IUserPostBL>();
-            mockBL.Setup(x => x.GetUserPostByUser("bryce.zimbelman@revature.net")).Returns(
+            mockBL.Setup(x => x.GetUserPostByUserAsync("bryce.zimbelman@revature.net")).Returns(
                 new List<UserPost>
                 {
                 new UserPost("bryce.zimbelman@revature.net", "Poor Reads", 0, 10, new DateTime()),

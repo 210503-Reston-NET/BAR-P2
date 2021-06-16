@@ -9,10 +9,10 @@ namespace BCBL
 {
     public interface IFollowClubBL
     {
-        FollowClub AddFollowClub(FollowClub followClub);
-        List<FollowClub> GetAllFollowClub();
-        List<BookClub> GetFollowingByUser(string email);
-        FollowClub DeleteFollowClub(int id);
-        List<User> GetFollowersByClub(int id);
+        Task<FollowClub> AddFollowClubAsync(FollowClub followClub);
+        Task<List<FollowClub>> GetAllFollowClubAsync();
+        Task<List<BookClub>> GetFollowingByUserAsync(string email);
+        Task<FollowClub> DeleteFollowClubAsync(int id);
+        Task<List<User>> GetFollowersByClubAsync(int id);
     }
 }

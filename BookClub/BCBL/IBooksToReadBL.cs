@@ -9,10 +9,10 @@ namespace BCBL
 {
     public interface IBooksToReadBL
     {
-        BooksToRead AddBooksRead(BooksToRead book);
-        List<BooksToRead> GetAllBooksRead();
-        List<Book> GetBooksReadByUser(string email);
-        BooksToRead UpdateBooksRead(BooksToRead book);
-        BooksToRead DeleteBooksRead(int id);
+        Task<BooksToRead> AddBooksReadAsync(BooksToRead book);
+        Task<List<BooksToRead>> GetAllBooksReadAsync();
+        Task<List<Book>> GetBooksReadByUserAsync(string email);
+        Task<BooksToRead> UpdateBooksReadAsync(BooksToRead book);
+        Task<BooksToRead> DeleteBooksReadAsync(int id);
     }
 }

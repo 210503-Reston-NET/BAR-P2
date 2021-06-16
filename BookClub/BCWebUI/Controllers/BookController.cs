@@ -27,14 +27,14 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllBooks()
         {
-            return Ok(_IbookBL.GetAllBooks());
+            return Ok(_IbookBL.GetAllBooksAsync());
         }
 
         // GET api/<BookController>/5
         [HttpGet("{isbn}")]
         public IActionResult GetBookByISBN(string isbn)
         {
-            return Ok(_IbookBL.GetBookByISBN(isbn));
+            return Ok(_IbookBL.GetBookByISBNAsync(isbn));
         }
 
         // Get
@@ -42,7 +42,7 @@ namespace BCWebUI.Controllers
         [Route("bookByAuthor/{author}")]
         public IActionResult GetBookByAuthor(string author)
         {
-            return Ok(_IbookBL.GetBookByAuthor(author));
+            return Ok(_IbookBL.GetBookByAuthorAsync(author));
         }
 
         // Get
@@ -50,21 +50,21 @@ namespace BCWebUI.Controllers
         [Route("bookByTitle/{title}")]
         public IActionResult GetBookByTitle(string title)
         {
-            return Ok(_IbookBL.GetBookByTitle(title));
+            return Ok(_IbookBL.GetBookByTitleAsync(title));
         }
 
         // POST api/<BookController>
         [HttpPost]
         public IActionResult AddBook([FromBody]Book book)
         {
-            return Created("api/Book", _IbookBL.AddBook(book));
+            return Created("api/Book", _IbookBL.AddBookAsync(book));
         }
 
         // PUT api/<BookController>/5
         [HttpPut("{isbn}")]
         public IActionResult UpdateBook(string isbn, [FromBody]Book book)
         {
-            _IbookBL.UpdateBook(book);
+            _IbookBL.UpdateBookasync(book);
             return NoContent();
         }
 
@@ -73,7 +73,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{isbn}")]
         public IActionResult Delete(string isbn)
         {
-            _IbookBL.DeleteBook(isbn);
+            _IbookBL.DeleteBookAsync(isbn);
             return NoContent();
         }
     }

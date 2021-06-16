@@ -25,28 +25,28 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllBooksRead()
         {
-            return Ok(_IbookBL.GetAllBooksRead());
+            return Ok(_IbookBL.GetAllBooksReadAsync());
         }
 
         // GET api/<BooksReadController>/5
         [HttpGet("{email}")]
         public IActionResult GetBooksReadByUser(string email)
         {
-            return Ok(_IbookBL.GetBooksReadByUser(email));
+            return Ok(_IbookBL.GetBooksReadByUserAsync(email));
         }
 
         // POST api/<BooksReadController>
         [HttpPost]
         public IActionResult AddBooksRead([FromBody] FavoriteBook value)
         {
-            return Created("api/BooksRead", _IbookBL.AddBooksRead(value));
+            return Created("api/BooksRead", _IbookBL.AddBooksReadAsync(value));
         }
 
         // PUT api/<BooksReadController>/5
         [HttpPut("{id}")]
         public IActionResult UpdateBooksRead(int id, [FromBody] FavoriteBook value)
         {
-            _IbookBL.UpdateBooksRead(value);
+            _IbookBL.UpdateBooksReadAsync(value);
             return NoContent();
         }
 
@@ -54,7 +54,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBooksRead(int id)
         {
-            _IbookBL.DeleteBooksRead(id);
+            _IbookBL.DeleteBooksReadAsync(id);
             return NoContent();
         }
     }

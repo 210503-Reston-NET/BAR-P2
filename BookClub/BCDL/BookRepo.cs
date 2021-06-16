@@ -64,7 +64,7 @@ namespace BCDL
             return book;
         }
 
-        public async void DeleteBookAsync(string isbn)
+        public async Task<Book> DeleteBookAsync(string isbn)
         {
             Book toBeDeleted = await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.ISBN == isbn);
 
@@ -72,7 +72,11 @@ namespace BCDL
             {
                 _context.Books.Remove(toBeDeleted);
                 await _context.SaveChangesAsync();
+
+                return toBeDeleted;
             }
+
+            throw new Exception("Book does not exist");
         }
 
         public async Task<bool> BookExistsAsync(string isbn)

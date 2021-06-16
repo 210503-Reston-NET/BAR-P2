@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCBL
 {
     public interface IClubPostLikesBL
     {
-        ClubPostLikes AddClubPostLike(ClubPostLikes clubPostLike);
-        ClubPostLikes GetClubPostLike(ClubPostLikes clubPostLike);
-        List<ClubPostLikes> GetAllClubPostLikes();
-        List<ClubPostLikes> GetClubPostLikesByClubPost(int clubPostId);
-        ClubPostLikes GetClubPostLikesById(int Id);
+        Task<ClubPostLikes> AddClubPostLikeAsync(ClubPostLikes clubPostLike);
+        Task<ClubPostLikes> GetClubPostLikeAsync(ClubPostLikes clubPostLike);
+        Task<List<ClubPostLikes>> GetAllClubPostLikesAsync();
+        Task<List<ClubPostLikes>> GetClubPostLikesByClubPostAsync(int clubPostId);
+        Task<ClubPostLikes> GetClubPostLikesByIdAsync(int Id);
     }
 }

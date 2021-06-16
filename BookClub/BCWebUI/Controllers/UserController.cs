@@ -20,28 +20,28 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllUsers()
         {
-            return Ok(_userBL.GetAllUsers().ToList());
+            return Ok(_userBL.GetAllUsersAsync().ToList());
         }
 
         // GET api/<UserController>/5
         [HttpGet("{email}")]
         public IActionResult GetUserByEmail(string email)
         {
-            return Ok(_userBL.GetUserByEmail(email));
+            return Ok(_userBL.GetUserByEmailAsync(email));
         }
 
         // POST api/<UserController>
         [HttpPost]
         public IActionResult AddUser([FromBody] User newUser)
         {
-            return Created("api/User", _userBL.AddUser(newUser));
+            return Created("api/User", _userBL.AddUserAsync(newUser));
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{email}")]
         public IActionResult UpdateUser(string email, [FromBody] User newUser)
         {
-            _userBL.UpdateUser(newUser);
+            _userBL.UpdateUserAsync(newUser);
             return NoContent();
         }
     }

@@ -24,35 +24,35 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllUserPosts()
         {
-            return Ok(_userPostBL.GetAllUserPosts());
+            return Ok(_userPostBL.GetAllUserPostsAsync());
         }
 
         // GET: api/UserPost/5
         [HttpGet("{id}")]
         public IActionResult GetUserPostById(int id)
         {
-            return Ok(_userPostBL.GetUserPostById(id));
+            return Ok(_userPostBL.GetUserPostByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetUserPostByUser/{userEmail}")]
         public IActionResult GetUserPostByUser(string userEmail)
         {
-            return Ok(_userPostBL.GetUserPostByUser(userEmail));
+            return Ok(_userPostBL.GetUserPostByUserAsync(userEmail));
         }
 
         // POST: api/UserPost
         [HttpPost]
         public IActionResult AddNewUserPost([FromBody] UserPost newUserPost)
         {
-            return Created("api/UserPost", _userPostBL.AddUserPost(newUserPost));
+            return Created("api/UserPost", _userPostBL.AddUserPostAsync(newUserPost));
         }
 
         // PUT: api/UserPost/5
         [HttpPut("{id}")]
         public IActionResult UpdateUserPost(int id, [FromBody] UserPost updatedUserPost)
         {
-            _userPostBL.UpdateUserPost(updatedUserPost);
+            _userPostBL.UpdateUserPostAsync(updatedUserPost);
             return NoContent();
         }
 
@@ -60,7 +60,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUserPost(int id)
         {
-            _userPostBL.DeleteUserPost(_userPostBL.GetUserPostById(id));
+            _userPostBL.DeleteUserPost(_userPostBL.GetUserPostByIdAsync(id));
             return NoContent();
         }
     }

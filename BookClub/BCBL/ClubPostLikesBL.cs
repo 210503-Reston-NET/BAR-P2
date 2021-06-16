@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BCModel;
 using BCDL;
+using System.Threading.Tasks;
 
 namespace BCBL
 {
@@ -13,29 +14,29 @@ namespace BCBL
             _repo = repo;
         }
 
-        public ClubPostLikes AddClubPostLike(ClubPostLikes clubPostLike)
+        public async Task<ClubPostLikes> AddClubPostLikeAsync(ClubPostLikes clubPostLike)
         {
-            return _repo.AddClubPostLikeAsync(clubPostLike);
+            return await _repo.AddClubPostLikeAsync(clubPostLike);
         }
 
-        public List<ClubPostLikes> GetAllClubPostLikes()
+        public async Task<List<ClubPostLikes>> GetAllClubPostLikesAsync()
         {
-            return _repo.GetAllClubPostLikesAsync();
+            return await _repo.GetAllClubPostLikesAsync();
         }
 
-        public ClubPostLikes GetClubPostLike(ClubPostLikes clubPostLike)
+        public async Task<ClubPostLikes> GetClubPostLikeAsync(ClubPostLikes clubPostLike)
         {
-            return _repo.GetClubPostLikeAsync(clubPostLike);
+            return await _repo.GetClubPostLikeAsync(clubPostLike);
         }
 
-        public List<ClubPostLikes> GetClubPostLikesByClubPost(int clubPostId)
+        public async Task<List<ClubPostLikes>> GetClubPostLikesByClubPostAsync(int clubPostId)
         {
-            return _repo.GetClubPostLikesByClubPostAsync(clubPostId);
+            return await _repo.GetClubPostLikesByClubPostAsync(clubPostId);
         }
 
-        public ClubPostLikes GetClubPostLikesById(int id)
+        public async Task<ClubPostLikes> GetClubPostLikesByIdAsync(int id)
         {
-            return _repo.GetClubPostLikesByIdAsync(id);
+            return await _repo.GetClubPostLikesByIdAsync(id);
         }
     }
 }

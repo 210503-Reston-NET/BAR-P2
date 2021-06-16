@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BCModel;
 using BCDL;
+using System.Threading.Tasks;
 
 namespace BCBL
 {
@@ -13,34 +14,34 @@ namespace BCBL
             _repo = repo;
         }
 
-        public CommentLikes AddCommentLikes(CommentLikes commentLike)
+        public async Task<CommentLikes> AddCommentLikesAsync(CommentLikes commentLike)
         {
-            return _repo.AddCommentLikesAsync(commentLike);
+            return await _repo.AddCommentLikesAsync(commentLike);
         }
 
-        public List<CommentLikes> GetAllCommentLikes()
+        public async Task<List<CommentLikes>> GetAllCommentLikesAsync()
         {
-            return _repo.GetAllCommentLikesAsync();
+            return await _repo.GetAllCommentLikesAsync();
         }
 
-        public CommentLikes GetCommentLike(CommentLikes commentLike)
+        public async Task<CommentLikes> GetCommentLikeAsync(CommentLikes commentLike)
         {
-            return _repo.GetCommentLikeAsync(commentLike);
+            return await _repo.GetCommentLikeAsync(commentLike);
         }
 
-        public List<CommentLikes> GetCommentLikesByClubPost(int clubPostId)
+        public async Task<List<CommentLikes>> GetCommentLikesByClubPostAsync(int clubPostId)
         {
-            return _repo.GetCommentLikesByClubPostAsync(clubPostId);
+            return await _repo.GetCommentLikesByClubPostAsync(clubPostId);
         }
 
-        public CommentLikes GetCommentLikesById(int id)
+        public async Task<CommentLikes> GetCommentLikesByIdAsync(int id)
         {
-            return _repo.GetCommentLikesByIdAsync(id);
+            return await _repo.GetCommentLikesByIdAsync(id);
         }
 
-        public List<CommentLikes> GetCommentLikesByUserPost(int userPostId)
+        public async Task<List<CommentLikes>> GetCommentLikesByUserPostAsync(int userPostId)
         {
-            return _repo.GetCommentLikesByUserPostAsync(userPostId);
+            return await _repo.GetCommentLikesByUserPostAsync(userPostId);
         }
     }
 }

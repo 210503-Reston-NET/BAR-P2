@@ -21,7 +21,7 @@ namespace BCDL
 
         Task<Book> UpdateBookAsync(Book book);
 
-        void DeleteBookAsync(string isbn);
+        Task<Book> DeleteBookAsync(string isbn);
 
         Task<bool> BookExistsAsync(string isbn);
     }

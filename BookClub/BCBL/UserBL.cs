@@ -13,29 +13,29 @@ namespace BCBL
         private readonly IUserRepo _userRepo;
         public UserBL(IUserRepo userRepo) { this._userRepo = userRepo; }
 
-        public User AddUser(User u)
+        public async Task<User> AddUserAsync(User user)
         {
-            return _userRepo.AddUserAsync(u);
+            return await _userRepo.AddUserAsync(user);
         }
 
-        public List<User> GetAllUsers()
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            return _userRepo.GetAllUsersAsync();
+            return await _userRepo.GetAllUsersAsync();
         }
 
-        public User GetUserByEmail(string email)
+        public async Task<User> GetUserByEmailAsync(string email)
         {
-            return _userRepo.GetUserByEmailAsync(email);
+            return await _userRepo.GetUserByEmailAsync(email);
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return _userRepo.GetAllUsersAsync();
+            return await _userRepo.GetAllUsersAsync();
         }
 
-        public User UpdateUser(User u)
+        public async Task<User> UpdateUserAsync(User user)
         {
-            return _userRepo.UpdateUserAsync(u);
+            return await _userRepo.UpdateUserAsync(user);
         }
     }
 }

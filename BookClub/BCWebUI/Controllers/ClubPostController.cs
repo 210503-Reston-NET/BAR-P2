@@ -25,21 +25,21 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllClubPosts()
         {
-            return Ok(_clubPostBL.GetAllClubPosts());
+            return Ok(_clubPostBL.GetAllClubPostsAsync());
         }
 
         // GET: api/ClubPost/5
         [HttpGet("GetClubPostByBookClub/{bookClubId}")]
         public IActionResult GetClubPostByBookClub(int bookClubId)
         {
-            return Ok(_clubPostBL.GetClubPostByBookClub(bookClubId));
+            return Ok(_clubPostBL.GetClubPostByBookClubAsync(bookClubId));
         }
 
         //Get
         [HttpGet("{id}")]
         public IActionResult GetClubPostById(int id)
         {
-            return Ok(_clubPostBL.GetClubPostById(id));
+            return Ok(_clubPostBL.GetClubPostByIdAsync(id));
         }
 
         // POST: api/ClubPost
@@ -55,7 +55,7 @@ namespace BCWebUI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.UpdateClubPost(updatedClubPost);
+            _clubPostBL.UpdateClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
@@ -63,7 +63,7 @@ namespace BCWebUI.Controllers
         [HttpPut("DislikeClubPost/{id}")]
         public IActionResult DislikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.DislikeClubPost(updatedClubPost);
+            _clubPostBL.DislikeClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
@@ -71,7 +71,7 @@ namespace BCWebUI.Controllers
         [HttpPut("LikeClubPost/{id}")]
         public IActionResult LikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.LikeClubPost(updatedClubPost);
+            _clubPostBL.LikeClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
@@ -79,7 +79,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteClubPost(int id)
         {
-            _clubPostBL.DeleteClubPost(_clubPostBL.GetClubPostById(id));
+            _clubPostBL.DeleteClubPost(_clubPostBL.GetClubPostByIdAsync(id));
             return NoContent();
         }
     }

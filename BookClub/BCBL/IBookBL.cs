@@ -9,18 +9,18 @@ namespace BCBL
 {
     public interface IBookBL
     {
-        Book AddBook(Book book);
+        Task<Book> AddBookAsync(Book book);
 
-        List<Book> GetAllBooks();
+        Task<List<Book>> GetAllBooksAsync();
 
-        List<Book> GetBookByAuthor(string author);
+        Task<List<Book>> GetBookByAuthorAsync(string author);
 
-        Book GetBookByISBN(string isbn);
+        Task<Book> GetBookByISBNAsync(string isbn);
 
-        Book GetBookByTitle(string title);
+        Task<Book> GetBookByTitleAsync(string title);
 
-        Book UpdateBook(Book book);
+        Task<Book> UpdateBookAsync(Book book);
 
-        void DeleteBook(string isbn);
+        Task<Book> DeleteBookAsync(string isbn);
     }
 }

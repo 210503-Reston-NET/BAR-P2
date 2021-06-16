@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 namespace BCBL
 {
     public interface ICommentBL
     {
-        Comment AddComment(Comment comment);
-        Comment GetComment(Comment comment);
-        Comment GetCommentById(int commentID);
-        List<Comment> GetUserPostComments(int userPostId);
-        List<Comment> GetClubPostComments(int clubPostId);
-        List<Comment> GetAllComments();
-        Comment DeleteComment(Comment comment);
-        Comment UpdateComment(Comment comment);
+        Task<Comment> AddCommentAsync(Comment comment);
+        Task<Comment> GetCommentAsync(Comment comment);
+        Task<Comment> GetCommentByIdAsync(int commentID);
+        Task<List<Comment>> GetUserPostCommentsAsync(int userPostId);
+        Task<List<Comment>> GetClubPostCommentsAsync(int clubPostId);
+        Task<List<Comment>> GetAllCommentsAsync();
+        Task<Comment> DeleteCommentAsync(Comment comment);
+        Task<Comment> UpdateCommentAsync(Comment comment);
     }
 }

@@ -24,21 +24,21 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllCategories()
         {
-            return Ok(_IcategoryBL.GetAllCategories());
+            return Ok(_IcategoryBL.GetAllCategoriesAsync());
         }
 
         // GET api/<CategoryController>/5
         [HttpGet("{name}")]
         public IActionResult GetCategory(string name)
         {
-            return Ok(_IcategoryBL.GetCategory(name));
+            return Ok(_IcategoryBL.GetCategoryAsync(name));
         }
 
         // POST api/<CategoryController>
         [HttpPost]
         public IActionResult AddCategory([FromBody] Category value)
         {
-            return Created("api/Category", _IcategoryBL.AddCategory(value));
+            return Created("api/Category", _IcategoryBL.AddCategoryAsync(value));
         }
 
         // PUT api/<CategoryController>/5
@@ -51,7 +51,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{name}")]
         public IActionResult DeleteCategory(string name)
         {
-            _IcategoryBL.DeleteCategory(name);
+            _IcategoryBL.DeleteCategoryAsync(name);
             return NoContent();
         }
     }

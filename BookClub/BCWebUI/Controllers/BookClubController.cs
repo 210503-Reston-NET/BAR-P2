@@ -25,35 +25,35 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllBookClubs()
         {
-            return Ok(_bookClubBL.GetAllBookClubs());
+            return Ok(_bookClubBL.GetAllBookClubsAsync());
         }
 
         // GET: api/BookClub/5
         [HttpGet("{id}")]
         public IActionResult GetBookClubById(int id)
         {
-            return Ok(_bookClubBL.GetBookClubById(id));
+            return Ok(_bookClubBL.GetBookClubByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetBookClubByBook/{bookId}")]
         public IActionResult GetBookClubByBook(string bookId)
         {
-            return Ok(_bookClubBL.GetBookClubByBook(bookId));
+            return Ok(_bookClubBL.GetBookClubByBookAsync(bookId));
         }
 
         // POST: api/BookClub
         [HttpPost]
         public IActionResult AddNewBookClub([FromBody] Model.BookClub newBookClub)
         {
-            return Created("api/BookClub", _bookClubBL.AddBookClub(newBookClub));
+            return Created("api/BookClub", _bookClubBL.AddBookClubAsync(newBookClub));
         }
 
         // PUT: api/BookClub/5
         [HttpPut("{id}")]
         public IActionResult UpdateBookClub(int id, [FromBody] Model.BookClub updatedBookClub)
         {
-            _bookClubBL.UpdateBookClub(updatedBookClub);
+            _bookClubBL.UpdateBookClubAsync(updatedBookClub);
             return NoContent();
         }
 
@@ -61,7 +61,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBookClub(int id)
         {
-            _bookClubBL.DeleteBookClub(_bookClubBL.GetBookClubById(id));
+            _bookClubBL.DeleteBookClubAsync(_bookClubBL.GetBookClubByIdAsync(id));
             return NoContent();
         }
     }

@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCModel;
 
 
@@ -7,10 +8,9 @@ namespace BCBL
 {
   public  interface IUserBL
     {
-        public User AddUser(User u);
-        public User UpdateUser(User u);
-        public User GetUserByEmail(string email);
-
-        public List<User> GetAllUsers();
+        public Task<User> AddUserAsync(User u);
+        public Task<User> UpdateUserAsync(User u);
+        public Task<User> GetUserByEmailAsync(string email);
+        public Task<List<User>> GetAllUsersAsync();
     }
 }

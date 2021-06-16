@@ -9,12 +9,12 @@ namespace BCBL
 {
     public interface ICategoryBL
     {
-        Category AddCategory(Category category);
+        Task<Category> AddCategoryAsync(Category category);
 
-        List<Category> GetAllCategories();
+        Task<List<Category>> GetAllCategoriesAsync();
 
-        Category GetCategory(string name);
+        Task<Category> GetCategoryAsync(string name);
 
-        Category DeleteCategory(string name);
+        Task<Category> DeleteCategoryAsync(string name);
     }
 }

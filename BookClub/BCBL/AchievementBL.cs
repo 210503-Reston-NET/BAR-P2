@@ -13,24 +13,25 @@ namespace BCBL
     {
         private readonly IAchievementRepo _achievementRepo;
         public AchievementBL(IAchievementRepo achievementRepo) { this._achievementRepo = achievementRepo; }
-        public Achievement AddAchievement(Achievement r)
+
+        public async Task<Achievement> AddAchievementAsync(Achievement r)
         {
-            return _achievementRepo.AddAchievementAsync(r);
+            return await _achievementRepo.AddAchievementAsync(r);
         }
 
-        public Achievement GetAchievementByEmail(string email)
+        public async Task<Achievement> GetAchievementByEmailAsync(string email)
         {
-            return _achievementRepo.GetAchievementByEmailAsync(email);
+            return await _achievementRepo.GetAchievementByEmailAsync(email);
         }
 
-        public List<Achievement> GetAchievements()
+        public async Task<List<Achievement>> GetAchievementsAsync()
         {
-            return _achievementRepo.GetAchievementsAsync();
+            return await _achievementRepo.GetAchievementsAsync();
         }
 
-        public Achievement UpdateAchievement(Achievement r)
+        public async Task<Achievement> UpdateAchievementAsync(Achievement r)
         {
-            return _achievementRepo.UpdateAchievementAsync(r);
+            return await _achievementRepo.UpdateAchievementAsync(r);
         }
     }
 }

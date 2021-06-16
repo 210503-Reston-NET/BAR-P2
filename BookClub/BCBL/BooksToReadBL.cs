@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using BCModel;
 using BCDL;
+using BCModel;
 
 namespace BCBL
 {
@@ -16,29 +13,29 @@ namespace BCBL
             _repo = repo;
         }
 
-        public BooksToRead AddBooksRead(BooksToRead book)
+        public async Task<BooksToRead> AddBooksReadAsync(BooksToRead book)
         {
-            return _repo.AddBooksReadAsync(book);
+            return await _repo.AddBooksReadAsync(book);
         }
 
-        public BooksToRead DeleteBooksRead(int id)
+        public async Task<BooksToRead> DeleteBooksReadAsync(int id)
         {
-            return _repo.DeleteBooksReadAsync(id);
+            return await _repo.DeleteBooksReadAsync(id);
         }
 
-        public List<BooksToRead> GetAllBooksRead()
+        public async Task<List<BooksToRead>> GetAllBooksReadAsync()
         {
-            return _repo.GetAllBooksReadAsync();
+            return await _repo.GetAllBooksReadAsync();
         }
 
-        public List<Book> GetBooksReadByUser(string email)
+        public async Task<List<Book>> GetBooksReadByUserAsync(string email)
         {
-            return _repo.GetBooksReadByUserAsync(email);
+            return await _repo.GetBooksReadByUserAsync(email);
         }
 
-        public BooksToRead UpdateBooksRead(BooksToRead book)
+        public async Task<BooksToRead> UpdateBooksReadAsync(BooksToRead book)
         {
-            return _repo.UpdateBooksReadAsync(book);
+            return await _repo.UpdateBooksReadAsync(book);
         }
     }
 }

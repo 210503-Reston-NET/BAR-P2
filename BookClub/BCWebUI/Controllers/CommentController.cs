@@ -23,42 +23,42 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllComments()
         {
-            return Ok(_commentBL.GetAllComments());
+            return Ok(_commentBL.GetAllCommentsAsync());
         }
 
         // GET: api/Comment/5
         [HttpGet("{id}")]
         public IActionResult GetCommentById(int id)
         {
-            return Ok(_commentBL.GetCommentById(id));
+            return Ok(_commentBL.GetCommentByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetUserPostComments/{postId}")]
         public IActionResult GetUserPostComments(int postId)
         {
-            return Ok(_commentBL.GetUserPostComments(postId));
+            return Ok(_commentBL.GetUserPostCommentsAsync(postId));
         }
 
         //Get
         [HttpGet("{clubPostId}")]
         public IActionResult GetClubPostComments(int clubPostId)
         {
-            return Ok(_commentBL.GetClubPostComments(clubPostId));
+            return Ok(_commentBL.GetClubPostCommentsAsync(clubPostId));
         }
 
         // POST: api/Comment
         [HttpPost]
         public IActionResult AddNewComment([FromBody] Comment newcomment)
         {
-            return Created("api/Comment", _commentBL.AddComment(newcomment));
+            return Created("api/Comment", _commentBL.AddCommentAsync(newcomment));
         }
 
         // PUT: api/Comment/5
         [HttpPut("{id}")]
         public IActionResult UpdateComment(int id, [FromBody] Comment updatedComment)
         {
-            _commentBL.UpdateComment(updatedComment);
+            _commentBL.UpdateCommentAsync(updatedComment);
             return NoContent();
         }
 
@@ -66,7 +66,7 @@ namespace BCWebUI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteComment(int id)
         {
-            _commentBL.DeleteComment(_commentBL.GetCommentById(id));
+            _commentBL.DeleteComment(_commentBL.GetCommentByIdAsync(id));
             return NoContent();
         }
     }

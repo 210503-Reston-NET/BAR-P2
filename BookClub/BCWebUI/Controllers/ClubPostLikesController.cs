@@ -23,28 +23,28 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetAllClubPostLikes()
         {
-            return Ok(_clubPostLikesBL.GetAllClubPostLikes());
+            return Ok(_clubPostLikesBL.GetAllClubPostLikesAsync());
         }
 
         // GET: api/ClubPostLikes/5
         [HttpGet("{id}")]
         public IActionResult GetClubPostLikesById(int id)
         {
-            return Ok(_clubPostLikesBL.GetClubPostLikesById(id));
+            return Ok(_clubPostLikesBL.GetClubPostLikesByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetClubPostLikesByClubPost/{clubPostId}")]
         public IActionResult GetClubPostLikesByClubPost(int clubPostId)
         {
-            return Ok(_clubPostLikesBL.GetClubPostLikesByClubPost(clubPostId));
+            return Ok(_clubPostLikesBL.GetClubPostLikesByClubPostAsync(clubPostId));
         }
 
         // POST: api/ClubPostLikes
         [HttpPost]
         public IActionResult AddNewClubPostLike([FromBody] ClubPostLikes like)
         {
-            return Created("api/ClubPostLikes", _clubPostLikesBL.AddClubPostLike(like));
+            return Created("api/ClubPostLikes", _clubPostLikesBL.AddClubPostLikeAsync(like));
         }
     }
 }
