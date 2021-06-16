@@ -23,52 +23,45 @@ namespace BCWebUI.Controllers
 
         // GET: api/<FollowUserController>
         [HttpGet]
-        public IActionResult GetAllFollowUser()
+        public async Task<IActionResult> GetAllFollowUser()
         {
-            return Ok(_FollowUserBL.GetAllFollowUserAsync());
+            return Ok(await _FollowUserBL.GetAllFollowUserAsync());
         }
 
         // GET api/<FollowUserController>/5
         [HttpGet]
         [Route("GetFollowingByUser/{email}")]
-        public IActionResult GetFollowingByUser(string email)
+        public async Task<IActionResult> GetFollowingByUser(string email)
         {
-            return Ok(_FollowUserBL.GetFollowingByUserAsync(email));
+            return Ok(await _FollowUserBL.GetFollowingByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByUser/{email}")]
-        public IActionResult GetFollowersByUser(string email)
+        public async Task<IActionResult> GetFollowersByUser(string email)
         {
-            return Ok(_FollowUserBL.GetFollowersByUserAsync(email));
+            return Ok(await _FollowUserBL.GetFollowersByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByUser/{followerEmail}/{followedEmail}")]
-        public IActionResult IsFollowed(string followerEmail, string followedEmail)
+        public async Task<IActionResult> IsFollowed(string followerEmail, string followedEmail)
         {
-            return Ok(_FollowUserBL.Async(followerEmail, followedEmail));
+            return Ok(await _FollowUserBL.IsFollowingAsync(followerEmail, followedEmail));
         }
 
         // POST api/<FollowUserController>
         [HttpPost]
-        public IActionResult AddFollowUser([FromBody] FollowUser value)
+        public async Task<IActionResult> AddFollowUser([FromBody] FollowUser value)
         {
-            return Created("api/FollowUser", _FollowUserBL.AddFollowUserAsync(value));
-        }
-
-        // PUT api/<FollowUserController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
-        {
-            return NoContent();
+            return Created("api/FollowUser", await _FollowUserBL.AddFollowUserAsync(value));
         }
 
         // DELETE api/<FollowUserController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _FollowUserBL.DeleteFollowUserAsync(id);
+            await _FollowUserBL.DeleteFollowUserAsync(id);
             return NoContent();
         }
     }

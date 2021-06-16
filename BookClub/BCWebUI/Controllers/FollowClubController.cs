@@ -23,45 +23,38 @@ namespace BCWebUI.Controllers
 
         // GET: api/<FollowClubController>
         [HttpGet]
-        public IActionResult GetAllFollowClub()
+        public async Task<IActionResult> GetAllFollowClub()
         {
-            return Ok(_IFollowClubBL.GetAllFollowClubAsync());
+            return Ok(await _IFollowClubBL.GetAllFollowClubAsync());
         }
 
         // GET api/<FollowClubController>/5
         [HttpGet]
         [Route("GetFollowingByUser/{email}")]
-        public IActionResult GetFollowingByUser(string email)
+        public async Task<IActionResult> GetFollowingByUser(string email)
         {
-            return Ok(_IFollowClubBL.GetFollowingByUserAsync(email));
+            return Ok(await _IFollowClubBL.GetFollowingByUserAsync(email));
         }
 
         [HttpGet]
         [Route("GetFollowersByClub/{id}")]
-        public IActionResult GetFollowersByClub(int id)
+        public async Task<IActionResult> GetFollowersByClub(int id)
         {
-            return Ok(_IFollowClubBL.GetFollowersByClubAsync(id));
+            return Ok(await _IFollowClubBL.GetFollowersByClubAsync(id));
         }
 
         // POST api/<FollowClubController>
         [HttpPost]
-        public IActionResult AddFollowClub([FromBody] FollowClub value)
+        public async Task<IActionResult> AddFollowClub([FromBody] FollowClub value)
         {
-            return Created("api/FollowClub",_IFollowClubBL.AddFollowClubAsync(value));
-        }
-
-        // PUT api/<FollowClubController>/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
-        {
-            return NoContent();
+            return Created("api/FollowClub",await _IFollowClubBL.AddFollowClubAsync(value));
         }
 
         // DELETE api/<FollowClubController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _IFollowClubBL.DeleteFollowClubAsync(id);
+            await _IFollowClubBL.DeleteFollowClubAsync(id);
             return NoContent();
         }
     }

@@ -19,36 +19,30 @@ namespace BCWebUI.Controllers
         public RecommendationController(IRecommendationRepo e) { this._bl = e; }
         // GET: api/<RecommendationController>
         [HttpGet]
-        public IActionResult GetRecommendations()
+        public async Task<IActionResult> GetRecommendations()
         {
-            return Ok(_bl.GetRecommendationsAsync().ToList());
+            return Ok(await _bl.GetRecommendationsAsync());
         }
 
         // GET api/<RecommendationController>/email
         [HttpGet("{email}")]
-        public Recommendation Get(string email)
+        public async Task<IActionResult> Get(string email)
         {
-            return _bl.GetRecommendationByEmailAsync(email);
+            return Ok(await _bl.GetRecommendationByEmailAsync(email));
         }
 
         // POST api/<RecommendationController>
         [HttpPost]
-        public void Post([FromBody] Recommendation recommendation)
+        public async Task<IActionResult> Post([FromBody] Recommendation recommendation)
         {
-            _bl.AddRecommendationAsync(recommendation);
+            return Ok(await _bl.AddRecommendationAsync(recommendation));
         }
 
         // PUT api/<RecommendationController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Recommendation recommendation)
+        public async Task<IActionResult> Put(int id, [FromBody] Recommendation recommendation)
         {
-            _bl.UpdateRecommendationAsync(recommendation);
-        }
-
-        // DELETE api/<RecommendationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok(await _bl.UpdateRecommendationAsync(recommendation));
         }
     }
 }

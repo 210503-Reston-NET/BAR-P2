@@ -25,30 +25,24 @@ namespace BCWebUI.Controllers
 
         // GET api/<AchievementController>/email
         [HttpGet("{id}")]
-        public Achievement GetAchievementByEmail(string email)
+        public async Task<IActionResult> GetAchievementByEmail(string email)
         {
-            return _bl.GetAchievementByEmailAsync(email);
+            return Ok(await _bl.GetAchievementByEmailAsync(email));
         }
 
         // POST api/<AchievementController>
         [HttpPost]
-        public void Post([FromBody] Achievement achievement)
+        public async Task<IActionResult> Post([FromBody] Achievement achievement)
         {
-            _bl.AddAchievementAsync(achievement);
+            return Ok(await _bl.AddAchievementAsync(achievement));
         }
 
         // PUT api/<AchievementController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Achievement achievement)
+        public async Task<IActionResult> Put(int id, [FromBody] Achievement achievement)
             
         {
-            _bl.UpdateAchievementAsync(achievement);
-        }
-
-        // DELETE api/<AchievementController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+           return  Ok(await _bl.UpdateAchievementAsync(achievement));
         }
     }
 }

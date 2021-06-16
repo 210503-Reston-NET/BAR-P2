@@ -23,63 +23,61 @@ namespace BCWebUI.Controllers
 
         // GET: api/ClubPost
         [HttpGet]
-        public IActionResult GetAllClubPosts()
+        public async Task<IActionResult> GetAllClubPosts()
         {
-            return Ok(_clubPostBL.GetAllClubPostsAsync());
+            return Ok(await _clubPostBL.GetAllClubPostsAsync());
         }
 
         // GET: api/ClubPost/5
         [HttpGet("GetClubPostByBookClub/{bookClubId}")]
-        public IActionResult GetClubPostByBookClub(int bookClubId)
+        public async Task<IActionResult> GetClubPostByBookClub(int bookClubId)
         {
-            return Ok(_clubPostBL.GetClubPostByBookClubAsync(bookClubId));
+            return Ok(await _clubPostBL.GetClubPostByBookClubAsync(bookClubId));
         }
 
         //Get
         [HttpGet("{id}")]
-        public IActionResult GetClubPostById(int id)
+        public async Task<IActionResult> GetClubPostById(int id)
         {
-            return Ok(_clubPostBL.GetClubPostByIdAsync(id));
+            return Ok(await _clubPostBL.GetClubPostByIdAsync(id));
         }
 
         // POST: api/ClubPost
         [HttpPost]
-        public IActionResult AddNewClubPost([FromBody] ClubPost newClubPost)
+        public async Task<IActionResult> AddNewClubPost([FromBody] ClubPost newClubPost)
         {
-            return Created("api/ClubPost", _clubPostBL.AddClubPost(newClubPost));
+            return Created("api/ClubPost", await _clubPostBL.AddClubPostAsync(newClubPost));
         }
-    
    
-
         // PUT: api/ClubPost/5
         [HttpPut("{id}")]
-        public IActionResult UpdateClubPost(int id, [FromBody] ClubPost updatedClubPost)
+        public async Task<IActionResult> UpdateClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.UpdateClubPostAsync(updatedClubPost);
+            await _clubPostBL.UpdateClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
         // PUT: api/ClubPost/5
         [HttpPut("DislikeClubPost/{id}")]
-        public IActionResult DislikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
+        public async Task<IActionResult> DislikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.DislikeClubPostAsync(updatedClubPost);
+            await _clubPostBL.DislikeClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
         // PUT: api/ClubPost/5
         [HttpPut("LikeClubPost/{id}")]
-        public IActionResult LikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
+        public async Task<IActionResult> LikeClubPost(int id, [FromBody] ClubPost updatedClubPost)
         {
-            _clubPostBL.LikeClubPostAsync(updatedClubPost);
+            await _clubPostBL.LikeClubPostAsync(updatedClubPost);
             return NoContent();
         }
 
         // DELETE: api/ClubPost/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteClubPost(int id)
+        public async Task<IActionResult> DeleteClubPost(int id)
         {
-            _clubPostBL.DeleteClubPost(_clubPostBL.GetClubPostByIdAsync(id));
+            await _clubPostBL.DeleteClubPostAsync(await _clubPostBL.GetClubPostByIdAsync(id));
             return NoContent();
         }
     }

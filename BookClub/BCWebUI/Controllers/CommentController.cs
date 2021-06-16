@@ -21,52 +21,52 @@ namespace BCWebUI.Controllers
 
         // GET: api/Comment
         [HttpGet]
-        public IActionResult GetAllComments()
+        public async Task<IActionResult> GetAllComments()
         {
-            return Ok(_commentBL.GetAllCommentsAsync());
+            return Ok(await _commentBL.GetAllCommentsAsync());
         }
 
         // GET: api/Comment/5
         [HttpGet("{id}")]
-        public IActionResult GetCommentById(int id)
+        public async Task<IActionResult> GetCommentById(int id)
         {
-            return Ok(_commentBL.GetCommentByIdAsync(id));
+            return Ok(await _commentBL.GetCommentByIdAsync(id));
         }
 
         //Get
         [HttpGet("GetUserPostComments/{postId}")]
-        public IActionResult GetUserPostComments(int postId)
+        public async Task<IActionResult> GetUserPostComments(int postId)
         {
-            return Ok(_commentBL.GetUserPostCommentsAsync(postId));
+            return Ok(await _commentBL.GetUserPostCommentsAsync(postId));
         }
 
         //Get
         [HttpGet("{clubPostId}")]
-        public IActionResult GetClubPostComments(int clubPostId)
+        public async Task<IActionResult> GetClubPostComments(int clubPostId)
         {
-            return Ok(_commentBL.GetClubPostCommentsAsync(clubPostId));
+            return Ok(await _commentBL.GetClubPostCommentsAsync(clubPostId));
         }
 
         // POST: api/Comment
         [HttpPost]
-        public IActionResult AddNewComment([FromBody] Comment newcomment)
+        public async Task<IActionResult> AddNewComment([FromBody] Comment newcomment)
         {
-            return Created("api/Comment", _commentBL.AddCommentAsync(newcomment));
+            return Created("api/Comment", await _commentBL.AddCommentAsync(newcomment));
         }
 
         // PUT: api/Comment/5
         [HttpPut("{id}")]
-        public IActionResult UpdateComment(int id, [FromBody] Comment updatedComment)
+        public async Task<IActionResult> UpdateComment(int id, [FromBody] Comment updatedComment)
         {
-            _commentBL.UpdateCommentAsync(updatedComment);
+            await _commentBL.UpdateCommentAsync(updatedComment);
             return NoContent();
         }
 
         // DELETE: api/Comment/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteComment(int id)
+        public async Task<IActionResult> DeleteComment(int id)
         {
-            _commentBL.DeleteComment(_commentBL.GetCommentByIdAsync(id));
+            await _commentBL.DeleteCommentAsync(await _commentBL.GetCommentByIdAsync(id));
             return NoContent();
         }
     }
