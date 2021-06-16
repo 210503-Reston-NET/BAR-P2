@@ -20,5 +20,4 @@
   <ItemGroup>
     <ProjectReference Include="..\BCModel\BCModel.csproj" />
   </ItemGroup>
-
 </Project>

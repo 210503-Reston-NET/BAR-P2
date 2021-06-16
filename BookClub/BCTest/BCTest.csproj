@@ -32,10 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BCBL\BCBL.csproj" />
-    <ProjectReference Include="..\BCDL\BCDL.csproj" />
-    <ProjectReference Include="..\BCModel\BCModel.csproj" />
     <ProjectReference Include="..\BCWebUI\BCWebUI.csproj" />
+    <ProjectReference Include="..\BCModel\BCModel.csproj" />
+    <ProjectReference Include="..\BCDL\BCDL.csproj" />
+    <ProjectReference Include="..\BCBL\BCBL.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="coverlet.msbuild" />
