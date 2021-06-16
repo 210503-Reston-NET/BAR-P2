@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BCDL.Migrations
 {
-    public partial class ForeignKeysUpdate : Migration
+    public partial class LikesTables3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,15 +61,14 @@ namespace BCDL.Migrations
                     AchievementId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserEmail = table.Column<string>(type: "text", nullable: true),
-                    Badge = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    Badge = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Achievements", x => x.AchievementId);
                     table.ForeignKey(
-                        name: "FK_Achievements_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_Achievements_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -81,15 +81,14 @@ namespace BCDL.Migrations
                     FollowUserId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FollowerEmail = table.Column<string>(type: "text", nullable: true),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    UserEmail = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FollowUsers", x => x.FollowUserId);
                     table.ForeignKey(
-                        name: "FK_FollowUsers_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_FollowUsers_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -105,14 +104,14 @@ namespace BCDL.Migrations
                     Post = table.Column<string>(type: "text", nullable: true),
                     TotalLike = table.Column<int>(type: "integer", nullable: false),
                     TotalDislike = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserPosts", x => x.UserPostId);
                     table.ForeignKey(
-                        name: "FK_UserPosts_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_UserPosts_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -127,22 +126,20 @@ namespace BCDL.Migrations
                     Name = table.Column<string>(type: "text", nullable: true),
                     UserEmail = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
-                    ISBN = table.Column<string>(type: "text", nullable: true),
-                    BookISBN = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BookClubs", x => x.BookClubId);
                     table.ForeignKey(
-                        name: "FK_BookClubs_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_BookClubs_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BookClubs_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_BookClubs_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -156,22 +153,20 @@ namespace BCDL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true),
-                    BookPages = table.Column<int>(type: "integer", nullable: false),
-                    BookISBN = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    BookPages = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BooksRead", x => x.BooksReadId);
                     table.ForeignKey(
-                        name: "FK_BooksRead_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_BooksRead_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BooksRead_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_BooksRead_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -184,22 +179,20 @@ namespace BCDL.Migrations
                     BooksToReadId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserEmail = table.Column<string>(type: "text", nullable: true),
-                    ISBN = table.Column<string>(type: "text", nullable: true),
-                    BookISBN = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BooksToRead", x => x.BooksToReadId);
                     table.ForeignKey(
-                        name: "FK_BooksToRead_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_BooksToRead_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_BooksToRead_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_BooksToRead_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -212,22 +205,20 @@ namespace BCDL.Migrations
                     FavoriteBookId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserEmail = table.Column<string>(type: "text", nullable: true),
-                    ISBN = table.Column<string>(type: "text", nullable: true),
-                    BookISBN = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    ISBN = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FavoriteBooks", x => x.FavoriteBookId);
                     table.ForeignKey(
-                        name: "FK_FavoriteBooks_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_FavoriteBooks_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FavoriteBooks_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_FavoriteBooks_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -242,22 +233,47 @@ namespace BCDL.Migrations
                     UserEmail = table.Column<string>(type: "text", nullable: true),
                     ISBN = table.Column<string>(type: "text", nullable: true),
                     Message = table.Column<string>(type: "text", nullable: true),
-                    ReceversEmails = table.Column<string>(type: "text", nullable: true),
-                    BookISBN = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    ReceversEmails = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Recommendations", x => x.RecommendationId);
                     table.ForeignKey(
-                        name: "FK_Recommendations_Books_BookISBN",
-                        column: x => x.BookISBN,
+                        name: "FK_Recommendations_Books_ISBN",
+                        column: x => x.ISBN,
                         principalTable: "Books",
                         principalColumn: "ISBN",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Recommendations_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_Recommendations_Users_UserEmail",
+                        column: x => x.UserEmail,
+                        principalTable: "Users",
+                        principalColumn: "UserEmail",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    UserCommentId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
+                    UserPostID = table.Column<int>(type: "integer", nullable: false),
+                    Message = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.UserCommentId);
+                    table.ForeignKey(
+                        name: "FK_Comments_UserPosts_UserPostID",
+                        column: x => x.UserPostID,
+                        principalTable: "UserPosts",
+                        principalColumn: "UserPostId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -272,8 +288,7 @@ namespace BCDL.Migrations
                     Like = table.Column<bool>(type: "boolean", nullable: false),
                     Dislike = table.Column<bool>(type: "boolean", nullable: false),
                     UserPostId = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    UserEmail = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -285,8 +300,8 @@ namespace BCDL.Migrations
                         principalColumn: "UserPostId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserPostLikes_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_UserPostLikes_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -303,7 +318,7 @@ namespace BCDL.Migrations
                     BookClubId = table.Column<int>(type: "integer", nullable: false),
                     TotalLike = table.Column<int>(type: "integer", nullable: false),
                     TotalDislike = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -315,8 +330,8 @@ namespace BCDL.Migrations
                         principalColumn: "BookClubId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClubPosts_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_ClubPosts_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
@@ -343,6 +358,41 @@ namespace BCDL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CommentLikes",
+                columns: table => new
+                {
+                    UserCommentLikesId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Like = table.Column<bool>(type: "boolean", nullable: false),
+                    Dislike = table.Column<bool>(type: "boolean", nullable: false),
+                    UserCommentId = table.Column<int>(type: "integer", nullable: false),
+                    UserEmail = table.Column<string>(type: "text", nullable: true),
+                    UserPostId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommentLikes", x => x.UserCommentLikesId);
+                    table.ForeignKey(
+                        name: "FK_CommentLikes_Comments_UserCommentId",
+                        column: x => x.UserCommentId,
+                        principalTable: "Comments",
+                        principalColumn: "UserCommentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CommentLikes_UserPosts_UserPostId",
+                        column: x => x.UserPostId,
+                        principalTable: "UserPosts",
+                        principalColumn: "UserPostId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CommentLikes_Users_UserEmail",
+                        column: x => x.UserEmail,
+                        principalTable: "Users",
+                        principalColumn: "UserEmail",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ClubPostLikes",
                 columns: table => new
                 {
@@ -351,8 +401,7 @@ namespace BCDL.Migrations
                     Like = table.Column<bool>(type: "boolean", nullable: false),
                     Dislike = table.Column<bool>(type: "boolean", nullable: false),
                     ClubPostId = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
+                    UserEmail = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -364,105 +413,27 @@ namespace BCDL.Migrations
                         principalColumn: "ClubPostId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ClubPostLikes_Users_UserEmail1",
-                        column: x => x.UserEmail1,
-                        principalTable: "Users",
-                        principalColumn: "UserEmail",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    UserPostID = table.Column<int>(type: "integer", nullable: false),
-                    ClubPostID = table.Column<int>(type: "integer", nullable: false),
-                    Message = table.Column<string>(type: "text", nullable: true),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentId);
-                    table.ForeignKey(
-                        name: "FK_Comments_ClubPosts_ClubPostID",
-                        column: x => x.ClubPostID,
-                        principalTable: "ClubPosts",
-                        principalColumn: "ClubPostId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_UserPosts_UserPostID",
-                        column: x => x.UserPostID,
-                        principalTable: "UserPosts",
-                        principalColumn: "UserPostId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_Users_UserEmail1",
-                        column: x => x.UserEmail1,
-                        principalTable: "Users",
-                        principalColumn: "UserEmail",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CommentLikes",
-                columns: table => new
-                {
-                    CommentLikesId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Like = table.Column<bool>(type: "boolean", nullable: false),
-                    Dislike = table.Column<bool>(type: "boolean", nullable: false),
-                    CommentId = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail = table.Column<string>(type: "text", nullable: true),
-                    ClubPostId = table.Column<int>(type: "integer", nullable: false),
-                    UserPostId = table.Column<int>(type: "integer", nullable: false),
-                    UserEmail1 = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CommentLikes", x => x.CommentLikesId);
-                    table.ForeignKey(
-                        name: "FK_CommentLikes_ClubPosts_ClubPostId",
-                        column: x => x.ClubPostId,
-                        principalTable: "ClubPosts",
-                        principalColumn: "ClubPostId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CommentLikes_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
-                        principalColumn: "CommentId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CommentLikes_UserPosts_UserPostId",
-                        column: x => x.UserPostId,
-                        principalTable: "UserPosts",
-                        principalColumn: "UserPostId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CommentLikes_Users_UserEmail1",
-                        column: x => x.UserEmail1,
+                        name: "FK_ClubPostLikes_Users_UserEmail",
+                        column: x => x.UserEmail,
                         principalTable: "Users",
                         principalColumn: "UserEmail",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Achievements_UserEmail1",
+                name: "IX_Achievements_UserEmail",
                 table: "Achievements",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookClubs_BookISBN",
+                name: "IX_BookClubs_ISBN",
                 table: "BookClubs",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookClubs_UserEmail1",
+                name: "IX_BookClubs_UserEmail",
                 table: "BookClubs",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_CategoryId",
@@ -470,24 +441,24 @@ namespace BCDL.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BooksRead_BookISBN",
+                name: "IX_BooksRead_ISBN",
                 table: "BooksRead",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BooksRead_UserEmail1",
+                name: "IX_BooksRead_UserEmail",
                 table: "BooksRead",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BooksToRead_BookISBN",
+                name: "IX_BooksToRead_ISBN",
                 table: "BooksToRead",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BooksToRead_UserEmail1",
+                name: "IX_BooksToRead_UserEmail",
                 table: "BooksToRead",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClubPostLikes_ClubPostId",
@@ -495,9 +466,9 @@ namespace BCDL.Migrations
                 column: "ClubPostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClubPostLikes_UserEmail1",
+                name: "IX_ClubPostLikes_UserEmail",
                 table: "ClubPostLikes",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClubPosts_BookClubId",
@@ -505,24 +476,19 @@ namespace BCDL.Migrations
                 column: "BookClubId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ClubPosts_UserEmail1",
+                name: "IX_ClubPosts_UserEmail",
                 table: "ClubPosts",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CommentLikes_ClubPostId",
+                name: "IX_CommentLikes_UserCommentId",
                 table: "CommentLikes",
-                column: "ClubPostId");
+                column: "UserCommentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CommentLikes_CommentId",
+                name: "IX_CommentLikes_UserEmail",
                 table: "CommentLikes",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CommentLikes_UserEmail1",
-                table: "CommentLikes",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CommentLikes_UserPostId",
@@ -530,14 +496,9 @@ namespace BCDL.Migrations
                 column: "UserPostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ClubPostID",
+                name: "IX_Comments_UserEmail",
                 table: "Comments",
-                column: "ClubPostID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserEmail1",
-                table: "Comments",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserPostID",
@@ -545,14 +506,14 @@ namespace BCDL.Migrations
                 column: "UserPostID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FavoriteBooks_BookISBN",
+                name: "IX_FavoriteBooks_ISBN",
                 table: "FavoriteBooks",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FavoriteBooks_UserEmail1",
+                name: "IX_FavoriteBooks_UserEmail",
                 table: "FavoriteBooks",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FollowClubs_BookClubId",
@@ -560,24 +521,24 @@ namespace BCDL.Migrations
                 column: "BookClubId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FollowUsers_UserEmail1",
+                name: "IX_FollowUsers_UserEmail",
                 table: "FollowUsers",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recommendations_BookISBN",
+                name: "IX_Recommendations_ISBN",
                 table: "Recommendations",
-                column: "BookISBN");
+                column: "ISBN");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Recommendations_UserEmail1",
+                name: "IX_Recommendations_UserEmail",
                 table: "Recommendations",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserPostLikes_UserEmail1",
+                name: "IX_UserPostLikes_UserEmail",
                 table: "UserPostLikes",
-                column: "UserEmail1");
+                column: "UserEmail");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserPostLikes_UserPostId",
@@ -585,9 +546,9 @@ namespace BCDL.Migrations
                 column: "UserPostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserPosts_UserEmail1",
+                name: "IX_UserPosts_UserEmail",
                 table: "UserPosts",
-                column: "UserEmail1");
+                column: "UserEmail");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -623,16 +584,16 @@ namespace BCDL.Migrations
                 name: "UserPostLikes");
 
             migrationBuilder.DropTable(
-                name: "Comments");
-
-            migrationBuilder.DropTable(
                 name: "ClubPosts");
 
             migrationBuilder.DropTable(
-                name: "UserPosts");
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "BookClubs");
+
+            migrationBuilder.DropTable(
+                name: "UserPosts");
 
             migrationBuilder.DropTable(
                 name: "Books");

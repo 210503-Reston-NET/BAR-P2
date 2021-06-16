@@ -19,6 +19,7 @@ namespace BCDL
         public async Task<UserPost> AddUserPostAsync(UserPost userPost)
         {
             _context.ChangeTracker.Clear();
+            userPost.Date = DateTime.Now;
             await _context.UserPosts.AddAsync(userPost);
             await _context.SaveChangesAsync();
             return userPost;

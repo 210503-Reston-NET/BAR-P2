@@ -11,10 +11,10 @@ namespace BCWebUI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CommentController : ControllerBase
+    public class UserCommentController : ControllerBase
     {
-        private readonly ICommentBL _commentBL;
-        public CommentController(ICommentBL commentBL)
+        private readonly IUserCommentBL _commentBL;
+        public UserCommentController(IUserCommentBL commentBL)
         {
             _commentBL = commentBL;
         }
@@ -40,23 +40,16 @@ namespace BCWebUI.Controllers
             return Ok(await _commentBL.GetUserPostCommentsAsync(postId));
         }
 
-        //Get
-        [HttpGet("{clubPostId}")]
-        public async Task<IActionResult> GetClubPostComments(int clubPostId)
-        {
-            return Ok(await _commentBL.GetClubPostCommentsAsync(clubPostId));
-        }
-
         // POST: api/Comment
         [HttpPost]
-        public async Task<IActionResult> AddNewComment([FromBody] Comment newcomment)
+        public async Task<IActionResult> AddNewComment([FromBody] UserComment newcomment)
         {
             return Created("api/Comment", await _commentBL.AddCommentAsync(newcomment));
         }
 
         // PUT: api/Comment/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateComment(int id, [FromBody] Comment updatedComment)
+        public async Task<IActionResult> UpdateComment(int id, [FromBody] UserComment updatedComment)
         {
             await _commentBL.UpdateCommentAsync(updatedComment);
             return NoContent();

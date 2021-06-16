@@ -7,47 +7,42 @@ using System.Threading.Tasks;
 
 namespace BCModel
 {
-    public class CommentLikes
+    public class ClubCommentLikes
     {
-        public CommentLikes()
+        public ClubCommentLikes()
         {
         }
 
-        public CommentLikes(int commentLikesId, bool like, bool dislike, int commentId, string userEmail, int clubPostId, int userPostId)
+        public ClubCommentLikes(int clubCommentLikesId, bool like, bool dislike, int clubCommentId, string userEmail, int clubPostId)
         {
-            CommentLikesId = commentLikesId;
+            ClubCommentLikesId = clubCommentLikesId;
             Like = like;
             Dislike = dislike;
-            CommentId = commentId;
+            ClubCommentId = clubCommentId;
             UserEmail = userEmail;
             ClubPostId = clubPostId;
-            UserPostId = userPostId;
         }
 
-        public CommentLikes(bool like, bool dislike, int commentId, string userEmail, int clubPostId, int userPostId)
+        public ClubCommentLikes(bool like, bool dislike, int clubCommentId, string userEmail, int clubPostId)
         {
             Like = like;
             Dislike = dislike;
-            CommentId = commentId;
+            ClubCommentId = clubCommentId;
             UserEmail = userEmail;
             ClubPostId = clubPostId;
-            UserPostId = userPostId;
         }
 
-        public int CommentLikesId { get; set; }
+        public int ClubCommentLikesId { get; set; }
         public bool Like { get; set; }
         public bool Dislike { get; set; }
-        [ForeignKey("Comment")]
-        public int CommentId { get; set; }
-        public Comment Comment { get; set; }
+        [ForeignKey("ClubComment")]
+        public int ClubCommentId { get; set; }
+        public ClubComment ClubComment { get; set; }
         [ForeignKey("User")]
         public string UserEmail { get; set; }
         public User User { get; set; }
         [ForeignKey("ClubPost")]
         public int ClubPostId { get; set; }
         public ClubPost ClubPost { get; set; }
-        [ForeignKey("UserPost")]
-        public int UserPostId { get; set; }
-        public UserPost UserPost { get; set; }
     }
 }

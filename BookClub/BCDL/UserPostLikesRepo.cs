@@ -19,8 +19,48 @@ namespace BCDL
         public async Task<UserPostLikes> AddUserPostLikeAsync(UserPostLikes userPostLike)
         {
             _context.ChangeTracker.Clear();
-            await _context.UserPostLikes.AddAsync(userPostLike);
-            await _context.SaveChangesAsync();
+            UserPostLikes like = await _context.UserPostLikes.AsNoTracking().FirstOrDefaultAsync(pst => pst.UserEmail == userPostLike.UserEmail && pst.UserPostId == userPostLike.UserPostId);
+            if (like == null)
+            {
+                _context.ChangeTracker.Clear();
+                await _context.UserPostLikes.AddAsync(userPostLike);
+                UserPost post = await _context.UserPosts.AsNoTracking().FirstOrDefaultAsync(pst => pst.UserPostId == userPostLike.UserPostId);
+                if (userPostLike.Like)
+                {
+                    post.TotalLike += 1;
+                }
+                else
+                {
+                    post.TotalDislike += 1;
+                }
+                _context.UserPosts.Update(post);
+                await _context.SaveChangesAsync();
+                return userPostLike;
+            }
+            else
+            {
+                _context.ChangeTracker.Clear();
+                UserPost post = await _context.UserPosts.AsNoTracking().FirstOrDefaultAsync(pst => pst.UserPostId == userPostLike.UserPostId);
+                if (like.Like != userPostLike.Like)
+                {
+                    if (like.Like)
+                    {
+                        post.TotalLike -= 1;
+                        post.TotalDislike += 1;
+                    }
+                    else
+                    {
+                        post.TotalLike += 1;
+                        post.TotalDislike -= 1;
+                    }
+                    like.Like = userPostLike.Like;
+                    like.Dislike = userPostLike.Dislike;
+
+                }
+                _context.UserPostLikes.Update(like);
+                _context.UserPosts.Update(post);
+                await _context.SaveChangesAsync();
+            }
             return userPostLike;
         }
 

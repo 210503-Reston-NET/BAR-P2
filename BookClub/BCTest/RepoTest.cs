@@ -170,19 +170,17 @@ namespace BCTest
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-                context.Comments.AddRange(
-                    new Model.Comment
+                context.UserComments.AddRange(
+                    new Model.UserComment
                     {
                         UserEmail = "bryce.zimbelman@revature.net",
                         UserPostID = 1,
-                        ClubPostID = 0,
                         Message = "Wrong"
                     },
-                    new Model.Comment
+                    new Model.UserComment
                     {
                         UserEmail = "bryce.zimbelman@revature.net",
-                        UserPostID = 0,
-                        ClubPostID = 1,
+                        UserPostID = 1,
                         Message = "Right"
                     }
                     );
@@ -273,23 +271,21 @@ namespace BCTest
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-                context.CommentLikes.AddRange(
-                    new Model.CommentLikes
+                context.UserCommentLikes.AddRange(
+                    new Model.UserCommentLikes
                     {
                         Like = false,
                         Dislike = true,
-                        CommentId = 1,
+                        UserCommentId = 1,
                         UserEmail = "bryce.zimbelman@revature.net",
-                        ClubPostId = 0,
                         UserPostId = 1
                     },
-                    new Model.CommentLikes
+                    new Model.UserCommentLikes
                     {
                         Like = true,
                         Dislike = false,
-                        CommentId = 1,
+                        UserCommentId = 1,
                         UserEmail = "bryce.zimbelman@icloud.com",
-                        ClubPostId = 0,
                         UserPostId = 1
                     }
                     ); ;
@@ -367,7 +363,7 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentRepo _repo = new CommentRepo(context);
+                IUserCommentRepo _repo = new UserCommentRepo(context);
                 var comments = await _repo.GetAllCommentsAsync();
                 Assert.Equal(2, comments.Count);
             }
@@ -455,7 +451,7 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
                 var commentLikes = await _repo.GetAllCommentLikesAsync();
                 Assert.Equal(2, commentLikes.Count);
             }
@@ -580,24 +576,9 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentRepo _repo = new CommentRepo(context);
+                IUserCommentRepo _repo = new UserCommentRepo(context);
                 var comment = await _repo.GetCommentByIdAsync(1);
-                Assert.Equal("Wrong", comment.Message);
-            }
-        }
-
-        [Fact]
-        public async void GetCommentByClubPostShouldReturnComments()
-        {
-            using (var context = new BookClubDBContext(options))
-            {
-                ICommentRepo _repo = new CommentRepo(context);
-                var comments = await _repo.GetCommentByClubPostAsync(1);
-                foreach (Model.Comment comment in comments)
-                {
-                    Assert.Equal(1, comment.ClubPostID);
-                }
-                
+                Assert.Equal("Right", comment.Message);
             }
         }
 
@@ -606,9 +587,9 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentRepo _repo = new CommentRepo(context);
+                IUserCommentRepo _repo = new UserCommentRepo(context);
                 var comments = await _repo.GetCommentByUserPostAsync(1);
-                foreach (Model.Comment comment in comments)
+                foreach (Model.UserComment comment in comments)
                 {
                     Assert.Equal(1, comment.UserPostID);
                 }
@@ -747,27 +728,13 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetCommentLikeByClubPostShouldReturnClubPostCommentLikes()
-        {
-            using (var context = new BookClubDBContext(options))
-            {
-                ICommentLikesRepo _repo = new CommentLikesRepo(context);
-                var commentLikes = await _repo.GetCommentLikesByClubPostAsync(1);
-                foreach (Model.CommentLikes likes in commentLikes)
-                {
-                    Assert.Equal(1, likes.ClubPostId);
-                }
-            }
-        }
-
-        [Fact]
         public async void GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
                 var commentLikes = await _repo.GetCommentLikesByUserPostAsync(1);
-                foreach (Model.CommentLikes likes in commentLikes)
+                foreach (Model.UserCommentLikes likes in commentLikes)
                 {
                     Assert.Equal(1, likes.UserPostId);
                 }
@@ -779,9 +746,9 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentLikesRepo _repo = new CommentLikesRepo(context);
+                IUserCommentLikesRepo _repo = new UserCommentLikesRepo(context);
                 var commentLike = await _repo.GetCommentLikesByIdAsync(1);
-                Assert.Equal(1, commentLike.CommentLikesId);
+                Assert.Equal(1, commentLike.UserCommentLikesId);
             }
         }
 
@@ -892,13 +859,13 @@ namespace BCTest
         {
             using (var context = new BookClubDBContext(options))
             {
-                ICommentRepo _repo = new CommentRepo(context);
-                await _repo.AddCommentAsync(new Model.Comment("bryce.zimbelman@revature.net", 2, 0, "maybe"));
+                IUserCommentRepo _repo = new UserCommentRepo(context);
+                await _repo.AddCommentAsync(new Model.UserComment("bryce.zimbelman@revature.net", 2, "maybe"));
             }
 
             using (var assertcontext = new BookClubDBContext(options))
             {
-                var result = assertcontext.Comments.FirstOrDefault(comment => comment.CommentId == 3);
+                var result = assertcontext.UserComments.FirstOrDefault(comment => comment.UserCommentId == 3);
                 Assert.NotNull(result);
                 Assert.Equal(2, result.UserPostID);
             }

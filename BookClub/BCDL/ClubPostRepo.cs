@@ -19,6 +19,7 @@ namespace BCDL
         public async Task<ClubPost> AddClubPostAsync(ClubPost clubPost)
         {
             _context.ChangeTracker.Clear();
+            clubPost.Date = DateTime.Now;
             await _context.ClubPosts.AddAsync(clubPost);
             await _context.SaveChangesAsync();
             return clubPost;
