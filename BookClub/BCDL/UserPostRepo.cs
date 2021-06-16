@@ -17,6 +17,7 @@ namespace BCDL
         public UserPost AddUserPost(UserPost userPost)
         {
             _context.ChangeTracker.Clear();
+            userPost.Date = DateTime.Now;
             _context.UserPosts.Add(userPost);
             _context.SaveChanges();
             return userPost;
