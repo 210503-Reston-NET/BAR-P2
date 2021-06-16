@@ -63,7 +63,7 @@ namespace BCTest
         [Fact]
         public void CommentShouldSetValidData()
         {
-            Comment test = new Comment("user", 1, 1, "message");
+            UserComment test = new UserComment("user", 1, "message");
             string user = "bryce.zimbelman@revature.net";
             test.UserEmail = user;
             Assert.Equal(user, test.UserEmail);
@@ -135,7 +135,7 @@ namespace BCTest
         [Fact]
         public void CommentLikesShouldSetValidData()
         {
-            CommentLikes test = new CommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1, 0);
+            UserCommentLikes test = new UserCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1);
             bool dislike = false;
             test.Dislike = dislike;
             Assert.Equal(dislike, test.Dislike);

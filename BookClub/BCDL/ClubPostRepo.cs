@@ -18,6 +18,7 @@ namespace BCDL
         public ClubPost AddClubPost(ClubPost clubPost)
         {
             _context.ChangeTracker.Clear();
+            clubPost.Date = DateTime.Now;
             _context.ClubPosts.Add(clubPost);
             _context.SaveChanges();
             return clubPost;

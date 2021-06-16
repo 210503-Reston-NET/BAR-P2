@@ -5,15 +5,15 @@ using BCModel;
 
 namespace BCBL
 {
-    public class CommentBL : ICommentBL
+    public class CommentBL : IUserCommentBL
     {
-        private readonly ICommentRepo _repo;
-        public CommentBL(ICommentRepo repo)
+        private readonly IUserCommentRepo _repo;
+        public CommentBL(IUserCommentRepo repo)
         {
             _repo = repo;
         }
 
-        public Comment AddComment(Comment comment)
+        public UserComment AddComment(UserComment comment)
         {
             if (_repo.GetComment(comment) != null)
             {
@@ -22,9 +22,9 @@ namespace BCBL
             return _repo.AddComment(comment);
         }
 
-        public Comment DeleteComment(Comment comment)
+        public UserComment DeleteComment(UserComment comment)
         {
-            Comment toBeDeleted = _repo.GetComment(comment);
+            UserComment toBeDeleted = _repo.GetComment(comment);
             if (toBeDeleted != null)
             {
                 return _repo.DeleteComment(comment);
@@ -32,32 +32,27 @@ namespace BCBL
             throw new Exception("Comment does not exist");
         }
 
-        public List<Comment> GetAllComments()
+        public List<UserComment> GetAllComments()
         {
             return _repo.GetAllComments();
         }
 
-        public List<Comment> GetClubPostComments(int clubPostId)
-        {
-            return _repo.GetCommentByClubPost(clubPostId);
-        }
-
-        public Comment GetComment(Comment comment)
+        public UserComment GetComment(UserComment comment)
         {
             return _repo.GetComment(comment);
         }
 
-        public Comment GetCommentById(int commentID)
+        public UserComment GetCommentById(int commentID)
         {
             return _repo.GetCommentById(commentID);
         }
 
-        public List<Comment> GetUserPostComments(int userPostId)
+        public List<UserComment> GetUserPostComments(int userPostId)
         {
             return _repo.GetCommentByUserPost(userPostId);
         }
 
-        public Comment UpdateComment(Comment comment)
+        public UserComment UpdateComment(UserComment comment)
         {
             return _repo.UpdateComment(comment);
         }
