@@ -18,9 +18,9 @@ namespace BCWebUI.Controllers
         public AchievementController(IAchievementBL e) { this._bl = e; }
         // GET: api/<AchievementController>
         [HttpGet]
-        public IActionResult GetAchievements()
+        public async Task<IActionResult> GetAchievements()
         {
-            return Ok(_bl.GetAchievementsAsync().ToList());
+            return Ok(await _bl.GetAchievementsAsync());
         }
 
         // GET api/<AchievementController>/email
