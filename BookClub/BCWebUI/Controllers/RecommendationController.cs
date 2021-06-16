@@ -21,28 +21,28 @@ namespace BCWebUI.Controllers
         [HttpGet]
         public IActionResult GetRecommendations()
         {
-            return Ok(_bl.GetRecommendations().ToList());
+            return Ok(_bl.GetRecommendationsAsync().ToList());
         }
 
         // GET api/<RecommendationController>/email
         [HttpGet("{email}")]
         public Recommendation Get(string email)
         {
-            return _bl.GetRecommendationByEmail(email);
+            return _bl.GetRecommendationByEmailAsync(email);
         }
 
         // POST api/<RecommendationController>
         [HttpPost]
         public void Post([FromBody] Recommendation recommendation)
         {
-            _bl.AddRecommendation(recommendation);
+            _bl.AddRecommendationAsync(recommendation);
         }
 
         // PUT api/<RecommendationController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Recommendation recommendation)
         {
-            _bl.UpdateRecommendation(recommendation);
+            _bl.UpdateRecommendationAsync(recommendation);
         }
 
         // DELETE api/<RecommendationController>/5

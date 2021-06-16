@@ -18,27 +18,27 @@ namespace BCBL
 
         public FavoriteBook AddBooksRead(FavoriteBook book)
         {
-            return _repo.AddBooksRead(book);
+            return _repo.AddBooksReadAsync(book);
         }
 
         public FavoriteBook DeleteBooksRead(int id)
         {
-            return _repo.DeleteBooksRead(id);
+            return _repo.DeleteBooksReadAsync(id);
         }
 
         public List<FavoriteBook> GetAllBooksRead()
         {
-            return _repo.GetAllBooksRead();
+            return _repo.GetAllBooksReadAsync();
         }
 
         public List<Book> GetBooksReadByUser(string email)
         {
-            return _repo.GetBooksReadByUser(email);
+            return _repo.GetBooksReadByUserAsync(email);
         }
 
         public FavoriteBook UpdateBooksRead(FavoriteBook book)
         {
-            return _repo.UpdateBooksRead(book);
+            return _repo.UpdateBooksReadAsync(book);
         }
     }
 }

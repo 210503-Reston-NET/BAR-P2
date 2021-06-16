@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -16,31 +17,31 @@ namespace BCDL
             _context = context;
         }
 
-        public Category AddCategory(Category category)
+        public async Task<Category> AddCategoryAsync(Category category)
         {
-            _context.Categories.Add(category);
-            _context.SaveChanges();
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
             return category;
         }
 
-        public List<Category> GetAllCategories()
+        public async Task<List<Category>> GetAllCategoriesAsync()
         {
-            return _context.Categories.Select(cat => cat).ToList();
+            return await _context.Categories.AsNoTracking().Select(cat => cat).ToListAsync();
         }
 
-        public Category GetCategory(string name)
+        public async Task<Category> GetCategoryAsync(string name)
         {
-            return _context.Categories.FirstOrDefault(cat => cat.CategoryId.Equals(name));
+            return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(cat => cat.CategoryId.Equals(name));
         }
 
-        public Category DeleteCategory(string name)
+        public async Task<Category> DeleteCategoryAsync(string name)
         {
-            Category toBeDeleted = _context.Categories.FirstOrDefault(cat => cat.CategoryId.Equals(name));
+            Category toBeDeleted = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(cat => cat.CategoryId.Equals(name));
 
             if (toBeDeleted != null)
             {
                 _context.Categories.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return toBeDeleted;

@@ -1,4 +1,5 @@
 ﻿using BCModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,31 +15,31 @@ namespace BCDL
         {
             this._context = context;
         }
-        public Recommendation AddRecommendation(Recommendation r)
+        public async Task<Recommendation> AddRecommendationAsync(Recommendation recommendation)
         {
-            _context.Recommendations.Add(r);
-            _context.SaveChanges();
-            return r;
+            await _context.Recommendations.AddAsync(recommendation);
+            await _context.SaveChangesAsync();
+            return recommendation;
         }
 
-        public Recommendation GetRecommendationByEmail(string email)
+        public async Task<Recommendation> GetRecommendationByEmailAsync(string email)
         {
-            return _context.Recommendations.FirstOrDefault(r => r.UserEmail == email);
+            return await _context.Recommendations.AsNoTracking().FirstOrDefaultAsync(r => r.UserEmail == email);
         }
 
-        public List<Recommendation> GetRecommendations()
+        public async Task<List<Recommendation>> GetRecommendationsAsync()
         {
-            return _context.Recommendations.Select(
+            return await _context.Recommendations.AsNoTracking().Select(
               r => r
-          ).ToList();
+          ).ToListAsync();
         }
 
-        public Recommendation UpdateRecommendation(Recommendation r)
+        public async Task<Recommendation> UpdateRecommendationAsync(Recommendation recommendation)
         {
-            _context.Recommendations.Update(r);
-            _context.SaveChanges();
+            _context.Recommendations.Update(recommendation);
+            await _context.SaveChangesAsync();
 
-            return r;
+            return recommendation;
         }
     }
 }

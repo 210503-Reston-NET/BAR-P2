@@ -19,43 +19,43 @@ namespace BCBL
 
         public Book AddBook(Book book)
         {
-            if (_bookRepo.BookExists(book.ISBN))
+            if (_bookRepo.BookExistsAsync(book.ISBN))
             {
-                return _bookRepo.UpdateBook(book);
+                return _bookRepo.UpdateBookAsync(book);
             }
-            return _bookRepo.AddBook(book);
+            return _bookRepo.AddBookAsync(book);
         }
 
         public void DeleteBook(string isbn)
         {
-            _bookRepo.DeleteBook(isbn);
+            _bookRepo.DeleteBookAsync(isbn);
         }
 
         public List<Book> GetAllBooks()
         {
-            return _bookRepo.GetAllBooks();
+            return _bookRepo.GetAllBooksAsync();
         }
 
         public List<Book> GetBookByAuthor(string author)
         {
-            return _bookRepo.GetBookByAuthor(author);
+            return _bookRepo.GetBookByAuthorAsync(author);
         }
 
         public Book GetBookByISBN(string isbn)
         {
-            return _bookRepo.GetBookByISBN(isbn);
+            return _bookRepo.GetBookByISBNAsync(isbn);
         }
 
         public Book GetBookByTitle(string title)
         {
-            return _bookRepo.GetBookByTitle(title);
+            return _bookRepo.GetBookByTitleAsync(title);
         }
 
         public Book UpdateBook(Book book)
         {
-            bool exists = _bookRepo.BookExists(book.ISBN);
+            bool exists = _bookRepo.BookExistsAsync(book.ISBN);
 
-            if (exists) return _bookRepo.UpdateBook(book);
+            if (exists) return _bookRepo.UpdateBookAsync(book);
             else throw new Exception("Book doesn't exist in DB");
         }
     }

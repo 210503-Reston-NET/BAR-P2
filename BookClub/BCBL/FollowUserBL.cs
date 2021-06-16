@@ -18,32 +18,32 @@ namespace BCBL
 
         public FollowUser AddFollowUser(FollowUser followUser)
         {
-            return _repo.AddFollowUser(followUser);
+            return _repo.AddFollowUserAsync(followUser);
         }
 
         public FollowUser DeleteFollowUser(int id)
         {
-            return _repo.DeleteFollowUser(id);
+            return _repo.DeleteFollowUserAsync(id);
         }
 
         public List<FollowUser> GetAllFollowUser()
         {
-            return _repo.GetAllFollowUser();
+            return _repo.GetAllFollowUserAsync();
         }
 
         public List<User> GetFollowersByUser(string email)
         {
-            return _repo.GetFollowersByUser(email);
+            return _repo.GetFollowersByUserAsync(email);
         }
 
         public List<User> GetFollowingByUser(string email)
         {
-            return _repo.GetFollowingByUser(email);
+            return _repo.GetFollowingByUserAsync(email);
         }
 
         public bool IsFollowing(string followerEmail, string followedEmail)
         {
-            return _repo.IsFollowing(followerEmail, followedEmail);
+            return _repo.IsFollowingAsync(followerEmail, followedEmail);
         }
     }
 }

@@ -16,46 +16,46 @@ namespace BCBL
 
         public BookClub AddBookClub(BookClub bookClub)
         {
-            if (_repo.GetBookClub(bookClub) != null)
+            if (_repo.GetBookClubAsync(bookClub) != null)
             {
                 throw new Exception("Book Club already exists");
             }
-            return _repo.AddBookClub(bookClub);
+            return _repo.AddBookClubAsync(bookClub);
         }
 
         public BookClub DeleteBookClub(BookClub bookClub)
         {
-            BookClub toBeDeleted = _repo.GetBookClub(bookClub);
+            BookClub toBeDeleted = _repo.GetBookClubAsync(bookClub);
             if (toBeDeleted != null)
             {
-                return _repo.DeleteBookClub(bookClub);
+                return _repo.DeleteBookClubAsync(bookClub);
             }
             throw new Exception("Book Club does not exist");
         }
 
         public List<BookClub> GetAllBookClubs()
         {
-            return _repo.GetAllBookClubs();
+            return _repo.GetAllBookClubsAsync();
         }
 
         public BookClub GetBookClub(BookClub bookClub)
         {
-            return _repo.GetBookClub(bookClub);
+            return _repo.GetBookClubAsync(bookClub);
         }
 
         public List<BookClub> GetBookClubByBook(string bookId)
         {
-            return _repo.GetBookClubByBook(bookId);
+            return _repo.GetBookClubByBookAsync(bookId);
         }
 
         public BookClub GetBookClubById(int bookClubId)
         {
-            return _repo.GetBookClubById(bookClubId);
+            return _repo.GetBookClubByIdAsync(bookClubId);
         }
 
         public BookClub UpdateBookClub(BookClub bookClub)
         {
-            return _repo.UpdateBookClub(bookClub);
+            return _repo.UpdateBookClubAsync(bookClub);
         }
     }
 }

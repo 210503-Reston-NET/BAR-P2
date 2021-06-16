@@ -1,7 +1,8 @@
 ﻿using BCModel;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace BCDL
 {
@@ -13,30 +14,30 @@ namespace BCDL
         {
             this._context = context;
         }
-        public User AddUser(User user)
+        public async Task<User> AddUserAsync(User user)
         {
             _context.ChangeTracker.Clear();
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
             return user;
         }
 
-        public User GetUserByEmail(string email)
+        public async Task<User> GetUserByEmailAsync(string email)
         {
-            return _context.Users.FirstOrDefault(user => user.UserEmail == email);
+            return await _context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.UserEmail == email);
         }
 
-        public List<User> GetAllUsers()
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            return _context.Users.Select(
+            return await _context.Users.AsNoTracking().Select(
               user => user
-          ).ToList();
+          ).ToListAsync();
         }
 
-        public User UpdateUser(User u)
+        public async Task<User> UpdateUserAsync(User u)
         {
             _context.Users.Update(u);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return u;
         }

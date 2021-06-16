@@ -15,27 +15,27 @@ namespace BCBL
 
         public User AddUser(User u)
         {
-            return _userRepo.AddUser(u);
+            return _userRepo.AddUserAsync(u);
         }
 
         public List<User> GetAllUsers()
         {
-            return _userRepo.GetAllUsers();
+            return _userRepo.GetAllUsersAsync();
         }
 
         public User GetUserByEmail(string email)
         {
-            return _userRepo.GetUserByEmail(email);
+            return _userRepo.GetUserByEmailAsync(email);
         }
 
         public List<User> GetUsers()
         {
-            return _userRepo.GetAllUsers();
+            return _userRepo.GetAllUsersAsync();
         }
 
         public User UpdateUser(User u)
         {
-            return _userRepo.UpdateUser(u);
+            return _userRepo.UpdateUserAsync(u);
         }
     }
 }

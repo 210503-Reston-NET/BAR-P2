@@ -15,24 +15,24 @@ namespace BCBL
         public RecommendationBL(IRecommendationRepo repo) { this._repo = repo; }
         public Recommendation AddRecommendation(Recommendation r)
         {
-            return _repo.AddRecommendation(r);
+            return _repo.AddRecommendationAsync(r);
         }
 
         public Recommendation GetRecommendationByEmail(string email)
         {
-            return _repo.GetRecommendationByEmail(email);
+            return _repo.GetRecommendationByEmailAsync(email);
         }
 
         public List<Recommendation> GetRecommendations()
         {
-            return _repo.GetRecommendations();
+            return _repo.GetRecommendationsAsync();
                 
         }
 
         public Recommendation UpdateRecommendation(Recommendation r)
         {
 
-            return _repo.UpdateRecommendation(r);
+            return _repo.UpdateRecommendationAsync(r);
         }
     }
 }

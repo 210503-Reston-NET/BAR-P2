@@ -302,7 +302,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var books = _repo.GetAllBooks();
+                var books = _repo.GetAllBooksAsync();
                 Assert.Equal(2, books.Count);
             }
         }
@@ -313,7 +313,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClubs = _repo.GetAllBookClubs();
+                var bookClubs = _repo.GetAllBookClubsAsync();
                 Assert.Equal(2, bookClubs.Count);
             }
         }
@@ -324,7 +324,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                var booksRead = _repo.GetAllBooksRead();
+                var booksRead = _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, booksRead.Count);
             }
         }
@@ -335,7 +335,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                var booksToRead = _repo.GetAllBooksRead();
+                var booksToRead = _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, booksToRead.Count);
             }
         }
@@ -346,7 +346,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                var categories = _repo.GetAllCategories();
+                var categories = _repo.GetAllCategoriesAsync();
                 Assert.Equal(2, categories.Count);
             }
         }
@@ -357,7 +357,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPosts = _repo.GetAllClubPosts();
+                var clubPosts = _repo.GetAllClubPostsAsync();
                 Assert.Equal(2, clubPosts.Count);
             }
         }
@@ -368,7 +368,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentRepo _repo = new CommentRepo(context);
-                var comments = _repo.GetAllComments();
+                var comments = _repo.GetAllCommentsAsync();
                 Assert.Equal(2, comments.Count);
             }
         }
@@ -379,7 +379,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFavoriteBookRepo _repo = new FavoriteBookRepo(context);
-                var favoriteBooks = _repo.GetAllBooksRead();
+                var favoriteBooks = _repo.GetAllBooksReadAsync();
                 Assert.Equal(2, favoriteBooks.Count);
             }
         }
@@ -390,7 +390,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var clubFollowers = _repo.GetAllFollowClub();
+                var clubFollowers = _repo.GetAllFollowClubAsync();
                 Assert.Equal(2, clubFollowers.Count);
             }
         }
@@ -401,7 +401,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                var userFollowers = _repo.GetAllFollowUser();
+                var userFollowers = _repo.GetAllFollowUserAsync();
                 Assert.Equal(2, userFollowers.Count);
             }
         }
@@ -412,7 +412,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                var users = _repo.GetAllUsers();
+                var users = _repo.GetAllUsersAsync();
                 Assert.Equal(2, users.Count);
             }
         }
@@ -423,7 +423,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPosts = _repo.GetAllUserPosts();
+                var userPosts = _repo.GetAllUserPostsAsync();
                 Assert.Equal(2, userPosts.Count);
             }
         }
@@ -434,7 +434,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLikes = _repo.GetAllClubPostLikes();
+                var clubPostLikes = _repo.GetAllClubPostLikesAsync();
                 Assert.Equal(2, clubPostLikes.Count);
             }
         }
@@ -445,7 +445,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLikes = _repo.GetAllUserPostLikes();
+                var userPostLikes = _repo.GetAllUserPostLikesAsync();
                 Assert.Equal(2, userPostLikes.Count);
             }
         }
@@ -456,7 +456,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentLikesRepo _repo = new CommentLikesRepo(context);
-                var commentLikes = _repo.GetAllCommentLikes();
+                var commentLikes = _repo.GetAllCommentLikesAsync();
                 Assert.Equal(2, commentLikes.Count);
             }
         }
@@ -467,7 +467,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var book = _repo.GetBookByISBN("123456789");
+                var book = _repo.GetBookByISBNAsync("123456789");
                 Assert.Equal("Unit Testing", book.Title);
             }
         }
@@ -478,7 +478,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                var books = _repo.GetBookByAuthor("Bryce");
+                var books = _repo.GetBookByAuthorAsync("Bryce");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Unit Testing", book.Title);
@@ -492,7 +492,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClub = _repo.GetBookClubById(1);
+                var bookClub = _repo.GetBookClubByIdAsync(1);
                 Assert.Equal("Harry Potter", bookClub.Name);
             }
         }
@@ -503,7 +503,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                var bookClubs = _repo.GetBookClubByBook("14598678");
+                var bookClubs = _repo.GetBookClubByBookAsync("14598678");
                 foreach (Model.BookClub bookClub in bookClubs)
                 {
                     Assert.Equal("Harry Potter", bookClub.Name);
@@ -517,7 +517,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                var books = _repo.GetBooksReadByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Test", book.CategoryId);
@@ -531,7 +531,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                var books = _repo.GetBooksReadByUser("bryce.zimbelman@revature.net");
+                var books = _repo.GetBooksReadByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.Book book in books)
                 {
                     Assert.Equal("Test", book.CategoryId);
@@ -545,7 +545,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                var category = _repo.GetCategory("Horror");
+                var category = _repo.GetCategoryAsync("Horror");
                 Assert.Equal("Horror", category.CategoryId);
             }
         }
@@ -556,7 +556,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPost = _repo.GetClubPostById(1);
+                var clubPost = _repo.GetClubPostByIdAsync(1);
                 Assert.Equal("Good Book", clubPost.Post);
             }
         }
@@ -567,7 +567,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                var clubPosts = _repo.GetClubPostByBookClub(1);
+                var clubPosts = _repo.GetClubPostByBookClubAsync(1);
                 foreach (Model.ClubPost clubPost in clubPosts)
                 {
                     Assert.Equal(1, clubPost.BookClubId);
@@ -581,7 +581,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentRepo _repo = new CommentRepo(context);
-                var comment = _repo.GetCommentById(1);
+                var comment = _repo.GetCommentByIdAsync(1);
                 Assert.Equal("Wrong", comment.Message);
             }
         }
@@ -592,7 +592,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentRepo _repo = new CommentRepo(context);
-                var comments = _repo.GetCommentByClubPost(1);
+                var comments = _repo.GetCommentByClubPostAsync(1);
                 foreach (Model.Comment comment in comments)
                 {
                     Assert.Equal(1, comment.ClubPostID);
@@ -607,7 +607,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentRepo _repo = new CommentRepo(context);
-                var comments = _repo.GetCommentByUserPost(1);
+                var comments = _repo.GetCommentByUserPostAsync(1);
                 foreach (Model.Comment comment in comments)
                 {
                     Assert.Equal(1, comment.UserPostID);
@@ -622,7 +622,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var followers = _repo.GetFollowersByClub(1);
+                var followers = _repo.GetFollowersByClubAsync(1);
                 foreach (Model.User user in followers)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
@@ -636,7 +636,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                var bookClubs = _repo.GetFollowingByUser("bryce.zimbelman@revature.net");
+                var bookClubs = _repo.GetFollowingByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.BookClub bookClub in bookClubs)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", bookClub.UserEmail);
@@ -650,7 +650,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                var followers = _repo.GetFollowersByUser("bryce.zimbelman@icloud.com");
+                var followers = _repo.GetFollowersByUserAsync("bryce.zimbelman@icloud.com");
                 foreach (Model.User user in followers)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
@@ -664,7 +664,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                var user = _repo.GetUserByEmail("bryce.zimbelman@revature.net");
+                var user = _repo.GetUserByEmailAsync("bryce.zimbelman@revature.net");
                 Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
 
             }
@@ -676,7 +676,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPost = _repo.GetUserPostById(1);
+                var userPost = _repo.GetUserPostByIdAsync(1);
                 Assert.Equal("You all should join that other BookClub", userPost.Post);
 
             }
@@ -688,7 +688,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                var userPosts = _repo.GetUserPostByUser("bryce.zimbelman@revature.net");
+                var userPosts = _repo.GetUserPostByUserAsync("bryce.zimbelman@revature.net");
                 foreach (Model.UserPost userPost in userPosts)
                 {
                     Assert.Equal("bryce.zimbelman@revature.net", userPost.UserEmail);
@@ -702,7 +702,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLikes = _repo.GetClubPostLikesByClubPost(1);
+                var clubPostLikes = _repo.GetClubPostLikesByClubPostAsync(1);
                 foreach (Model.ClubPostLikes likes in clubPostLikes)
                 {
                     Assert.Equal(1, likes.ClubPostId);
@@ -716,7 +716,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                var clubPostLike = _repo.GetClubPostLikesById(1);
+                var clubPostLike = _repo.GetClubPostLikesByIdAsync(1);
                 Assert.Equal(1, clubPostLike.ClubPostLikesId);
             }
         }
@@ -727,7 +727,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLikes = _repo.GetUserPostLikesByUserPost(1);
+                var userPostLikes = _repo.GetUserPostLikesByUserPostAsync(1);
                 foreach (Model.UserPostLikes likes in userPostLikes)
                 {
                     Assert.Equal(1, likes.UserPostId);
@@ -741,7 +741,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
-                var userPostLike = _repo.GetUserPostLikesById(1);
+                var userPostLike = _repo.GetUserPostLikesByIdAsync(1);
                 Assert.Equal(1, userPostLike.UserPostLikesId);
             }
         }
@@ -752,7 +752,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentLikesRepo _repo = new CommentLikesRepo(context);
-                var commentLikes = _repo.GetCommentLikesByClubPost(1);
+                var commentLikes = _repo.GetCommentLikesByClubPostAsync(1);
                 foreach (Model.CommentLikes likes in commentLikes)
                 {
                     Assert.Equal(1, likes.ClubPostId);
@@ -766,7 +766,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentLikesRepo _repo = new CommentLikesRepo(context);
-                var commentLikes = _repo.GetCommentLikesByUserPost(1);
+                var commentLikes = _repo.GetCommentLikesByUserPostAsync(1);
                 foreach (Model.CommentLikes likes in commentLikes)
                 {
                     Assert.Equal(1, likes.UserPostId);
@@ -780,7 +780,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentLikesRepo _repo = new CommentLikesRepo(context);
-                var commentLike = _repo.GetCommentLikesById(1);
+                var commentLike = _repo.GetCommentLikesByIdAsync(1);
                 Assert.Equal(1, commentLike.CommentLikesId);
             }
         }
@@ -791,7 +791,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookRepo _repo = new BookRepo(context);
-                _repo.AddBook(new Model.Book("135798642", "Interesting Book", "Me", "Boring"));
+                _repo.AddBookAsync(new Model.Book("135798642", "Interesting Book", "Me", "Boring"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -808,7 +808,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBookClubRepo _repo = new BookClubRepo(context);
-                _repo.AddBookClub(new Model.BookClub("Good Reads", "Interestings Reads", "987123456", "bryce.zimbelman@revature.net"));
+                _repo.AddBookClubAsync(new Model.BookClub("Good Reads", "Interestings Reads", "987123456", "bryce.zimbelman@revature.net"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -825,7 +825,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksReadRepo _repo = new BooksReadRepo(context);
-                _repo.AddBooksRead(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642", 50));
+                _repo.AddBooksReadAsync(new Model.BooksRead("bryce.zimbelman@icloud.com", "135798642", 50));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -842,7 +842,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IBooksToReadRepo _repo = new BookToReadRepo(context);
-                _repo.AddBooksRead(new Model.BooksToRead("bryce.zimbelman@revature.net", "135798642"));
+                _repo.AddBooksReadAsync(new Model.BooksToRead("bryce.zimbelman@revature.net", "135798642"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -859,7 +859,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICategoryRepo _repo = new CategoryRepo(context);
-                _repo.AddCategory(new Model.Category("Adventure"));
+                _repo.AddCategoryAsync(new Model.Category("Adventure"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -876,7 +876,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostRepo _repo = new ClubPostRepo(context);
-                _repo.AddClubPost(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10, new DateTime()));
+                _repo.AddClubPostAsync(new Model.ClubPost("bryce.zimbelman@revature.net", "Boring Book!", 1, 0, 10, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -893,7 +893,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 ICommentRepo _repo = new CommentRepo(context);
-                _repo.AddComment(new Model.Comment("bryce.zimbelman@revature.net", 2, 0, "maybe"));
+                _repo.AddCommentAsync(new Model.Comment("bryce.zimbelman@revature.net", 2, 0, "maybe"));
             }
 
             using (var assertcontext = new BookClubDBContext(options))
@@ -910,7 +910,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFavoriteBookRepo _repo = new FavoriteBookRepo(context);
-                _repo.AddBooksRead(new Model.FavoriteBook("bryce.zimbelman@revature.net", "135798642"));
+                _repo.AddBooksReadAsync(new Model.FavoriteBook("bryce.zimbelman@revature.net", "135798642"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -927,7 +927,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowClubRepo _repo = new FollowClubRepo(context);
-                _repo.AddFollowClub(new Model.FollowClub("bryce.zimbelman@revature.net", 3));
+                _repo.AddFollowClubAsync(new Model.FollowClub("bryce.zimbelman@revature.net", 3));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -944,7 +944,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IFollowUserRepo _repo = new FollowUserRepo(context);
-                _repo.AddFollowUser(new Model.FollowUser("bryce.zimbelman@gmail.com", "bryce.zimbelman@revature.net"));
+                _repo.AddFollowUserAsync(new Model.FollowUser("bryce.zimbelman@gmail.com", "bryce.zimbelman@revature.net"));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -962,7 +962,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserRepo _repo = new UserRepo(context);
-                _repo.AddUser(new Model.User("bryce.zimbelman@gmail.com", "Password!", "13590 SW Electric St", 10));
+                _repo.AddUserAsync(new Model.User("bryce.zimbelman@gmail.com", "Password!", "13590 SW Electric St", 10));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -979,7 +979,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IUserPostRepo _repo = new UserPostRepo(context);
-                _repo.AddUserPost(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3, new DateTime()));
+                _repo.AddUserPostAsync(new Model.UserPost("bryce.zimbelman@icloud.com", "Does anyone else read Harry Potter?", 24, 3, new DateTime()));
             }
 
             using (var assertContext = new BookClubDBContext(options))
@@ -995,7 +995,7 @@ namespace BCTest
             using (var context = new BookClubDBContext(options))
             {
                 IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
-                _repo.AddClubPostLike(new Model.ClubPostLikes(true, false, 1, "bryce.zimbelman@gmail.com"));
+                _repo.AddClubPostLikeAsync(new Model.ClubPostLikes(true, false, 1, "bryce.zimbelman@gmail.com"));
             }
 
             using (var assertContext = new BookClubDBContext(options))

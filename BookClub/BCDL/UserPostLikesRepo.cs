@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -14,32 +16,32 @@ namespace BCDL
             _context = context;
         }
 
-        public UserPostLikes AddUserPostLike(UserPostLikes userPostLike)
+        public async Task<UserPostLikes> AddUserPostLikeAsync(UserPostLikes userPostLike)
         {
             _context.ChangeTracker.Clear();
-            _context.UserPostLikes.Add(userPostLike);
-            _context.SaveChanges();
+            await _context.UserPostLikes.AddAsync(userPostLike);
+            await _context.SaveChangesAsync();
             return userPostLike;
         }
 
-        public List<UserPostLikes> GetAllUserPostLikes()
+        public async Task<List<UserPostLikes>> GetAllUserPostLikesAsync()
         {
-            return _context.UserPostLikes.Select(likes => likes).ToList();
+            return await _context.UserPostLikes.AsNoTracking().Select(likes => likes).ToListAsync();
         }
 
-        public UserPostLikes GetUserPostLike(UserPostLikes userPostLike)
+        public async Task<UserPostLikes> GetUserPostLikeAsync(UserPostLikes userPostLike)
         {
-            return _context.UserPostLikes.Find(userPostLike);
+            return await _context.UserPostLikes.FindAsync(userPostLike);
         }
 
-        public UserPostLikes GetUserPostLikesById(int id)
+        public async Task<UserPostLikes> GetUserPostLikesByIdAsync(int id)
         {
-            return _context.UserPostLikes.Find(id);
+            return await _context.UserPostLikes.FindAsync(id);
         }
 
-        public List<UserPostLikes> GetUserPostLikesByUserPost(int userPostId)
+        public async Task<List<UserPostLikes>> GetUserPostLikesByUserPostAsync(int userPostId)
         {
-            return _context.UserPostLikes.Where(like => like.UserPostId == userPostId).Select(like => like).ToList();
+            return await _context.UserPostLikes.AsNoTracking().Where(like => like.UserPostId == userPostId).Select(like => like).ToListAsync();
         }
     }
 }

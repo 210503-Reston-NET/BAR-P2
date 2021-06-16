@@ -18,27 +18,27 @@ namespace BCBL
         }
         public FollowClub AddFollowClub(FollowClub followClub)
         {
-            return _repo.AddFollowClub(followClub);
+            return _repo.AddFollowClubAsync(followClub);
         }
 
         public FollowClub DeleteFollowClub(int id)
         {
-            return _repo.DeleteFollowClub(id);
+            return _repo.DeleteFollowClubAsyncAsync(id);
         }
 
         public List<FollowClub> GetAllFollowClub()
         {
-            return _repo.GetAllFollowClub();
+            return _repo.GetAllFollowClubAsync();
         }
 
         public List<User> GetFollowersByClub(int id)
         {
-            return _repo.GetFollowersByClub(id);
+            return _repo.GetFollowersByClubAsync(id);
         }
 
         public List<BookClub> GetFollowingByUser(string email)
         {
-            return _repo.GetFollowingByUser(email);
+            return _repo.GetFollowingByUserAsync(email);
         }
     }
 }

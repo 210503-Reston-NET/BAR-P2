@@ -1,4 +1,5 @@
 ﻿using BCModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,30 +15,30 @@ namespace BCDL
         {
             this._context = context;
         }
-        public Achievement AddAchievement(Achievement r)
+        public async Task<Achievement> AddAchievementAsync(Achievement r)
         {
-            _context.Achievements.Add(r);
-            _context.SaveChanges();
+            await _context.Achievements.AddAsync(r);
+            await _context.SaveChangesAsync();
             return r;
         }
 
-        public Achievement GetAchievementByEmail(string email)
+        public async Task<Achievement> GetAchievementByEmailAsync(string email)
         {
-            return _context.Achievements.FirstOrDefault(r => r.UserEmail == email);
+            return await _context.Achievements.AsNoTracking().FirstOrDefaultAsync(r => r.UserEmail == email);
         }
 
-        public List<Achievement> GetAchievements()
+        public async Task<List<Achievement>> GetAchievementsAsync()
         {
 
-            return _context.Achievements.Select(
+            return await _context.Achievements.AsNoTracking().Select(
               r => r
-          ).ToList();
+          ).ToListAsync();
         }
 
-        public Achievement UpdateAchievement(Achievement r)
+        public async Task<Achievement> UpdateAchievementAsync(Achievement r)
         {
-            _context.Achievements.Update(r);
-            _context.SaveChanges();
+           _context.Achievements.Update(r);
+           await _context.SaveChangesAsync();
 
             return r;
         }

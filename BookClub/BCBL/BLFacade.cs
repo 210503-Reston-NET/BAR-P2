@@ -17,7 +17,7 @@ namespace BCBL
         }
         public User AddAccount(User user)
         {
-            return _userRepo.AddUser(user);
+            return _userRepo.AddUserAsync(user);
         }
     }
 }

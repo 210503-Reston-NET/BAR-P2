@@ -15,27 +15,27 @@ namespace BCBL
 
         public UserPostLikes AddUserPostLike(UserPostLikes userPostLike)
         {
-            return _repo.AddUserPostLike(userPostLike);
+            return _repo.AddUserPostLikeAsync(userPostLike);
         }
 
         public List<UserPostLikes> GetAllUserPostLikes()
         {
-            return _repo.GetAllUserPostLikes();
+            return _repo.GetAllUserPostLikesAsync();
         }
 
         public UserPostLikes GetUserPostLike(UserPostLikes userPostLike)
         {
-            return _repo.GetUserPostLike(userPostLike);
+            return _repo.GetUserPostLikeAsync(userPostLike);
         }
 
         public UserPostLikes GetUserPostLikesById(int id)
         {
-            return _repo.GetUserPostLikesById(id);
+            return _repo.GetUserPostLikesByIdAsync(id);
         }
 
         public List<UserPostLikes> GetUserPostLikesByUserPost(int userPostId)
         {
-            return _repo.GetUserPostLikesByUserPost(userPostId);
+            return _repo.GetUserPostLikesByUserPostAsync(userPostId);
         }
     }
 }

@@ -17,58 +17,58 @@ namespace BCDL
             _context = context;
         }
 
-        public BooksRead AddBooksRead(BooksRead book)
+        public async Task<BooksRead> AddBooksReadAsync(BooksRead book)
         {
-            User user = _context.Users.FirstOrDefault(usr => usr.UserEmail.Equals(book.UserEmail));
+            User user = await _context.Users.AsNoTracking().FirstOrDefaultAsync(usr => usr.UserEmail.Equals(book.UserEmail));
 
             if (user != null)
             {
                 int pagesRead = user.PagesRead + book.BookPages;
                 user.PagesRead = pagesRead;
                 _context.Users.Update(user);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
-            _context.BooksRead.Add(book);
-            _context.SaveChanges();
+            await _context.BooksRead.AddAsync(book);
+            await _context.SaveChangesAsync();
             return book;
         }
 
-        public BooksRead DeleteBooksRead(int id)
+        public async Task<BooksRead> DeleteBooksReadAsync(int id)
         {
-            BooksRead toBeDeleted = _context.BooksRead.FirstOrDefault(bookR => bookR.BooksReadId == id);
+            BooksRead toBeDeleted = await _context.BooksRead.AsNoTracking().FirstOrDefaultAsync(bookR => bookR.BooksReadId == id);
             if (toBeDeleted != null)
             {
                 _context.BooksRead.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return toBeDeleted;
         }
 
-        public List<BooksRead> GetAllBooksRead()
+        public async Task<List<BooksRead>> GetAllBooksReadAsync()
         {
-            return _context.BooksRead.Select(book => book).ToList();
+            return await _context.BooksRead.AsNoTracking().Select(book => book).ToListAsync();
         }
 
-        public List<Book> GetBooksReadByUser(string email)
+        public async Task<List<Book>> GetBooksReadByUserAsync(string email)
         {
-            List<BooksRead> booksRead = _context.BooksRead.Where(book => book.UserEmail.Equals(email)).Select(book => book).ToList();
+            List<BooksRead> booksRead = await _context.BooksRead.AsNoTracking().Where(book => book.UserEmail.Equals(email)).Select(book => book).ToListAsync();
             List<Book> books = new List<Book>();
             Book book;
             foreach(BooksRead bookread in booksRead)
             {
-                book = _context.Books.FirstOrDefault(bk => bk.ISBN.Equals(bookread.ISBN));
+                book = await _context.Books.FirstOrDefaultAsync(bk => bk.ISBN.Equals(bookread.ISBN));
                 books.Add(book);
             }
 
             return books;
         }
 
-        public BooksRead UpdateBooksRead(BooksRead book)
+        public async Task<BooksRead> UpdateBooksReadAsync(BooksRead book)
         {
             _context.BooksRead.Update(book);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return book;
         }
     }

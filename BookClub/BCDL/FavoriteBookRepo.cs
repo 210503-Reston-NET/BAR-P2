@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -16,49 +17,49 @@ namespace BCDL
             _context = context;
         }
 
-        public FavoriteBook AddBooksRead(FavoriteBook book)
+        public async Task<FavoriteBook> AddBooksReadAsync(FavoriteBook book)
         {
 
-            _context.FavoriteBooks.Add(book);
-            _context.SaveChanges();
+            await _context.FavoriteBooks.AddAsync(book);
+            await _context.SaveChangesAsync();
             return book;
         }
 
-        public FavoriteBook DeleteBooksRead(int id)
+        public async Task<FavoriteBook> DeleteBooksReadAsync(int id)
         {
-            FavoriteBook toBeDeleted = _context.FavoriteBooks.FirstOrDefault(bookR => bookR.FavoriteBookId == id);
+            FavoriteBook toBeDeleted = await _context.FavoriteBooks.AsNoTracking().FirstOrDefaultAsync(bookR => bookR.FavoriteBookId == id);
             if (toBeDeleted != null)
             {
                 _context.FavoriteBooks.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return toBeDeleted;
         }
 
-        public List<FavoriteBook> GetAllBooksRead()
+        public async Task<List<FavoriteBook>> GetAllBooksReadAsync()
         {
-            return _context.FavoriteBooks.Select(book => book).ToList();
+            return await _context.FavoriteBooks.AsNoTracking().Select(book => book).ToListAsync();
         }
 
-        public List<Book> GetBooksReadByUser(string email)
+        public async Task<List<Book>> GetBooksReadByUserAsync(string email)
         {
-            List<FavoriteBook> booksRead = _context.FavoriteBooks.Where(book => book.UserEmail.Equals(email)).Select(book => book).ToList();
+            List<FavoriteBook> booksRead = await _context.FavoriteBooks.AsNoTracking().Where(book => book.UserEmail.Equals(email)).Select(book => book).ToListAsync();
             List<Book> books = new List<Book>();
             Book book;
             foreach (FavoriteBook bookread in booksRead)
             {
-                book = _context.Books.FirstOrDefault(bk => bk.ISBN.Equals(bookread.ISBN));
+                book = await _context.Books.AsNoTracking().FirstOrDefaultAsync(bk => bk.ISBN.Equals(bookread.ISBN));
                 books.Add(book);
             }
 
             return books;
         }
 
-        public FavoriteBook UpdateBooksRead(FavoriteBook book)
+        public async Task<FavoriteBook> UpdateBooksReadAsync(FavoriteBook book)
         {
             _context.FavoriteBooks.Update(book);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return book;
         }
     }

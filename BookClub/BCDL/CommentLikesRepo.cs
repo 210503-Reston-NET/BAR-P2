@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BCModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCDL
 {
@@ -13,37 +15,37 @@ namespace BCDL
             _context = context;
         }
 
-        public CommentLikes AddCommentLikes(CommentLikes commentLike)
+        public async Task<CommentLikes> AddCommentLikesAsync(CommentLikes commentLike)
         {
             _context.ChangeTracker.Clear();
-            _context.CommentLikes.Add(commentLike);
-            _context.SaveChanges();
+            await _context.CommentLikes.AddAsync(commentLike);
+            await _context.SaveChangesAsync();
             return commentLike;
         }
 
-        public List<CommentLikes> GetAllCommentLikes()
+        public async Task<List<CommentLikes>> GetAllCommentLikesAsync()
         {
-            return _context.CommentLikes.Select(likes => likes).ToList();
+            return await _context.CommentLikes.AsNoTracking().Select(likes => likes).ToListAsync();
         }
 
-        public List<CommentLikes> GetCommentLikesByUserPost(int userPostId)
+        public async Task<List<CommentLikes>> GetCommentLikesByUserPostAsync(int userPostId)
         {
-            return _context.CommentLikes.Where(like => like.UserPostId == userPostId).Select(like => like).ToList();
+            return await _context.CommentLikes.AsNoTracking().Where(like => like.UserPostId == userPostId).Select(like => like).ToListAsync();
         }
 
-        public List<CommentLikes> GetCommentLikesByClubPost(int clubPostId)
+        public async Task<List<CommentLikes>> GetCommentLikesByClubPostAsync(int clubPostId)
         {
-            return _context.CommentLikes.Where(like => like.ClubPostId == clubPostId).Select(like => like).ToList();
+            return await _context.CommentLikes.AsNoTracking().Where(like => like.ClubPostId == clubPostId).Select(like => like).ToListAsync();
         }
 
-        public CommentLikes GetCommentLike(CommentLikes commentLike)
+        public async Task<CommentLikes> GetCommentLikeAsync(CommentLikes commentLike)
         {
-            return _context.CommentLikes.Find(commentLike);
+            return await _context.CommentLikes.FindAsync(commentLike);
         }
 
-        public CommentLikes GetCommentLikesById(int id)
+        public async Task<CommentLikes> GetCommentLikesByIdAsync(int id)
         {
-            return _context.CommentLikes.Find(id);
+            return await _context.CommentLikes.FindAsync(id);
         }
     }
 }

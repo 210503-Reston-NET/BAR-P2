@@ -15,22 +15,22 @@ namespace BCBL
         public AchievementBL(IAchievementRepo achievementRepo) { this._achievementRepo = achievementRepo; }
         public Achievement AddAchievement(Achievement r)
         {
-            return _achievementRepo.AddAchievement(r);
+            return _achievementRepo.AddAchievementAsync(r);
         }
 
         public Achievement GetAchievementByEmail(string email)
         {
-            return _achievementRepo.GetAchievementByEmail(email);
+            return _achievementRepo.GetAchievementByEmailAsync(email);
         }
 
         public List<Achievement> GetAchievements()
         {
-            return _achievementRepo.GetAchievements();
+            return _achievementRepo.GetAchievementsAsync();
         }
 
         public Achievement UpdateAchievement(Achievement r)
         {
-            return _achievementRepo.UpdateAchievement(r);
+            return _achievementRepo.UpdateAchievementAsync(r);
         }
     }
 }

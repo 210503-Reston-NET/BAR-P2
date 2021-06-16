@@ -17,67 +17,67 @@ namespace BCDL
             _context = context;
         }
 
-        public Book AddBook(Book book)
+        public async Task<Book> AddBookAsync(Book book)
         {
             
-            Category cat = _context.Categories.FirstOrDefault(cate => cate.CategoryId.Equals(book.CategoryId));
+            Category cat = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(cate => cate.CategoryId.Equals(book.CategoryId));
             if (cat == null)
             {
-                _context.Categories.Add(new Category(book.CategoryId));
+                await _context.Categories.AddAsync(new Category(book.CategoryId));
             }
             
             _context.ChangeTracker.Clear();
-            _context.Books.Add(book);
-            _context.SaveChanges();
+            await _context.Books.AddAsync(book);
+            await _context.SaveChangesAsync();
             
             
             return book;
         }
 
-        public List<Book> GetAllBooks()
+        public async Task<List<Book>> GetAllBooksAsync()
         {
-            List<Book> book = _context.Books.Select(book => book).ToList();
+            List<Book> book = await _context.Books.AsNoTracking().Select(book => book).ToListAsync();
             return book;
         }
 
-        public List<Book> GetBookByAuthor(string author)
+        public async Task<List<Book>> GetBookByAuthorAsync(string author)
         {
-            return _context.Books.Where(book => book.Author == author).Select(book => book).ToList();
+            return await _context.Books.AsNoTracking().Where(book => book.Author == author).Select(book => book).ToListAsync();
         }
 
-        public Book GetBookByISBN(string isbn)
+        public async Task<Book> GetBookByISBNAsync(string isbn)
         {
-            return _context.Books.FirstOrDefault(book => book.ISBN == isbn);
+            return await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.ISBN == isbn);
         }
 
-        public Book GetBookByTitle(string title)
+        public async Task<Book> GetBookByTitleAsync(string title)
         {
-            return _context.Books.FirstOrDefault(book => book.Title == title);
+            return await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.Title == title);
         }
 
-        public Book UpdateBook(Book book)
+        public async Task<Book> UpdateBookAsync(Book book)
         {
             _context.ChangeTracker.Clear();
             _context.Books.Update(book);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return book;
         }
 
-        public void DeleteBook(string isbn)
+        public async void DeleteBookAsync(string isbn)
         {
-            Book toBeDeleted = _context.Books.FirstOrDefault(book => book.ISBN == isbn);
+            Book toBeDeleted = await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.ISBN == isbn);
 
             if (toBeDeleted != null)
             {
                 _context.Books.Remove(toBeDeleted);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 
-        public bool BookExists(string isbn)
+        public async Task<bool> BookExistsAsync(string isbn)
         {
-            Book book = _context.Books.FirstOrDefault(book => book.ISBN == isbn);
+            Book book = await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.ISBN == isbn);
 
             if (book == null) return false;
             else return true;

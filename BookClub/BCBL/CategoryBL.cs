@@ -19,22 +19,22 @@ namespace BCBL
 
         public Category AddCategory(Category category)
         {
-            return _repo.AddCategory(category);
+            return _repo.AddCategoryAsync(category);
         }
 
         public Category DeleteCategory(string name)
         {
-            return _repo.DeleteCategory(name);
+            return _repo.DeleteCategoryAsync(name);
         }
 
         public List<Category> GetAllCategories()
         {
-            return _repo.GetAllCategories();
+            return _repo.GetAllCategoriesAsync();
         }
 
         public Category GetCategory(string name)
         {
-            return _repo.GetCategory(name);
+            return _repo.GetCategoryAsync(name);
         }
     }
 }
