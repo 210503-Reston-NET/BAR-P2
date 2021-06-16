@@ -24,6 +24,7 @@ namespace BCDL
             if (cat == null)
             {
                 _context.Categories.Add(new Category(book.CategoryId));
+                _context.SaveChanges();
             }
             
             _context.ChangeTracker.Clear();
