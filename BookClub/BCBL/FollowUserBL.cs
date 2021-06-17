@@ -26,6 +26,11 @@ namespace BCBL
             return await _repo.DeleteFollowUserAsync(id);
         }
 
+        public async Task<FollowUser> DeleteFollowerByEmailsAsync(string followerEmail, string followedEmail)
+        {
+            return await _repo.DeleteFollowerByEmailsAsync(followerEmail, followedEmail);
+        }
+
         public async Task<List<FollowUser>> GetAllFollowUserAsync()
         {
             return await _repo.GetAllFollowUserAsync();

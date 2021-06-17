@@ -34,6 +34,17 @@ namespace BCDL
             return toBeDeleted;
         }
 
+        public async Task<FollowUser> DeleteFollowerByEmailsAsync(string followerEmail, string followedEmail)
+        {
+            FollowUser toBeDeleted = await _context.FollowUsers.AsNoTracking().FirstOrDefaultAsync(fl => fl.FollowerEmail == followerEmail && fl.UserEmail == followedEmail);
+            if (toBeDeleted != null)
+            {
+                _context.FollowUsers.Remove(toBeDeleted);
+                await _context.SaveChangesAsync();
+            }
+            return toBeDeleted;
+        }
+
         public async Task<List<FollowUser>> GetAllFollowUserAsync()
         {
             return await _context.FollowUsers.AsNoTracking().Select(fc => fc).ToListAsync();

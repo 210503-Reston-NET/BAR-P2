@@ -64,5 +64,13 @@ namespace BCWebUI.Controllers
             await _FollowUserBL.DeleteFollowUserAsync(id);
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("DeleteFollowersByUser/{followerEmail}/{followedEmail}")]
+        public async Task<IActionResult> DeleteByEmail(string followerEmail, string followedEmail)
+        {
+            await _FollowUserBL.DeleteFollowerByEmailsAsync(followerEmail, followedEmail);
+            return NoContent();
+        }
     }
 }
