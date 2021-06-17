@@ -34,8 +34,8 @@ namespace BCWebUI.Controllers
             return Ok(await _clubCommentBL.GetCommentByIdAsync(id));
         }
 
-        [HttpGet("GetUserPostComments/{postId}")]
-        public async Task<IActionResult> GetUserPostComments(int postId)
+        [HttpGet("GetClubPostComments/{postId}")]
+        public async Task<IActionResult> GetClubPostComments(int postId)
         {
             return Ok(await _clubCommentBL.GetCommentByClubIdAsync(postId));
         }
