@@ -6,8 +6,8 @@ namespace BCDL
 {
    public interface IUserRepo
     {
-        public Task<User> AddUserAsync(User u);
-        public Task<User> UpdateUserAsync(User u);
+        public Task<User> AddUserAsync(User user);
+        public Task<User> UpdateUserAsync(User user);
         public Task<User> GetUserByEmailAsync(string email);
         public Task<List<User>> GetAllUsersAsync();
     }

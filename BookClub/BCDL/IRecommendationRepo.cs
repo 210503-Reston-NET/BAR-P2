@@ -9,8 +9,8 @@ namespace BCDL
 {
    public interface IRecommendationRepo
     {
-        public Task<Recommendation> AddRecommendationAsync(Recommendation r);
-        public Task<Recommendation> UpdateRecommendationAsync(Recommendation r);
+        public Task<Recommendation> AddRecommendationAsync(Recommendation recommendation);
+        public Task<Recommendation> UpdateRecommendationAsync(Recommendation recommendation);
         public Task<Recommendation> GetRecommendationByEmailAsync(string email);
         public Task<List<Recommendation>> GetRecommendationsAsync();
     }

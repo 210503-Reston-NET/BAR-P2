@@ -70,7 +70,6 @@ namespace BCDL
             ClubPost old = await _context.ClubPosts.AsNoTracking().FirstOrDefaultAsync(cp => cp.ClubPostId == clubPost.ClubPostId);
             old.TotalLike = old.TotalDislike + 1;
             _context.ClubPosts.Update(old);
-            //_context.Entry(clubPost).CurrentValues;
             await _context.SaveChangesAsync();
             return old;
         }

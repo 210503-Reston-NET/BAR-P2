@@ -11,6 +11,6 @@ namespace BCBL
         Task<ClubPostLikes> GetClubPostLikeAsync(ClubPostLikes clubPostLike);
         Task<List<ClubPostLikes>> GetAllClubPostLikesAsync();
         Task<List<ClubPostLikes>> GetClubPostLikesByClubPostAsync(int clubPostId);
-        Task<ClubPostLikes> GetClubPostLikesByIdAsync(int Id);
+        Task<ClubPostLikes> GetClubPostLikesByIdAsync(int id);
     }
 }

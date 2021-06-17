@@ -9,7 +9,7 @@ namespace BCBL
 {
     public interface IFollowUserBL
     {
-        Task<FollowUser> AddFollowUserAsync(FollowUser followClub);
+        Task<FollowUser> AddFollowUserAsync(FollowUser followUser);
         Task<List<FollowUser>> GetAllFollowUserAsync();
         Task<List<User>> GetFollowingByUserAsync(string email);
         Task<List<User>> GetFollowersByUserAsync(string email);
