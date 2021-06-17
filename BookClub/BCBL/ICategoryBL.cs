@@ -14,7 +14,5 @@ namespace BCBL
         Task<List<Category>> GetAllCategoriesAsync();
 
         Task<Category> GetCategoryAsync(string name);
-
-        Task<Category> DeleteCategoryAsync(string name);
     }
 }

@@ -13,7 +13,6 @@ namespace BCDL
         {
         }
 
-        public DbSet<Achievement> Achievements { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BookClub> BookClubs { get; set; }
         public DbSet<BooksRead> BooksRead { get; set; }
@@ -23,7 +22,6 @@ namespace BCDL
         public DbSet<UserComment> UserComments { get; set; }
         public DbSet<ClubComment> ClubComments { get; set; }
         public DbSet<FavoriteBook> FavoriteBooks { get; set; }
-        public DbSet<Recommendation> Recommendations { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserPost> UserPosts { get; set; }
         public DbSet<FollowUser> FollowUsers { get; set; }
@@ -43,9 +41,6 @@ namespace BCDL
             modelBuilder.Entity<BookClub>()
                 .Property(bookClub => bookClub.BookClubId)
                 .ValueGeneratedOnAdd();
-            modelBuilder.Entity<Achievement>()
-                .Property(achievement => achievement.AchievementId)
-                .ValueGeneratedOnAdd();
             modelBuilder.Entity<UserPost>()
                 .Property(userPostt => userPostt.UserPostId)
                 .ValueGeneratedOnAdd();
@@ -57,9 +52,6 @@ namespace BCDL
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<ClubComment>()
                 .Property(clubComment => clubComment.ClubCommentId)
-                .ValueGeneratedOnAdd();
-            modelBuilder.Entity<Recommendation>()
-                .Property(rec => rec.RecommendationId)
                 .ValueGeneratedOnAdd();
             modelBuilder.Entity<FavoriteBook>()
                 .Property(fav => fav.FavoriteBookId)

@@ -26,11 +26,6 @@ namespace BCBL
             return await _bookRepo.AddBookAsync(book);
         }
 
-        public async Task<Book> DeleteBookAsync(string isbn)
-        {
-           return await _bookRepo.DeleteBookAsync(isbn);
-        }
-
         public async Task<List<Book>> GetAllBooksAsync()
         {
             return await _bookRepo.GetAllBooksAsync();
@@ -49,14 +44,6 @@ namespace BCBL
         public async Task<Book> GetBookByTitleAsync(string title)
         {
             return await _bookRepo.GetBookByTitleAsync(title);
-        }
-
-        public async Task<Book> UpdateBookAsync(Book book)
-        {
-            bool exists = await _bookRepo.BookExistsAsync(book.ISBN);
-
-            if (exists) return await _bookRepo.UpdateBookAsync(book);
-            else throw new Exception("Book doesn't exist in DB");
         }
     }
 }

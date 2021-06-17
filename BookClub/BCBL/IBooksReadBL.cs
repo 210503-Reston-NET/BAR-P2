@@ -12,7 +12,5 @@ namespace BCBL
         Task<BooksRead> AddBooksReadAsync(BooksRead book);
         Task<List<BooksRead>> GetAllBooksReadAsync();
         Task<List<Book>> GetBooksReadByUserAsync(string email);
-        Task<BooksRead> UpdateBooksReadAsync(BooksRead book);
-        Task<BooksRead> DeleteBooksReadAsync(int id);
     }
 }

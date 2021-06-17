@@ -59,22 +59,5 @@ namespace BCWebUI.Controllers
         {
             return Created("api/Book", await _IbookBL.AddBookAsync(book));
         }
-
-        // PUT api/<BookController>/5
-        [HttpPut("{isbn}")]
-        public async Task<IActionResult> UpdateBook(string isbn, [FromBody]Book book)
-        {
-            await _IbookBL.UpdateBookAsync(book);
-            return NoContent();
-        }
-
-
-        // DELETE api/<BookController>/5
-        [HttpDelete("{isbn}")]
-        public async Task<IActionResult> Delete(string isbn)
-        {
-            await _IbookBL.DeleteBookAsync(isbn);
-            return NoContent();
-        }
     }
 }

@@ -18,9 +18,5 @@ namespace BCBL
         Task<Book> GetBookByISBNAsync(string isbn);
 
         Task<Book> GetBookByTitleAsync(string title);
-
-        Task<Book> UpdateBookAsync(Book book);
-
-        Task<Book> DeleteBookAsync(string isbn);
     }
 }

@@ -21,11 +21,6 @@ namespace BCBL
             return await _repo.AddBooksReadAsync(book);
         }
 
-        public async Task<FavoriteBook> DeleteBooksReadAsync(int id)
-        {
-            return await _repo.DeleteBooksReadAsync(id);
-        }
-
         public async Task<List<FavoriteBook>> GetAllBooksReadAsync()
         {
             return await _repo.GetAllBooksReadAsync();
@@ -34,11 +29,6 @@ namespace BCBL
         public async Task<List<Book>> GetBooksReadByUserAsync(string email)
         {
             return await _repo.GetBooksReadByUserAsync(email);
-        }
-
-        public async Task<FavoriteBook> UpdateBooksReadAsync(FavoriteBook book)
-        {
-            return await _repo.UpdateBooksReadAsync(book);
         }
     }
 }
