@@ -61,9 +61,18 @@ namespace BCTest
         }
 
         [Fact]
-        public void CommentShouldSetValidData()
+        public void UserCommentShouldSetValidData()
         {
             UserComment test = new UserComment("user", 1, "message");
+            string user = "bryce.zimbelman@revature.net";
+            test.UserEmail = user;
+            Assert.Equal(user, test.UserEmail);
+        }
+
+        [Fact]
+        public void ClubCommentShouldSetValidData()
+        {
+            ClubComment test = new ClubComment("user", 1, "message");
             string user = "bryce.zimbelman@revature.net";
             test.UserEmail = user;
             Assert.Equal(user, test.UserEmail);
@@ -133,12 +142,30 @@ namespace BCTest
         }
 
         [Fact]
-        public void CommentLikesShouldSetValidData()
+        public void UserCommentLikesShouldSetValidData()
         {
             UserCommentLikes test = new UserCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1);
             bool dislike = false;
             test.Dislike = dislike;
             Assert.Equal(dislike, test.Dislike);
+        }
+
+        [Fact]
+        public void ClubCommentLikesShouldSetValidData()
+        {
+            ClubCommentLikes test = new ClubCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1);
+            bool dislike = false;
+            test.Dislike = dislike;
+            Assert.Equal(dislike, test.Dislike);
+        }
+
+        [Fact]
+        public void UserFeedShouldSetValidData()
+        {
+            UserFeed test = new UserFeed("post", "email", "bookclub", 1, 1, 1, 5, 100, new DateTime());
+            string post = "post";
+            test.Post = post;
+            Assert.Equal(post, test.Post);
         }
     }
 }

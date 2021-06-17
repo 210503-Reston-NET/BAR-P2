@@ -322,7 +322,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task CommentControllerShouldReturnList()
+        public async Task UserCommentControllerShouldReturnList()
         {
             var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetAllCommentsAsync()).ReturnsAsync(
@@ -343,7 +343,28 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task CommentControllerShouldReturnComment()
+        public async Task ClubCommentControllerShouldReturnList()
+        {
+            var mockBL = new Mock<IClubCommentBL>();
+            mockBL.Setup(x => x.GetAllCommentsAsync()).ReturnsAsync(
+                new List<ClubComment>
+                {
+                    new ClubComment("bryce.zimbelman@icloud.com", 1, "Good Read"),
+                    new ClubComment("bryce.zimbelman@revature.com", 2, "Poor Read")
+                }
+                );
+
+            var controller = new ClubCommentController(mockBL.Object);
+            var result = controller.GetAllComments();
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<ClubComment>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserCommentControllerShouldReturnComment()
         {
             var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetCommentByIdAsync(1)).ReturnsAsync(
@@ -360,7 +381,24 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task CommentControllerShouldReturnUserPostComments()
+        public async Task ClubCommentControllerShouldReturnComment()
+        {
+            var mockBL = new Mock<IClubCommentBL>();
+            mockBL.Setup(x => x.GetCommentByIdAsync(1)).ReturnsAsync(
+                new ClubComment("bryce.zimbelman@icloud.com", 1, "Good Read")
+                );
+
+            var controller = new ClubCommentController(mockBL.Object);
+            var result = controller.GetCommentById(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<ClubComment>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserCommentControllerShouldReturnUserPostComments()
         {
             var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetUserPostCommentsAsync(1)).ReturnsAsync(
@@ -376,6 +414,26 @@ namespace BCTest
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<List<UserComment>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task ClubCommentControllerShouldReturnClubPostComments()
+        {
+            var mockBL = new Mock<IClubCommentBL>();
+            mockBL.Setup(x => x.GetCommentByClubIdAsync(1)).ReturnsAsync(
+                new List<ClubComment>
+                {
+                new ClubComment("bryce.zimbelman@revature.net", 1, "Poor Read"),
+                new ClubComment("bryce.zimbelman@icloud.com", 2, "Good Read")
+                });
+
+            var controller = new ClubCommentController(mockBL.Object);
+            var result = controller.GetClubPostComments(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<ClubComment>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 
