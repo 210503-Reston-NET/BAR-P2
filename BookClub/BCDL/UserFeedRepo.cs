@@ -28,7 +28,7 @@ namespace BCDL
 
             foreach(FollowUser followUser in followUsers)
             {
-                userPosts = await _context.UserPosts.AsNoTracking().Where(pst => pst.UserEmail.Equals(followUser.UserEmail)).Select(pst => pst).ToListAsync();
+                userPosts = await _context.UserPosts.AsNoTracking().Where(pst => pst.UserEmail.Equals(followUser.UserEmail) || pst.UserEmail.Equals(email)).Select(pst => pst).ToListAsync();
 
                 foreach(UserPost userPost in userPosts)
                 {
