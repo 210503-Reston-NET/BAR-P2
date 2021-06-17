@@ -55,7 +55,13 @@ namespace BCDL
 
         public async Task<List<UserPost>> GetUserPostByUserAsync(string userEmail)
         {
-            return await _context.UserPosts.AsNoTracking().Where(up => up.UserEmail == userEmail).Select(up => up).ToListAsync();
+            List<UserPost> userPosts = await _context.UserPosts.AsNoTracking().Where(up => up.UserEmail == userEmail).Select(up => up).ToListAsync();
+            userPosts.Sort(delegate (UserPost y, UserPost x)
+            {
+                return x.Date.CompareTo(y.Date);
+            });
+
+            return userPosts;
         }
 
         public async Task<UserPost> UpdateUserPostAsync(UserPost userPost)
