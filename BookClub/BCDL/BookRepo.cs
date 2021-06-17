@@ -24,9 +24,10 @@ namespace BCDL
             if (cat == null)
             {
                 await _context.Categories.AddAsync(new Category(book.CategoryId));
+                await _context.SaveChangesAsync();
             }
             
-            _context.ChangeTracker.Clear();
+            
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
             
