@@ -34,18 +34,6 @@ namespace BCDL
             return book;
         }
 
-        public async Task<BooksRead> DeleteBooksReadAsync(int id)
-        {
-            BooksRead toBeDeleted = await _context.BooksRead.AsNoTracking().FirstOrDefaultAsync(bookR => bookR.BooksReadId == id);
-            if (toBeDeleted != null)
-            {
-                _context.BooksRead.Remove(toBeDeleted);
-                await _context.SaveChangesAsync();
-            }
-
-            return toBeDeleted;
-        }
-
         public async Task<List<BooksRead>> GetAllBooksReadAsync()
         {
             return await _context.BooksRead.AsNoTracking().Select(book => book).ToListAsync();
@@ -63,13 +51,6 @@ namespace BCDL
             }
 
             return books;
-        }
-
-        public async Task<BooksRead> UpdateBooksReadAsync(BooksRead book)
-        {
-            _context.BooksRead.Update(book);
-            await _context.SaveChangesAsync();
-            return book;
         }
     }
 }

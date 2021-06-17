@@ -12,7 +12,5 @@ namespace BCBL
         Task<FavoriteBook> AddBooksReadAsync(FavoriteBook book);
         Task<List<FavoriteBook>> GetAllBooksReadAsync();
         Task<List<Book>> GetBooksReadByUserAsync(string email);
-        Task<FavoriteBook> UpdateBooksReadAsync(FavoriteBook book);
-        Task<FavoriteBook> DeleteBooksReadAsync(int id);
     }
 }

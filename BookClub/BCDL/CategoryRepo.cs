@@ -33,19 +33,5 @@ namespace BCDL
         {
             return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(cat => cat.CategoryId.Equals(name));
         }
-
-        public async Task<Category> DeleteCategoryAsync(string name)
-        {
-            Category toBeDeleted = await _context.Categories.AsNoTracking().FirstOrDefaultAsync(cat => cat.CategoryId.Equals(name));
-
-            if (toBeDeleted != null)
-            {
-                _context.Categories.Remove(toBeDeleted);
-                await _context.SaveChangesAsync();
-            }
-
-            return toBeDeleted;
-
-        }
     }
 }

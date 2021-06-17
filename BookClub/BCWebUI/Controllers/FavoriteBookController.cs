@@ -41,21 +41,5 @@ namespace BCWebUI.Controllers
         {
             return Created("api/BooksRead", await _IbookBL.AddBooksReadAsync(value));
         }
-
-        // PUT api/<BooksReadController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateBooksRead(int id, [FromBody] FavoriteBook value)
-        {
-            await _IbookBL.UpdateBooksReadAsync(value);
-            return NoContent();
-        }
-
-        // DELETE api/<BooksReadController>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBooksRead(int id)
-        {
-            await _IbookBL.DeleteBooksReadAsync(id);
-            return NoContent();
-        }
     }
 }

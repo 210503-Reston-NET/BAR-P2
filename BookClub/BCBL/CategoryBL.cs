@@ -19,11 +19,6 @@ namespace BCBL
             return await _repo.AddCategoryAsync(category);
         }
 
-        public async Task<Category> DeleteCategoryAsync(string name)
-        {
-            return await _repo.DeleteCategoryAsync(name);
-        }
-
         public async Task<List<Category>> GetAllCategoriesAsync()
         {
             return await _repo.GetAllCategoriesAsync();
