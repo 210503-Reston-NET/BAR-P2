@@ -56,10 +56,26 @@ namespace BCDL
                     like.Like = userPostLike.Like;
                     like.Dislike = userPostLike.Dislike;
 
+                    _context.UserPostLikes.Update(like);
+                    _context.UserPosts.Update(post);
+                    await _context.SaveChangesAsync();
                 }
-                _context.UserPostLikes.Update(like);
-                _context.UserPosts.Update(post);
-                await _context.SaveChangesAsync();
+
+                else
+                {
+                    if (like.Like)
+                    {
+                        post.TotalLike -= 1;
+                    }
+                    else
+                    {
+                        post.TotalDislike -= 1;
+                    }
+                    _context.UserPostLikes.Remove(like);
+                    _context.UserPosts.Update(post);
+                    await _context.SaveChangesAsync();
+                }
+
             }
             return userPostLike;
         }
