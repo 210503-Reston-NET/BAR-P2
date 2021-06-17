@@ -24,11 +24,6 @@ namespace BCBL
             return await _repo.GetAllUserPostLikesAsync();
         }
 
-        public async Task<UserPostLikes> GetUserPostLikeAsync(UserPostLikes userPostLike)
-        {
-            return await _repo.GetUserPostLikeAsync(userPostLike);
-        }
-
         public async Task<UserPostLikes> GetUserPostLikesByIdAsync(int id)
         {
             return await _repo.GetUserPostLikesByIdAsync(id);

@@ -85,11 +85,6 @@ namespace BCDL
             return await _context.UserPostLikes.AsNoTracking().Select(likes => likes).ToListAsync();
         }
 
-        public async Task<UserPostLikes> GetUserPostLikeAsync(UserPostLikes userPostLike)
-        {
-            return await _context.UserPostLikes.FindAsync(userPostLike);
-        }
-
         public async Task<UserPostLikes> GetUserPostLikesByIdAsync(int id)
         {
             return await _context.UserPostLikes.FindAsync(id);

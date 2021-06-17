@@ -285,6 +285,27 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task ClubPostLikesControllerShouldReturnList()
+        {
+            var mockBL = new Mock<IClubPostLikesBL>();
+            mockBL.Setup(x => x.GetAllClubPostLikesAsync()).ReturnsAsync(
+                new List<ClubPostLikes>
+                {
+                    new ClubPostLikes(false, true, 1, "bryce.zimbelman@revature.net"),
+                    new ClubPostLikes(true, false, 1, "bryce.zimbelman@icloud.com")
+                }
+                );
+
+            var controller = new ClubPostLikesController(mockBL.Object);
+            var result = controller.GetAllClubPostLikes();
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<ClubPostLikes>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
         public async Task ClubPostControllerShouldReturnClubPost()
         {
             var mockBL = new Mock<IClubPostBL>();
@@ -298,6 +319,44 @@ namespace BCTest
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<ClubPost>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task ClubPostLiksControllerShouldReturnClubPostLikes()
+        {
+            var mockBL = new Mock<IClubPostLikesBL>();
+            mockBL.Setup(x => x.GetClubPostLikesByIdAsync(1)).ReturnsAsync(
+                new ClubPostLikes(true, false, 1, "bryce.zimbelman@icloud.com")
+                );
+
+            var controller = new ClubPostLikesController(mockBL.Object);
+            var result = controller.GetClubPostLikesById(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<ClubPostLikes>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task ClubPostLiksControllerShouldReturnClubPostLikesByPost()
+        {
+            var mockBL = new Mock<IClubPostLikesBL>();
+            mockBL.Setup(x => x.GetClubPostLikesByClubPostAsync(1)).ReturnsAsync(
+                new List<ClubPostLikes>
+                {
+                    new ClubPostLikes(false, true, 1, "bryce.zimbelman@revature.net"),
+                    new ClubPostLikes(true, false, 1, "bryce.zimbelman@icloud.com")
+                }
+                );
+
+            var controller = new ClubPostLikesController(mockBL.Object);
+            var result = controller.GetClubPostLikesByClubPost(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<ClubPostLikes>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 
@@ -343,6 +402,48 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task UserCommentLikesControllerShouldReturnList()
+        {
+            var mockBL = new Mock<IUserCommentLikeBL>();
+            mockBL.Setup(x => x.GetAllCommentLikesAsync()).ReturnsAsync(
+                new List<UserCommentLikes>
+                {
+                    new UserCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1),
+                    new UserCommentLikes(false, true, 1, "bryce.zimbelman@icloud.com", 1)
+                }
+                );
+
+            var controller = new UserCommentLikesController(mockBL.Object);
+            var result = controller.GetAllCommentLikes();
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<UserCommentLikes>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserPostLikesControllerShouldReturnList()
+        {
+            var mockBL = new Mock<IUserPostLikesBL>();
+            mockBL.Setup(x => x.GetAllUserPostLikesAsync()).ReturnsAsync(
+                new List<UserPostLikes>
+                {
+                    new UserPostLikes(true, false, 1, "bryce.zimbelman@revature.net"),
+                    new UserPostLikes(false, true, 1, "bryce.zimbelman@icloud.com")
+                }
+                );
+
+            var controller = new UserPostLikesController(mockBL.Object);
+            var result = controller.GetAllUserPostLikes();
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<UserPostLikes>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
         public async Task ClubCommentControllerShouldReturnList()
         {
             var mockBL = new Mock<IClubCommentBL>();
@@ -364,7 +465,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task UserCommentControllerShouldReturnComment()
+        public async Task UserCommentControllerShouldReturnUserComment()
         {
             var mockBL = new Mock<IUserCommentBL>();
             mockBL.Setup(x => x.GetCommentByIdAsync(1)).ReturnsAsync(
@@ -377,6 +478,78 @@ namespace BCTest
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<UserComment>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserCommentLikesControllerShouldReturnUserCommentLikes()
+        {
+            var mockBL = new Mock<IUserCommentLikeBL>();
+            mockBL.Setup(x => x.GetCommentLikesByIdAsync(1)).ReturnsAsync(new UserCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1));
+
+            var controller = new UserCommentLikesController(mockBL.Object);
+            var result = controller.GetCommentLikesById(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<UserCommentLikes>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserPostLikesControllerShouldReturnUserPostLikes()
+        {
+            var mockBL = new Mock<IUserPostLikesBL>();
+            mockBL.Setup(x => x.GetUserPostLikesByIdAsync(1)).ReturnsAsync(new UserPostLikes(true, false, 1, "bryce.zimbelman@revature.net"));
+
+            var controller = new UserPostLikesController(mockBL.Object);
+            var result = controller.GetUserPostLikesById(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<UserPostLikes>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserCommentLikesControllerShouldReturnUserCommentLikesByUserPost()
+        {
+            var mockBL = new Mock<IUserCommentLikeBL>();
+            mockBL.Setup(x => x.GetCommentLikesByUserPostAsync(1)).ReturnsAsync(
+                new List<UserCommentLikes>
+                {
+                    new UserCommentLikes(true, false, 1, "bryce.zimbelman@revature.net", 1),
+                    new UserCommentLikes(false, true, 1, "bryce.zimbelman@icloud.com", 1)
+                }
+                );
+
+            var controller = new UserCommentLikesController(mockBL.Object);
+            var result = controller.GetCommentLikesByUserPost(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<UserCommentLikes>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserPostLikesControllerShouldReturnUserPostLikesByUserPost()
+        {
+            var mockBL = new Mock<IUserPostLikesBL>();
+            mockBL.Setup(x => x.GetUserPostLikesByUserPostAsync(1)).ReturnsAsync(
+                new List<UserPostLikes>
+                {
+                    new UserPostLikes(true, false, 1, "bryce.zimbelman@revature.net"),
+                    new UserPostLikes(false, true, 1, "bryce.zimbelman@icloud.com")
+                }
+                );
+
+            var controller = new UserPostLikesController(mockBL.Object);
+            var result = controller.GetUserPostLikesByUserPost(1);
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<UserPostLikes>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 
@@ -657,6 +830,26 @@ namespace BCTest
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<List<UserPost>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserFeedControllerShouldReturnUserFeed()
+        {
+            var mockBL = new Mock<IUserFeedBL>();
+            mockBL.Setup(x => x.GetuserFeedAsync("bryce.zimbelman@revature.net")).ReturnsAsync(
+                new List<UserFeed>
+                {
+                new UserFeed("Good Read", "bryce.zimbelmanrevature.net", "Harry Potter", 1, 0, 1, 5, 2, new DateTime()),
+                new UserFeed("Poor Read", "bryce.zimbelman@icloud.com", "Harry Potter", 1, 0, 1, 1, 10, new DateTime())
+                });
+
+            var controller = new UserFeedController(mockBL.Object);
+            var result = controller.Get("bryce.zimbelman@revature.net");
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<UserFeed>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
     }
