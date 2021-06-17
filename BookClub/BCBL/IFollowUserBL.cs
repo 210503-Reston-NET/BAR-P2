@@ -15,5 +15,6 @@ namespace BCBL
         Task<List<User>> GetFollowersByUserAsync(string email);
         Task<FollowUser> DeleteFollowUserAsync(int id);
         Task<bool> IsFollowingAsync(string followerEmail, string followedEmail);
+        Task<FollowUser> DeleteFollowerByEmailsAsync(string followerEmail, string followedEmail);
     }
 }
