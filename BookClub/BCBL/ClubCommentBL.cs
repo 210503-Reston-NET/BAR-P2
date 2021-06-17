@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class ClubCommentBL : IClubCommentBL
     {
-        private IClubCommentRepo _repo;
+        private readonly IClubCommentRepo _repo;
         public ClubCommentBL(IClubCommentRepo repo)
         {
             _repo = repo;

@@ -14,7 +14,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class UserFeedController : ControllerBase
     {
-        private IUserFeedBL _userFeedBL;
+        private readonly IUserFeedBL _userFeedBL;
         public UserFeedController(IUserFeedBL userFeedBL)
         {
             _userFeedBL = userFeedBL;

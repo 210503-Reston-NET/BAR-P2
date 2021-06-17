@@ -4,6 +4,7 @@ using BCDL;
 using System.Linq;
 using Xunit;
 using System;
+using System.Threading.Tasks;
 
 namespace BCTest
 {
@@ -310,7 +311,7 @@ namespace BCTest
             }
         }
         [Fact]
-        public async void GetAllBooksShouldReturnAllBooks()
+        public async Task GetAllBooksShouldReturnAllBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -321,7 +322,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllBookClubsShouldReturnAllBookClubs()
+        public async Task GetAllBookClubsShouldReturnAllBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -332,7 +333,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllBooksReadShouldReturnAllBooksRead()
+        public async Task GetAllBooksReadShouldReturnAllBooksRead()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -343,7 +344,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllBooksToReadShouldReturnAllBooksToRead()
+        public async Task GetAllBooksToReadShouldReturnAllBooksToRead()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -354,7 +355,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllCategoriesShouldReturnAllCategories()
+        public async Task GetAllCategoriesShouldReturnAllCategories()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -365,7 +366,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllClubPostsShouldReturnAllClubPosts()
+        public async Task GetAllClubPostsShouldReturnAllClubPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -376,7 +377,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUserCommentsShouldReturnAllUserComments()
+        public async Task GetAllUserCommentsShouldReturnAllUserComments()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -387,7 +388,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllClubCommentsShouldReturnAllClubComments()
+        public async Task GetAllClubCommentsShouldReturnAllClubComments()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -398,7 +399,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllFavoriteBooksShouldReturnAllFavoriteBooks()
+        public async Task GetAllFavoriteBooksShouldReturnAllFavoriteBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -409,7 +410,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllClubFollowersShouldReturnAllClubFollowers()
+        public async Task GetAllClubFollowersShouldReturnAllClubFollowers()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -420,7 +421,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUserFollowersShouldReturnAllUserFollowers()
+        public async Task GetAllUserFollowersShouldReturnAllUserFollowers()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -431,7 +432,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUsersShouldReturnAllUsers()
+        public async Task GetAllUsersShouldReturnAllUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -442,7 +443,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUserPostsShouldReturnAllUserPosts()
+        public async Task GetAllUserPostsShouldReturnAllUserPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -453,7 +454,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllClubPostLikesShouldReturnAllClubPostLikes()
+        public async Task GetAllClubPostLikesShouldReturnAllClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -464,7 +465,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUserPostLikesShouldReturnAllUserPostLikes()
+        public async Task GetAllUserPostLikesShouldReturnAllUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -475,7 +476,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetAllUserCommentLikesShouldReturnAllCommentLikes()
+        public async Task GetAllUserCommentLikesShouldReturnAllCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -486,7 +487,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBookShouldReturnBook()
+        public async Task GetBookShouldReturnBook()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -497,7 +498,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBookByAuthorShouldReturnBook()
+        public async Task GetBookByAuthorShouldReturnBook()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -511,7 +512,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBookClubShouldReturnBookClub()
+        public async Task GetBookClubShouldReturnBookClub()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -522,7 +523,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBookClubByBookShouldReturnBookClubs()
+        public async Task GetBookClubByBookShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -536,7 +537,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBooksReadByUserShouldReturnBooks()
+        public async Task GetBooksReadByUserShouldReturnBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -550,7 +551,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetBooksToReadByUserShouldReturnBooks()
+        public async Task GetBooksToReadByUserShouldReturnBooks()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -564,7 +565,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetCategoryShouldReturnCategory()
+        public async Task GetCategoryShouldReturnCategory()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -575,7 +576,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubPostShouldReturnClubPost()
+        public async Task GetClubPostShouldReturnClubPost()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -586,7 +587,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubPostByBookClubShouldReturnClubPosts()
+        public async Task GetClubPostByBookClubShouldReturnClubPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -600,7 +601,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserCommentShouldReturnUserComment()
+        public async Task GetUserCommentShouldReturnUserComment()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -611,7 +612,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubCommentShouldReturnClubComment()
+        public async Task GetClubCommentShouldReturnClubComment()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -622,7 +623,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserCommentByUserPostShouldReturnComments()
+        public async Task GetUserCommentByUserPostShouldReturnComments()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -637,7 +638,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubCommentByClubPostShouldReturnComments()
+        public async Task GetClubCommentByClubPostShouldReturnComments()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -652,7 +653,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetFollowersByClubShouldReturnUsers()
+        public async Task GetFollowersByClubShouldReturnUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -666,7 +667,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetFollowByUserShouldReturnBookClubs()
+        public async Task GetFollowByUserShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -680,7 +681,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetFollowersByUserShouldReturnUsers()
+        public async Task GetFollowersByUserShouldReturnUsers()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -694,7 +695,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserShouldReturnUser()
+        public async Task GetUserShouldReturnUser()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -706,7 +707,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserPostShouldReturnUserPost()
+        public async Task GetUserPostShouldReturnUserPost()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -718,7 +719,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserPostByUserShouldReturnUserPosts()
+        public async Task GetUserPostByUserShouldReturnUserPosts()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -732,7 +733,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubPostLikeByClubPostShouldReturnClubPostLikes()
+        public async Task GetClubPostLikeByClubPostShouldReturnClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -746,7 +747,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetClubPostLikesByIdShouldReturnClubPostLikes()
+        public async Task GetClubPostLikesByIdShouldReturnClubPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -757,7 +758,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserPostLikeByClubPostShouldReturnUserPostLikes()
+        public async Task GetUserPostLikeByClubPostShouldReturnUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -771,7 +772,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserPostLikesByIdShouldReturnUserPostLikes()
+        public async Task GetUserPostLikesByIdShouldReturnUserPostLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -782,7 +783,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
+        public async Task GetCommentLikeByUserPostShouldReturnUserPostCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -796,7 +797,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetCommentLikesByIdShouldReturnCommentLikes()
+        public async Task GetCommentLikesByIdShouldReturnCommentLikes()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -807,7 +808,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void GetUserFeedShouldReturnUserFeed()
+        public async Task GetUserFeedShouldReturnUserFeed()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -821,7 +822,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddBookShouldAddBook()
+        public async Task AddBookShouldAddBook()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -838,7 +839,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddBookClubShouldAddBookClub()
+        public async Task AddBookClubShouldAddBookClub()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -855,7 +856,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddBooksReadShouldAddBooksRead()
+        public async Task AddBooksReadShouldAddBooksRead()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -872,7 +873,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddBooksToReadShouldAddBooksToRead()
+        public async Task AddBooksToReadShouldAddBooksToRead()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -889,7 +890,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddCategoryShouldAddCategory()
+        public async Task AddCategoryShouldAddCategory()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -906,7 +907,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddClubPostShouldAddClubPost()
+        public async Task AddClubPostShouldAddClubPost()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -923,7 +924,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddUserCommentShoulAddUserComment()
+        public async Task AddUserCommentShoulAddUserComment()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -940,7 +941,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddClubCommentShoulAddClubComment()
+        public async Task AddClubCommentShoulAddClubComment()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -957,7 +958,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddFavoriteBookShouldAddFavoriteBook()
+        public async Task AddFavoriteBookShouldAddFavoriteBook()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -974,7 +975,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddFollowClubShouldAddFollowClub()
+        public async Task AddFollowClubShouldAddFollowClub()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -991,7 +992,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddFollowUserShouldAddFollowUser()
+        public async Task AddFollowUserShouldAddFollowUser()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -1009,7 +1010,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddUserShouldAddUser()
+        public async Task AddUserShouldAddUser()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -1026,7 +1027,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async void AddUserPostShouldAddUserPost()
+        public async Task AddUserPostShouldAddUserPost()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -1042,7 +1043,7 @@ namespace BCTest
             }
         }
         [Fact]
-        public async void AddClubPostLikShouldAddClubPostLike()
+        public async Task AddClubPostLikShouldAddClubPostLike()
         {
             using (var context = new BookClubDBContext(options))
             {

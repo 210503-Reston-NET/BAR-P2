@@ -11,6 +11,6 @@ namespace BCDL
         Task<UserCommentLikes> GetCommentLikeAsync(UserCommentLikes commentLike);
         Task<List<UserCommentLikes>> GetAllCommentLikesAsync();
         Task<List<UserCommentLikes>> GetCommentLikesByUserPostAsync(int userPostId);
-        Task<UserCommentLikes> GetCommentLikesByIdAsync(int Id);
+        Task<UserCommentLikes> GetCommentLikesByIdAsync(int id);
     }
 }

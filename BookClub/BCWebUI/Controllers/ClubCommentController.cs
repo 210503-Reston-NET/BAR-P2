@@ -14,7 +14,7 @@ namespace BCWebUI.Controllers
     [ApiController]
     public class ClubCommentController : ControllerBase
     {
-        private IClubCommentBL _clubCommentBL;
+        private readonly IClubCommentBL _clubCommentBL;
         public ClubCommentController(IClubCommentBL ClubCommentBL)
         {
             _clubCommentBL = ClubCommentBL;

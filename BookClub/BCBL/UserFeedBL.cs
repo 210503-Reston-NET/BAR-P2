@@ -10,7 +10,7 @@ namespace BCBL
 {
     public class UserFeedBL : IUserFeedBL
     {
-        private IUserFeedRepo _repo;
+        private readonly IUserFeedRepo _repo;
         public UserFeedBL(IUserFeedRepo repo)
         {
             _repo = repo;

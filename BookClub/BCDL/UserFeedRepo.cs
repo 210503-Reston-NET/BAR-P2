@@ -10,7 +10,7 @@ namespace BCDL
 {
     public class UserFeedRepo : IUserFeedRepo
     {
-        private BookClubDBContext _context;
+        private readonly BookClubDBContext _context;
 
         public UserFeedRepo(BookClubDBContext context)
         {
