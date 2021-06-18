@@ -52,7 +52,12 @@ namespace BCDL
 
         public async Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId)
         {
-            return await _context.ClubPosts.AsNoTracking().Where(cp => cp.BookClubId == bookClubId).Select(cp => cp).ToListAsync();
+            List<ClubPost> post = await _context.ClubPosts.AsNoTracking().Where(cp => cp.BookClubId == bookClubId).Select(cp => cp).ToListAsync();
+            post.Sort(delegate (ClubPost y, ClubPost x)
+            {
+                return x.Date.CompareTo(y.Date);
+            });
+            return post;
         }
 
         public async Task<ClubPost> LikeClubPostAsync(ClubPost clubPost)
