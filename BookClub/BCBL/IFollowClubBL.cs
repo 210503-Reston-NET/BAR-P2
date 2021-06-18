@@ -14,6 +14,7 @@ namespace BCBL
         Task<List<BookClub>> GetFollowingByUserAsync(string email);
         Task<FollowClub> DeleteFollowClubAsync(int id);
         Task<List<User>> GetFollowersByClubAsync(int id);
+        Task<bool> IsFollowingAsync(string followerEmail, int id);
         Task<FollowClub> DeleteFollowerByEmailsAsync(string followerEmail, int id);
     }
 }

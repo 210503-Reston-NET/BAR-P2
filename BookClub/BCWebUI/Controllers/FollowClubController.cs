@@ -50,6 +50,13 @@ namespace BCWebUI.Controllers
             return Created("api/FollowClub",await _IFollowClubBL.AddFollowClubAsync(value));
         }
 
+        [HttpGet]
+        [Route("GetFollowersByUser/{followerEmail}/{clubId}")]
+        public async Task<IActionResult> IsFollowed(string followerEmail, int clubId)
+        {
+            return Ok(await _IFollowClubBL.IsFollowingAsync(followerEmail, clubId));
+        }
+
         // DELETE api/<FollowClubController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
