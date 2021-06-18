@@ -16,7 +16,7 @@ namespace BCBL
 
         public async Task<ClubPost> AddClubPostAsync(ClubPost clubPost)
         {
-            if (await _repo.GetClubPostAsync(clubPost) != null)
+            if (await _repo.GetClubPostByIdAsync(clubPost.ClubPostId) != null)
             {
                 throw new Exception("Club Post already exists");
             }
@@ -25,7 +25,7 @@ namespace BCBL
 
         public async Task<ClubPost> DeleteClubPostAsync(ClubPost clubPost)
         {
-            ClubPost toBeDeleted = await _repo.GetClubPostAsync(clubPost);
+            ClubPost toBeDeleted = await _repo.GetClubPostByIdAsync(clubPost.ClubPostId);
             if (toBeDeleted != null)
             {
                 return await _repo.DeleteClubPostAsync(clubPost);
@@ -36,11 +36,6 @@ namespace BCBL
         public async Task<List<ClubPost>> GetAllClubPostsAsync()
         {
             return await _repo.GetAllClubPostsAsync();
-        }
-
-        public async Task<ClubPost> GetClubPostAsync(ClubPost clubPost)
-        {
-            return await _repo.GetClubPostAsync(clubPost);
         }
 
         public async Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId)

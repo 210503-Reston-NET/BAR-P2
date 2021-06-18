@@ -43,16 +43,6 @@ namespace BCDL
             return await _context.ClubPosts.FindAsync(clubPostId);
         }
 
-        public async Task<ClubPost> GetClubPostAsync(ClubPost clubPost)
-        {
-            ClubPost found = await _context.ClubPosts.AsNoTracking().FirstOrDefaultAsync(cp => cp.UserEmail == clubPost.UserEmail && cp.Post == clubPost.Post && cp.BookClubId == clubPost.BookClubId && cp.TotalLike == clubPost.TotalLike && cp.TotalDislike == clubPost.TotalDislike && cp.Date == clubPost.Date);
-            if (found == null)
-            {
-                return null;
-            }
-            return new ClubPost(found.UserEmail, found.Post, found.BookClubId, found.TotalLike, found.TotalDislike, found.Date);
-        }
-
         public async Task<ClubPost> UpdateClubPostAsync(ClubPost clubPost)
         {
             _context.ClubPosts.Update(clubPost);
