@@ -49,6 +49,11 @@ namespace BCBL
             return await _repo.GetBookClubByBookAsync(bookId);
         }
 
+        public async Task<List<BookClub>> GetBookClubByNameAsync(string name)
+        {
+            return await _repo.GetBookClubByNameAsync(name);
+        }
+
         public async Task<BookClub> GetBookClubByIdAsync(int bookClubId)
         {
             return await _repo.GetBookClubByIdAsync(bookClubId);

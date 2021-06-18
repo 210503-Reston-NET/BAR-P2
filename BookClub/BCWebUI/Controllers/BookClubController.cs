@@ -49,6 +49,13 @@ namespace BCWebUI.Controllers
             return Ok(await _bookClubBL.GetBookClubsByUserAsync(email));
         }
 
+        [HttpGet]
+        [Route("BookClubByName/{name}")]
+        public async Task<IActionResult> GetBookClubsByName(string name)
+        {
+            return Ok(await _bookClubBL.GetBookClubByNameAsync(name));
+        }
+
         // POST: api/BookClub
         [HttpPost]
         public async Task<IActionResult> AddNewBookClub([FromBody] Model.BookClub newBookClub)

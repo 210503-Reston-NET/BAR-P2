@@ -56,6 +56,11 @@ namespace BCDL
             return await _context.BookClubs.AsNoTracking().Where(bc => bc.ISBN == bookId).Select(bc => bc).ToListAsync();
         }
 
+        public async Task<List<BookClub>> GetBookClubByNameAsync(string name)
+        {
+            return await _context.BookClubs.AsNoTracking().Where(bc => bc.Name == name).Select(bc => bc).ToListAsync();
+        }
+
         public async Task<BookClub> GetBookClubByIdAsync(int bookClubId)
         {
             return await _context.BookClubs.FindAsync(bookClubId);
