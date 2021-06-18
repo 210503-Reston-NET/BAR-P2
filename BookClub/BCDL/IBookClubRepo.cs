@@ -14,5 +14,6 @@ namespace BCDL
         Task<List<BookClub>> GetBookClubByBookAsync(string bookId);
         Task<BookClub> DeleteBookClubAsync(BookClub bookClub);
         Task<BookClub> UpdateBookClubAsync(BookClub bookClub);
+        Task<List<BookClub>> GetBookClubsByUserAsync(string email);
     }
 }

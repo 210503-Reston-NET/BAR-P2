@@ -23,6 +23,11 @@ namespace BCDL
             return bookClub;
         }
 
+        public async Task<List<BookClub>> GetBookClubsByUserAsync(string email) 
+        {
+            return await _context.BookClubs.AsNoTracking().Where(bc => bc.UserEmail.Equals(email)).Select(bcs => bcs).ToListAsync();
+        }
+
         public async Task<BookClub> DeleteBookClubAsync(BookClub bookClub)
         {
             BookClub toBeDeleted = await _context.BookClubs.AsNoTracking().FirstAsync(bc => bc.BookClubId == bookClub.BookClubId);
