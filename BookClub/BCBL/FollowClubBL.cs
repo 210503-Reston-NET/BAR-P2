@@ -45,5 +45,10 @@ namespace BCBL
         {
             return await _repo.GetFollowingByUserAsync(email);
         }
+
+        public async Task<bool> IsFollowingAsync(string followerEmail, int id)
+        {
+            return await _repo.IsFollowingAsync(followerEmail, id);
+        }
     }
 }

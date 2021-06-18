@@ -68,6 +68,14 @@ namespace BCDL
 
             return users;
         }
+        public async Task<bool> IsFollowingAsync(string followerEmail, int id)
+        {
+            bool following = false;
+            FollowClub followClub = await _context.FollowClubs.AsNoTracking().FirstOrDefaultAsync(fl => fl.FollowerEmail == followerEmail && fl.BookClubId == id);
+            if (followClub != null) following = true;
+
+            return following;
+        }
 
         public async Task<FollowClub> DeleteFollowerByEmailsAsync(string followerEmail, int id)
         {
