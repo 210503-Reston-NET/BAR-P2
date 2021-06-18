@@ -8,7 +8,6 @@ namespace BCBL
     public interface IClubPostBL
     {
         Task<ClubPost> AddClubPostAsync(ClubPost clubPost);
-        Task<ClubPost> GetClubPostAsync(ClubPost clubPost);
         Task<List<ClubPost>> GetClubPostByBookClubAsync(int bookClubId);
         Task<ClubPost> GetClubPostByIdAsync(int clubPostId);
         Task<List<ClubPost>> GetAllClubPostsAsync();

@@ -595,7 +595,7 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task GetClubPostShouldReturnClubPost()
+        public async Task GetClubPostByIdShouldReturnClubPost()
         {
             using (var context = new BookClubDBContext(options))
             {
