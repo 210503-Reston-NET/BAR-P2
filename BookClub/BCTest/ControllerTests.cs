@@ -740,6 +740,43 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task FollowUserControllerShouldReturnFollowingByUser()
+        {
+            var mockBL = new Mock<IFollowUserBL>();
+            mockBL.Setup(x => x.GetFollowingByUserAsync("bryce.zimbelman@icloud.com")).ReturnsAsync(
+                new List<User>
+                {
+
+                new User("bryce.zimbelman@revature.net", "1Password!", "1514 Canyon Dr", 500),
+                new User("bryce.zimbelman@gmail.com", "!Password1", "309 E Memorial Dr", 5000)
+
+                });
+
+            var controller = new FollowUserController(mockBL.Object);
+            var result = controller.GetFollowingByUser("bryce.zimbelman@icloud.com");
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<List<User>>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task FollowUserControllerShouldReturnIsFollowed()
+        {
+            var mockBL = new Mock<IFollowUserBL>();
+            mockBL.Setup(x => x.IsFollowingAsync("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net")).ReturnsAsync(true);
+
+            var controller = new FollowUserController(mockBL.Object);
+            var result = controller.IsFollowed("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net");
+            var okResult = await result as OkObjectResult;
+            Assert.NotNull(okResult);
+            Assert.True(okResult is OkObjectResult);
+            Assert.IsType<Boolean>(okResult.Value);
+            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
         public async Task UserControllerShouldReturnList()
         {
             var mockBL = new Mock<IUserBL>();

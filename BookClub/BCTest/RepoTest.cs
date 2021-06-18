@@ -686,7 +686,32 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task GetFollowByUserShouldReturnBookClubs()
+        public async Task GetFollowingByUserShouldReturnUsers()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                var following = await _repo.GetFollowingByUserAsync("bryce.zimbelman@icloud.com");
+                foreach (Model.User user in following)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
+                }
+            }
+        }
+
+        [Fact]
+        public async Task IsFollowingByUserShouldReturnBool()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                var following = await _repo.IsFollowingAsync("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net");
+                Assert.True(following);
+            }
+        }
+
+        [Fact]
+        public async Task GetFollowingByUserShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -1075,6 +1100,29 @@ namespace BCTest
                 var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.ClubPostLikesId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("bryce.zimbelman@gmail.com", result.UserEmail);
+            }
+        }
+
+        [Fact]
+        public async Task AddClubPostLikShouldAddClubPostLike2()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                await _repo.AddClubPostLikeAsync(new Model.ClubPostLikes
+                {
+                    Like = false,
+                    Dislike = true,
+                    ClubPostId = 1,
+                    UserEmail = "bryce.zimbelman@revature.net"
+                });
+            }
+
+            using (var assertContext = new BookClubDBContext(options))
+            {
+                var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.ClubPostLikesId == 2);
+                Assert.NotNull(result);
+                Assert.NotEqual("bryce.zimbelman@revature.net", result.UserEmail);
             }
         }
 
