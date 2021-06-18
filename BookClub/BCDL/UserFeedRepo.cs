@@ -26,9 +26,10 @@ namespace BCDL
             List<ClubPost> clubPosts;
             BookClub bookClub;
 
+            // for users being followed get all their post
             foreach(FollowUser followUser in followUsers)
             {
-                userPosts = await _context.UserPosts.AsNoTracking().Where(pst => pst.UserEmail.Equals(followUser.UserEmail) || pst.UserEmail.Equals(email)).Select(pst => pst).ToListAsync();
+                userPosts = await _context.UserPosts.AsNoTracking().Where(pst => pst.UserEmail.Equals(followUser.UserEmail)).Select(pst => pst).ToListAsync();
 
                 foreach(UserPost userPost in userPosts)
                 {
@@ -36,7 +37,15 @@ namespace BCDL
                 }
             }
 
-            foreach(FollowClub followClub in followClubs)
+            // for post made by a the same email
+            List<UserPost> personalPosts = await _context.UserPosts.AsNoTracking().Where(pst => pst.UserEmail.Equals(email)).Select(pst => pst).ToListAsync();
+            foreach (UserPost userPost in personalPosts)
+            {
+                feed.Add(new UserFeed(userPost.Post, userPost.UserEmail, "", 0, userPost.UserPostId, 0, userPost.TotalLike, userPost.TotalDislike, userPost.Date));
+            }
+
+            // for clubs being followed get all posts
+            foreach (FollowClub followClub in followClubs)
             {
                 clubPosts = await _context.ClubPosts.AsNoTracking().Where(pst => pst.BookClubId == followClub.BookClubId).Select(pst => pst).ToListAsync();
 
@@ -46,6 +55,8 @@ namespace BCDL
                 }
             }
 
+
+            
             foreach(UserFeed fd in feed)
             {
                 bookClub = await _context.BookClubs.AsNoTracking().FirstOrDefaultAsync(bc => bc.BookClubId == fd.BookClubID);
