@@ -68,5 +68,17 @@ namespace BCDL
 
             return users;
         }
+
+        public async Task<FollowClub> DeleteFollowerByEmailsAsync(string followerEmail, int id)
+        {
+            FollowClub toBeDeleted = await _context.FollowClubs.AsNoTracking().FirstOrDefaultAsync(fl => fl.FollowerEmail == followerEmail && fl.BookClubId == id);
+            if (toBeDeleted != null)
+            {
+                _context.FollowClubs.Remove(toBeDeleted);
+                await _context.SaveChangesAsync();
+            }
+
+            return toBeDeleted;
+        }
     }
 }

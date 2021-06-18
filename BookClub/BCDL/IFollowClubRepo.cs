@@ -14,5 +14,6 @@ namespace BCDL
         Task<List<BookClub>> GetFollowingByUserAsync(string email);
         Task<FollowClub> DeleteFollowClubAsync(int id);
         Task<List<User>> GetFollowersByClubAsync(int id);
+        Task<FollowClub> DeleteFollowerByEmailsAsync(string followerEmail, int id);
     }
 }
