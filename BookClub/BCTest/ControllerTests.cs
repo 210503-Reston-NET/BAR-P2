@@ -9,11 +9,19 @@ using System.Linq;
 using Xunit;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using BCDL;
+using Microsoft.EntityFrameworkCore;
 
 namespace BCTest
 {
     public class ControllerTests
     {
+        private readonly DbContextOptions<BookClubDBContext> options;
+        public ControllerTests()
+        {
+            options = new DbContextOptionsBuilder<BookClubDBContext>().UseSqlite("Filename=Test.db;foreign keys=false").Options;
+        }
+
         [Fact]
         public async Task BookControllerShouldReturnList()
         {
@@ -323,6 +331,20 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task ClubPostControllerShouldDeleteClubPost()
+        {
+            var mockBL = new Mock<IClubPostBL>();
+            mockBL.Setup(x => x.DeleteClubPostAsync(new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime()))).ReturnsAsync(
+                new ClubPost("bryce.zimbelman@icloud.com", "Good Read", 1, 5, 0, new DateTime())
+                );
+
+            var controller = new ClubPostController(mockBL.Object);
+            var result = controller.DeleteClubPost(1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
+        }
+
+        [Fact]
         public async Task ClubPostLiksControllerShouldReturnClubPostLikes()
         {
             var mockBL = new Mock<IClubPostLikesBL>();
@@ -482,6 +504,20 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task UserCommentControllerShouldDeleteUserComment()
+        {
+            var mockBL = new Mock<IUserCommentBL>();
+            mockBL.Setup(x => x.DeleteCommentAsync(new UserComment("bryce.zimbelman@icloud.com", 1, "Good Read"))).ReturnsAsync(
+                new UserComment("bryce.zimbelman@icloud.com", 1, "Good Read")
+                );
+
+            var controller = new UserCommentController(mockBL.Object);
+            var result = controller.DeleteComment(1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
+        }
+
+        [Fact]
         public async Task UserCommentLikesControllerShouldReturnUserCommentLikes()
         {
             var mockBL = new Mock<IUserCommentLikeBL>();
@@ -571,6 +607,20 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task ClubCommentControllerShouldDeleteComment()
+        {
+            var mockBL = new Mock<IClubCommentBL>();
+            mockBL.Setup(x => x.DeleteCommentAsync(1)).ReturnsAsync(
+                new ClubComment("bryce.zimbelman@icloud.com", 1, "Good Read")
+                );
+
+            var controller = new ClubCommentController(mockBL.Object);
+            var result = controller.DeleteComment(1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
+        }
+
+        [Fact]
         public async Task UserCommentControllerShouldReturnUserPostComments()
         {
             var mockBL = new Mock<IUserCommentBL>();
@@ -588,6 +638,17 @@ namespace BCTest
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<List<UserComment>>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+        }
+
+        [Fact]
+        public async Task UserCommentControllerShouldDeleteUserPostsComments()
+        {
+            var mockBL = new Mock<IUserCommentBL>();
+            mockBL.Setup(x => x.DeleteCommentAsync(new UserComment("bryce.zimbelman@revature.net", 1, "Poor Read"))).ReturnsAsync(new UserComment("bryce.zimbelman@revature.net", 1, "Poor Read"));
+            var controller = new UserCommentController(mockBL.Object);
+            var result = controller.DeleteComment(1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
         }
 
         [Fact]
@@ -697,6 +758,30 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task FollowClubControllerShouldDeleteClubsFollowedByEmail()
+        {
+            var mockBL = new Mock<IFollowClubBL>();
+            mockBL.Setup(x => x.DeleteFollowClubAsync(1)).ReturnsAsync(new FollowClub("bryce.zimbelman@icloud.com", 1));
+
+            var controller = new FollowClubController(mockBL.Object);
+            var result = controller.DeleteByEmail("bryce.zimbelman@icloud.com", 1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
+        }
+
+        [Fact]
+        public async Task FollowClubControllerShouldDeleteClubsFollowed()
+        {
+            var mockBL = new Mock<IFollowClubBL>();
+            mockBL.Setup(x => x.DeleteFollowClubAsync(1)).ReturnsAsync(new FollowClub("bryce.zimbelman@icloud.com", 1));
+
+            var controller = new FollowClubController(mockBL.Object);
+            var result = controller.Delete(1);
+            var okResult = await result as OkObjectResult;
+            Assert.Null(okResult);
+        }
+
+        [Fact]
         public async Task FollowUserControllerShouldReturnList()
         {
             var mockBL = new Mock<IFollowUserBL>();
@@ -740,10 +825,10 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task UserControllerShouldReturnList()
+        public async Task FollowUserControllerShouldReturnFollowingByUser()
         {
-            var mockBL = new Mock<IUserBL>();
-            mockBL.Setup(x => x.GetAllUsersAsync()).ReturnsAsync(
+            var mockBL = new Mock<IFollowUserBL>();
+            mockBL.Setup(x => x.GetFollowingByUserAsync("bryce.zimbelman@icloud.com")).ReturnsAsync(
                 new List<User>
                 {
 
@@ -752,27 +837,12 @@ namespace BCTest
 
                 });
 
-            var controller = new UserController(mockBL.Object);
-            var result = controller.GetAllUsers();
+            var controller = new FollowUserController(mockBL.Object);
+            var result = controller.GetFollowingByUser("bryce.zimbelman@icloud.com");
             var okResult = await result as OkObjectResult;
             Assert.NotNull(okResult);
             Assert.True(okResult is OkObjectResult);
             Assert.IsType<List<User>>(okResult.Value);
-            Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
-        }
-
-        [Fact]
-        public async Task UserControllerShouldReturnUser()
-        {
-            var mockBL = new Mock<IUserBL>();
-            mockBL.Setup(x => x.GetUserByEmailAsync("bryce.zimbelman@icloud.com")).ReturnsAsync(new User("bryce.zimbelman@icloud.com", "Password", "13590 SW Electric St", 5));
-
-            var controller = new UserController(mockBL.Object);
-            var result = controller.GetUserByEmail("bryce.zimbelman@icloud.com");
-            var okResult = await result as OkObjectResult;
-            Assert.NotNull(okResult);
-            Assert.True(okResult is OkObjectResult);
-            Assert.IsType<User>(okResult.Value);
             Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
         }
 

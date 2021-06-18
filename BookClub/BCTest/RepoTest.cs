@@ -5,6 +5,12 @@ using System.Linq;
 using Xunit;
 using System;
 using System.Threading.Tasks;
+using BCWebUI.Controllers;
+using BCBL;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using BCModel;
 
 namespace BCTest
 {
@@ -672,6 +678,59 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task UserControllerShouldReturnUser()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserRepo _repo = new UserRepo(context);
+                IUserBL _userBL = new UserBL(_repo);
+                var controller = new UserController(_userBL);
+                var result = controller.GetUserByEmail("bryce.zimbelman@icloud.com");
+                var okResult = await result as OkObjectResult;
+                Assert.NotNull(okResult);
+                Assert.True(okResult is OkObjectResult);
+                Assert.IsType<Model.User>(okResult.Value);
+                Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+            }
+        }
+
+        [Fact]
+        public async Task UserControllerShouldReturnList()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserRepo _repo = new UserRepo(context);
+                IUserBL _userBL = new UserBL(_repo);
+                var controller = new UserController(_userBL);
+                var result = controller.GetAllUsers();
+                var okResult = await result as OkObjectResult;
+                Assert.NotNull(okResult);
+                Assert.True(okResult is OkObjectResult);
+                Assert.IsType<List<Model.User>>(okResult.Value);
+                Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+
+            }
+        }
+
+        [Fact]
+        public async Task FollowUserControllerShouldReturnIsFollowed()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                IFollowUserBL _followUserBL = new FollowUserBL(_repo);
+
+                var controller = new FollowUserController(_followUserBL);
+                var result = controller.IsFollowed("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net");
+                var okResult = await result as OkObjectResult;
+                Assert.NotNull(okResult);
+                Assert.True(okResult is OkObjectResult);
+                Assert.IsType<Boolean>(okResult.Value);
+                Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
+            }
+        }
+
+        [Fact]
         public async Task GetFollowersByClubShouldReturnUsers()
         {
             using (var context = new BookClubDBContext(options))
@@ -686,7 +745,32 @@ namespace BCTest
         }
 
         [Fact]
-        public async Task GetFollowByUserShouldReturnBookClubs()
+        public async Task GetFollowingByUserShouldReturnUsers()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                var following = await _repo.GetFollowingByUserAsync("bryce.zimbelman@icloud.com");
+                foreach (Model.User user in following)
+                {
+                    Assert.Equal("bryce.zimbelman@revature.net", user.UserEmail);
+                }
+            }
+        }
+
+        [Fact]
+        public async Task IsFollowingByUserShouldReturnBool()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IFollowUserRepo _repo = new FollowUserRepo(context);
+                var following = await _repo.IsFollowingAsync("bryce.zimbelman@icloud.com", "bryce.zimbelman@revature.net");
+                Assert.True(following);
+            }
+        }
+
+        [Fact]
+        public async Task GetFollowingByUserShouldReturnBookClubs()
         {
             using (var context = new BookClubDBContext(options))
             {
@@ -1079,6 +1163,29 @@ namespace BCTest
         }
 
         [Fact]
+        public async Task AddClubPostLikShouldAddClubPostLike2()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IClubPostLikesRepo _repo = new ClubPostLikesRepo(context);
+                await _repo.AddClubPostLikeAsync(new Model.ClubPostLikes
+                {
+                    Like = false,
+                    Dislike = true,
+                    ClubPostId = 1,
+                    UserEmail = "bryce.zimbelman@revature.net"
+                });
+            }
+
+            using (var assertContext = new BookClubDBContext(options))
+            {
+                var result = assertContext.ClubPostLikes.FirstOrDefault(like => like.ClubPostLikesId == 2);
+                Assert.NotNull(result);
+                Assert.NotEqual("bryce.zimbelman@revature.net", result.UserEmail);
+            }
+        }
+
+        [Fact]
         public async Task AddUserPostLikeShouldAddUserPostLike()
         {
             using (var context = new BookClubDBContext(options))
@@ -1092,6 +1199,29 @@ namespace BCTest
                 var result = assertContext.UserPostLikes.FirstOrDefault(like => like.UserPostLikesId == 3);
                 Assert.NotNull(result);
                 Assert.Equal("bryce.zimbelman@gmail.com", result.UserEmail);
+            }
+        }
+
+        [Fact]
+        public async Task AddUserPostLikeShouldAddUserPostLike2()
+        {
+            using (var context = new BookClubDBContext(options))
+            {
+                IUserPostLikesRepo _repo = new UserPostLikesRepo(context);
+                await _repo.AddUserPostLikeAsync(new Model.UserPostLikes
+                {
+                    Like = false,
+                    Dislike = true,
+                    UserPostId = 1,
+                    UserEmail = "bryce.zimbelman@revature.net"
+                });
+            }
+
+            using (var assertContext = new BookClubDBContext(options))
+            {
+                var result = assertContext.UserPostLikes.FirstOrDefault(like => like.UserPostLikesId == 1);
+                Assert.NotNull(result);
+                Assert.NotEqual("bryce.zimbelman@revature.net", result.UserEmail);
             }
         }
     }
