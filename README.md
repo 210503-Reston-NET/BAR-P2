@@ -1,7 +1,7 @@
 **Book Club App**
 
 **Overview**
-The Book Club is a web-based social application for managing a library. Users are able to log in, join and create book clubs, track their reading progress, and recommend titles to other users. Users can create a list of books they would like to read and a list of favorite books and view other users lists. Users will have personal pages and book club pages which they can post to. Users will view posts from both pages on their feed. Book Club Owners are able to manage their book club pages. This application uses the Google Books API to retrieve book information.
+Book club is a social media application that revolves around people's shared love for books. In this application users will be able to join Book Club groups and discuss topics related to club assigned books. Users also have the option to post topics on their own personal page. Users of the application will be able to follow other users to get their posts directly in their personal feed. The application uses Google's book API to search for new books. The front end is built using Angular Framework while the REST API for the applications is built using ASP.net.
 
 
 **MVP**
@@ -63,7 +63,7 @@ Azure
 
 Azure Devops
 
-OAuth
+Auth0
 
 **API**
 
